@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · Golf Match Tracker</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="container dashboard-page">
+    <nav class="topnav">
+      <a href="../">Home</a>
+      <a href="./" class="active">Dashboard</a>
+      <a href="../new-match/">Nuova partita</a>
+    </nav>
+
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">Golf Match Tracker</p>
+        <h1>Dashboard statistiche</h1>
+        <p class="hero-copy">Una vista pulita delle performance: winrate per player, winrate per team e ultime partite giocate.</p>
+      </div>
+      <div class="hero-meta">
+        <span class="pill">SQLite + export statico</span>
+        <p class="small" id="updated-at">Caricamento dati…</p>
+      </div>
+    </section>
+
+    <section class="kpi-grid" id="kpi-grid">
+      <article class="kpi-card">
+        <p class="kpi-label">Partite</p>
+        <p class="kpi-value" id="kpi-matches">-</p>
+        <p class="kpi-note">Totale partite tracciate</p>
+      </article>
+      <article class="kpi-card">
+        <p class="kpi-label">Giocatori</p>
+        <p class="kpi-value" id="kpi-players">-</p>
+        <p class="kpi-note">Player distinti</p>
+      </article>
+      <article class="kpi-card">
+        <p class="kpi-label">Team</p>
+        <p class="kpi-value" id="kpi-teams">-</p>
+        <p class="kpi-note">Combinazioni di team</p>
+      </article>
+      <article class="kpi-card kpi-card-accent">
+        <p class="kpi-label">Ultima partita</p>
+        <p class="kpi-value kpi-value-sm" id="kpi-latest">-</p>
+        <p class="kpi-note">Data piu recente nel dataset</p>
+      </article>
+    </section>
+
+    <section class="grid grid-charts">
+      <article class="card dashboard-card">
+        <div class="card-head">
+          <div>
+            <p class="section-kicker">Player</p>
+            <h2>Winrate per player</h2>
+          </div>
+          <span class="pill subtle" id="players-count">-</span>
+        </div>
+        <div id="players-chart" class="chart polished-chart"></div>
+      </article>
+
+      <article class="card dashboard-card">
+        <div class="card-head">
+          <div>
+            <p class="section-kicker">Team</p>
+            <h2>Winrate per team</h2>
+          </div>
+          <span class="pill subtle" id="teams-count">-</span>
+        </div>
+        <div id="teams-chart" class="chart polished-chart"></div>
+      </article>
+    </section>
+
+    <section class="grid grid-tables">
+      <article class="card dashboard-card">
+        <div class="card-head">
+          <div>
+            <p class="section-kicker">Dettaglio</p>
+            <h2>Tabella player</h2>
+          </div>
+        </div>
+        <div class="table-wrap"><table id="players"></table></div>
+      </article>
+
+      <article class="card dashboard-card">
+        <div class="card-head">
+          <div>
+            <p class="section-kicker">Dettaglio</p>
+            <h2>Tabella team</h2>
+          </div>
+        </div>
+        <div class="table-wrap"><table id="teams"></table></div>
+      </article>
+    </section>
+
+    <section class="card dashboard-card matches-card">
+      <div class="section-head card-head">
+        <div>
+          <p class="section-kicker">Storico</p>
+          <h2>Ultime partite</h2>
+          <p class="small">Mostra solo le N partite piu recenti.</p>
+        </div>
+        <div class="matches-limit-box compact-filter">
+          <label for="matches_limit">Numero partite</label>
+          <select id="matches_limit">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="all">Tutte</option>
+          </select>
+        </div>
+      </div>
+      <div id="matches" class="matches-list"></div>
+    </section>
+  </div>
+
+  <script>
+    function percent(value) {
+      return value == null ? '-' : Math.round(value * 100) + '%';
+    }
+
+    function niceDate(value) {
+      if (!value) return '-';
+      const d = new Date(value);
+      if (Number.isNaN(d.getTime())) return value;
+      return d.toLocaleString('it-IT', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
+
+    function table(el, headers, rows) {
+      el.innerHTML = '';
+      const thead = document.createElement('thead');
+      const trh = document.createElement('tr');
+      headers.forEach(h => {
+        const th = document.createElement('th');
+        th.textContent = h;
+        trh.appendChild(th);
+      });
+      thead.appendChild(trh);
+      const tbody = document.createElement('tbody');
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach((cell, index) => {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          if (index > 0) td.className = 'num';
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      el.appendChild(thead);
+      el.appendChild(tbody);
+    }
+
+    function renderChart(el, rows, labelKey, topN) {
+      el.innerHTML = '';
+      const sliced = rows.slice(0, topN);
+      if (!sliced.length) {
+        el.innerHTML = '<p class="small">Nessun dato</p>';
+        return;
+      }
+      sliced.forEach((row, index) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'chart-row';
+
+        const label = document.createElement('div');
+        label.className = 'chart-label';
+        label.textContent = row[labelKey];
+        label.title = row[labelKey];
+
+        const track = document.createElement('div');
+        track.className = 'chart-track';
+        const bar = document.createElement('div');
+        bar.className = 'chart-bar' + (index === 0 ? ' top' : '');
+        bar.style.width = Math.max(0, Math.min(100, row.winrate * 100)) + '%';
+        track.appendChild(bar);
+
+        const value = document.createElement('div');
+        value.className = 'chart-value';
+        value.textContent = percent(row.winrate);
+
+        wrap.appendChild(label);
+        wrap.appendChild(track);
+        wrap.appendChild(value);
+        el.appendChild(wrap);
+      });
+    }
+
+    function renderMatches(data) {
+      const container = document.getElementById('matches');
+      const limitValue = document.getElementById('matches_limit').value;
+      const limit = limitValue === 'all' ? data.matches.length : Number(limitValue);
+      const rows = data.matches.slice(0, limit);
+      container.innerHTML = '';
+      if (!rows.length) {
+        container.innerHTML = '<p class="small">Nessuna partita disponibile.</p>';
+        return;
+      }
+      rows.forEach(match => {
+        const item = document.createElement('article');
+        item.className = 'match-item';
+
+        const meta = document.createElement('div');
+        meta.className = 'match-meta';
+        const sideCount = match.sides.length;
+        meta.innerHTML = '<span class="match-date">' + niceDate(match.played_at) + '</span>' +
+          '<span class="match-dot">•</span>' +
+          '<span>' + (match.course || 'Campo n/d') + '</span>' +
+          '<span class="match-dot">•</span>' +
+          '<span>' + (match.holes || '-') + ' buche</span>' +
+          '<span class="match-dot">•</span>' +
+          '<span>' + sideCount + ' side</span>';
+
+        const body = document.createElement('div');
+        body.className = 'match-sides';
+
+        match.sides.forEach(side => {
+          const row = document.createElement('div');
+          row.className = 'match-side' + (side.is_winner ? ' is-winner' : '');
+          const label = side.team_name || side.players.join('-');
+          row.innerHTML =
+            '<span class="result-badge ' + (side.is_winner ? 'winner' : 'loser') + '">' + (side.is_winner ? 'Winner' : 'Loss') + '</span>' +
+            '<div class="match-side-text">' +
+              '<strong>' + label + '</strong>' +
+              '<span>' + side.players.join(' + ') + '</span>' +
+            '</div>';
+          body.appendChild(row);
+        });
+
+        item.appendChild(meta);
+        item.appendChild(body);
+
+        if (match.notes) {
+          const notes = document.createElement('p');
+          notes.className = 'match-notes';
+          notes.textContent = match.notes;
+          item.appendChild(notes);
+        }
+
+        container.appendChild(item);
+      });
+    }
+
+    fetch('../data/stats.json')
+      .then(r => r.json())
+      .then(data => {
+        window.__statsData = data;
+
+        document.getElementById('updated-at').textContent = 'Aggiornato: ' + niceDate(data.generated_at || data.generated_utc || data.generated || '');
+        document.getElementById('kpi-matches').textContent = data.counts.matches;
+        document.getElementById('kpi-players').textContent = data.counts.players;
+        document.getElementById('kpi-teams').textContent = data.counts.teams;
+        document.getElementById('kpi-latest').textContent = data.matches.length ? niceDate(data.matches[0].played_at) : '-';
+        document.getElementById('players-count').textContent = data.by_player.length + ' player';
+        document.getElementById('teams-count').textContent = data.by_team.length + ' team';
+
+        renderChart(document.getElementById('players-chart'), data.by_player, 'player', 10);
+        renderChart(document.getElementById('teams-chart'), data.by_team.map(function (x) {
+          return {
+            team_display: x.team_name || x.team_label,
+            winrate: x.winrate
+          };
+        }), 'team_display', 10);
+
+        table(
+          document.getElementById('players'),
+          ['Player', 'Games', 'Wins', 'Winrate'],
+          data.by_player.map(x => [x.player, x.games, x.wins, percent(x.winrate)])
+        );
+
+        table(
+          document.getElementById('teams'),
+          ['Team', 'Games', 'Wins', 'Winrate'],
+          data.by_team.map(x => [x.team_name || x.team_label, x.games, x.wins, percent(x.winrate)])
+        );
+
+        renderMatches(data);
+        document.getElementById('matches_limit').addEventListener('change', function () {
+          renderMatches(window.__statsData);
+        });
+      })
+      .catch(err => {
+        document.getElementById('updated-at').textContent = 'Impossibile leggere i dati';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

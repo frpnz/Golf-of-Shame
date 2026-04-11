@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Golf Match Tracker</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="./">Home</a>
+      <a href="dashboard/">Dashboard</a>
+      <a href="new-match/">Nuova partita</a>
+    </nav>
+
+    <div class="card">
+      <h1>Golf Match Tracker</h1>
+      <p>Versione minimale: frontend statico in <code>docs/</code>, backend locale con SQLite, import JSON offline e dashboard pubblicabile su GitHub Pages.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Dashboard</h2>
+        <p>Mostra winrate per giocatore, winrate per team e storico partite leggendo <code>data/stats.json</code>.</p>
+        <p><a href="dashboard/">Apri dashboard</a></p>
+      </div>
+      <div class="card">
+        <h2>Nuova partita</h2>
+        <p>Compila il form e scarica un JSON da importare poi nel backend.</p>
+        <p><a href="new-match/">Crea JSON partita</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

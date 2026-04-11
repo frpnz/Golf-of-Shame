@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuova partita · Golf Match Tracker</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="../">Home</a>
+      <a href="../dashboard/">Dashboard</a>
+      <a href="./">Nuova partita</a>
+    </nav>
+
+    <div class="card">
+      <h1>Nuova partita</h1>
+      <p class="small">Inserisci prima i giocatori, poi scegli se la partita è individuale o a squadre. Il JSON resta compatibile con l'import offline del backend.</p>
+
+      <div class="grid two-cols">
+        <div>
+          <label for="played_at">Data e ora</label>
+          <input id="played_at" type="datetime-local">
+          <p class="small">Precompilato con data e ora attuali locali.</p>
+        </div>
+        <div>
+          <label for="course">Campo</label>
+          <input id="course" type="text" placeholder="Golf Club Milano">
+        </div>
+      </div>
+
+      <div class="grid two-cols">
+        <div>
+          <label for="holes">Buche</label>
+          <input id="holes" type="number" min="1" step="1" value="18">
+        </div>
+        <div>
+          <label for="notes">Note</label>
+          <input id="notes" type="text" placeholder="Partita del venerdì pomeriggio">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Giocatori</h2>
+      <div class="add-player-row">
+        <input id="player_name" type="text" list="known-players" placeholder="Aggiungi un player">
+        <datalist id="known-players"></datalist>
+        <button id="add_player" type="button">Aggiungi</button>
+      </div>
+      <p class="small">Suggerimenti presi dal DB tramite <code>stats.json</code> esportato. Premi invio per aggiungere rapidamente.</p>
+      <div class="known-players-block">
+        <div class="known-players-head">
+          <span class="small">Player già presenti</span>
+        </div>
+        <div id="known_players_empty" class="small">Nessun player disponibile nel dataset esportato.</div>
+        <div id="known_players_list" class="chips suggest-chips"></div>
+      </div>
+      <div id="players_empty" class="small">Nessun player aggiunto.</div>
+      <div id="players_list" class="chips"></div>
+    </div>
+
+    <div class="card">
+      <h2>Modalità</h2>
+      <div class="mode-row">
+        <label class="choice-card">
+          <input type="radio" name="mode" value="individual" checked>
+          <span>Individuale</span>
+          <small>Ogni player gioca da solo. Devi scegliere solo il vincitore.</small>
+        </label>
+        <label class="choice-card">
+          <input type="radio" name="mode" value="teams">
+          <span>A squadre</span>
+          <small>Assegna ogni player a un team e scegli il team vincente.</small>
+        </label>
+      </div>
+    </div>
+
+    <div class="card" id="individual_section">
+      <h2>Vincitore</h2>
+      <div id="individual_winner" class="stack"></div>
+    </div>
+
+    <div class="card hidden" id="teams_section">
+      <div class="section-head">
+        <h2>Squadre</h2>
+        <div class="inline-actions">
+          <button id="remove_team" type="button" class="secondary">- Team</button>
+          <button id="add_team" type="button" class="secondary">+ Team</button>
+        </div>
+      </div>
+      <p class="small">Se il nome team resta vuoto, useremo automaticamente i nomi dei player uniti da <code>-</code>.</p>
+      <div id="team_names" class="grid two-cols"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Team</th>
+            </tr>
+          </thead>
+          <tbody id="team_assignments"></tbody>
+        </table>
+      </div>
+      <div class="winner-block">
+        <label for="winning_team">Vincitore</label>
+        <p class="small">Sceglilo dopo aver composto le squadre: si aggiorna in base ai player assegnati.</p>
+        <select id="winning_team"></select>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="grid two-cols">
+        <button id="build" type="button">Genera JSON</button>
+        <button id="download" type="button" class="secondary" disabled>Scarica JSON</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Anteprima JSON</h2>
+      <pre id="output">Premi “Genera JSON”.</pre>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var state = {
+        players: [],
+        mode: 'individual',
+        teamCount: 2,
+        teamAssignments: {},
+        knownPlayers: []
+      };
+      var latestText = '';
+
+      function byId(id) {
+        return document.getElementById(id);
+      }
+
+      function pad(n) {
+        return String(n).padStart(2, '0');
+      }
+
+      function localDateTimeValue(date) {
+        return date.getFullYear() + '-' +
+          pad(date.getMonth() + 1) + '-' +
+          pad(date.getDate()) + 'T' +
+          pad(date.getHours()) + ':' +
+          pad(date.getMinutes());
+      }
+
+      function generateImportKey() {
+        var now = Date.now().toString(36);
+        var rand = Math.random().toString(36).slice(2, 10);
+        return 'match-' + now + '-' + rand;
+      }
+
+      function teamOptionLabel(teamNo) {
+        var namesInput = byId('team_name_' + teamNo);
+        var custom = namesInput ? namesInput.value.trim() : '';
+        return custom || ('Team ' + teamNo);
+      }
+
+      function defaultTeamName(players) {
+        return players.slice().sort().join('-');
+      }
+
+      function normalizeName(name) {
+        return (name || '').trim().replace(/\s+/g, ' ');
+      }
+
+      function loadKnownPlayers() {
+        fetch('../data/stats.json')
+          .then(function (response) {
+            if (!response.ok) return null;
+            return response.json();
+          })
+          .then(function (payload) {
+            if (!payload || !payload.filters || !Array.isArray(payload.filters.players)) return;
+            state.knownPlayers = payload.filters.players.slice();
+            renderKnownPlayers();
+          })
+          .catch(function () {
+            renderKnownPlayers();
+          });
+      }
+
+      function renderKnownPlayers() {
+        var datalist = byId('known-players');
+        var list = byId('known_players_list');
+        var empty = byId('known_players_empty');
+        datalist.innerHTML = '';
+        list.innerHTML = '';
+
+        var available = state.knownPlayers.filter(function (name) {
+          return state.players.indexOf(name) === -1;
+        });
+
+        if (!available.length) {
+          empty.style.display = state.knownPlayers.length ? 'none' : 'block';
+        } else {
+          empty.style.display = 'none';
+        }
+
+        state.knownPlayers.forEach(function (name) {
+          var option = document.createElement('option');
+          option.value = name;
+          datalist.appendChild(option);
+        });
+
+        available.forEach(function (name) {
+          var button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'chip chip-action';
+          button.textContent = name;
+          button.addEventListener('click', function () {
+            addPlayer(name);
+            byId('player_name').value = '';
+            byId('player_name').focus();
+          });
+          list.appendChild(button);
+        });
+      }
+
+      function addPlayer(rawName) {
+        var name = normalizeName(rawName);
+        if (!name) return;
+        if (state.players.indexOf(name) !== -1) return;
+        state.players.push(name);
+        if (!state.teamAssignments[name]) {
+          var fallbackTeam = state.teamCount >= 2 ? ((state.players.length % 2) === 0 ? 2 : 1) : 1;
+          state.teamAssignments[name] = Math.min(fallbackTeam, state.teamCount);
+        }
+        if (state.knownPlayers.indexOf(name) === -1) {
+          state.knownPlayers.push(name);
+          state.knownPlayers.sort();
+          renderKnownPlayers();
+        }
+        renderAll();
+      }
+
+      function removePlayer(name) {
+        state.players = state.players.filter(function (item) { return item !== name; });
+        delete state.teamAssignments[name];
+        renderAll();
+      }
+
+      function setMode(mode) {
+        state.mode = mode === 'teams' ? 'teams' : 'individual';
+        renderMode();
+      }
+
+      function ensureAssignmentsInRange() {
+        state.players.forEach(function (player, index) {
+          var assigned = state.teamAssignments[player];
+          if (!assigned || assigned > state.teamCount || assigned < 1) {
+            state.teamAssignments[player] = (index % state.teamCount) + 1;
+          }
+        });
+      }
+
+      function renderPlayers() {
+        var list = byId('players_list');
+        var empty = byId('players_empty');
+        list.innerHTML = '';
+        if (!state.players.length) {
+          empty.style.display = 'block';
+          return;
+        }
+        empty.style.display = 'none';
+        state.players.forEach(function (name) {
+          var chip = document.createElement('div');
+          chip.className = 'chip';
+
+          var span = document.createElement('span');
+          span.textContent = name;
+          chip.appendChild(span);
+
+          var button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'chip-remove';
+          button.textContent = '×';
+          button.addEventListener('click', function () {
+            removePlayer(name);
+          });
+          chip.appendChild(button);
+          list.appendChild(chip);
+        });
+      }
+
+      function renderMode() {
+        byId('individual_section').classList.toggle('hidden', state.mode !== 'individual');
+        byId('teams_section').classList.toggle('hidden', state.mode !== 'teams');
+        renderIndividualWinners();
+        renderTeams();
+      }
+
+      function renderIndividualWinners() {
+        var wrap = byId('individual_winner');
+        wrap.innerHTML = '';
+        if (!state.players.length) {
+          wrap.innerHTML = '<div class="small">Aggiungi almeno 2 player.</div>';
+          return;
+        }
+        state.players.forEach(function (player, index) {
+          var label = document.createElement('label');
+          label.className = 'row-option';
+          var radio = document.createElement('input');
+          radio.type = 'radio';
+          radio.name = 'winner_player';
+          radio.value = player;
+          if (index === 0) radio.checked = true;
+          label.appendChild(radio);
+          var text = document.createElement('span');
+          text.textContent = player;
+          label.appendChild(text);
+          wrap.appendChild(label);
+        });
+      }
+
+      function renderTeams() {
+        ensureAssignmentsInRange();
+        var namesWrap = byId('team_names');
+        var body = byId('team_assignments');
+        var select = byId('winning_team');
+
+        namesWrap.innerHTML = '';
+        body.innerHTML = '';
+        select.innerHTML = '';
+
+        for (var i = 1; i <= state.teamCount; i += 1) {
+          var box = document.createElement('div');
+          var label = document.createElement('label');
+          label.setAttribute('for', 'team_name_' + i);
+          label.textContent = 'Nome team ' + i;
+          box.appendChild(label);
+
+          var input = document.createElement('input');
+          input.id = 'team_name_' + i;
+          input.type = 'text';
+          input.placeholder = 'Automatico dai player';
+          input.dataset.teamNo = String(i);
+          input.addEventListener('input', renderWinningTeamOptions);
+          box.appendChild(input);
+          namesWrap.appendChild(box);
+
+          var option = document.createElement('option');
+          option.value = String(i);
+          option.textContent = teamOptionLabel(i);
+          select.appendChild(option);
+        }
+        if (state.teamCount >= 1) select.value = '1';
+
+        state.players.forEach(function (player) {
+          var tr = document.createElement('tr');
+          var tdPlayer = document.createElement('td');
+          tdPlayer.textContent = player;
+          tr.appendChild(tdPlayer);
+
+          var tdTeam = document.createElement('td');
+          var playerSelect = document.createElement('select');
+          playerSelect.dataset.player = player;
+          for (var j = 1; j <= state.teamCount; j += 1) {
+            var opt = document.createElement('option');
+            opt.value = String(j);
+            opt.textContent = 'Team ' + j;
+            if (state.teamAssignments[player] === j) opt.selected = true;
+            playerSelect.appendChild(opt);
+          }
+          playerSelect.addEventListener('change', function (event) {
+            state.teamAssignments[event.target.dataset.player] = Number(event.target.value);
+            renderWinningTeamOptions();
+          });
+          tdTeam.appendChild(playerSelect);
+          tr.appendChild(tdTeam);
+          body.appendChild(tr);
+        });
+
+        renderWinningTeamOptions();
+      }
+
+      function renderWinningTeamOptions() {
+        var select = byId('winning_team');
+        var current = select.value || '1';
+        Array.prototype.forEach.call(select.options, function (option) {
+          var teamNo = Number(option.value);
+          var players = state.players.filter(function (player) {
+            return state.teamAssignments[player] === teamNo;
+          });
+          var typed = teamOptionLabel(teamNo);
+          option.textContent = players.length ? (typed + ' (' + defaultTeamName(players) + ')') : typed;
+        });
+        select.value = current;
+      }
+
+      function buildIndividualSides() {
+        var checked = document.querySelector('input[name="winner_player"]:checked');
+        if (!checked) throw new Error('Scegli il player vincitore');
+        return state.players.map(function (player) {
+          return {
+            team_name: player,
+            is_winner: player === checked.value,
+            players: [player]
+          };
+        });
+      }
+
+      function buildTeamSides() {
+        var grouped = {};
+        state.players.forEach(function (player) {
+          var teamNo = Number(state.teamAssignments[player] || 1);
+          if (!grouped[teamNo]) grouped[teamNo] = [];
+          grouped[teamNo].push(player);
+        });
+
+        var nonEmpty = Object.keys(grouped)
+          .map(function (key) { return Number(key); })
+          .sort(function (a, b) { return a - b; })
+          .filter(function (teamNo) { return grouped[teamNo].length > 0; });
+
+        if (nonEmpty.length < 2) throw new Error('Servono almeno 2 team non vuoti');
+
+        var winner = Number(byId('winning_team').value || 1);
+        if (nonEmpty.indexOf(winner) === -1) throw new Error('Il team vincente deve avere almeno un player');
+
+        return nonEmpty.map(function (teamNo) {
+          var players = grouped[teamNo].slice().sort();
+          var typedName = byId('team_name_' + teamNo).value.trim();
+          return {
+            team_name: typedName || defaultTeamName(players),
+            is_winner: teamNo === winner,
+            players: players
+          };
+        });
+      }
+
+      function buildPayload() {
+        var dt = byId('played_at').value;
+        if (!dt) throw new Error('Data e ora obbligatoria');
+        if (state.players.length < 2) throw new Error('Servono almeno 2 player');
+
+        return {
+          version: 'golf-match.v1',
+          import_key: generateImportKey(),
+          played_at: dt + ':00',
+          course: normalizeName(byId('course').value) || null,
+          holes: Number(byId('holes').value) || null,
+          notes: normalizeName(byId('notes').value) || null,
+          sides: state.mode === 'teams' ? buildTeamSides() : buildIndividualSides()
+        };
+      }
+
+      function renderAll() {
+        renderPlayers();
+        renderKnownPlayers();
+        renderMode();
+      }
+
+      byId('played_at').value = localDateTimeValue(new Date());
+
+      byId('add_player').addEventListener('click', function () {
+        addPlayer(byId('player_name').value);
+        byId('player_name').value = '';
+        byId('player_name').focus();
+      });
+
+      byId('player_name').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          byId('add_player').click();
+        }
+      });
+
+      Array.prototype.forEach.call(document.querySelectorAll('input[name="mode"]'), function (input) {
+        input.addEventListener('change', function (event) {
+          setMode(event.target.value);
+        });
+      });
+
+      byId('add_team').addEventListener('click', function () {
+        state.teamCount = Math.min(6, state.teamCount + 1);
+        renderTeams();
+      });
+
+      byId('remove_team').addEventListener('click', function () {
+        state.teamCount = Math.max(2, state.teamCount - 1);
+        ensureAssignmentsInRange();
+        renderTeams();
+      });
+
+      byId('build').addEventListener('click', function () {
+        try {
+          var payload = buildPayload();
+          latestText = JSON.stringify(payload, null, 2);
+          byId('output').textContent = latestText;
+          byId('download').disabled = false;
+        } catch (err) {
+          latestText = '';
+          byId('output').textContent = 'Errore: ' + err.message;
+          byId('download').disabled = true;
+        }
+      });
+
+      byId('download').addEventListener('click', function () {
+        if (!latestText) return;
+        var blob = new Blob([latestText], { type: 'application/json' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'golf-match.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      });
+
+      loadKnownPlayers();
+      renderAll();
+    })();
+  </script>
+</body>
+</html>

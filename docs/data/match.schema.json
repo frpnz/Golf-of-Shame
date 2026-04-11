@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Golf Match Input",
+  "type": "object",
+  "required": [
+    "played_at",
+    "sides"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "import_key": {
+      "type": "string"
+    },
+    "played_at": {
+      "type": "string"
+    },
+    "course": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "holes": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sides": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "players",
+          "is_winner"
+        ],
+        "properties": {
+          "team_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "is_winner": {
+            "type": "boolean"
+          },
+          "players": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

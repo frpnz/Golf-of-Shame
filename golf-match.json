@@ -1,0 +1,26 @@
+{
+  "version": "golf-match.v1",
+  "import_key": "match-mnuglgv9-o5nbkxbu",
+  "played_at": "2026-04-11T16:57:00",
+  "course": "Munca",
+  "holes": 18,
+  "notes": null,
+  "sides": [
+    {
+      "team_name": "Fra-Marin-Pepe",
+      "is_winner": true,
+      "players": [
+        "Fra",
+        "Marin",
+        "Pepe"
+      ]
+    },
+    {
+      "team_name": "Ale Aliberti",
+      "is_winner": false,
+      "players": [
+        "Ale Aliberti"
+      ]
+    }
+  ]
+}

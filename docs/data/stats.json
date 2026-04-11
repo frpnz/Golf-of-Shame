@@ -1,0 +1,238 @@
+{
+  "version": "golf-stats.v2",
+  "counts": {
+    "matches": 3,
+    "players": 6,
+    "teams": 3
+  },
+  "filters": {
+    "players": [
+      "Ale Aliberti",
+      "Billo",
+      "Fra",
+      "Marin",
+      "Patrick",
+      "Pepe"
+    ],
+    "courses": [
+      "Druento",
+      "Munca",
+      "Sestriere"
+    ]
+  },
+  "by_player": [
+    {
+      "player": "Billo",
+      "games": 2,
+      "wins": 2,
+      "winrate": 1.0
+    },
+    {
+      "player": "Marin",
+      "games": 1,
+      "wins": 1,
+      "winrate": 1.0
+    },
+    {
+      "player": "Fra",
+      "games": 3,
+      "wins": 2,
+      "winrate": 0.6667
+    },
+    {
+      "player": "Pepe",
+      "games": 3,
+      "wins": 1,
+      "winrate": 0.3333
+    },
+    {
+      "player": "Patrick",
+      "games": 2,
+      "wins": 0,
+      "winrate": 0.0
+    },
+    {
+      "player": "Ale Aliberti",
+      "games": 1,
+      "wins": 0,
+      "winrate": 0.0
+    }
+  ],
+  "by_team": [
+    {
+      "team_key": "Billo|Fra",
+      "team_label": "Billo + Fra",
+      "team_name": "Billo-Fra",
+      "games": 1,
+      "wins": 1,
+      "winrate": 1.0
+    },
+    {
+      "team_key": "Fra|Marin|Pepe",
+      "team_label": "Fra + Marin + Pepe",
+      "team_name": "Fra-Marin-Pepe",
+      "games": 1,
+      "wins": 1,
+      "winrate": 1.0
+    },
+    {
+      "team_key": "Patrick|Pepe",
+      "team_label": "Patrick + Pepe",
+      "team_name": "Patrick-Pepe",
+      "games": 1,
+      "wins": 0,
+      "winrate": 0.0
+    }
+  ],
+  "solo_vs_team": [
+    {
+      "player": "Fra",
+      "solo_games": 1,
+      "solo_wins": 0,
+      "team_games": 2,
+      "team_wins": 2,
+      "solo_winrate": 0.0,
+      "team_winrate": 1.0,
+      "delta": 1.0
+    },
+    {
+      "player": "Marin",
+      "solo_games": 0,
+      "solo_wins": 0,
+      "team_games": 1,
+      "team_wins": 1,
+      "solo_winrate": null,
+      "team_winrate": 1.0,
+      "delta": 1.0
+    },
+    {
+      "player": "Pepe",
+      "solo_games": 1,
+      "solo_wins": 0,
+      "team_games": 2,
+      "team_wins": 1,
+      "solo_winrate": 0.0,
+      "team_winrate": 0.5,
+      "delta": 0.5
+    },
+    {
+      "player": "Billo",
+      "solo_games": 1,
+      "solo_wins": 1,
+      "team_games": 1,
+      "team_wins": 1,
+      "solo_winrate": 1.0,
+      "team_winrate": 1.0,
+      "delta": 0.0
+    },
+    {
+      "player": "Patrick",
+      "solo_games": 1,
+      "solo_wins": 0,
+      "team_games": 1,
+      "team_wins": 0,
+      "solo_winrate": 0.0,
+      "team_winrate": 0.0,
+      "delta": 0.0
+    },
+    {
+      "player": "Ale Aliberti",
+      "solo_games": 1,
+      "solo_wins": 0,
+      "team_games": 0,
+      "team_wins": 0,
+      "solo_winrate": 0.0,
+      "team_winrate": null,
+      "delta": 0.0
+    }
+  ],
+  "matches": [
+    {
+      "id": 3,
+      "played_at": "2026-04-11T16:57:00",
+      "course": "Munca",
+      "holes": 18,
+      "notes": null,
+      "sides": [
+        {
+          "team_name": "Fra-Marin-Pepe",
+          "is_winner": true,
+          "players": [
+            "Fra",
+            "Marin",
+            "Pepe"
+          ]
+        },
+        {
+          "team_name": "Ale Aliberti",
+          "is_winner": false,
+          "players": [
+            "Ale Aliberti"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "played_at": "2026-04-11T16:56:00",
+      "course": "Sestriere",
+      "holes": 18,
+      "notes": null,
+      "sides": [
+        {
+          "team_name": "Billo",
+          "is_winner": true,
+          "players": [
+            "Billo"
+          ]
+        },
+        {
+          "team_name": "Patrick",
+          "is_winner": false,
+          "players": [
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Pepe",
+          "is_winner": false,
+          "players": [
+            "Pepe"
+          ]
+        },
+        {
+          "team_name": "Fra",
+          "is_winner": false,
+          "players": [
+            "Fra"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "played_at": "2026-04-11T16:55:00",
+      "course": "Druento",
+      "holes": 18,
+      "notes": null,
+      "sides": [
+        {
+          "team_name": "Billo-Fra",
+          "is_winner": true,
+          "players": [
+            "Billo",
+            "Fra"
+          ]
+        },
+        {
+          "team_name": "Patrick-Pepe",
+          "is_winner": false,
+          "players": [
+            "Patrick",
+            "Pepe"
+          ]
+        }
+      ]
+    }
+  ]
+}
