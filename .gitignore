@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# SQLite local files
+*.sqlite-shm
+*.sqlite-wal
+*.db-shm
+*.db-wal
+
+# Import/export temporary files
+golf-match.json
+golf-match-*.json
+*.tmp
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Node artifacts, if added later
+node_modules/
+dist/
+build/
+
+# Archives
+*.zip
+*.tar.gz
+*.tgz
