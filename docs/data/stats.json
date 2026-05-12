@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v4",
-  "generated_at": "2026-05-12T22:10:37.557948+00:00",
+  "generated_at": "2026-05-12T22:13:28.895860+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -69,7 +69,7 @@
     {
       "team_key": "Ale P|Lele",
       "team_label": "Ale P + Lele",
-      "team_name": "Ale P - Lele",
+      "team_name": "Ale P&Lele",
       "components": [
         "Ale P",
         "Lele"
@@ -85,7 +85,7 @@
     {
       "team_key": "Fra|Patrick",
       "team_label": "Fra + Patrick",
-      "team_name": "Fra-Patrick",
+      "team_name": "Fra&Patrick",
       "components": [
         "Fra",
         "Patrick"
@@ -209,7 +209,7 @@
       "is_draw": false,
       "sides": [
         {
-          "team_name": "Ale P - Lele",
+          "team_name": "Ale P&Lele",
           "is_winner": true,
           "players": [
             "Ale P",
@@ -217,7 +217,7 @@
           ]
         },
         {
-          "team_name": "Fra-Patrick",
+          "team_name": "Fra&Patrick",
           "is_winner": false,
           "players": [
             "Fra",
@@ -236,7 +236,7 @@
       "is_draw": true,
       "sides": [
         {
-          "team_name": "Fra-Patrick",
+          "team_name": "Fra&Patrick",
           "is_winner": true,
           "players": [
             "Fra",
@@ -244,7 +244,7 @@
           ]
         },
         {
-          "team_name": "Ale P - Lele",
+          "team_name": "Ale P&Lele",
           "is_winner": true,
           "players": [
             "Ale P",
