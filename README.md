@@ -117,6 +117,10 @@ La dashboard include una sezione `Head2Head` con due matrici:
 - `Head2Head - Player`
 - `Head2Head - Team`
 
+`Head2Head - Player` usa solo le partite individuali 1v1, cioe match con due side e un solo giocatore per side. I punti ottenuti da un giocatore in squadra continuano a valere nella classifica giocatori, ma non entrano nella matrice player.
+
+`Head2Head - Team` usa i confronti tra side composti da almeno due giocatori.
+
 Ogni cella legge il confronto dal punto di vista della riga.
 
 Formato `Record`:

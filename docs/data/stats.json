@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v6",
-  "generated_at": "2026-05-12T23:07:31.968020+00:00",
+  "generated_at": "2026-05-12T23:14:35.510087+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -187,42 +187,8 @@
             "Patrick"
           ],
           "matrix": {
-            "Ale P": {
-              "Fra": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 4,
-                "points_against": 1
-              },
-              "Patrick": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 4,
-                "points_against": 1
-              }
-            },
-            "Lele": {
-              "Fra": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 4,
-                "points_against": 1
-              },
-              "Patrick": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 4,
-                "points_against": 1
-              }
-            },
+            "Ale P": {},
+            "Lele": {},
             "Fra": {
               "Patrick": {
                 "games": 1,
@@ -231,22 +197,6 @@
                 "losses": 0,
                 "points_for": 3,
                 "points_against": 0
-              },
-              "Ale P": {
-                "games": 2,
-                "wins": 0,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 1,
-                "points_against": 4
-              },
-              "Lele": {
-                "games": 2,
-                "wins": 0,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 1,
-                "points_against": 4
               }
             },
             "Patrick": {
@@ -257,22 +207,6 @@
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
-              },
-              "Ale P": {
-                "games": 2,
-                "wins": 0,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 1,
-                "points_against": 4
-              },
-              "Lele": {
-                "games": 2,
-                "wins": 0,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 1,
-                "points_against": 4
               }
             }
           }
@@ -564,42 +498,8 @@
             "Patrick"
           ],
           "matrix": {
-            "Ale P": {
-              "Fra": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 4,
-                "points_against": 1
-              },
-              "Patrick": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 4,
-                "points_against": 1
-              }
-            },
-            "Lele": {
-              "Fra": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 4,
-                "points_against": 1
-              },
-              "Patrick": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 4,
-                "points_against": 1
-              }
-            },
+            "Ale P": {},
+            "Lele": {},
             "Fra": {
               "Patrick": {
                 "games": 1,
@@ -608,22 +508,6 @@
                 "losses": 0,
                 "points_for": 3,
                 "points_against": 0
-              },
-              "Ale P": {
-                "games": 2,
-                "wins": 0,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 1,
-                "points_against": 4
-              },
-              "Lele": {
-                "games": 2,
-                "wins": 0,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 1,
-                "points_against": 4
               }
             },
             "Patrick": {
@@ -634,22 +518,6 @@
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
-              },
-              "Ale P": {
-                "games": 2,
-                "wins": 0,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 1,
-                "points_against": 4
-              },
-              "Lele": {
-                "games": 2,
-                "wins": 0,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 1,
-                "points_against": 4
               }
             }
           }
@@ -941,42 +809,8 @@
         "Patrick"
       ],
       "matrix": {
-        "Ale P": {
-          "Fra": {
-            "games": 2,
-            "wins": 1,
-            "draws": 1,
-            "losses": 0,
-            "points_for": 4,
-            "points_against": 1
-          },
-          "Patrick": {
-            "games": 2,
-            "wins": 1,
-            "draws": 1,
-            "losses": 0,
-            "points_for": 4,
-            "points_against": 1
-          }
-        },
-        "Lele": {
-          "Fra": {
-            "games": 2,
-            "wins": 1,
-            "draws": 1,
-            "losses": 0,
-            "points_for": 4,
-            "points_against": 1
-          },
-          "Patrick": {
-            "games": 2,
-            "wins": 1,
-            "draws": 1,
-            "losses": 0,
-            "points_for": 4,
-            "points_against": 1
-          }
-        },
+        "Ale P": {},
+        "Lele": {},
         "Fra": {
           "Patrick": {
             "games": 1,
@@ -985,22 +819,6 @@
             "losses": 0,
             "points_for": 3,
             "points_against": 0
-          },
-          "Ale P": {
-            "games": 2,
-            "wins": 0,
-            "draws": 1,
-            "losses": 1,
-            "points_for": 1,
-            "points_against": 4
-          },
-          "Lele": {
-            "games": 2,
-            "wins": 0,
-            "draws": 1,
-            "losses": 1,
-            "points_for": 1,
-            "points_against": 4
           }
         },
         "Patrick": {
@@ -1011,22 +829,6 @@
             "losses": 1,
             "points_for": 0,
             "points_against": 3
-          },
-          "Ale P": {
-            "games": 2,
-            "wins": 0,
-            "draws": 1,
-            "losses": 1,
-            "points_for": 1,
-            "points_against": 4
-          },
-          "Lele": {
-            "games": 2,
-            "wins": 0,
-            "draws": 1,
-            "losses": 1,
-            "points_for": 1,
-            "points_against": 4
           }
         }
       }
