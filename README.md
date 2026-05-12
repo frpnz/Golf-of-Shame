@@ -18,9 +18,7 @@ data/
   golf_tracker.sqlite
 
 docs/
-  index.html
-  dashboard/
-    index.html
+  index.html              # dashboard / entry point GitHub Pages
   new-match/
     index.html
   data/
@@ -32,11 +30,11 @@ docs/
 
 ## Flusso operativo
 
-1. Apri la pagina `docs/new-match/index.html`.
+1. Apri `docs/new-match/index.html` per creare una partita, oppure `docs/index.html` per vedere la dashboard.
 2. Crea la partita e scarica il JSON generato.
 3. Importa il JSON nel database SQLite.
 4. Rigenera le statistiche statiche in `docs/data/`.
-5. Pubblica/aggiorna il repository su GitHub: la dashboard GitHub Pages leggerà i file aggiornati in `docs/`.
+5. Pubblica/aggiorna il repository su GitHub: GitHub Pages leggerà i file aggiornati in `docs/`.
 
 ## Punteggio
 
@@ -61,11 +59,11 @@ La regola vale sia per i giocatori sia per le squadre.
 La dashboard mostra:
 
 - Giocatore
+- Punti
 - Partite giocate
 - Vittorie
 - Pareggi
 - Sconfitte
-- Punti
 - Win Rate
 
 Il Win Rate è calcolato come:
@@ -81,12 +79,12 @@ I pareggi non contano come vittorie nel Win Rate, ma contano come partite giocat
 La dashboard mostra:
 
 - Squadra
+- Punti
 - Componenti
 - Partite giocate
 - Vittorie
 - Pareggi
 - Sconfitte
-- Punti
 - Win Rate
 
 Una squadra è identificata dalla stessa combinazione di giocatori.
@@ -218,9 +216,9 @@ Le pagine principali saranno:
 
 ```text
 https://TUO-USERNAME.github.io/golf-match-tracker/
-https://TUO-USERNAME.github.io/golf-match-tracker/dashboard/
 https://TUO-USERNAME.github.io/golf-match-tracker/new-match/
 ```
+
 
 ### 4. Aggiornare il sito dopo nuovi match
 
