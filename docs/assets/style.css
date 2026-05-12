@@ -922,7 +922,7 @@ pre {
   margin: 0;
   padding: 1rem 1.15rem;
   border-left: 4px solid var(--accent, #2f7d46);
-  background: rgba(230, 243, 236, 0.24);
+  background: rgba(47, 125, 70, 0.08);
   border-radius: 16px;
 }
 
@@ -1209,5 +1209,174 @@ pre {
   .h2h-matrix tbody th {
     min-width: 138px;
     max-width: 170px;
+  }
+}
+
+/* Mobile fix: compact year selector and Head2Head matrices */
+.matrix-control-label-mobile {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .season-toolbar {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .season-toolbar h2 {
+    font-size: 1.05rem;
+  }
+
+  .season-toolbar .small {
+    margin: 4px 0 0;
+    font-size: 0.82rem;
+  }
+
+  .season-filter-box {
+    width: 100%;
+  }
+
+  .season-filter-box label,
+  .matrix-min-box label {
+    margin-bottom: 4px;
+    font-size: 0.72rem;
+  }
+
+  #season_filter,
+  #matrix_min_games {
+    min-height: 38px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+  }
+
+  .matrix-card {
+    padding: 14px 0 12px;
+    overflow: visible;
+  }
+
+  .matrix-head {
+    padding: 0 14px;
+    margin-bottom: 10px;
+  }
+
+  .matrix-head h2 {
+    font-size: 1.18rem;
+  }
+
+  .matrix-head .small {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .matrix-controls {
+    width: 100%;
+    display: grid;
+    gap: 8px;
+    justify-items: stretch;
+  }
+
+  .segmented-control {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    padding: 3px;
+    border-radius: 14px;
+  }
+
+  .segmented-control button {
+    min-width: 0;
+    width: 100%;
+    padding: 7px 6px;
+    border-radius: 11px;
+    font-size: 0.76rem;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .matrix-min-box {
+    width: 100%;
+  }
+
+  .matrix-legend {
+    margin: 6px 14px 8px;
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
+
+  .h2h-table-wrap {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 0 10px;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 58vh;
+    border: 1px solid rgba(21,82,60,0.10);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.92);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .h2h-matrix {
+    width: max-content;
+    min-width: max-content;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .h2h-matrix th,
+  .h2h-matrix td {
+    min-width: 58px;
+    padding: 7px 6px;
+    font-size: 0.72rem;
+    line-height: 1.15;
+  }
+
+  .h2h-matrix thead th {
+    top: 0;
+    max-width: 92px;
+    font-size: 0.66rem;
+  }
+
+  .h2h-matrix thead th:first-child,
+  .h2h-matrix tbody th {
+    min-width: 112px;
+    max-width: 128px;
+    font-size: 0.72rem;
+    line-height: 1.15;
+  }
+
+  .h2h-table-wrap::after {
+    content: "Scorri la matrice in orizzontale";
+    position: sticky;
+    left: 0;
+    display: block;
+    padding: 7px 9px;
+    color: var(--muted);
+    background: rgba(248,251,247,0.96);
+    border-top: 1px solid #edf2ee;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .segmented-control button {
+    font-size: 0.7rem;
+    padding: 7px 4px;
+  }
+
+  .h2h-matrix th,
+  .h2h-matrix td {
+    min-width: 54px;
+    padding: 7px 5px;
+  }
+
+  .h2h-matrix thead th:first-child,
+  .h2h-matrix tbody th {
+    min-width: 102px;
+    max-width: 116px;
   }
 }
