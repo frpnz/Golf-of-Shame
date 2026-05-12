@@ -1380,3 +1380,112 @@ pre {
     max-width: 116px;
   }
 }
+
+/* Head2Head control fix: use native selects instead of large segmented buttons */
+.matrix-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, auto));
+  gap: 10px;
+  align-items: end;
+  justify-content: end;
+}
+
+.matrix-control-field {
+  display: grid;
+  gap: 5px;
+  min-width: 150px;
+}
+
+.matrix-control-field label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.matrix-control-field select,
+.season-filter-box select {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 34px 9px 12px;
+  border: 1px solid rgba(21,82,60,0.18);
+  border-radius: 13px;
+  background-color: #ffffff;
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 650;
+  cursor: pointer;
+  appearance: auto;
+  -webkit-appearance: menulist;
+  touch-action: manipulation;
+}
+
+.matrix-min-box {
+  min-width: 120px;
+  justify-self: auto;
+}
+
+@media (max-width: 760px) {
+  .season-toolbar {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .season-filter-box {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .matrix-controls {
+    grid-template-columns: 1fr;
+    gap: 9px;
+    justify-content: stretch;
+    width: 100%;
+  }
+
+  .matrix-control-field,
+  .matrix-min-box {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .matrix-control-field label,
+  .season-filter-box label {
+    margin: 0 0 4px;
+    font-size: 0.72rem;
+  }
+
+  .matrix-control-field select,
+  .season-filter-box select,
+  #season_filter,
+  #matrix_type,
+  #matrix_format,
+  #matrix_min_games {
+    display: block;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    line-height: 1.2;
+  }
+
+  .matrix-head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .h2h-table-wrap {
+    min-height: 160px;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  .h2h-matrix {
+    display: table;
+  }
+}
