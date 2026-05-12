@@ -921,24 +921,29 @@ pre {
 .flavour-quote {
   margin: 0;
   padding: 1rem 1.15rem;
-  border-left: 4px solid var(--accent, #2f7d46);
-  background: rgba(47, 125, 70, 0.08);
+  border-left: 4px solid rgba(244, 210, 130, 0.72);
+  background: rgba(255, 255, 255, 0.18);
   border-radius: 16px;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(6px);
 }
 
 .flavour-quote blockquote {
   margin: 0;
+  color: rgba(255, 255, 255, 0.94);
   font-size: 1rem;
-  line-height: 1.45;
+  line-height: 1.5;
   font-style: italic;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .flavour-quote figcaption {
   margin-top: 0.65rem;
+  color: rgba(255, 255, 255, 0.72);
   text-align: right;
   font-size: 0.78rem;
-  opacity: 0.75;
   font-variant: small-caps;
   letter-spacing: 0.04em;
 }
