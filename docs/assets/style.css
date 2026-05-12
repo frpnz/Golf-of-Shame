@@ -919,33 +919,47 @@ pre {
 }
 
 .flavour-quote {
+  position: relative;
   margin: 0;
-  padding: 1rem 1.15rem;
-  border-left: 4px solid rgba(244, 210, 130, 0.72);
-  background: rgba(255, 255, 255, 0.18);
+  padding: 1.05rem 1.2rem 1rem 1.35rem;
+  border-left: 3px solid rgba(247, 251, 248, 0.38);
+  background: rgba(255, 255, 255, 0.11);
   border-radius: 16px;
   box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.12),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+    0 10px 22px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.10);
   backdrop-filter: blur(6px);
 }
 
+.flavour-quote::before {
+  content: "“";
+  position: absolute;
+  top: -0.2rem;
+  left: 0.7rem;
+  color: rgba(247, 251, 248, 0.18);
+  font-size: 3.2rem;
+  line-height: 1;
+  font-family: Georgia, "Times New Roman", serif;
+  pointer-events: none;
+}
+
 .flavour-quote blockquote {
+  position: relative;
   margin: 0;
-  color: rgba(255, 255, 255, 0.94);
+  color: rgba(247, 251, 248, 0.92);
   font-size: 1rem;
   line-height: 1.5;
   font-style: italic;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .flavour-quote figcaption {
-  margin-top: 0.65rem;
-  color: rgba(255, 255, 255, 0.72);
+  margin-top: 0.7rem;
+  color: rgba(247, 251, 248, 0.64);
   text-align: right;
   font-size: 0.78rem;
   font-variant: small-caps;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.045em;
 }
 
 #updated-at {
