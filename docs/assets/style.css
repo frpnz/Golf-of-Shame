@@ -1489,3 +1489,75 @@ pre {
     display: table;
   }
 }
+
+/* Firefox mobile fallback for Head2Head matrices
+   Firefox on mobile is less reliable with sticky table cells inside nested overflow containers.
+   Keep the matrix visible and scrollable first; sticky is progressively enhanced in Chrome/Safari. */
+@-moz-document url-prefix() {
+  @media (max-width: 760px) {
+    .matrix-card {
+      overflow: visible;
+    }
+
+    .h2h-table-wrap {
+      display: block;
+      width: calc(100% - 20px);
+      margin: 0 10px;
+      padding: 0;
+      overflow-x: scroll;
+      overflow-y: visible;
+      max-height: none;
+      min-height: 0;
+      border: 1px solid rgba(21,82,60,0.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.96);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    .h2h-table-wrap::after {
+      position: static;
+      left: auto;
+      display: block;
+    }
+
+    .h2h-matrix {
+      display: table;
+      width: auto !important;
+      min-width: 620px !important;
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: auto;
+      border: 0;
+      border-radius: 0;
+      overflow: visible;
+      background: #ffffff;
+    }
+
+    .h2h-matrix thead th,
+    .h2h-matrix thead th:first-child,
+    .h2h-matrix tbody th {
+      position: static;
+      left: auto;
+      top: auto;
+      z-index: auto;
+      box-shadow: none;
+    }
+
+    .h2h-matrix thead th:first-child,
+    .h2h-matrix tbody th {
+      min-width: 110px;
+      max-width: 128px;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .h2h-matrix th,
+    .h2h-matrix td {
+      min-width: 56px;
+      padding: 8px 6px;
+      font-size: 0.72rem;
+      line-height: 1.15;
+    }
+  }
+}
