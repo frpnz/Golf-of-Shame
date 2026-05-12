@@ -164,6 +164,179 @@ def delete_match(conn: sqlite3.Connection, *, match_id: int | None = None, impor
     return cur.rowcount > 0
 
 
+def rename_sides(
+    conn: sqlite3.Connection,
+    *,
+    old_name: str,
+    new_name: str,
+    case_sensitive: bool = True,
+    dry_run: bool = False,
+) -> Dict[str, Any]:
+    old_name = str(old_name or "").strip()
+    new_name = str(new_name or "").strip()
+    if not old_name:
+        raise ValueError("Il nome side/team da cercare e obbligatorio")
+    if not new_name:
+        raise ValueError("Il nuovo nome side/team e obbligatorio")
+    if old_name == new_name:
+        raise ValueError("Il nuovo nome deve essere diverso dal nome attuale")
+
+    if case_sensitive:
+        where_sql = "team_name = ?"
+        params: tuple[Any, ...] = (old_name,)
+    else:
+        where_sql = "LOWER(team_name) = LOWER(?)"
+        params = (old_name,)
+
+    rows = conn.execute(
+        f"""
+        SELECT
+          s.id AS side_id,
+          s.team_name AS old_team_name,
+          m.id AS match_id,
+          m.played_at,
+          m.course
+        FROM match_side s
+        JOIN match m ON m.id = s.match_id
+        WHERE {where_sql}
+        ORDER BY m.played_at DESC, m.id DESC, s.side_order ASC, s.id ASC
+        """,
+        params,
+    ).fetchall()
+
+    affected = [
+        {
+            "side_id": int(row["side_id"]),
+            "match_id": int(row["match_id"]),
+            "played_at": row["played_at"],
+            "course": row["course"],
+            "old_team_name": row["old_team_name"],
+            "new_team_name": new_name,
+        }
+        for row in rows
+    ]
+
+    if affected and not dry_run:
+        conn.execute(f"UPDATE match_side SET team_name = ? WHERE {where_sql}", (new_name, *params))
+        conn.commit()
+
+    return {
+        "old_name": old_name,
+        "new_name": new_name,
+        "case_sensitive": case_sensitive,
+        "dry_run": dry_run,
+        "updated_sides": 0 if dry_run else len(affected),
+        "matched_sides": len(affected),
+        "affected_matches": sorted({item["match_id"] for item in affected}),
+        "matches": affected,
+    }
+
+
+def rename_players(
+    conn: sqlite3.Connection,
+    *,
+    old_name: str,
+    new_name: str,
+    case_sensitive: bool = True,
+    dry_run: bool = False,
+) -> Dict[str, Any]:
+    old_name = str(old_name or "").strip()
+    new_name = str(new_name or "").strip()
+    if not old_name:
+        raise ValueError("Il nome player da cercare e obbligatorio")
+    if not new_name:
+        raise ValueError("Il nuovo nome player e obbligatorio")
+    if old_name == new_name:
+        raise ValueError("Il nuovo nome deve essere diverso dal nome attuale")
+
+    if case_sensitive:
+        where_sql = "p.player_name = ?"
+        conflict_sql = "p2.player_name = ?"
+        params: tuple[Any, ...] = (old_name,)
+        conflict_param = new_name
+    else:
+        where_sql = "LOWER(p.player_name) = LOWER(?)"
+        conflict_sql = "LOWER(p2.player_name) = LOWER(?)"
+        params = (old_name,)
+        conflict_param = new_name
+
+    rows = conn.execute(
+        f"""
+        SELECT
+          p.id AS player_row_id,
+          p.side_id,
+          p.player_name AS old_player_name,
+          s.team_name,
+          m.id AS match_id,
+          m.played_at,
+          m.course
+        FROM match_player p
+        JOIN match_side s ON s.id = p.side_id
+        JOIN match m ON m.id = s.match_id
+        WHERE {where_sql}
+        ORDER BY m.played_at DESC, m.id DESC, s.side_order ASC, p.id ASC
+        """,
+        params,
+    ).fetchall()
+
+    affected = [
+        {
+            "player_row_id": int(row["player_row_id"]),
+            "side_id": int(row["side_id"]),
+            "match_id": int(row["match_id"]),
+            "played_at": row["played_at"],
+            "course": row["course"],
+            "team_name": row["team_name"],
+            "old_player_name": row["old_player_name"],
+            "new_player_name": new_name,
+        }
+        for row in rows
+    ]
+
+    conflicts = []
+    for item in affected:
+        conflict = conn.execute(
+            f"""
+            SELECT p2.id, p2.player_name
+            FROM match_player p2
+            JOIN match_side s2 ON s2.id = p2.side_id
+            WHERE s2.match_id = ?
+              AND p2.id <> ?
+              AND {conflict_sql}
+            LIMIT 1
+            """,
+            (item["match_id"], item["player_row_id"], conflict_param),
+        ).fetchone()
+        if conflict is not None:
+            conflicts.append({
+                "match_id": item["match_id"],
+                "played_at": item["played_at"],
+                "course": item["course"],
+                "old_player_name": item["old_player_name"],
+                "new_player_name": new_name,
+                "existing_player_name": conflict["player_name"],
+            })
+
+    blocked = bool(conflicts) and not dry_run
+
+    if affected and not dry_run and not blocked:
+        conn.execute(f"UPDATE match_player AS p SET player_name = ? WHERE {where_sql}", (new_name, *params))
+        conn.commit()
+
+    return {
+        "old_name": old_name,
+        "new_name": new_name,
+        "case_sensitive": case_sensitive,
+        "dry_run": dry_run,
+        "updated_players": 0 if dry_run or blocked else len(affected),
+        "matched_players": len(affected),
+        "blocked": blocked,
+        "affected_matches": sorted({item["match_id"] for item in affected}),
+        "matches": affected,
+        "conflicts": conflicts,
+    }
+
+
 def fetch_matches(conn: sqlite3.Connection) -> List[Dict[str, Any]]:
     matches = []
     match_rows = conn.execute(

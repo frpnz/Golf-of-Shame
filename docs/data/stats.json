@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v4",
-  "generated_at": "2026-05-12T21:52:26.342781+00:00",
+  "generated_at": "2026-05-12T22:10:37.557948+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -14,9 +14,9 @@
   },
   "filters": {
     "players": [
-      "Ale Pepe",
-      "Billo",
+      "Ale P",
       "Fra",
+      "Lele",
       "Patrick"
     ],
     "courses": [
@@ -25,7 +25,7 @@
   },
   "by_player": [
     {
-      "player": "Ale Pepe",
+      "player": "Ale P",
       "games": 2,
       "wins": 1,
       "draws": 1,
@@ -35,7 +35,7 @@
       "winrate": 0.5
     },
     {
-      "player": "Billo",
+      "player": "Lele",
       "games": 2,
       "wins": 1,
       "draws": 1,
@@ -67,12 +67,12 @@
   ],
   "by_team": [
     {
-      "team_key": "Ale Pepe|Billo",
-      "team_label": "Ale Pepe + Billo",
-      "team_name": "Ale Pepe-Billo",
+      "team_key": "Ale P|Lele",
+      "team_label": "Ale P + Lele",
+      "team_name": "Ale P - Lele",
       "components": [
-        "Ale Pepe",
-        "Billo"
+        "Ale P",
+        "Lele"
       ],
       "games": 2,
       "wins": 1,
@@ -119,7 +119,7 @@
       "delta": -1.0
     },
     {
-      "player": "Ale Pepe",
+      "player": "Ale P",
       "solo_games": 0,
       "solo_wins": 0,
       "solo_draws": 0,
@@ -137,7 +137,7 @@
       "delta": 0.5
     },
     {
-      "player": "Billo",
+      "player": "Lele",
       "solo_games": 0,
       "solo_wins": 0,
       "solo_draws": 0,
@@ -209,11 +209,11 @@
       "is_draw": false,
       "sides": [
         {
-          "team_name": "Ale Pepe-Billo",
+          "team_name": "Ale P - Lele",
           "is_winner": true,
           "players": [
-            "Ale Pepe",
-            "Billo"
+            "Ale P",
+            "Lele"
           ]
         },
         {
@@ -244,11 +244,11 @@
           ]
         },
         {
-          "team_name": "Ale Pepe-Billo",
+          "team_name": "Ale P - Lele",
           "is_winner": true,
           "players": [
-            "Ale Pepe",
-            "Billo"
+            "Ale P",
+            "Lele"
           ]
         }
       ]

@@ -12,6 +12,8 @@ backend/
   import_match.py
   export_stats.py
   delete_match.py
+  rename_side.py
+  rename_player.py
   init_db.py
 
 data/
@@ -156,6 +158,57 @@ Se non hai `sqlite3` installato, puoi usare Python:
 python -c "import sqlite3; con=sqlite3.connect('data/golf_tracker.sqlite'); cur=con.execute('SELECT id, import_key, played_at, course, holes, notes FROM match ORDER BY played_at DESC'); [print(row) for row in cur.fetchall()]"
 ```
 
+
+## Rinominare una side/squadra
+
+La rinomina agisce direttamente sul database SQLite e aggiorna tutte le side/team con lo stesso nome.
+
+Esempio:
+
+```bash
+python backend/rename_side.py --db data/golf_tracker.sqlite --from "Team A" --to "I Ferri Corti" --export-docs docs
+```
+
+Per controllare prima quali side verrebbero aggiornate senza modificare il database:
+
+```bash
+python backend/rename_side.py --db data/golf_tracker.sqlite --from "Team A" --to "I Ferri Corti" --dry-run
+```
+
+Per cercare il nome ignorando maiuscole/minuscole:
+
+```bash
+python backend/rename_side.py --db data/golf_tracker.sqlite --from "team a" --to "I Ferri Corti" --case-insensitive --export-docs docs
+```
+
+L'opzione `--export-docs docs` rigenera la dashboard dopo la rinomina.
+
+## Rinominare un player
+
+La rinomina agisce direttamente sul database SQLite e aggiorna tutte le occorrenze del player in `match_player.player_name`.
+
+Esempio:
+
+```bash
+python backend/rename_player.py --db data/golf_tracker.sqlite --from "Mario R." --to "Mario Rossi" --export-docs docs
+```
+
+Per controllare prima quali occorrenze verrebbero aggiornate senza modificare il database:
+
+```bash
+python backend/rename_player.py --db data/golf_tracker.sqlite --from "Mario R." --to "Mario Rossi" --dry-run
+```
+
+Per cercare il nome ignorando maiuscole/minuscole:
+
+```bash
+python backend/rename_player.py --db data/golf_tracker.sqlite --from "mario r." --to "Mario Rossi" --case-insensitive --export-docs docs
+```
+
+L'opzione `--export-docs docs` rigenera la dashboard dopo la rinomina.
+
+Nota: i nomi player e i nomi side/team sono campi diversi, quindi non c'è conflitto tecnico tra un player e un team con lo stesso nome. La rinomina player viene pero bloccata se il nuovo nome è già presente nello stesso match, per evitare duplicati nella stessa partita.
+
 ## Modifica match
 
 La modifica dei match è stata rimossa dal progetto.
@@ -222,7 +275,7 @@ https://TUO-USERNAME.github.io/golf-match-tracker/new-match/
 
 ### 4. Aggiornare il sito dopo nuovi match
 
-Ogni volta che importi o elimini un match:
+Ogni volta che importi, elimini o rinomini dati nel database:
 
 ```bash
 python backend/import_match.py --db data/golf_tracker.sqlite --input golf-match.json --export-docs docs
@@ -232,6 +285,12 @@ oppure:
 
 ```bash
 python backend/delete_match.py --db data/golf_tracker.sqlite --id 3 --export-docs docs
+```
+
+oppure:
+
+```bash
+python backend/rename_side.py --db data/golf_tracker.sqlite --from "Team A" --to "I Ferri Corti" --export-docs docs
 ```
 
 poi pubblica gli aggiornamenti:
