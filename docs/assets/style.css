@@ -922,7 +922,7 @@ pre {
   margin: 0;
   padding: 1rem 1.15rem;
   border-left: 4px solid var(--accent, #2f7d46);
-  background: rgba(244, 210, 130, 0.14);
+  background: rgba(47, 125, 70, 0.08);
   border-radius: 16px;
 }
 
@@ -946,4 +946,28 @@ pre {
 #updated-at {
   margin: 0;
   color: rgba(247, 251, 248, 0.72);
+  width: 100%;
+  justify-self: stretch;
+  text-align: left;
+}
+/* Sticky identification column for leaderboard tables */
+.leaderboard-table {
+  overflow-x: auto;
+}
+
+#players th:first-child,
+#players td:first-child,
+#teams th:first-child,
+#teams td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: #ffffff;
+  box-shadow: 8px 0 12px rgba(22, 34, 28, 0.05);
+}
+
+#players th:first-child,
+#teams th:first-child {
+  z-index: 4;
+  background: #f2f8f4;
 }
