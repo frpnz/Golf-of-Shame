@@ -91,6 +91,59 @@ La dashboard mostra:
 
 Una squadra è identificata dalla stessa combinazione di giocatori.
 
+### Filtro per anno
+
+La dashboard genera automaticamente le classifiche per anno partendo dalle date delle partite (`played_at`).
+
+Nel file `docs/data/stats.json` vengono salvati:
+
+- i dati globali, compatibili con il formato precedente;
+- `years`, con gli anni disponibili ordinati dal più recente;
+- `views.all`, con la vista complessiva;
+- `views.YYYY`, con classifiche, KPI e storico filtrati per singolo anno.
+
+Il filtro `Anno` nella dashboard aggiorna insieme:
+
+- classifica giocatori;
+- classifica squadre;
+- matrici Head2Head;
+- dati aggregati;
+- ultime partite.
+
+### Matrici Head2Head
+
+La dashboard include una sezione `Head2Head` con due matrici:
+
+- `Head2Head - Player`
+- `Head2Head - Team`
+
+Ogni cella legge il confronto dal punto di vista della riga.
+
+Formato `Record`:
+
+```text
+V-P-S
+```
+
+dove:
+
+- `V` = vittorie della riga contro la colonna;
+- `P` = pareggi;
+- `S` = sconfitte.
+
+Formato `Punti`:
+
+```text
+PF-PS
+```
+
+dove:
+
+- `PF` = punti fatti dal soggetto della riga;
+- `PS` = punti fatti dall'avversario in colonna.
+
+Le matrici usano lo stesso filtro anno della dashboard. Il filtro `Min. partite` nasconde i confronti con meno partite del valore selezionato.
+
 ## Importare una partita
 
 Dalla root del progetto:
@@ -291,6 +344,12 @@ oppure:
 
 ```bash
 python backend/rename_side.py --db data/golf_tracker.sqlite --from "Team A" --to "I Ferri Corti" --export-docs docs
+```
+
+oppure:
+
+```bash
+python backend/rename_player.py --db data/golf_tracker.sqlite --from "Mario R." --to "Mario Rossi" --export-docs docs
 ```
 
 poi pubblica gli aggiornamenti:

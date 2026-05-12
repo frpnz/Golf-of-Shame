@@ -16,7 +16,7 @@
     <section class="hero-card">
       <div>
         <p class="eyebrow">Golf Match Tracker</p>
-        <h1>Golf of Shame — Stats</h1>
+        <h1>Stats</h1>
         <p class="hero-copy">Vittoria = 3 punti, pareggio = 1, sconfitta = 0. Il Win Rate considera solo le vittorie.</p>
       </div>
       <div class="hero-meta">
@@ -29,6 +29,20 @@
 
       <p class="small" id="updated-at">Caricamento dati…</p>
     </div>
+    </section>
+
+    <section class="card dashboard-card season-toolbar">
+      <div>
+        <p class="section-kicker">Stagione</p>
+        <h2>Classifiche per anno</h2>
+        <p class="small">Filtra classifiche, dati aggregati e storico in base all'anno delle partite.</p>
+      </div>
+      <div class="season-filter-box compact-filter">
+        <label for="season_filter">Anno</label>
+        <select id="season_filter">
+          <option value="all">Tutti gli anni</option>
+        </select>
+      </div>
     </section>
 
     <section class="scoreboard-stack">
@@ -48,12 +62,45 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica squadre</h2>
-            <p class="small">I punti squadra contano anche per le classifiche singolari.</p>
+            <p class="small">I punti squadra contano anche per le classifiche individuali.</p>
           </div>
           <span class="pill subtle" id="teams-count">-</span>
         </div>
         <div class="table-wrap leaderboard-table"><table id="teams"></table></div>
       </article>
+    </section>
+
+    <section class="card dashboard-card matrix-card">
+      <div class="section-head card-head matrix-head">
+        <div>
+          <p class="section-kicker">Matrici</p>
+          <h2>Head2Head</h2>
+          <p class="small">Ogni cella legge il confronto dal punto di vista della riga. Record = Vittorie-Pareggi-Sconfitte.</p>
+        </div>
+        <div class="matrix-controls">
+          <div class="segmented-control" aria-label="Tipo matrice">
+            <button type="button" class="matrix-tab active" data-matrix-type="players">Head2Head - Player</button>
+            <button type="button" class="matrix-tab" data-matrix-type="teams">Head2Head - Team</button>
+          </div>
+          <div class="segmented-control" aria-label="Formato matrice">
+            <button type="button" class="matrix-format active" data-matrix-format="record">Record</button>
+            <button type="button" class="matrix-format" data-matrix-format="points">Punti</button>
+          </div>
+          <div class="matrix-min-box compact-filter">
+            <label for="matrix_min_games">Min. partite</label>
+            <select id="matrix_min_games">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="matrix-legend" id="matrix-legend">Record V-P-S = vittorie, pareggi, sconfitte.</div>
+      <div class="table-wrap h2h-table-wrap">
+        <table id="h2h-matrix" class="h2h-matrix"></table>
+      </div>
     </section>
 
     <section class="kpi-grid" id="kpi-grid">
@@ -130,7 +177,7 @@
         return 'python backend/delete_match.py --db data/golf_tracker.sqlite --id ' + match.id + ' --export-docs docs';
       }
       if (match && match.import_key) {
-        return 'python backend/delete_match.py --db data/golf_tracker.sqlite --import-key "' + String(match.import_key).replace(/"/g, '\"') + '" --export-docs docs';
+        return 'python backend/delete_match.py --db data/golf_tracker.sqlite --import-key "' + String(match.import_key).replace(/"/g, '\\"') + '" --export-docs docs';
       }
       return 'ID/import_key non disponibile: rigenera docs/data/stats.json con export_stats.py';
     }
@@ -161,14 +208,39 @@
       el.appendChild(tbody);
     }
 
-    function renderMatches(data) {
+    function getView(data, year) {
+      const views = data.views || { all: data };
+      return views[year] || views.all || data;
+    }
+
+    function selectedYearLabel(year) {
+      return year === 'all' ? 'Tutti gli anni' : year;
+    }
+
+    function populateYearFilter(data) {
+      const select = document.getElementById('season_filter');
+      const years = Array.isArray(data.years) ? data.years : [];
+      select.innerHTML = '<option value="all">Tutti gli anni</option>';
+      years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        select.appendChild(option);
+      });
+
+      // Default: anno piu recente disponibile. Se non ci sono partite, resta "Tutti gli anni".
+      select.value = years.length ? years[0] : 'all';
+    }
+
+    function renderMatches(view) {
       const container = document.getElementById('matches');
+      const matches = view.matches || [];
       const limitValue = document.getElementById('matches_limit').value;
-      const limit = limitValue === 'all' ? data.matches.length : Number(limitValue);
-      const rows = data.matches.slice(0, limit);
+      const limit = limitValue === 'all' ? matches.length : Number(limitValue);
+      const rows = matches.slice(0, limit);
       container.innerHTML = '';
       if (!rows.length) {
-        container.innerHTML = '<p class="small">Nessuna partita disponibile.</p>';
+        container.innerHTML = '<p class="small">Nessuna partita disponibile per il periodo selezionato.</p>';
         return;
       }
       rows.forEach(match => {
@@ -234,34 +306,182 @@
       });
     }
 
+
+
+    function setActiveButton(selector, activeButton) {
+      document.querySelectorAll(selector).forEach(button => {
+        button.classList.toggle('active', button === activeButton);
+      });
+    }
+
+    function currentMatrixType() {
+      const active = document.querySelector('.matrix-tab.active');
+      return active ? active.dataset.matrixType : 'players';
+    }
+
+    function currentMatrixFormat() {
+      const active = document.querySelector('.matrix-format.active');
+      return active ? active.dataset.matrixFormat : 'record';
+    }
+
+    function h2hCellClass(entry) {
+      if (!entry || !entry.games) return 'empty';
+      if (entry.wins > entry.losses) return 'positive';
+      if (entry.wins < entry.losses) return 'negative';
+      return 'neutral';
+    }
+
+    function h2hCellText(entry, format) {
+      if (!entry || !entry.games) return '·';
+      if (format === 'points') {
+        return String(entry.points_for || 0) + '-' + String(entry.points_against || 0);
+      }
+      return String(entry.wins || 0) + '-' + String(entry.draws || 0) + '-' + String(entry.losses || 0);
+    }
+
+    function h2hTitle(rowLabel, colLabel, entry) {
+      if (!entry || !entry.games) return rowLabel + ' vs ' + colLabel + ': nessuna partita';
+      return rowLabel + ' vs ' + colLabel + ': ' +
+        entry.games + ' partite · ' +
+        (entry.wins || 0) + ' vittorie · ' +
+        (entry.draws || 0) + ' pareggi · ' +
+        (entry.losses || 0) + ' sconfitte · punti ' +
+        (entry.points_for || 0) + '-' + (entry.points_against || 0);
+    }
+
+    function renderH2H(view) {
+      const tableEl = document.getElementById('h2h-matrix');
+      const legend = document.getElementById('matrix-legend');
+      const type = currentMatrixType();
+      const format = currentMatrixFormat();
+      const minGames = Number(document.getElementById('matrix_min_games').value || 1);
+      const h2h = (view.head_to_head || {})[type] || { labels: [], matrix: {} };
+      const allLabels = h2h.labels || [];
+      const matrix = h2h.matrix || {};
+
+      const labels = allLabels.filter(label => {
+        return allLabels.some(other => {
+          if (label === other) return false;
+          const entry = matrix[label] && matrix[label][other];
+          return entry && entry.games >= minGames;
+        });
+      });
+
+      tableEl.innerHTML = '';
+      legend.textContent = format === 'points'
+        ? 'Formato punti = punti riga - punti avversario. Ogni cella e dal punto di vista della riga.'
+        : 'Record V-P-S = vittorie, pareggi, sconfitte. Ogni cella e dal punto di vista della riga.';
+
+      if (!labels.length) {
+        const caption = document.createElement('caption');
+        caption.textContent = 'Nessun confronto disponibile con il filtro selezionato.';
+        tableEl.appendChild(caption);
+        return;
+      }
+
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      const corner = document.createElement('th');
+      corner.textContent = type === 'players' ? 'Player ↓ / vs →' : 'Team ↓ / vs →';
+      headerRow.appendChild(corner);
+      labels.forEach(label => {
+        const th = document.createElement('th');
+        th.textContent = label;
+        th.title = label;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+
+      const tbody = document.createElement('tbody');
+      labels.forEach(rowLabel => {
+        const tr = document.createElement('tr');
+        const rowHead = document.createElement('th');
+        rowHead.scope = 'row';
+        rowHead.textContent = rowLabel;
+        rowHead.title = rowLabel;
+        tr.appendChild(rowHead);
+
+        labels.forEach(colLabel => {
+          const td = document.createElement('td');
+          if (rowLabel === colLabel) {
+            td.textContent = '—';
+            td.className = 'diag';
+          } else {
+            const entry = matrix[rowLabel] && matrix[rowLabel][colLabel];
+            td.textContent = h2hCellText(entry, format);
+            td.className = h2hCellClass(entry);
+            td.title = h2hTitle(rowLabel, colLabel, entry);
+          }
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+
+      tableEl.appendChild(thead);
+      tableEl.appendChild(tbody);
+    }
+
+    function renderDashboard(data) {
+      const year = document.getElementById('season_filter').value || 'all';
+      const view = getView(data, year);
+      const counts = view.counts || { matches: 0, players: 0, teams: 0 };
+      const byPlayer = view.by_player || [];
+      const byTeam = view.by_team || [];
+      const matches = view.matches || [];
+      const suffix = selectedYearLabel(year);
+
+      document.getElementById('kpi-matches').textContent = counts.matches || 0;
+      document.getElementById('kpi-players').textContent = counts.players || 0;
+      document.getElementById('kpi-teams').textContent = counts.teams || 0;
+      document.getElementById('kpi-latest').textContent = matches.length ? niceDate(matches[0].played_at) : '-';
+      document.getElementById('players-count').textContent = byPlayer.length + ' player · ' + suffix;
+      document.getElementById('teams-count').textContent = byTeam.length + ' team · ' + suffix;
+
+      table(
+        document.getElementById('players'),
+        ['Giocatore', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
+        byPlayer.map(x => [x.player, x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
+      );
+
+      table(
+        document.getElementById('teams'),
+        ['Squadra', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
+        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
+      );
+
+      renderH2H(view);
+      renderMatches(view);
+    }
+
     fetch('data/stats.json')
       .then(r => r.json())
       .then(data => {
         window.__statsData = data;
 
         document.getElementById('updated-at').textContent = 'Aggiornato: ' + niceDate(data.generated_at || data.generated_utc || data.generated || '');
-        document.getElementById('kpi-matches').textContent = data.counts.matches;
-        document.getElementById('kpi-players').textContent = data.counts.players;
-        document.getElementById('kpi-teams').textContent = data.counts.teams;
-        document.getElementById('kpi-latest').textContent = data.matches.length ? niceDate(data.matches[0].played_at) : '-';
-        document.getElementById('players-count').textContent = data.by_player.length + ' player';
-        document.getElementById('teams-count').textContent = data.by_team.length + ' team';
+        populateYearFilter(data);
+        renderDashboard(data);
 
-        table(
-          document.getElementById('players'),
-          ['Giocatore', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
-          data.by_player.map(x => [x.player, x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
-        );
-
-        table(
-          document.getElementById('teams'),
-          ['Squadra', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
-          data.by_team.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
-        );
-
-        renderMatches(data);
+        document.getElementById('season_filter').addEventListener('change', function () {
+          renderDashboard(window.__statsData);
+        });
         document.getElementById('matches_limit').addEventListener('change', function () {
-          renderMatches(window.__statsData);
+          renderDashboard(window.__statsData);
+        });
+        document.querySelectorAll('.matrix-tab').forEach(button => {
+          button.addEventListener('click', function () {
+            setActiveButton('.matrix-tab', button);
+            renderDashboard(window.__statsData);
+          });
+        });
+        document.querySelectorAll('.matrix-format').forEach(button => {
+          button.addEventListener('click', function () {
+            setActiveButton('.matrix-format', button);
+            renderDashboard(window.__statsData);
+          });
+        });
+        document.getElementById('matrix_min_games').addEventListener('change', function () {
+          renderDashboard(window.__statsData);
         });
       })
       .catch(err => {
