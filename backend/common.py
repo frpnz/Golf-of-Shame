@@ -98,8 +98,8 @@ def validate_match_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
             "players": clean_players,
         })
 
-    if winners != 1:
-        raise ValueError("Deve esserci esattamente 1 side vincente")
+    if winners < 1:
+        raise ValueError("Serve almeno 1 side con punto/vittoria. Per un pareggio, marca piu side come vincenti")
 
     holes = payload.get("holes")
     if holes is not None:
@@ -150,10 +150,24 @@ def insert_match(conn: sqlite3.Connection, payload: Dict[str, Any]) -> tuple[int
     return match_id, True
 
 
+def delete_match(conn: sqlite3.Connection, *, match_id: int | None = None, import_key: str | None = None) -> bool:
+    if match_id is None and not import_key:
+        raise ValueError("Specificare match_id oppure import_key")
+    if match_id is not None and import_key:
+        raise ValueError("Specificare solo uno tra match_id e import_key")
+
+    if match_id is not None:
+        cur = conn.execute("DELETE FROM match WHERE id = ?", (match_id,))
+    else:
+        cur = conn.execute("DELETE FROM match WHERE import_key = ?", (import_key,))
+    conn.commit()
+    return cur.rowcount > 0
+
+
 def fetch_matches(conn: sqlite3.Connection) -> List[Dict[str, Any]]:
     matches = []
     match_rows = conn.execute(
-        "SELECT id, played_at, course, holes, notes FROM match ORDER BY played_at DESC, id DESC"
+        "SELECT id, played_at, course, holes, notes, import_key FROM match ORDER BY played_at DESC, id DESC"
     ).fetchall()
     for row in match_rows:
         sides = []
@@ -180,6 +194,8 @@ def fetch_matches(conn: sqlite3.Connection) -> List[Dict[str, Any]]:
             "course": row["course"],
             "holes": row["holes"],
             "notes": row["notes"],
+            "import_key": row["import_key"],
+            "is_draw": sum(1 for side in sides if side["is_winner"]) > 1,
             "sides": sides,
         })
     return matches

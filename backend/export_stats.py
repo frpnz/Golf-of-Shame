@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List
 
@@ -23,6 +24,7 @@ MATCH_SCHEMA = {
         "sides": {
             "type": "array",
             "minItems": 2,
+            "description": "Almeno un side deve avere is_winner=true. Se un solo side ha is_winner=true, riceve 3 punti. Se piu side hanno is_winner=true, la partita e un pareggio e ogni side marcato riceve 1 punto.",
             "items": {
                 "type": "object",
                 "required": ["players", "is_winner"],
@@ -54,15 +56,32 @@ def compute_stats(matches: List[Dict]) -> Dict:
     solo_vs_team: Dict[str, Dict] = {}
 
     for match in matches:
+        is_draw = bool(match.get("is_draw"))
         for side in match["sides"]:
-            win = 1 if side["is_winner"] else 0
+            is_point_side = bool(side["is_winner"])
+            is_win = is_point_side and not is_draw
+            is_draw_result = is_point_side and is_draw
+            points = 3 if is_win else (1 if is_draw_result else 0)
             side_size = len(side["players"])
             default_team_name = side.get("team_name") or "-".join(side["players"])
 
             for player in side["players"]:
-                entry = by_player.setdefault(player, {"player": player, "games": 0, "wins": 0})
+                entry = by_player.setdefault(
+                    player,
+                    {
+                        "player": player,
+                        "games": 0,
+                        "wins": 0,
+                        "draws": 0,
+                        "losses": 0,
+                        "points": 0,
+                    },
+                )
                 entry["games"] += 1
-                entry["wins"] += win
+                entry["wins"] += 1 if is_win else 0
+                entry["draws"] += 1 if is_draw_result else 0
+                entry["losses"] += 1 if not is_point_side else 0
+                entry["points"] += points
 
                 split = solo_vs_team.setdefault(
                     player,
@@ -70,16 +89,22 @@ def compute_stats(matches: List[Dict]) -> Dict:
                         "player": player,
                         "solo_games": 0,
                         "solo_wins": 0,
+                        "solo_draws": 0,
+                        "solo_losses": 0,
+                        "solo_points": 0,
                         "team_games": 0,
                         "team_wins": 0,
+                        "team_draws": 0,
+                        "team_losses": 0,
+                        "team_points": 0,
                     },
                 )
-                if side_size == 1:
-                    split["solo_games"] += 1
-                    split["solo_wins"] += win
-                else:
-                    split["team_games"] += 1
-                    split["team_wins"] += win
+                prefix = "solo" if side_size == 1 else "team"
+                split[f"{prefix}_games"] += 1
+                split[f"{prefix}_wins"] += 1 if is_win else 0
+                split[f"{prefix}_draws"] += 1 if is_draw_result else 0
+                split[f"{prefix}_losses"] += 1 if not is_point_side else 0
+                split[f"{prefix}_points"] += points
 
             team_players = sorted(side["players"])
             if len(team_players) >= 2:
@@ -91,27 +116,38 @@ def compute_stats(matches: List[Dict]) -> Dict:
                         "team_key": team_key,
                         "team_label": label,
                         "team_name": default_team_name,
+                        "components": team_players,
                         "games": 0,
                         "wins": 0,
+                        "draws": 0,
+                        "losses": 0,
+                        "points": 0,
                     },
                 )
                 entry["games"] += 1
-                entry["wins"] += win
+                entry["wins"] += 1 if is_win else 0
+                entry["draws"] += 1 if is_draw_result else 0
+                entry["losses"] += 1 if not is_point_side else 0
+                entry["points"] += points
                 if not entry.get("team_name"):
                     entry["team_name"] = default_team_name
 
     player_rows = list(by_player.values())
     for row in player_rows:
+        row["points_rate"] = round(row["points"] / row["games"], 4) if row["games"] else 0.0
         row["winrate"] = round(row["wins"] / row["games"], 4) if row["games"] else 0.0
-    player_rows.sort(key=lambda x: (-x["winrate"], -x["games"], x["player"]))
+    player_rows.sort(key=lambda x: (-x["points"], -x["winrate"], -x["games"], x["player"]))
 
     team_rows = list(by_team.values())
     for row in team_rows:
+        row["points_rate"] = round(row["points"] / row["games"], 4) if row["games"] else 0.0
         row["winrate"] = round(row["wins"] / row["games"], 4) if row["games"] else 0.0
-    team_rows.sort(key=lambda x: (-x["winrate"], -x["games"], x["team_label"]))
+    team_rows.sort(key=lambda x: (-x["points"], -x["winrate"], -x["games"], x["team_label"]))
 
     split_rows = list(solo_vs_team.values())
     for row in split_rows:
+        row["solo_points_rate"] = round(row["solo_points"] / row["solo_games"], 4) if row["solo_games"] else None
+        row["team_points_rate"] = round(row["team_points"] / row["team_games"], 4) if row["team_games"] else None
         row["solo_winrate"] = round(row["solo_wins"] / row["solo_games"], 4) if row["solo_games"] else None
         row["team_winrate"] = round(row["team_wins"] / row["team_games"], 4) if row["team_games"] else None
         solo_value = row["solo_winrate"] if row["solo_winrate"] is not None else 0.0
@@ -129,7 +165,14 @@ def compute_stats(matches: List[Dict]) -> Dict:
     courses = sorted({m["course"] for m in matches if m.get("course")})
 
     return {
-        "version": "golf-stats.v2",
+        "version": "golf-stats.v4",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "scoring": {
+            "win_points": 3,
+            "draw_points": 1,
+            "loss_points": 0,
+            "winrate_rule": "wins / games; draws are not counted as wins",
+        },
         "counts": {
             "matches": len(matches),
             "players": len(players),

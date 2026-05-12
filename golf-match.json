@@ -1,25 +1,23 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-mnuglgv9-o5nbkxbu",
-  "played_at": "2026-04-11T16:57:00",
-  "course": "Munca",
+  "import_key": "match-mp2r6r79-24u4jih8",
+  "played_at": "2026-05-12T16:55:00",
+  "course": "Margherita",
   "holes": 18,
   "notes": null,
   "sides": [
     {
-      "team_name": "Fra-Marin-Pepe",
+      "team_name": "Fra",
       "is_winner": true,
       "players": [
-        "Fra",
-        "Marin",
-        "Pepe"
+        "Fra"
       ]
     },
     {
-      "team_name": "Ale Aliberti",
+      "team_name": "Patrick",
       "is_winner": false,
       "players": [
-        "Ale Aliberti"
+        "Patrick"
       ]
     }
   ]

@@ -37,6 +37,7 @@
     "sides": {
       "type": "array",
       "minItems": 2,
+      "description": "Almeno un side deve avere is_winner=true. Se un solo side ha is_winner=true, riceve 3 punti. Se piu side hanno is_winner=true, la partita e un pareggio e ogni side marcato riceve 1 punto.",
       "items": {
         "type": "object",
         "required": [

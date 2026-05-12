@@ -349,6 +349,36 @@ pre {
   color: var(--muted);
   font-size: 0.92rem;
 }
+
+.match-id {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.match-admin {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #edf2ee;
+}
+.match-admin summary {
+  cursor: pointer;
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+.match-import-key {
+  margin: 10px 0 6px;
+  word-break: break-all;
+}
+.delete-command {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
 .match-notes {
   margin: 12px 0 0;
   color: var(--muted);
@@ -500,4 +530,387 @@ pre {
     padding: 18px 14px 40px;
   }
   .add-player-row { grid-template-columns: 1fr; }
+}
+
+/* Dashboard refresh: full-width leaderboards, no chart panels */
+.dashboard-page {
+  max-width: 1280px;
+}
+.scoreboard-stack {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.scoreboard-card {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  border-color: rgba(21,82,60,0.10);
+  background:
+    linear-gradient(135deg, rgba(230,243,236,0.72) 0%, rgba(255,255,255,0.92) 34%, rgba(255,255,255,0.98) 100%);
+}
+.scoreboard-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--accent-strong), #3d986f, #a4c96b);
+}
+.scoreboard-card-primary::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -80px;
+  width: 260px;
+  height: 260px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(31,107,79,0.13), transparent 68%);
+  pointer-events: none;
+}
+.leaderboard-head {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 24px 24px 10px;
+}
+.leaderboard-head h2 {
+  font-size: clamp(1.45rem, 2vw, 1.9rem);
+  letter-spacing: -0.03em;
+}
+.leaderboard-head .small {
+  max-width: 760px;
+  margin-bottom: 0;
+}
+.leaderboard-table {
+  position: relative;
+  z-index: 1;
+  padding: 0 16px 18px;
+}
+.leaderboard-table table {
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+.leaderboard-table thead th {
+  border-bottom: 0;
+  padding: 8px 12px;
+}
+.leaderboard-table tbody tr {
+  background: rgba(255,255,255,0.86);
+  box-shadow: 0 8px 18px rgba(22, 34, 28, 0.045);
+}
+.leaderboard-table tbody tr:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+.leaderboard-table tbody td {
+  border-bottom: 0;
+  padding: 14px 12px;
+}
+.leaderboard-table tbody td:first-child {
+  border-radius: 14px 0 0 14px;
+  font-weight: 800;
+  color: var(--text);
+}
+.leaderboard-table tbody td:last-child {
+  border-radius: 0 14px 14px 0;
+}
+.leaderboard-table tbody td:nth-last-child(2) {
+  font-weight: 800;
+  color: var(--accent-strong);
+}
+.matches-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(248,251,247,0.92));
+}
+.kpi-card {
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(22, 34, 28, 0.08);
+}
+
+@media (max-width: 980px) {
+  .scoreboard-stack { gap: 16px; }
+}
+@media (max-width: 760px) {
+  .leaderboard-head { padding: 22px 18px 8px; }
+  .leaderboard-table { padding: 0 10px 14px; }
+}
+
+/* Mobile compatibility pass */
+@media (max-width: 760px) {
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(31,107,79,0.10), transparent 34%),
+      var(--bg);
+  }
+
+  .container,
+  .dashboard-page {
+    width: 100%;
+    max-width: none;
+    padding: 14px 12px 34px;
+  }
+
+  .topnav,
+  nav {
+    gap: 8px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .topnav::-webkit-scrollbar,
+  nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .topnav a,
+  nav a {
+    flex: 0 0 auto;
+    padding: 9px 12px;
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+
+  .hero-card {
+    padding: 20px;
+    margin-bottom: 14px;
+    border-radius: 22px;
+  }
+
+  .hero-card h1 {
+    font-size: clamp(1.8rem, 11vw, 2.5rem);
+  }
+
+  .hero-copy {
+    font-size: 0.96rem;
+  }
+
+  .hero-meta,
+  .hero-meta .small {
+    width: 100%;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .kpi-card {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .kpi-label {
+    font-size: 0.72rem;
+  }
+
+  .kpi-value {
+    font-size: 1.8rem;
+  }
+
+  .kpi-value-sm {
+    font-size: 0.98rem;
+  }
+
+  .kpi-note {
+    margin-bottom: 0;
+    font-size: 0.78rem;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .scoreboard-stack {
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .scoreboard-card {
+    border-radius: 20px;
+  }
+
+  .leaderboard-head {
+    display: grid;
+    gap: 10px;
+    padding: 20px 16px 8px;
+  }
+
+  .leaderboard-head h2 {
+    font-size: 1.38rem;
+  }
+
+  .leaderboard-head .pill {
+    justify-self: start;
+  }
+
+  .leaderboard-table {
+    overflow: visible;
+    padding: 0 10px 14px;
+  }
+
+  .leaderboard-table table,
+  .leaderboard-table thead,
+  .leaderboard-table tbody,
+  .leaderboard-table tr,
+  .leaderboard-table th,
+  .leaderboard-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .leaderboard-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .leaderboard-table table {
+    border-spacing: 0;
+  }
+
+  .leaderboard-table tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .leaderboard-table tbody tr {
+    display: grid;
+    gap: 0;
+    padding: 12px;
+    border: 1px solid rgba(21,82,60,0.08);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 8px 18px rgba(22, 34, 28, 0.045);
+  }
+
+  .leaderboard-table tbody td,
+  .leaderboard-table tbody td:first-child,
+  .leaderboard-table tbody td:last-child {
+    display: grid;
+    grid-template-columns: minmax(105px, 44%) 1fr;
+    gap: 12px;
+    align-items: baseline;
+    padding: 7px 0;
+    border-radius: 0;
+    border-bottom: 1px solid #eef3ef;
+    text-align: right;
+    min-width: 0;
+  }
+
+  .leaderboard-table tbody td:first-child {
+    display: block;
+    padding: 0 0 10px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3ece6;
+    text-align: left;
+    font-size: 1.08rem;
+    word-break: break-word;
+  }
+
+  .leaderboard-table tbody td:last-child {
+    border-bottom: 0;
+  }
+
+  .leaderboard-table tbody td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .leaderboard-table tbody td:first-child::before {
+    display: none;
+  }
+
+  .leaderboard-table tbody td:nth-last-child(2) {
+    color: var(--accent-strong);
+  }
+
+  .section-head,
+  .card-head {
+    display: grid;
+    gap: 12px;
+  }
+
+  .matches-limit-box,
+  .compact-filter {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .match-item {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .match-meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    font-size: 0.9rem;
+  }
+
+  .match-dot {
+    display: none;
+  }
+
+  .match-side {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .result-badge {
+    min-width: 0;
+    width: fit-content;
+  }
+
+  .delete-command {
+    font-size: 0.78rem;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 420px) {
+  .container,
+  .dashboard-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-card {
+    padding: 18px;
+  }
+
+  .leaderboard-table tbody td,
+  .leaderboard-table tbody td:first-child,
+  .leaderboard-table tbody td:last-child {
+    grid-template-columns: 1fr;
+    gap: 2px;
+    text-align: left;
+  }
+
+  .pill {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
 }

@@ -16,7 +16,7 @@
 
     <div class="card">
       <h1>Nuova partita</h1>
-      <p class="small">Inserisci prima i giocatori, poi scegli se la partita è individuale o a squadre. Il JSON resta compatibile con l'import offline del backend.</p>
+      <p class="small">Inserisci prima i giocatori, poi scegli se la partita è individuale o a squadre. Puoi indicare uno o più side a punti: un vincitore unico riceve 3 punti; più side selezionati equivalgono a pareggio e ricevono 1 punto ciascuno.</p>
 
       <div class="grid two-cols">
         <div>
@@ -67,18 +67,19 @@
         <label class="choice-card">
           <input type="radio" name="mode" value="individual" checked>
           <span>Individuale</span>
-          <small>Ogni player gioca da solo. Devi scegliere solo il vincitore.</small>
+          <small>Ogni player gioca da solo. Seleziona uno o più player a punto.</small>
         </label>
         <label class="choice-card">
           <input type="radio" name="mode" value="teams">
           <span>A squadre</span>
-          <small>Assegna ogni player a un team e scegli il team vincente.</small>
+          <small>Assegna ogni player a un team e seleziona uno o più team a punto.</small>
         </label>
       </div>
     </div>
 
     <div class="card" id="individual_section">
-      <h2>Vincitore</h2>
+      <h2>Risultato</h2>
+      <p class="small">Seleziona uno o più player: un vincitore unico riceve 3 punti; in caso di pareggio ogni player selezionato riceve 1 punto.</p>
       <div id="individual_winner" class="stack"></div>
     </div>
 
@@ -104,9 +105,9 @@
         </table>
       </div>
       <div class="winner-block">
-        <label for="winning_team">Vincitore</label>
-        <p class="small">Sceglilo dopo aver composto le squadre: si aggiorna in base ai player assegnati.</p>
-        <select id="winning_team"></select>
+        <label>Risultato team</label>
+        <p class="small">Seleziona uno o più team: un vincitore unico riceve 3 punti; in caso di pareggio ogni team selezionato riceve 1 punto.</p>
+        <div id="winning_team" class="stack"></div>
       </div>
     </div>
 
@@ -308,12 +309,12 @@
         state.players.forEach(function (player, index) {
           var label = document.createElement('label');
           label.className = 'row-option';
-          var radio = document.createElement('input');
-          radio.type = 'radio';
-          radio.name = 'winner_player';
-          radio.value = player;
-          if (index === 0) radio.checked = true;
-          label.appendChild(radio);
+          var checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.name = 'winner_player';
+          checkbox.value = player;
+          if (index === 0) checkbox.checked = true;
+          label.appendChild(checkbox);
           var text = document.createElement('span');
           text.textContent = player;
           label.appendChild(text);
@@ -325,11 +326,11 @@
         ensureAssignmentsInRange();
         var namesWrap = byId('team_names');
         var body = byId('team_assignments');
-        var select = byId('winning_team');
+        var winnersWrap = byId('winning_team');
 
         namesWrap.innerHTML = '';
         body.innerHTML = '';
-        select.innerHTML = '';
+        winnersWrap.innerHTML = '';
 
         for (var i = 1; i <= state.teamCount; i += 1) {
           var box = document.createElement('div');
@@ -347,12 +348,20 @@
           box.appendChild(input);
           namesWrap.appendChild(box);
 
-          var option = document.createElement('option');
-          option.value = String(i);
-          option.textContent = teamOptionLabel(i);
-          select.appendChild(option);
+          var winnerLabel = document.createElement('label');
+          winnerLabel.className = 'row-option';
+          var checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.name = 'winner_team';
+          checkbox.value = String(i);
+          if (i === 1) checkbox.checked = true;
+          winnerLabel.appendChild(checkbox);
+          var text = document.createElement('span');
+          text.dataset.teamWinnerLabel = String(i);
+          text.textContent = teamOptionLabel(i);
+          winnerLabel.appendChild(text);
+          winnersWrap.appendChild(winnerLabel);
         }
-        if (state.teamCount >= 1) select.value = '1';
 
         state.players.forEach(function (player) {
           var tr = document.createElement('tr');
@@ -383,26 +392,23 @@
       }
 
       function renderWinningTeamOptions() {
-        var select = byId('winning_team');
-        var current = select.value || '1';
-        Array.prototype.forEach.call(select.options, function (option) {
-          var teamNo = Number(option.value);
+        Array.prototype.forEach.call(document.querySelectorAll('[data-team-winner-label]'), function (label) {
+          var teamNo = Number(label.dataset.teamWinnerLabel);
           var players = state.players.filter(function (player) {
             return state.teamAssignments[player] === teamNo;
           });
           var typed = teamOptionLabel(teamNo);
-          option.textContent = players.length ? (typed + ' (' + defaultTeamName(players) + ')') : typed;
+          label.textContent = players.length ? (typed + ' (' + defaultTeamName(players) + ')') : typed;
         });
-        select.value = current;
       }
 
       function buildIndividualSides() {
-        var checked = document.querySelector('input[name="winner_player"]:checked');
-        if (!checked) throw new Error('Scegli il player vincitore');
+        var checked = Array.prototype.map.call(document.querySelectorAll('input[name="winner_player"]:checked'), function (input) { return input.value; });
+        if (!checked.length) throw new Error('Scegli almeno un player/team a punti');
         return state.players.map(function (player) {
           return {
             team_name: player,
-            is_winner: player === checked.value,
+            is_winner: checked.indexOf(player) !== -1,
             players: [player]
           };
         });
@@ -423,15 +429,19 @@
 
         if (nonEmpty.length < 2) throw new Error('Servono almeno 2 team non vuoti');
 
-        var winner = Number(byId('winning_team').value || 1);
-        if (nonEmpty.indexOf(winner) === -1) throw new Error('Il team vincente deve avere almeno un player');
+        var winners = Array.prototype.map.call(document.querySelectorAll('input[name="winner_team"]:checked'), function (input) {
+          return Number(input.value);
+        }).filter(function (teamNo) {
+          return nonEmpty.indexOf(teamNo) !== -1;
+        });
+        if (!winners.length) throw new Error('Scegli almeno un team a punti con almeno un player');
 
         return nonEmpty.map(function (teamNo) {
           var players = grouped[teamNo].slice().sort();
           var typedName = byId('team_name_' + teamNo).value.trim();
           return {
             team_name: typedName || defaultTeamName(players),
-            is_winner: teamNo === winner,
+            is_winner: winners.indexOf(teamNo) !== -1,
             players: players
           };
         });

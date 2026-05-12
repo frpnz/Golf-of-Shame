@@ -1,86 +1,101 @@
 {
-  "version": "golf-stats.v2",
+  "version": "golf-stats.v4",
+  "generated_at": "2026-05-12T14:56:24.325245+00:00",
+  "scoring": {
+    "win_points": 3,
+    "draw_points": 1,
+    "loss_points": 0,
+    "winrate_rule": "wins / games; draws are not counted as wins"
+  },
   "counts": {
     "matches": 3,
-    "players": 6,
-    "teams": 3
+    "players": 4,
+    "teams": 2
   },
   "filters": {
     "players": [
-      "Ale Aliberti",
+      "Ale Pepe",
       "Billo",
       "Fra",
-      "Marin",
-      "Patrick",
-      "Pepe"
+      "Patrick"
     ],
     "courses": [
-      "Druento",
-      "Munca",
-      "Sestriere"
+      "Margherita"
     ]
   },
   "by_player": [
     {
-      "player": "Billo",
+      "player": "Ale Pepe",
       "games": 2,
-      "wins": 2,
-      "winrate": 1.0
+      "wins": 1,
+      "draws": 1,
+      "losses": 0,
+      "points": 4,
+      "points_rate": 2.0,
+      "winrate": 0.5
     },
     {
-      "player": "Marin",
-      "games": 1,
+      "player": "Billo",
+      "games": 2,
       "wins": 1,
-      "winrate": 1.0
+      "draws": 1,
+      "losses": 0,
+      "points": 4,
+      "points_rate": 2.0,
+      "winrate": 0.5
     },
     {
       "player": "Fra",
       "games": 3,
-      "wins": 2,
-      "winrate": 0.6667
-    },
-    {
-      "player": "Pepe",
-      "games": 3,
       "wins": 1,
+      "draws": 1,
+      "losses": 1,
+      "points": 4,
+      "points_rate": 1.3333,
       "winrate": 0.3333
     },
     {
       "player": "Patrick",
-      "games": 2,
+      "games": 3,
       "wins": 0,
-      "winrate": 0.0
-    },
-    {
-      "player": "Ale Aliberti",
-      "games": 1,
-      "wins": 0,
+      "draws": 1,
+      "losses": 2,
+      "points": 1,
+      "points_rate": 0.3333,
       "winrate": 0.0
     }
   ],
   "by_team": [
     {
-      "team_key": "Billo|Fra",
-      "team_label": "Billo + Fra",
-      "team_name": "Billo-Fra",
-      "games": 1,
+      "team_key": "Ale Pepe|Billo",
+      "team_label": "Ale Pepe + Billo",
+      "team_name": "Ale Pepe-Billo",
+      "components": [
+        "Ale Pepe",
+        "Billo"
+      ],
+      "games": 2,
       "wins": 1,
-      "winrate": 1.0
+      "draws": 1,
+      "losses": 0,
+      "points": 4,
+      "points_rate": 2.0,
+      "winrate": 0.5
     },
     {
-      "team_key": "Fra|Marin|Pepe",
-      "team_label": "Fra + Marin + Pepe",
-      "team_name": "Fra-Marin-Pepe",
-      "games": 1,
-      "wins": 1,
-      "winrate": 1.0
-    },
-    {
-      "team_key": "Patrick|Pepe",
-      "team_label": "Patrick + Pepe",
-      "team_name": "Patrick-Pepe",
-      "games": 1,
+      "team_key": "Fra|Patrick",
+      "team_label": "Fra + Patrick",
+      "team_name": "Fra-Patrick",
+      "components": [
+        "Fra",
+        "Patrick"
+      ],
+      "games": 2,
       "wins": 0,
+      "draws": 1,
+      "losses": 1,
+      "points": 1,
+      "points_rate": 0.5,
       "winrate": 0.0
     }
   ],
@@ -88,102 +103,91 @@
     {
       "player": "Fra",
       "solo_games": 1,
-      "solo_wins": 0,
+      "solo_wins": 1,
+      "solo_draws": 0,
+      "solo_losses": 0,
+      "solo_points": 3,
       "team_games": 2,
-      "team_wins": 2,
-      "solo_winrate": 0.0,
-      "team_winrate": 1.0,
-      "delta": 1.0
+      "team_wins": 0,
+      "team_draws": 1,
+      "team_losses": 1,
+      "team_points": 1,
+      "solo_points_rate": 3.0,
+      "team_points_rate": 0.5,
+      "solo_winrate": 1.0,
+      "team_winrate": 0.0,
+      "delta": -1.0
     },
     {
-      "player": "Marin",
+      "player": "Ale Pepe",
       "solo_games": 0,
       "solo_wins": 0,
-      "team_games": 1,
-      "team_wins": 1,
-      "solo_winrate": null,
-      "team_winrate": 1.0,
-      "delta": 1.0
-    },
-    {
-      "player": "Pepe",
-      "solo_games": 1,
-      "solo_wins": 0,
+      "solo_draws": 0,
+      "solo_losses": 0,
+      "solo_points": 0,
       "team_games": 2,
       "team_wins": 1,
-      "solo_winrate": 0.0,
+      "team_draws": 1,
+      "team_losses": 0,
+      "team_points": 4,
+      "solo_points_rate": null,
+      "team_points_rate": 2.0,
+      "solo_winrate": null,
       "team_winrate": 0.5,
       "delta": 0.5
     },
     {
       "player": "Billo",
-      "solo_games": 1,
-      "solo_wins": 1,
-      "team_games": 1,
+      "solo_games": 0,
+      "solo_wins": 0,
+      "solo_draws": 0,
+      "solo_losses": 0,
+      "solo_points": 0,
+      "team_games": 2,
       "team_wins": 1,
-      "solo_winrate": 1.0,
-      "team_winrate": 1.0,
-      "delta": 0.0
+      "team_draws": 1,
+      "team_losses": 0,
+      "team_points": 4,
+      "solo_points_rate": null,
+      "team_points_rate": 2.0,
+      "solo_winrate": null,
+      "team_winrate": 0.5,
+      "delta": 0.5
     },
     {
       "player": "Patrick",
       "solo_games": 1,
       "solo_wins": 0,
-      "team_games": 1,
+      "solo_draws": 0,
+      "solo_losses": 1,
+      "solo_points": 0,
+      "team_games": 2,
       "team_wins": 0,
+      "team_draws": 1,
+      "team_losses": 1,
+      "team_points": 1,
+      "solo_points_rate": 0.0,
+      "team_points_rate": 0.5,
       "solo_winrate": 0.0,
       "team_winrate": 0.0,
-      "delta": 0.0
-    },
-    {
-      "player": "Ale Aliberti",
-      "solo_games": 1,
-      "solo_wins": 0,
-      "team_games": 0,
-      "team_wins": 0,
-      "solo_winrate": 0.0,
-      "team_winrate": null,
       "delta": 0.0
     }
   ],
   "matches": [
     {
       "id": 3,
-      "played_at": "2026-04-11T16:57:00",
-      "course": "Munca",
+      "played_at": "2026-05-12T16:55:00",
+      "course": "Margherita",
       "holes": 18,
       "notes": null,
+      "import_key": "match-mp2r6r79-24u4jih8",
+      "is_draw": false,
       "sides": [
         {
-          "team_name": "Fra-Marin-Pepe",
+          "team_name": "Fra",
           "is_winner": true,
           "players": [
-            "Fra",
-            "Marin",
-            "Pepe"
-          ]
-        },
-        {
-          "team_name": "Ale Aliberti",
-          "is_winner": false,
-          "players": [
-            "Ale Aliberti"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "played_at": "2026-04-11T16:56:00",
-      "course": "Sestriere",
-      "holes": 18,
-      "notes": null,
-      "sides": [
-        {
-          "team_name": "Billo",
-          "is_winner": true,
-          "players": [
-            "Billo"
+            "Fra"
           ]
         },
         {
@@ -192,44 +196,59 @@
           "players": [
             "Patrick"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "played_at": "2026-05-12T16:54:00",
+      "course": null,
+      "holes": 18,
+      "notes": null,
+      "import_key": "match-mp2r5i4r-4mnkvpwl",
+      "is_draw": false,
+      "sides": [
         {
-          "team_name": "Pepe",
-          "is_winner": false,
+          "team_name": "Ale Pepe-Billo",
+          "is_winner": true,
           "players": [
-            "Pepe"
+            "Ale Pepe",
+            "Billo"
           ]
         },
         {
-          "team_name": "Fra",
+          "team_name": "Fra-Patrick",
           "is_winner": false,
           "players": [
-            "Fra"
+            "Fra",
+            "Patrick"
           ]
         }
       ]
     },
     {
       "id": 1,
-      "played_at": "2026-04-11T16:55:00",
-      "course": "Druento",
+      "played_at": "2026-05-12T16:51:00",
+      "course": null,
       "holes": 18,
       "notes": null,
+      "import_key": "match-mp2r19i4-6y8al94o",
+      "is_draw": true,
       "sides": [
         {
-          "team_name": "Billo-Fra",
+          "team_name": "Fra-Patrick",
           "is_winner": true,
           "players": [
-            "Billo",
-            "Fra"
+            "Fra",
+            "Patrick"
           ]
         },
         {
-          "team_name": "Patrick-Pepe",
-          "is_winner": false,
+          "team_name": "Ale Pepe-Billo",
+          "is_winner": true,
           "players": [
-            "Patrick",
-            "Pepe"
+            "Ale Pepe",
+            "Billo"
           ]
         }
       ]
