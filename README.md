@@ -1,204 +1,254 @@
 # Golf Match Tracker
 
-Applicazione statica per registrare partite di golf, importarle in un database SQLite locale e pubblicare statistiche aggregate in formato JSON per la dashboard.
+App statica per registrare partite di golf, salvare i dati in SQLite e pubblicare una dashboard con classifiche giocatori e squadre.
 
-Il progetto e composto da:
+Il frontend vive in `docs/` ed è pensato per essere pubblicato con GitHub Pages. Il backend è composto da script Python che lavorano localmente sul database SQLite in `data/golf_tracker.sqlite`.
 
-- `docs/`: frontend statico pubblicabile, per esempio su GitHub Pages.
-- `docs/new-match/`: pagina per generare il JSON di una nuova partita.
-- `docs/dashboard/`: dashboard statistiche basata su `docs/data/stats.json`.
-- `backend/`: script Python per inizializzare DB, importare partite, esportare statistiche ed eliminare match.
-- `data/golf_tracker.sqlite`: database SQLite locale.
+## Struttura progetto
 
-## Funzionalita
+```text
+backend/
+  common.py
+  import_match.py
+  export_stats.py
+  delete_match.py
+  init_db.py
 
-- Creazione di una nuova partita da interfaccia web statica.
-- Supporto a partite individuali e a squadre.
-- Supporto a vittoria secca e pareggio.
-- Import offline dei match in SQLite.
-- Export delle statistiche in JSON per la dashboard.
-- Classifiche per player e per team.
-- Storico partite.
-- Eliminazione di un match direttamente dal database.
+data/
+  golf_tracker.sqlite
 
-## Regole punteggio
-
-Il punteggio usa una logica all'italiana:
-
-- **Vittoria secca**: un solo side marcato con `is_winner: true` riceve **3 punti**.
-- **Pareggio**: due o piu side marcati con `is_winner: true` ricevono **1 punto ciascuno**.
-- **Sconfitta**: side non marcati con `is_winner: true` ricevono **0 punti**.
-
-La regola vale sia per i side individuali sia per i team.
-
-Esempio individuale:
-
-```json
-{
-  "sides": [
-    { "players": ["Mario"], "is_winner": true },
-    { "players": ["Luca"], "is_winner": false }
-  ]
-}
+docs/
+  index.html
+  dashboard/
+    index.html
+  new-match/
+    index.html
+  data/
+    stats.json
+    match.schema.json
+  assets/
+    style.css
 ```
 
-Risultato:
+## Flusso operativo
 
-- Mario: 3 punti
-- Luca: 0 punti
+1. Apri la pagina `docs/new-match/index.html`.
+2. Crea la partita e scarica il JSON generato.
+3. Importa il JSON nel database SQLite.
+4. Rigenera le statistiche statiche in `docs/data/`.
+5. Pubblica/aggiorna il repository su GitHub: la dashboard GitHub Pages leggerà i file aggiornati in `docs/`.
 
-Esempio pareggio:
+## Punteggio
 
-```json
-{
-  "sides": [
-    { "players": ["Mario"], "is_winner": true },
-    { "players": ["Luca"], "is_winner": true }
-  ]
-}
+Il sistema usa punteggio all'italiana:
+
+- vittoria: 3 punti
+- pareggio: 1 punto
+- sconfitta: 0 punti
+
+Nel JSON ogni side con `is_winner: true` è considerato un side a punto.
+
+- Se un solo side ha `is_winner: true`, quel side vince e prende 3 punti.
+- Se due o più side hanno `is_winner: true`, la partita è un pareggio e ciascuno di quei side prende 1 punto.
+- I side con `is_winner: false` prendono 0 punti.
+
+La regola vale sia per i giocatori sia per le squadre.
+
+## Classifiche
+
+### Classifica giocatori
+
+La dashboard mostra:
+
+- Giocatore
+- Partite giocate
+- Vittorie
+- Pareggi
+- Sconfitte
+- Punti
+- Win Rate
+
+Il Win Rate è calcolato come:
+
+```text
+vittorie / partite giocate
 ```
 
-Risultato:
+I pareggi non contano come vittorie nel Win Rate, ma contano come partite giocate e assegnano 1 punto.
 
-- Mario: 1 punto
-- Luca: 1 punto
+### Classifica squadre
 
-## Formato JSON partita
+La dashboard mostra:
 
-La pagina `docs/new-match/index.html` genera un file JSON compatibile con il backend.
+- Squadra
+- Componenti
+- Partite giocate
+- Vittorie
+- Pareggi
+- Sconfitte
+- Punti
+- Win Rate
 
-Formato minimo:
+Una squadra è identificata dalla stessa combinazione di giocatori.
 
-```json
-{
-  "version": "golf-match.v1",
-  "import_key": "match-unique-key",
-  "played_at": "2026-05-12T10:00",
-  "course": "Nome campo",
-  "holes": 18,
-  "notes": "Note opzionali",
-  "sides": [
-    {
-      "team_name": "Team A",
-      "is_winner": true,
-      "players": ["Mario", "Luca"]
-    },
-    {
-      "team_name": "Team B",
-      "is_winner": false,
-      "players": ["Anna", "Paolo"]
-    }
-  ]
-}
-```
+## Importare una partita
 
-Campi principali:
-
-- `version`: versione del formato, attualmente `golf-match.v1`.
-- `import_key`: chiave univoca usata per evitare import duplicati.
-- `played_at`: data e ora della partita.
-- `course`: campo da golf.
-- `holes`: numero buche.
-- `notes`: note libere.
-- `sides`: elenco dei side individuali o dei team.
-- `team_name`: nome del team, opzionale per partite individuali.
-- `is_winner`: indica se il side riceve punti.
-- `players`: giocatori del side.
-
-Deve esserci almeno un side con `is_winner: true`.
-
-## Inizializzazione database
-
-Crea lo schema SQLite:
-
-```bash
-python backend/init_db.py --db data/golf_tracker.sqlite
-```
-
-Con dati demo:
-
-```bash
-python backend/init_db.py --db data/golf_tracker.sqlite --seed-demo
-```
-
-## Import di una partita
-
-Importa un file JSON nel database:
-
-```bash
-python backend/import_match.py --db data/golf_tracker.sqlite --input golf-match.json
-```
-
-Importa e rigenera subito i dati della dashboard:
+Dalla root del progetto:
 
 ```bash
 python backend/import_match.py --db data/golf_tracker.sqlite --input golf-match.json --export-docs docs
 ```
 
-Se una partita con lo stesso `import_key` esiste gia, non viene duplicata.
+L'opzione `--export-docs docs` rigenera `docs/data/stats.json` subito dopo l'import.
 
-## Export statistiche
-
-Rigenera `docs/data/stats.json` e `docs/data/match.schema.json`:
+## Rigenerare le statistiche
 
 ```bash
 python backend/export_stats.py --db data/golf_tracker.sqlite --docs docs
 ```
 
-Il file `stats.json` alimenta la dashboard statica.
+Questo comando aggiorna:
 
-## Eliminazione match
+- `docs/data/stats.json`
+- `docs/data/match.schema.json`
 
-La cancellazione agisce direttamente sul database SQLite.
+Dopo avere rigenerato le statistiche, fai commit e push dei file aggiornati, in particolare:
+
+```text
+data/golf_tracker.sqlite
+docs/data/stats.json
+docs/data/match.schema.json
+```
+
+## Eliminare un match
+
+L'eliminazione agisce direttamente sul database SQLite.
+
+Puoi eliminare tramite ID match:
 
 ```bash
 python backend/delete_match.py --db data/golf_tracker.sqlite --id 3 --export-docs docs
 ```
 
-Se il match non viene trovato, lo script termina con messaggio:
+Oppure tramite `import_key`:
 
-```text
-Nessuna partita trovata con il criterio indicato
+```bash
+python backend/delete_match.py --db data/golf_tracker.sqlite --import-key match-abc123 --export-docs docs
 ```
 
-## Struttura database
+L'opzione `--export-docs docs` rigenera la dashboard dopo l'eliminazione.
 
-Il database contiene tre tabelle principali:
+## Come trovare ID o import_key
 
-- `match`: informazioni generali della partita.
-- `match_side`: side o team associati alla partita.
-- `match_player`: giocatori associati a ogni side.
+Dalla dashboard, nella sezione `Ultime partite`, ogni match mostra:
 
-La relazione e:
+- ID match
+- `import_key`
+- comando di eliminazione già pronto da copiare
 
-```text
-match
-  -> match_side
-      -> match_player
+In alternativa, puoi interrogare il database:
+
+```bash
+sqlite3 data/golf_tracker.sqlite "SELECT id, import_key, played_at, course, holes, notes FROM match ORDER BY played_at DESC;"
 ```
 
-L'eliminazione di un match rimuove anche i side e i player collegati.
+Se non hai `sqlite3` installato, puoi usare Python:
 
-## Dashboard
+```bash
+python -c "import sqlite3; con=sqlite3.connect('data/golf_tracker.sqlite'); cur=con.execute('SELECT id, import_key, played_at, course, holes, notes FROM match ORDER BY played_at DESC'); [print(row) for row in cur.fetchall()]"
+```
 
-La dashboard legge `docs/data/stats.json` e mostra:
+## Modifica match
 
-- totale partite;
-- numero giocatori;
-- numero team;
-- ultima partita;
-- classifica player per punti;
-- classifica team per punti;
-- punti per partita;
-- storico match;
-- indicazione dei pareggi quando piu side ricevono punti.
+La modifica dei match è stata rimossa dal progetto.
 
-## Note operative
+Per correggere una partita già importata, il flusso consigliato è:
 
-Flusso tipico:
+1. elimina il match errato;
+2. crea/importa nuovamente il JSON corretto;
+3. rigenera le statistiche.
 
-1. Crea una partita da `docs/new-match/index.html`.
-2. Scarica il JSON generato.
-3. Importa il JSON nel DB con `backend/import_match.py`.
-4. Rigenera le statistiche con `--export-docs docs` oppure con `backend/export_stats.py`.
-5. Apri la dashboard statica in `docs/dashboard/index.html`.
+## Pubblicazione con GitHub Pages
+
+Il progetto è già organizzato per pubblicare il frontend dalla cartella `docs/`.
+
+### 1. Crea il repository GitHub
+
+Crea un nuovo repository, ad esempio:
+
+```text
+golf-match-tracker
+```
+
+Poi inizializza e carica il progetto:
+
+```bash
+git init
+git add .
+git commit -m "Initial golf tracker"
+git branch -M main
+git remote add origin https://github.com/TUO-USERNAME/golf-match-tracker.git
+git push -u origin main
+```
+
+### 2. Abilita GitHub Pages
+
+Su GitHub:
+
+1. apri il repository;
+2. vai in `Settings`;
+3. nel menu laterale vai in `Pages`;
+4. in `Build and deployment`, imposta `Source` su `Deploy from a branch`;
+5. in `Branch`, seleziona:
+   - branch: `main`
+   - folder: `/docs`
+6. clicca `Save`.
+
+GitHub pubblicherà il sito partendo dalla cartella `docs/`.
+
+### 3. URL della dashboard
+
+Dopo l'attivazione, GitHub Pages pubblica il sito a un indirizzo simile a:
+
+```text
+https://TUO-USERNAME.github.io/golf-match-tracker/
+```
+
+Le pagine principali saranno:
+
+```text
+https://TUO-USERNAME.github.io/golf-match-tracker/
+https://TUO-USERNAME.github.io/golf-match-tracker/dashboard/
+https://TUO-USERNAME.github.io/golf-match-tracker/new-match/
+```
+
+### 4. Aggiornare il sito dopo nuovi match
+
+Ogni volta che importi o elimini un match:
+
+```bash
+python backend/import_match.py --db data/golf_tracker.sqlite --input golf-match.json --export-docs docs
+```
+
+oppure:
+
+```bash
+python backend/delete_match.py --db data/golf_tracker.sqlite --id 3 --export-docs docs
+```
+
+poi pubblica gli aggiornamenti:
+
+```bash
+git add data/golf_tracker.sqlite docs/data/stats.json docs/data/match.schema.json
+git commit -m "Update golf stats"
+git push
+```
+
+GitHub Pages si aggiornerà automaticamente dopo il push su `main`.
+
+## Note importanti
+
+- Il frontend è statico: non scrive direttamente sul database.
+- Il database viene aggiornato solo dagli script Python in `backend/`.
+- GitHub Pages pubblica il contenuto di `docs/`, ma non esegue gli script Python.
+- Per questo motivo, dopo ogni import/eliminazione bisogna rigenerare `docs/data/stats.json` e fare push.
