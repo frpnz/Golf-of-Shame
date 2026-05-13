@@ -2345,3 +2345,300 @@ pre {
   font-size: 0.74rem;
   white-space: nowrap;
 }
+
+/* Quote card refresh */
+.hero-meta .flavour-quote {
+  position: relative;
+  overflow: hidden;
+  width: min(360px, 100%);
+  padding: 1.15rem 1.25rem 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 0;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06)),
+    rgba(10, 40, 29, 0.16);
+  box-shadow: 0 18px 42px rgba(5, 23, 17, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+.hero-meta .flavour-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.42rem;
+  left: 0.7rem;
+  font-family: Georgia, serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: rgba(216, 166, 58, 0.34);
+  pointer-events: none;
+}
+
+.hero-meta .flavour-quote::after {
+  content: "";
+  position: absolute;
+  inset: auto 1rem 0 1rem;
+  height: 3px;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(90deg, rgba(216, 166, 58, 0), rgba(216, 166, 58, 0.74), rgba(216, 166, 58, 0));
+}
+
+.hero-meta .flavour-quote blockquote {
+  position: relative;
+  z-index: 1;
+  padding-left: 0.25rem;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-meta .flavour-quote figcaption {
+  position: relative;
+  z-index: 1;
+  color: rgba(247, 251, 248, 0.72);
+  font-variant: normal;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* Hall of fame */
+.hall-card {
+  margin-bottom: 18px;
+}
+
+.hall-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+  padding: 0 18px 18px;
+}
+
+.hall-year-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 184px;
+  padding: 16px;
+  border: 1px solid rgba(21, 82, 60, 0.1);
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(248, 251, 247, 0.88));
+  box-shadow: 0 14px 30px rgba(22, 34, 28, 0.06);
+}
+
+.hall-year-card.is-ongoing {
+  border-color: rgba(102, 115, 109, 0.22);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(237, 240, 238, 0.86));
+}
+
+.hall-year-card.is-ongoing::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(102, 115, 109, 0.05),
+    rgba(102, 115, 109, 0.05) 8px,
+    rgba(255, 255, 255, 0) 8px,
+    rgba(255, 255, 255, 0) 18px
+  );
+  pointer-events: none;
+}
+
+.hall-year-top,
+.hall-champions-grid,
+.hall-ongoing-ribbon {
+  position: relative;
+  z-index: 1;
+}
+
+.hall-year-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.hall-year {
+  font-size: 1.55rem;
+  line-height: 1;
+  color: var(--accent-strong);
+}
+
+.hall-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hall-status.closed {
+  color: #614716;
+  background: rgba(216, 166, 58, 0.18);
+  border: 1px solid rgba(216, 166, 58, 0.32);
+}
+
+.hall-status.ongoing {
+  color: #4e5854;
+  background: rgba(102, 115, 109, 0.14);
+  border: 1px solid rgba(102, 115, 109, 0.22);
+}
+
+.hall-champions-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.hall-champion {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(21, 82, 60, 0.08);
+}
+
+.hall-champion-label {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hall-champion-name {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.hall-champion-meta {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.hall-ongoing-ribbon {
+  width: fit-content;
+  margin-top: 12px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #4e5854;
+  background: rgba(102, 115, 109, 0.12);
+  border: 1px solid rgba(102, 115, 109, 0.18);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .hero-meta .flavour-quote {
+    width: 100%;
+  }
+
+  .hall-list {
+    grid-template-columns: 1fr;
+    padding: 0 12px 14px;
+  }
+}
+
+/* Storico partite collassabile */
+.matches-details {
+  display: block;
+}
+
+.matches-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  list-style: none;
+  border: 1px solid rgba(21,82,60,0.1);
+  border-radius: 20px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(247,244,234,0.9), rgba(255,255,255,0.92));
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.matches-summary::-webkit-details-marker {
+  display: none;
+}
+
+.matches-summary:hover {
+  border-color: rgba(216,166,58,0.45);
+  box-shadow: 0 14px 30px rgba(18,55,42,0.08);
+  transform: translateY(-1px);
+}
+
+.matches-summary > span:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.matches-summary strong {
+  font-size: 1.16rem;
+  color: var(--text);
+}
+
+.matches-summary small {
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.summary-toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.summary-toggle::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+  transition: transform 180ms ease;
+}
+
+.matches-details[open] .summary-toggle {
+  font-size: 0;
+}
+
+.matches-details[open] .summary-toggle::before {
+  content: "Chiudi";
+  font-size: 0.82rem;
+}
+
+.matches-details[open] .summary-toggle::after {
+  transform: rotate(225deg) translateY(-1px);
+}
+
+.matches-collapsible-body {
+  padding-top: 18px;
+}
+
+.matches-toolbar {
+  margin-bottom: 14px;
+}
+
+@media (max-width: 760px) {
+  .matches-summary {
+    align-items: stretch;
+    display: grid;
+  }
+
+  .summary-toggle {
+    justify-content: center;
+  }
+}

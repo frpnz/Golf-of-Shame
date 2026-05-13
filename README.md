@@ -17,12 +17,13 @@ Il progetto è pensato per due utilizzi:
   - classifica giocatori con tie breaker;
   - classifica squadre con tie breaker;
   - filtro per anno;
-  - ultime partite;
+  - albo d'oro annuale con stato ongoing per la stagione in corso;
+  - storico partite collassabile;
   - Head2Head Player;
   - Head2Head Team.
 - Vista Head2Head responsive:
   - confronto diretto “Confronta due”;
-  - matrice completa su desktop;
+  - vista completa su desktop;
   - card di confronto su mobile.
 - Script di manutenzione per:
   - importare match;
@@ -185,8 +186,24 @@ Mostra:
 - riepilogo generale;
 - classifiche giocatori e squadre;
 - filtro per anno;
+- albo d'oro annuale;
 - ultime partite;
 - Head2Head Player e Team.
+
+## Albo d'oro
+
+La scheda `Albo d'oro` mostra, per ogni anno disponibile in `docs/data/stats.json`, il leader annuale di:
+
+- classifica giocatori;
+- classifica squadre.
+
+Il vincitore viene letto dalla prima posizione della classifica annuale gia ordinata con i tie breaker. Per l'anno corrente la card non proclama un vincitore definitivo: mostra il leader provvisorio con stato `Ongoing` e overlay grigio.
+
+Ogni riga dell'albo mostra:
+
+- punti;
+- record vittorie, pareggi, sconfitte;
+- rendimento.
 
 ## Head2Head
 
@@ -208,17 +225,17 @@ Punti primo selezionato - punti avversario
 
 Esempio: se scegli `Lele` contro `Ale P`, la card spiega il confronto dal punto di vista di `Lele` e mostra anche il record inverso di `Ale P`.
 
-Su mobile questa è la vista principale: non c'è il concetto di riga della matrice, quindi la lettura è esplicita e legata ai due soggetti selezionati.
+Su mobile questa è la vista principale: non c'è il concetto di riga della vista completa, quindi la lettura è esplicita e legata ai due soggetti selezionati.
 
 ### Desktop
 
-Su schermi grandi resta disponibile anche la matrice completa:
+Su schermi grandi resta disponibile anche la vista completa:
 
 - righe = soggetto;
 - colonne = avversario;
 - ogni cella mostra entrambi i formati del confronto.
 
-Nella matrice il valore è sempre letto dal punto di vista della riga.
+Nella vista completa il valore è sempre letto dal punto di vista della riga.
 
 Ogni cella è composta da due righe:
 
@@ -239,13 +256,13 @@ Non ci sono più selettori per formato o minimo partite: la vista desktop mostra
 
 ### Mobile
 
-Su mobile la matrice viene nascosta e rimane solo la card `Confronta due`. Questa vista evita lo scroll orizzontale e rimane leggibile anche con molti giocatori o team.
+Su mobile la vista completa viene nascosta e rimane solo la card `Confronta due`. Questa vista evita lo scroll orizzontale e rimane leggibile anche con molti giocatori o team.
 
 ### Criteri di calcolo
 
 `Head2Head - Player` considera solo partite individuali 1 contro 1, cioè match con due side e un solo giocatore per side.
 
-I punti ottenuti in squadra continuano a valere nella classifica giocatori, ma non entrano nella matrice Head2Head Player.
+I punti ottenuti in squadra continuano a valere nella classifica giocatori, ma non entrano nella tabella Head2Head Player.
 
 `Head2Head - Team` considera i confronti tra side composti da almeno due giocatori.
 

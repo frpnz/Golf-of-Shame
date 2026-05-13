@@ -63,7 +63,7 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica squadre</h2>
-            <p class="small">I punti squadra contano anche per le classifiche individuali. Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.</p>
+            <p class="small">Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, rendimento, nome.</p>
           </div>
           <span class="pill subtle" id="teams-count">-</span>
         </div>
@@ -74,17 +74,17 @@
     <section class="card dashboard-card matrix-card">
       <div class="section-head card-head matrix-head">
         <div>
-          <p class="section-kicker">Matrici</p>
+          <p class="section-kicker">Vista completa</p>
           <h2>Head2Head</h2>
           <p class="small desktop-h2h-help">Desktop: ogni cella si legge dal punto di vista della riga e mostra insieme record V-P-S e punti PF-PS.</p>
           <p class="small mobile-h2h-help">Mobile: scegli i due giocatori o team da confrontare. La card spiega esplicitamente il risultato del confronto.</p>
         </div>
         <div class="matrix-controls">
           <div class="matrix-control-field">
-            <label for="matrix_type">Matrice</label>
+            <label for="matrix_type">Vista</label>
             <select id="matrix_type">
-              <option value="players" selected>Head2Head - Player</option>
-              <option value="teams">Head2Head - Team</option>
+              <option value="players" selected>Confronti Player</option>
+              <option value="teams">Confronti Team</option>
             </select>
           </div>
         </div>
@@ -139,26 +139,50 @@
       </article>
     </section>
 
-    <section class="card dashboard-card matches-card">
-      <div class="section-head card-head">
+    <section class="card dashboard-card hall-card" id="hall-of-fame-card">
+      <div class="section-head card-head hall-head">
         <div>
-          <p class="section-kicker">Storico</p>
-          <h2>Ultime partite</h2>
-          <p class="small">Mostra solo le N partite piu recenti.</p>
+          <p class="section-kicker">Albo d'oro</p>
+          <h2>Vincitori per anno</h2>
+          <p class="small">Per l'anno in corso il leader resta provvisorio: la stagione viene indicata come ongoing.</p>
         </div>
-        <div class="matches-limit-box compact-filter">
-          <label for="matches_limit">Numero partite</label>
-          <select id="matches_limit">
-            <option value="3" selected>3</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
-            <option value="all">Tutte</option>
-          </select>
-        </div>
+        <span class="pill subtle" id="hall-count">-</span>
       </div>
-      <div id="matches" class="matches-list"></div>
+      <div class="hall-list" id="hall-of-fame"></div>
+    </section>
+
+
+    <section class="card dashboard-card matches-card">
+      <details class="matches-details">
+        <summary class="matches-summary">
+          <span>
+            <span class="section-kicker">Storico</span>
+            <strong>Ultime partite</strong>
+            <small>Apri per consultare le partite piu recenti e i comandi di gestione.</small>
+          </span>
+          <span class="summary-toggle" aria-hidden="true">Apri</span>
+        </summary>
+        <div class="matches-collapsible-body">
+          <div class="section-head card-head matches-toolbar">
+            <div>
+              <h2>Ultime partite</h2>
+              <p class="small">Mostra solo le N partite piu recenti.</p>
+            </div>
+            <div class="matches-limit-box compact-filter">
+              <label for="matches_limit">Numero partite</label>
+              <select id="matches_limit">
+                <option value="3" selected>3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="all">Tutte</option>
+              </select>
+            </div>
+          </div>
+          <div id="matches" class="matches-list"></div>
+        </div>
+      </details>
     </section>
   </div>
 
@@ -654,6 +678,99 @@
       setupH2HStickyFallback();
     }
 
+    function getYearView(data, year) {
+      const views = data.views || {};
+      return views[String(year)] || null;
+    }
+
+    function championFrom(rows, type) {
+      if (!Array.isArray(rows) || !rows.length) return null;
+      const first = rows[0];
+      return {
+        name: type === 'team' ? (first.team_name || first.team_label || '-') : (first.player || '-'),
+        points: first.points || 0,
+        games: first.games || 0,
+        wins: first.wins || 0,
+        draws: first.draws || 0,
+        losses: first.losses || 0,
+        performance: pointsValue(first.points_rate || 0)
+      };
+    }
+
+    function championBlock(label, champion) {
+      const block = document.createElement('div');
+      block.className = 'hall-champion';
+      const title = document.createElement('span');
+      title.className = 'hall-champion-label';
+      title.textContent = label;
+      const name = document.createElement('strong');
+      name.className = 'hall-champion-name';
+      name.textContent = champion ? champion.name : '-';
+      const meta = document.createElement('span');
+      meta.className = 'hall-champion-meta';
+      meta.textContent = champion
+        ? (champion.points + ' pt · ' + champion.wins + 'V ' + champion.draws + 'P ' + champion.losses + 'S · Rend ' + champion.performance)
+        : 'Nessun dato disponibile';
+      block.appendChild(title);
+      block.appendChild(name);
+      block.appendChild(meta);
+      return block;
+    }
+
+    function renderHallOfFame(data) {
+      const container = document.getElementById('hall-of-fame');
+      const counter = document.getElementById('hall-count');
+      if (!container) return;
+      const years = (Array.isArray(data.years) ? data.years : [])
+        .map(year => String(year))
+        .filter(year => year !== 'all');
+      const currentYear = String(new Date().getFullYear());
+      container.innerHTML = '';
+      if (counter) counter.textContent = years.length ? years.length + ' anni' : '0 anni';
+
+      if (!years.length) {
+        container.innerHTML = '<p class="small">Nessuna stagione disponibile.</p>';
+        return;
+      }
+
+      years.forEach(year => {
+        const view = getYearView(data, year);
+        const playerChampion = championFrom(view && view.by_player, 'player');
+        const teamChampion = championFrom(view && view.by_team, 'team');
+        const isOngoing = year === currentYear;
+
+        const card = document.createElement('article');
+        card.className = 'hall-year-card' + (isOngoing ? ' is-ongoing' : '');
+
+        const top = document.createElement('div');
+        top.className = 'hall-year-top';
+        const yearEl = document.createElement('strong');
+        yearEl.className = 'hall-year';
+        yearEl.textContent = year;
+        const status = document.createElement('span');
+        status.className = 'hall-status ' + (isOngoing ? 'ongoing' : 'closed');
+        status.textContent = isOngoing ? 'Ongoing' : 'Finale';
+        top.appendChild(yearEl);
+        top.appendChild(status);
+        card.appendChild(top);
+
+        const grid = document.createElement('div');
+        grid.className = 'hall-champions-grid';
+        grid.appendChild(championBlock('Player', playerChampion));
+        grid.appendChild(championBlock('Team', teamChampion));
+        card.appendChild(grid);
+
+        if (isOngoing) {
+          const overlay = document.createElement('div');
+          overlay.className = 'hall-ongoing-ribbon';
+          overlay.textContent = 'Stagione in corso';
+          card.appendChild(overlay);
+        }
+
+        container.appendChild(card);
+      });
+    }
+
     function renderDashboard(data) {
       const year = document.getElementById('season_filter').value || 'all';
       const view = getView(data, year);
@@ -694,6 +811,7 @@
 
         document.getElementById('updated-at').textContent = 'Aggiornato: ' + niceDate(data.generated_at || data.generated_utc || data.generated || '');
         populateYearFilter(data);
+        renderHallOfFame(data);
         renderDashboard(data);
 
         document.getElementById('season_filter').addEventListener('change', function () {

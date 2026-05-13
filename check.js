@@ -489,6 +489,99 @@ function pointsValue(value) {
       setupH2HStickyFallback();
     }
 
+    function getYearView(data, year) {
+      const views = data.views || {};
+      return views[String(year)] || null;
+    }
+
+    function championFrom(rows, type) {
+      if (!Array.isArray(rows) || !rows.length) return null;
+      const first = rows[0];
+      return {
+        name: type === 'team' ? (first.team_name || first.team_label || '-') : (first.player || '-'),
+        points: first.points || 0,
+        games: first.games || 0,
+        wins: first.wins || 0,
+        draws: first.draws || 0,
+        losses: first.losses || 0,
+        performance: pointsValue(first.points_rate || 0)
+      };
+    }
+
+    function championBlock(label, champion) {
+      const block = document.createElement('div');
+      block.className = 'hall-champion';
+      const title = document.createElement('span');
+      title.className = 'hall-champion-label';
+      title.textContent = label;
+      const name = document.createElement('strong');
+      name.className = 'hall-champion-name';
+      name.textContent = champion ? champion.name : '-';
+      const meta = document.createElement('span');
+      meta.className = 'hall-champion-meta';
+      meta.textContent = champion
+        ? (champion.points + ' pt · ' + champion.wins + 'V ' + champion.draws + 'P ' + champion.losses + 'S · Rend ' + champion.performance)
+        : 'Nessun dato disponibile';
+      block.appendChild(title);
+      block.appendChild(name);
+      block.appendChild(meta);
+      return block;
+    }
+
+    function renderHallOfFame(data) {
+      const container = document.getElementById('hall-of-fame');
+      const counter = document.getElementById('hall-count');
+      if (!container) return;
+      const years = (Array.isArray(data.years) ? data.years : [])
+        .map(year => String(year))
+        .filter(year => year !== 'all');
+      const currentYear = String(new Date().getFullYear());
+      container.innerHTML = '';
+      if (counter) counter.textContent = years.length ? years.length + ' anni' : '0 anni';
+
+      if (!years.length) {
+        container.innerHTML = '<p class="small">Nessuna stagione disponibile.</p>';
+        return;
+      }
+
+      years.forEach(year => {
+        const view = getYearView(data, year);
+        const playerChampion = championFrom(view && view.by_player, 'player');
+        const teamChampion = championFrom(view && view.by_team, 'team');
+        const isOngoing = year === currentYear;
+
+        const card = document.createElement('article');
+        card.className = 'hall-year-card' + (isOngoing ? ' is-ongoing' : '');
+
+        const top = document.createElement('div');
+        top.className = 'hall-year-top';
+        const yearEl = document.createElement('strong');
+        yearEl.className = 'hall-year';
+        yearEl.textContent = year;
+        const status = document.createElement('span');
+        status.className = 'hall-status ' + (isOngoing ? 'ongoing' : 'closed');
+        status.textContent = isOngoing ? 'Ongoing' : 'Finale';
+        top.appendChild(yearEl);
+        top.appendChild(status);
+        card.appendChild(top);
+
+        const grid = document.createElement('div');
+        grid.className = 'hall-champions-grid';
+        grid.appendChild(championBlock('Player', playerChampion));
+        grid.appendChild(championBlock('Team', teamChampion));
+        card.appendChild(grid);
+
+        if (isOngoing) {
+          const overlay = document.createElement('div');
+          overlay.className = 'hall-ongoing-ribbon';
+          overlay.textContent = 'Stagione in corso';
+          card.appendChild(overlay);
+        }
+
+        container.appendChild(card);
+      });
+    }
+
     function renderDashboard(data) {
       const year = document.getElementById('season_filter').value || 'all';
       const view = getView(data, year);
@@ -529,6 +622,7 @@ function pointsValue(value) {
 
         document.getElementById('updated-at').textContent = 'Aggiornato: ' + niceDate(data.generated_at || data.generated_utc || data.generated || '');
         populateYearFilter(data);
+        renderHallOfFame(data);
         renderDashboard(data);
 
         document.getElementById('season_filter').addEventListener('change', function () {
