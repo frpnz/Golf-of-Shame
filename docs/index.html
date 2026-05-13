@@ -51,6 +51,7 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica giocatori</h2>
+            <p class="small">Tie breaker: punti, scontri diretti tra pari punti, vittorie, win rate, media punti, nome.</p>
           </div>
           <span class="pill subtle" id="players-count">-</span>
         </div>
@@ -62,7 +63,7 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica squadre</h2>
-            <p class="small">I punti squadra contano anche per le classifiche individuali.</p>
+            <p class="small">I punti squadra contano anche per le classifiche individuali. Tie breaker: punti, scontri diretti tra pari punti, vittorie, win rate, media punti, nome.</p>
           </div>
           <span class="pill subtle" id="teams-count">-</span>
         </div>
@@ -248,6 +249,8 @@
             td.appendChild(name);
           } else if (headers[index] === 'Punti') {
             td.appendChild(metricBadge(cell, 'points'));
+          } else if (headers[index] === 'TB') {
+            td.appendChild(metricBadge(cell || '-', 'tie'));
           } else if (headers[index] === 'Vittorie') {
             td.appendChild(metricBadge(cell + 'V', 'win'));
           } else if (headers[index] === 'Pareggi') {
@@ -669,14 +672,14 @@
 
       table(
         document.getElementById('players'),
-        ['Giocatore', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
-        byPlayer.map(x => [x.player, x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
+        ['Giocatore', 'Punti', 'TB', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
+        byPlayer.map(x => [x.player, x.points || 0, x.tie_breaker || '-', x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
       );
 
       table(
         document.getElementById('teams'),
-        ['Squadra', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
-        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
+        ['Squadra', 'Punti', 'TB', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
+        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.tie_breaker || '-', x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
       );
 
       setupLeaderboardStickyFallback();

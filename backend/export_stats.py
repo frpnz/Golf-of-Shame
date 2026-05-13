@@ -174,6 +174,54 @@ def compute_head_to_head(matches: List[Dict], player_labels: List[str], team_row
     }
 
 
+def tie_breaker_label(row: Dict) -> str:
+    direct_points = row.get("tie_direct_points")
+    if direct_points is None:
+        return "-"
+    return f"SD {direct_points} · V {row.get('wins', 0)} · WR {round((row.get('winrate') or 0) * 100)}%"
+
+
+def apply_tie_breakers(rows: List[Dict], label_key: str, matrix: Dict[str, Dict[str, Dict]]) -> None:
+    groups: Dict[int, List[Dict]] = {}
+    for row in rows:
+        groups.setdefault(int(row.get("points") or 0), []).append(row)
+        row["tie_direct_points"] = 0
+        row["tie_direct_wins"] = 0
+        row["tie_breaker"] = "-"
+
+    for tied_rows in groups.values():
+        if len(tied_rows) < 2:
+            continue
+        tied_labels = [row[label_key] for row in tied_rows]
+        for row in tied_rows:
+            label = row[label_key]
+            direct_points = 0
+            direct_wins = 0
+            for opponent in tied_labels:
+                if opponent == label:
+                    continue
+                entry = (matrix.get(label) or {}).get(opponent) or {}
+                direct_points += int(entry.get("points_for") or 0)
+                direct_wins += int(entry.get("wins") or 0)
+            row["tie_direct_points"] = direct_points
+            row["tie_direct_wins"] = direct_wins
+            row["tie_breaker"] = tie_breaker_label(row)
+
+
+def ranking_key(label_key: str):
+    def key(row: Dict):
+        return (
+            -int(row.get("points") or 0),
+            -int(row.get("tie_direct_points") or 0),
+            -int(row.get("tie_direct_wins") or 0),
+            -int(row.get("wins") or 0),
+            -(row.get("winrate") or 0),
+            -(row.get("points_rate") or 0),
+            str(row.get(label_key) or "").lower(),
+        )
+    return key
+
+
 def compute_view(matches: List[Dict]) -> Dict:
     by_player: Dict[str, Dict] = {}
     by_team: Dict[str, Dict] = {}
@@ -260,19 +308,37 @@ def compute_view(matches: List[Dict]) -> Dict:
     for row in player_rows:
         row["points_rate"] = round(row["points"] / row["games"], 4) if row["games"] else 0.0
         row["winrate"] = round(row["wins"] / row["games"], 4) if row["games"] else 0.0
-    player_rows.sort(key=lambda x: (-x["points"], -x["winrate"], -x["games"], x["player"]))
 
     team_rows = list(by_team.values())
     for row in team_rows:
         row["points_rate"] = round(row["points"] / row["games"], 4) if row["games"] else 0.0
         row["winrate"] = round(row["wins"] / row["games"], 4) if row["games"] else 0.0
-    team_rows.sort(key=lambda x: (-x["points"], -x["winrate"], -x["games"], x["team_label"]))
 
+    # Calcola gli scontri diretti prima dell'ordinamento finale: servono anche come tie breaker.
     head_to_head = compute_head_to_head(
         matches,
-        [row["player"] for row in player_rows],
-        team_rows,
+        sorted([row["player"] for row in player_rows]),
+        sorted(team_rows, key=lambda row: row.get("team_label") or ""),
     )
+
+    team_display_by_key = {
+        row["team_key"]: row.get("team_name") or row.get("team_label") or row["team_key"]
+        for row in team_rows
+    }
+    for row in team_rows:
+        row["_h2h_label"] = team_display_by_key[row["team_key"]]
+
+    apply_tie_breakers(player_rows, "player", head_to_head["players"]["matrix"])
+    apply_tie_breakers(team_rows, "_h2h_label", head_to_head["teams"]["matrix"])
+
+    player_rows.sort(key=ranking_key("player"))
+    team_rows.sort(key=ranking_key("team_label"))
+
+    for row in team_rows:
+        row.pop("_h2h_label", None)
+
+    head_to_head["players"]["labels"] = [row["player"] for row in player_rows]
+    head_to_head["teams"]["labels"] = [row.get("team_name") or row.get("team_label") or row["team_key"] for row in team_rows]
 
     split_rows = list(solo_vs_team.values())
     for row in split_rows:

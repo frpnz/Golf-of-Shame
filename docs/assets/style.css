@@ -2336,3 +2336,12 @@ pre {
     font-size: 1rem;
   }
 }
+
+.metric-badge.tie {
+  min-width: 88px;
+  background: rgba(216, 166, 58, 0.16);
+  color: #76591b;
+  border: 1px solid rgba(216, 166, 58, 0.28);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}

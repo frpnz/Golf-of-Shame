@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v6",
-  "generated_at": "2026-05-13T10:42:41.525694+00:00",
+  "generated_at": "2026-05-13T10:47:49.529618+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -37,7 +37,10 @@
           "losses": 0,
           "points": 4,
           "points_rate": 2.0,
-          "winrate": 0.5
+          "winrate": 0.5,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · WR 50%"
         },
         {
           "player": "Lele",
@@ -47,7 +50,10 @@
           "losses": 0,
           "points": 4,
           "points_rate": 2.0,
-          "winrate": 0.5
+          "winrate": 0.5,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · WR 50%"
         },
         {
           "player": "Fra",
@@ -57,7 +63,10 @@
           "losses": 1,
           "points": 4,
           "points_rate": 1.3333,
-          "winrate": 0.3333
+          "winrate": 0.3333,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · WR 33%"
         },
         {
           "player": "Patrick",
@@ -67,7 +76,10 @@
           "losses": 2,
           "points": 1,
           "points_rate": 0.3333,
-          "winrate": 0.0
+          "winrate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
         }
       ],
       "by_team": [
@@ -85,7 +97,10 @@
           "losses": 0,
           "points": 4,
           "points_rate": 2.0,
-          "winrate": 0.5
+          "winrate": 0.5,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
         },
         {
           "team_key": "Fra|Patrick",
@@ -101,7 +116,10 @@
           "losses": 1,
           "points": 1,
           "points_rate": 0.5,
-          "winrate": 0.0
+          "winrate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
         }
       ],
       "solo_vs_team": [
@@ -188,7 +206,6 @@
           ],
           "matrix": {
             "Ale P": {},
-            "Lele": {},
             "Fra": {
               "Patrick": {
                 "games": 1,
@@ -199,6 +216,7 @@
                 "points_against": 0
               }
             },
+            "Lele": {},
             "Patrick": {
               "Fra": {
                 "games": 1,
@@ -348,7 +366,10 @@
           "losses": 0,
           "points": 4,
           "points_rate": 2.0,
-          "winrate": 0.5
+          "winrate": 0.5,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · WR 50%"
         },
         {
           "player": "Lele",
@@ -358,7 +379,10 @@
           "losses": 0,
           "points": 4,
           "points_rate": 2.0,
-          "winrate": 0.5
+          "winrate": 0.5,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · WR 50%"
         },
         {
           "player": "Fra",
@@ -368,7 +392,10 @@
           "losses": 1,
           "points": 4,
           "points_rate": 1.3333,
-          "winrate": 0.3333
+          "winrate": 0.3333,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · WR 33%"
         },
         {
           "player": "Patrick",
@@ -378,7 +405,10 @@
           "losses": 2,
           "points": 1,
           "points_rate": 0.3333,
-          "winrate": 0.0
+          "winrate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
         }
       ],
       "by_team": [
@@ -396,7 +426,10 @@
           "losses": 0,
           "points": 4,
           "points_rate": 2.0,
-          "winrate": 0.5
+          "winrate": 0.5,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
         },
         {
           "team_key": "Fra|Patrick",
@@ -412,7 +445,10 @@
           "losses": 1,
           "points": 1,
           "points_rate": 0.5,
-          "winrate": 0.0
+          "winrate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
         }
       ],
       "solo_vs_team": [
@@ -499,7 +535,6 @@
           ],
           "matrix": {
             "Ale P": {},
-            "Lele": {},
             "Fra": {
               "Patrick": {
                 "games": 1,
@@ -510,6 +545,7 @@
                 "points_against": 0
               }
             },
+            "Lele": {},
             "Patrick": {
               "Fra": {
                 "games": 1,
@@ -659,7 +695,10 @@
       "losses": 0,
       "points": 4,
       "points_rate": 2.0,
-      "winrate": 0.5
+      "winrate": 0.5,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "SD 0 · V 1 · WR 50%"
     },
     {
       "player": "Lele",
@@ -669,7 +708,10 @@
       "losses": 0,
       "points": 4,
       "points_rate": 2.0,
-      "winrate": 0.5
+      "winrate": 0.5,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "SD 0 · V 1 · WR 50%"
     },
     {
       "player": "Fra",
@@ -679,7 +721,10 @@
       "losses": 1,
       "points": 4,
       "points_rate": 1.3333,
-      "winrate": 0.3333
+      "winrate": 0.3333,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "SD 0 · V 1 · WR 33%"
     },
     {
       "player": "Patrick",
@@ -689,7 +734,10 @@
       "losses": 2,
       "points": 1,
       "points_rate": 0.3333,
-      "winrate": 0.0
+      "winrate": 0.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-"
     }
   ],
   "by_team": [
@@ -707,7 +755,10 @@
       "losses": 0,
       "points": 4,
       "points_rate": 2.0,
-      "winrate": 0.5
+      "winrate": 0.5,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-"
     },
     {
       "team_key": "Fra|Patrick",
@@ -723,7 +774,10 @@
       "losses": 1,
       "points": 1,
       "points_rate": 0.5,
-      "winrate": 0.0
+      "winrate": 0.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-"
     }
   ],
   "solo_vs_team": [
@@ -810,7 +864,6 @@
       ],
       "matrix": {
         "Ale P": {},
-        "Lele": {},
         "Fra": {
           "Patrick": {
             "games": 1,
@@ -821,6 +874,7 @@
             "points_against": 0
           }
         },
+        "Lele": {},
         "Patrick": {
           "Fra": {
             "games": 1,

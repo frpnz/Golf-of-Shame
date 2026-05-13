@@ -14,8 +14,8 @@ Il progetto è pensato per due utilizzi:
 - Import del match in SQLite tramite script Python.
 - Dashboard statica con:
   - KPI generali;
-  - classifica giocatori;
-  - classifica squadre;
+  - classifica giocatori con tie breaker;
+  - classifica squadre con tie breaker;
   - filtro per anno;
   - ultime partite;
   - Head2Head Player;
@@ -271,6 +271,26 @@ vittorie / partite giocate
 ```
 
 I pareggi non contano come vittorie, ma contano come partite giocate e assegnano 1 punto.
+
+### Tie breaker
+
+Le classifiche sono ordinate con questi criteri, in ordine:
+
+1. punti totali;
+2. punti negli scontri diretti tra giocatori o team con pari punti;
+3. vittorie negli scontri diretti tra pari punti;
+4. vittorie totali;
+5. win rate;
+6. media punti;
+7. nome, come ultimo ordinamento stabile.
+
+Nelle tabelle la colonna `TB` riassume lo spareggio quando serve:
+
+```text
+SD 3 · V 1 · WR 50%
+```
+
+Dove `SD` indica i punti ottenuti negli scontri diretti contro gli altri soggetti con pari punti. Se non c'è parità di punti, il valore è `-`.
 
 ### Squadre
 
