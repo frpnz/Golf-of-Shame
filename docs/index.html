@@ -468,6 +468,29 @@
     }
 
 
+
+
+    function setupLeaderboardStickyFallback() {
+      const isFirefox = /firefox/i.test(navigator.userAgent);
+      document.querySelectorAll('.leaderboard-table').forEach(wrap => {
+        wrap.classList.toggle('leaderboard-js-sticky', !isFirefox);
+        if (isFirefox) {
+          wrap.style.removeProperty('--leaderboard-scroll-left');
+          return;
+        }
+
+        const update = () => {
+          wrap.style.setProperty('--leaderboard-scroll-left', `${wrap.scrollLeft || 0}px`);
+        };
+
+        if (wrap.dataset.leaderboardStickyBound !== 'true') {
+          wrap.addEventListener('scroll', update, { passive: true });
+          wrap.dataset.leaderboardStickyBound = 'true';
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
     function setupH2HStickyFallback() {
       const wrap = document.querySelector('.h2h-table-wrap');
       if (!wrap) return;
@@ -592,6 +615,7 @@
         byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
       );
 
+      setupLeaderboardStickyFallback();
       renderH2H(view);
       renderMatches(view);
     }

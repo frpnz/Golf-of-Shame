@@ -1789,3 +1789,53 @@ pre {
     box-shadow: 8px 0 12px rgba(22,34,28,0.10);
   }
 }
+
+/* Sticky first column for leaderboard tables (players and teams).
+   Firefox uses native sticky. Chrome/Safari/Edge get a JS-assisted fallback
+   because sticky table cells can fail inside horizontally scrollable tables. */
+.leaderboard-table {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  isolation: isolate;
+}
+
+.leaderboard-table table {
+  overflow: visible !important;
+}
+
+#players th:first-child,
+#players td:first-child,
+#teams th:first-child,
+#teams td:first-child {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  background: #ffffff;
+  background-clip: padding-box;
+  box-shadow: 8px 0 12px rgba(22, 34, 28, 0.08);
+}
+
+#players th:first-child,
+#teams th:first-child {
+  z-index: 7;
+  background: #f2f8f4;
+}
+
+.leaderboard-table.leaderboard-js-sticky #players th:first-child,
+.leaderboard-table.leaderboard-js-sticky #players td:first-child,
+.leaderboard-table.leaderboard-js-sticky #teams th:first-child,
+.leaderboard-table.leaderboard-js-sticky #teams td:first-child {
+  position: relative !important;
+  left: auto !important;
+  transform: translateX(var(--leaderboard-scroll-left, 0px)) translateZ(0) !important;
+  z-index: 8;
+  will-change: transform;
+}
+
+.leaderboard-table.leaderboard-js-sticky #players th:first-child,
+.leaderboard-table.leaderboard-js-sticky #teams th:first-child {
+  z-index: 10;
+}

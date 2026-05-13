@@ -198,6 +198,154 @@
         (entry.points_for || 0) + '-' + (entry.points_against || 0);
     }
 
+    function h2hWinRate(entry) {
+      if (!entry || !entry.games) return 0;
+      return (entry.wins || 0) / entry.games;
+    }
+
+    function updateH2HSubjectOptions(labels) {
+      const subjectSelect = document.getElementById('h2h_subject');
+      if (!subjectSelect) return '';
+      const previous = subjectSelect.value;
+      subjectSelect.innerHTML = '';
+      labels.forEach(label => {
+        const option = document.createElement('option');
+        option.value = label;
+        option.textContent = label;
+        subjectSelect.appendChild(option);
+      });
+      if (labels.includes(previous)) {
+        subjectSelect.value = previous;
+      } else if (labels.length) {
+        subjectSelect.value = labels[0];
+      }
+      return subjectSelect.value;
+    }
+
+    function sortH2HOpponents(rows) {
+      return rows.slice().sort((a, b) => {
+        return b.entry.games - a.entry.games || (b.entry.points_for || 0) - (a.entry.points_for || 0) || a.label.localeCompare(b.label, 'it');
+      });
+    }
+
+    function renderH2HMobile(labels, matrix, type, minGames) {
+      const listEl = document.getElementById('h2h-mobile-list');
+      const subjectSelect = document.getElementById('h2h_subject');
+      if (!listEl || !subjectSelect) return;
+
+      listEl.innerHTML = '';
+      const subject = updateH2HSubjectOptions(labels);
+      if (!subject) {
+        listEl.innerHTML = '<p class="small">Nessun confronto disponibile con il filtro selezionato.</p>';
+        return;
+      }
+
+      const rows = labels
+        .filter(label => label !== subject)
+        .map(label => ({ label, entry: matrix[subject] && matrix[subject][label] }))
+        .filter(row => row.entry && row.entry.games >= minGames);
+
+      const sortedRows = sortH2HOpponents(rows);
+      if (!sortedRows.length) {
+        listEl.innerHTML = '<p class="small">Nessun avversario disponibile per ' + subject + ' con questo filtro.</p>';
+        return;
+      }
+
+      sortedRows.forEach(row => {
+        const entry = row.entry;
+        const card = document.createElement('article');
+        card.className = 'h2h-duel-card ' + h2hCellClass(entry);
+
+        const title = document.createElement('div');
+        title.className = 'h2h-duel-title';
+        const subjectSpan = document.createElement('span');
+        subjectSpan.textContent = subject;
+        const vsSpan = document.createElement('span');
+        vsSpan.className = 'h2h-vs';
+        vsSpan.textContent = 'vs';
+        const opponentStrong = document.createElement('strong');
+        opponentStrong.textContent = row.label;
+        title.appendChild(subjectSpan);
+        title.appendChild(vsSpan);
+        title.appendChild(opponentStrong);
+        card.appendChild(title);
+
+        const summary = document.createElement('div');
+        summary.className = 'h2h-duel-summary';
+        [
+          ['Partite', String(entry.games)],
+          ['Record', (entry.wins || 0) + 'V - ' + (entry.draws || 0) + 'P - ' + (entry.losses || 0) + 'S'],
+          ['Punti', (entry.points_for || 0) + '-' + (entry.points_against || 0)],
+          ['Win rate', pctValue(h2hWinRate(entry))]
+        ].forEach(([label, value]) => {
+          const item = document.createElement('span');
+          const itemLabel = document.createElement('small');
+          itemLabel.textContent = label;
+          const itemValue = document.createElement('strong');
+          itemValue.textContent = value;
+          item.appendChild(itemLabel);
+          item.appendChild(itemValue);
+          summary.appendChild(item);
+        });
+        card.appendChild(summary);
+
+        const bar = document.createElement('div');
+        bar.className = 'h2h-duel-bar';
+        const fill = document.createElement('span');
+        fill.style.width = Math.round(h2hWinRate(entry) * 100) + '%';
+        bar.appendChild(fill);
+        card.appendChild(bar);
+
+        listEl.appendChild(card);
+      });
+    }
+
+
+
+
+    function setupLeaderboardStickyFallback() {
+      const isFirefox = /firefox/i.test(navigator.userAgent);
+      document.querySelectorAll('.leaderboard-table').forEach(wrap => {
+        wrap.classList.toggle('leaderboard-js-sticky', !isFirefox);
+        if (isFirefox) {
+          wrap.style.removeProperty('--leaderboard-scroll-left');
+          return;
+        }
+
+        const update = () => {
+          wrap.style.setProperty('--leaderboard-scroll-left', `${wrap.scrollLeft || 0}px`);
+        };
+
+        if (wrap.dataset.leaderboardStickyBound !== 'true') {
+          wrap.addEventListener('scroll', update, { passive: true });
+          wrap.dataset.leaderboardStickyBound = 'true';
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
+    function setupH2HStickyFallback() {
+      const wrap = document.querySelector('.h2h-table-wrap');
+      if (!wrap) return;
+
+      const isFirefox = /firefox/i.test(navigator.userAgent);
+      wrap.classList.toggle('h2h-js-sticky', !isFirefox);
+      if (isFirefox) {
+        wrap.style.removeProperty('--h2h-scroll-left');
+        return;
+      }
+
+      const update = () => {
+        wrap.style.setProperty('--h2h-scroll-left', `${wrap.scrollLeft || 0}px`);
+      };
+
+      if (wrap.dataset.h2hStickyBound !== 'true') {
+        wrap.addEventListener('scroll', update, { passive: true });
+        wrap.dataset.h2hStickyBound = 'true';
+      }
+      requestAnimationFrame(update);
+    }
+
     function renderH2H(view) {
       const tableEl = document.getElementById('h2h-matrix');
       const legend = document.getElementById('matrix-legend');
@@ -216,10 +364,11 @@
         });
       });
 
+      renderH2HMobile(labels, matrix, type, minGames);
       tableEl.innerHTML = '';
       legend.textContent = format === 'points'
-        ? 'Formato punti = punti riga - punti avversario. Ogni cella e dal punto di vista della riga.'
-        : 'Record V-P-S = vittorie, pareggi, sconfitte. Ogni cella e dal punto di vista della riga.';
+        ? 'Desktop: punti = punti riga - punti avversario. Mobile: punti del soggetto selezionato - punti dell avversario.'
+        : 'Desktop: V-P-S della riga. Mobile: V-P-S del soggetto selezionato contro l avversario.';
 
       if (!labels.length) {
         const caption = document.createElement('caption');
@@ -268,6 +417,7 @@
 
       tableEl.appendChild(thead);
       tableEl.appendChild(tbody);
+      setupH2HStickyFallback();
     }
 
     function renderDashboard(data) {
@@ -298,6 +448,7 @@
         byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
       );
 
+      setupLeaderboardStickyFallback();
       renderH2H(view);
       renderMatches(view);
     }
@@ -317,7 +468,7 @@
         document.getElementById('matches_limit').addEventListener('change', function () {
           renderDashboard(window.__statsData);
         });
-        ['matrix_type', 'matrix_format', 'matrix_min_games'].forEach(id => {
+        ['matrix_type', 'matrix_format', 'matrix_min_games', 'h2h_subject'].forEach(id => {
           const control = document.getElementById(id);
           if (control) {
             control.addEventListener('change', function () {
