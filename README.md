@@ -545,3 +545,7 @@ python -m compileall backend
 - GitHub Pages pubblica i file in `docs/`, ma non esegue script Python.
 - Dopo ogni modifica ai dati bisogna rigenerare `docs/data/stats.json`.
 - In locale usa `localhost` per testare correttamente il caricamento dei file JSON.
+
+## Note estetiche
+
+La dashboard usa un refresh grafico leggero, basato solo su CSS: card con effetto club, tabelle piu leggibili, controlli uniformati, Albo d'oro piu celebrativo e citazione integrata nell'header. Non sono state aggiunte librerie o dipendenze frontend.

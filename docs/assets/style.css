@@ -2642,3 +2642,336 @@ pre {
     justify-content: center;
   }
 }
+
+/* Premium polish pass: lightweight, CSS-only */
+:root {
+  --gold: #d8a63a;
+  --gold-soft: #f6ead0;
+  --cream: #f7f4ea;
+  --club-shadow: 0 18px 42px rgba(18, 55, 42, 0.09);
+}
+
+.card,
+.kpi-card,
+.scoreboard-card,
+.matrix-card,
+.matches-card,
+.hall-card,
+.season-toolbar {
+  border-color: rgba(18, 55, 42, 0.11);
+  box-shadow: var(--club-shadow);
+}
+
+.card {
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216,166,58,0.58), transparent);
+  pointer-events: none;
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 56px rgba(18, 55, 42, 0.18);
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: -45% auto auto 48%;
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(216,166,58,0.22), transparent 62%);
+  pointer-events: none;
+}
+
+.hero-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.flavour-quote {
+  position: relative;
+  max-width: 360px;
+  padding: 1.15rem 1.2rem 1.05rem 1.35rem;
+  border: 1px solid rgba(255,255,255,0.20);
+  border-left: 4px solid rgba(216,166,58,0.95);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.07)),
+    rgba(12, 39, 29, 0.16);
+  border-radius: 20px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 16px 34px rgba(0,0,0,0.10);
+  backdrop-filter: blur(8px);
+}
+
+.flavour-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.45rem;
+  left: 0.75rem;
+  color: rgba(216,166,58,0.42);
+  font-family: Georgia, serif;
+  font-size: 4.4rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.flavour-quote blockquote {
+  position: relative;
+  font-size: 1.04rem;
+  color: #fffaf0;
+  text-wrap: balance;
+}
+
+.flavour-quote figcaption {
+  color: rgba(247,251,248,0.76);
+}
+
+.section-kicker,
+.eyebrow {
+  letter-spacing: 0.14em;
+}
+
+.section-head h2,
+.card-head h2,
+.leaderboard-head h2 {
+  text-wrap: balance;
+}
+
+.season-toolbar,
+.hall-card {
+  background:
+    linear-gradient(135deg, rgba(247,244,234,0.86), rgba(255,255,255,0.94) 42%, rgba(248,251,247,0.95)),
+    #fff;
+}
+
+.season-toolbar::after,
+.hall-card::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(216,166,58,0.16), transparent 70%);
+  pointer-events: none;
+}
+
+input,
+textarea,
+select,
+button,
+.topnav a,
+nav a,
+.summary-toggle {
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease, background 160ms ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: rgba(31,107,79,0.55);
+  box-shadow: 0 0 0 4px rgba(31,107,79,0.10);
+}
+
+button:hover,
+.summary-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(18,55,42,0.13);
+}
+
+.pill.subtle {
+  background: linear-gradient(135deg, var(--accent-soft), rgba(246,234,208,0.88));
+  border-color: rgba(216,166,58,0.20);
+}
+
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,251,247,0.92));
+}
+
+.kpi-card::after {
+  content: "";
+  position: absolute;
+  right: -28px;
+  top: -34px;
+  width: 104px;
+  height: 104px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(31,107,79,0.12), transparent 67%);
+  pointer-events: none;
+}
+
+.kpi-card-accent::after {
+  background: radial-gradient(circle, rgba(216,166,58,0.20), transparent 67%);
+}
+
+.leaderboard-table table,
+.h2h-table-wrap table {
+  font-variant-numeric: tabular-nums;
+}
+
+.leaderboard-table thead th,
+.h2h-matrix thead th {
+  background: linear-gradient(180deg, rgba(246,234,208,0.36), rgba(242,248,244,0.84));
+  color: #526158;
+}
+
+.leaderboard-table tbody tr {
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.leaderboard-table tbody tr:nth-child(even) {
+  background: rgba(248,251,247,0.94);
+}
+
+.leaderboard-table tbody tr:hover {
+  box-shadow: 0 12px 26px rgba(22, 34, 28, 0.07);
+}
+
+#players td:first-child,
+#teams td:first-child {
+  background: linear-gradient(90deg, #ffffff 0%, #fbfdfb 100%);
+}
+
+#players th:first-child,
+#teams th:first-child {
+  background: linear-gradient(180deg, #f7f4ea 0%, #f2f8f4 100%);
+}
+
+.rank-badge,
+.podium-badge,
+.points-badge,
+.record-badge,
+.metric-badge,
+.tb-badge {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.38);
+}
+
+.h2h-matrix td,
+.h2h-matrix th {
+  transition: background 140ms ease, box-shadow 140ms ease;
+}
+
+.h2h-matrix tbody tr:hover th,
+.h2h-matrix tbody tr:hover td {
+  background-color: rgba(246,234,208,0.22);
+}
+
+.h2h-cell,
+.h2h-empty,
+.h2h-diagonal {
+  border-radius: 12px;
+}
+
+.hall-card {
+  overflow: hidden;
+}
+
+.hall-card::before {
+  height: 4px;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, var(--accent-strong), var(--gold), var(--accent));
+}
+
+.hall-head {
+  padding: 4px 2px 0;
+}
+
+.hall-year-card {
+  border-color: rgba(216,166,58,0.20);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.96), rgba(247,244,234,0.72)),
+    #fff;
+}
+
+.hall-year-card::before {
+  content: "";
+  position: absolute;
+  top: -42px;
+  right: -34px;
+  width: 130px;
+  height: 130px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(216,166,58,0.20), transparent 66%);
+  pointer-events: none;
+}
+
+.hall-year-card.is-ongoing {
+  filter: saturate(0.92);
+}
+
+.hall-status.ongoing::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 999px;
+  background: #8b9691;
+  box-shadow: 0 0 0 4px rgba(139,150,145,0.12);
+}
+
+.hall-status.closed::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 999px;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(216,166,58,0.16);
+}
+
+.hall-champion {
+  background: rgba(255,255,255,0.82);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.78);
+}
+
+.matches-summary {
+  background:
+    linear-gradient(135deg, rgba(247,244,234,0.92), rgba(255,255,255,0.94) 58%, rgba(230,243,236,0.62));
+}
+
+.match-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.match-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), var(--gold));
+}
+
+@media (max-width: 760px) {
+  .card::before {
+    left: 16px;
+    right: 16px;
+  }
+
+  .flavour-quote {
+    max-width: none;
+  }
+
+  .season-toolbar::after,
+  .hall-card::after {
+    display: none;
+  }
+}
