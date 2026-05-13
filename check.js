@@ -30,24 +30,73 @@ function pointsValue(value) {
       return 'ID/import_key non disponibile: rigenera docs/data/stats.json con export_stats.py';
     }
 
+    function metricBadge(value, type) {
+      const span = document.createElement('span');
+      span.className = 'metric-badge ' + type;
+      span.textContent = value;
+      return span;
+    }
+
+    function performanceCell(value) {
+      const raw = parseFloat(String(value).replace(',', '.')) || 0;
+      const wrap = document.createElement('div');
+      wrap.className = 'performance-cell';
+      const label = document.createElement('span');
+      label.textContent = value;
+      const track = document.createElement('span');
+      track.className = 'performance-track';
+      const fill = document.createElement('span');
+      fill.className = 'performance-fill';
+      fill.style.width = Math.max(0, Math.min(100, (raw / 3) * 100)) + '%';
+      track.appendChild(fill);
+      wrap.appendChild(label);
+      wrap.appendChild(track);
+      return wrap;
+    }
+
     function table(el, headers, rows) {
       el.innerHTML = '';
       const thead = document.createElement('thead');
       const trh = document.createElement('tr');
-      headers.forEach(h => {
+      headers.forEach((h, index) => {
         const th = document.createElement('th');
-        th.textContent = h;
+        th.textContent = index === 0 ? '#' : h;
         trh.appendChild(th);
       });
       thead.appendChild(trh);
       const tbody = document.createElement('tbody');
-      rows.forEach(row => {
+      rows.forEach((row, rowIndex) => {
         const tr = document.createElement('tr');
+        tr.className = rowIndex < 3 ? 'podium-row podium-' + (rowIndex + 1) : '';
         row.forEach((cell, index) => {
           const td = document.createElement('td');
-          td.textContent = cell;
           td.dataset.label = headers[index];
           if (index > 0) td.className = 'num';
+
+          if (index === 0) {
+            const rank = document.createElement('span');
+            rank.className = 'rank-badge rank-' + (rowIndex + 1);
+            rank.textContent = rowIndex + 1;
+            const name = document.createElement('span');
+            name.className = 'leader-name';
+            name.textContent = cell;
+            td.appendChild(rank);
+            td.appendChild(name);
+          } else if (headers[index] === 'Punti') {
+            td.appendChild(metricBadge(cell, 'points'));
+          } else if (headers[index] === 'TB') {
+            td.appendChild(metricBadge(cell || '-', 'tie'));
+          } else if (headers[index] === 'Vittorie') {
+            td.appendChild(metricBadge(cell + 'V', 'win'));
+          } else if (headers[index] === 'Pareggi') {
+            td.appendChild(metricBadge(cell + 'P', 'draw'));
+          } else if (headers[index] === 'Sconfitte') {
+            td.appendChild(metricBadge(cell + 'S', 'loss'));
+          } else if (headers[index] === 'Rendimento') {
+            td.appendChild(performanceCell(cell));
+          } else {
+            td.textContent = cell;
+          }
           tr.appendChild(td);
         });
         tbody.appendChild(tr);
@@ -191,9 +240,9 @@ function pointsValue(value) {
         (entry.points_for || 0) + '-' + (entry.points_against || 0);
     }
 
-    function h2hWinRate(entry) {
+    function h2hPerformance(entry) {
       if (!entry || !entry.games) return 0;
-      return (entry.wins || 0) / entry.games;
+      return (entry.points_for || 0) / entry.games;
     }
 
     function updateH2HPairOptions(labels) {
@@ -306,8 +355,8 @@ function pointsValue(value) {
       summary.appendChild(h2hStatItem(first + ' record', (firstEntry.wins || 0) + 'V - ' + (firstEntry.draws || 0) + 'P - ' + (firstEntry.losses || 0) + 'S'));
       summary.appendChild(h2hStatItem(second + ' record', (secondEntry.wins || 0) + 'V - ' + (secondEntry.draws || 0) + 'P - ' + (secondEntry.losses || 0) + 'S'));
       summary.appendChild(h2hStatItem('Punti', (firstEntry.points_for || 0) + '-' + (firstEntry.points_against || 0)));
-      summary.appendChild(h2hStatItem('Win rate ' + first, pctValue(h2hWinRate(firstEntry))));
-      summary.appendChild(h2hStatItem('Win rate ' + second, pctValue(h2hWinRate(secondEntry))));
+      summary.appendChild(h2hStatItem('Rendimento ' + first, pointsValue(h2hPerformance(firstEntry))));
+      summary.appendChild(h2hStatItem('Rendimento ' + second, pointsValue(h2hPerformance(secondEntry))));
       card.appendChild(summary);
 
       const note = document.createElement('p');
@@ -318,7 +367,7 @@ function pointsValue(value) {
       const bar = document.createElement('div');
       bar.className = 'h2h-duel-bar';
       const fill = document.createElement('span');
-      fill.style.width = Math.round(h2hWinRate(firstEntry) * 100) + '%';
+      fill.style.width = Math.round(Math.min(100, (h2hPerformance(firstEntry) / 3) * 100)) + '%';
       bar.appendChild(fill);
       card.appendChild(bar);
 
@@ -458,14 +507,14 @@ function pointsValue(value) {
 
       table(
         document.getElementById('players'),
-        ['Giocatore', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
-        byPlayer.map(x => [x.player, x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
+        ['Giocatore', 'Punti', 'TB', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento'],
+        byPlayer.map(x => [x.player, x.points || 0, x.tie_breaker || '-', x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0)])
       );
 
       table(
         document.getElementById('teams'),
-        ['Squadra', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
-        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
+        ['Squadra', 'Punti', 'TB', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento'],
+        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.tie_breaker || '-', x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0)])
       );
 
       setupLeaderboardStickyFallback();

@@ -198,7 +198,7 @@ La modalità principale è `Confronta due`:
 
 - scegli il primo giocatore o team;
 - scegli l'avversario;
-- la card mostra partite, record, punti e win rate di entrambi.
+- la card mostra partite, record, punti e rendimento di entrambi.
 
 Il valore dei punti è sempre mostrato come:
 
@@ -261,36 +261,51 @@ La classifica giocatori mostra:
 - vittorie;
 - pareggi;
 - sconfitte;
-- media punti;
-- win rate.
+- rendimento.
 
-Il win rate è calcolato come:
+Il rendimento è calcolato come:
 
 ```text
-vittorie / partite giocate
+punti / partite giocate
 ```
 
-I pareggi non contano come vittorie, ma contano come partite giocate e assegnano 1 punto.
+Questo valore tiene conto anche dei pareggi, perché usa gli stessi punti della classifica: vittoria = 3, pareggio = 1, sconfitta = 0.
+
+I punti ottenuti in squadra vengono attribuiti a ogni componente del team anche nella classifica giocatori. Per questo motivo gli scontri diretti non sono usati come tie breaker tra giocatori: in un match a squadre due giocatori possono essere avversari in una partita e compagni in un'altra.
 
 ### Tie breaker
 
-Le classifiche sono ordinate con questi criteri, in ordine:
+La classifica giocatori è ordinata con questi criteri:
 
 1. punti totali;
-2. punti negli scontri diretti tra giocatori o team con pari punti;
-3. vittorie negli scontri diretti tra pari punti;
-4. vittorie totali;
-5. win rate;
-6. media punti;
-7. nome, come ultimo ordinamento stabile.
+2. vittorie totali;
+3. rendimento;
+4. nome, come ultimo ordinamento stabile.
 
-Nelle tabelle la colonna `TB` riassume lo spareggio quando serve:
+La classifica squadre è ordinata con questi criteri:
+
+1. punti totali;
+2. punti negli scontri diretti tra team con pari punti;
+3. vittorie negli scontri diretti tra team con pari punti;
+4. vittorie totali;
+5. rendimento;
+6. nome, come ultimo ordinamento stabile.
+
+Nelle tabelle la colonna `TB` riassume lo spareggio solo quando esiste una parità di punti.
+
+Per i giocatori il formato è:
 
 ```text
-SD 3 · V 1 · WR 50%
+V 2 · Rend 1.5
 ```
 
-Dove `SD` indica i punti ottenuti negli scontri diretti contro gli altri soggetti con pari punti. Se non c'è parità di punti, il valore è `-`.
+Per le squadre il formato include anche gli scontri diretti:
+
+```text
+SD 3 · V 1 · Rend 1.5
+```
+
+Dove `SD` indica i punti ottenuti negli scontri diretti contro gli altri team con pari punti. Se non c'è parità di punti, il valore è `-`.
 
 ### Squadre
 
@@ -303,8 +318,7 @@ La classifica squadre mostra:
 - vittorie;
 - pareggi;
 - sconfitte;
-- media punti;
-- win rate.
+- rendimento.
 
 Una squadra viene identificata dalla combinazione dei suoi giocatori.
 

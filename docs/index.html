@@ -17,7 +17,7 @@
       <div>
         <p class="eyebrow">Golf Match Tracker</p>
         <h1>Dashboard statistiche</h1>
-        <p class="hero-copy">Vittoria = 3 punti, pareggio = 1, sconfitta = 0. Il Win Rate considera solo le vittorie.</p>
+        <p class="hero-copy">Vittoria = 3 punti, pareggio = 1, sconfitta = 0. Il rendimento indica i punti medi per partita.</p>
       </div>
       <div class="hero-meta">
       <figure class="flavour-quote">
@@ -51,7 +51,7 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica giocatori</h2>
-            <p class="small">Tie breaker: punti, scontri diretti tra pari punti, vittorie, win rate, media punti, nome.</p>
+            <p class="small">Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.</p>
           </div>
           <span class="pill subtle" id="players-count">-</span>
         </div>
@@ -63,7 +63,7 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica squadre</h2>
-            <p class="small">I punti squadra contano anche per le classifiche individuali. Tie breaker: punti, scontri diretti tra pari punti, vittorie, win rate, media punti, nome.</p>
+            <p class="small">I punti squadra contano anche per le classifiche individuali. Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.</p>
           </div>
           <span class="pill subtle" id="teams-count">-</span>
         </div>
@@ -202,17 +202,17 @@
       return span;
     }
 
-    function winRateCell(value) {
-      const raw = parseFloat(String(value).replace('%', '').replace(',', '.')) || 0;
+    function performanceCell(value) {
+      const raw = parseFloat(String(value).replace(',', '.')) || 0;
       const wrap = document.createElement('div');
-      wrap.className = 'winrate-cell';
+      wrap.className = 'performance-cell';
       const label = document.createElement('span');
       label.textContent = value;
       const track = document.createElement('span');
-      track.className = 'winrate-track';
+      track.className = 'performance-track';
       const fill = document.createElement('span');
-      fill.className = 'winrate-fill';
-      fill.style.width = Math.max(0, Math.min(100, raw)) + '%';
+      fill.className = 'performance-fill';
+      fill.style.width = Math.max(0, Math.min(100, (raw / 3) * 100)) + '%';
       track.appendChild(fill);
       wrap.appendChild(label);
       wrap.appendChild(track);
@@ -257,8 +257,8 @@
             td.appendChild(metricBadge(cell + 'P', 'draw'));
           } else if (headers[index] === 'Sconfitte') {
             td.appendChild(metricBadge(cell + 'S', 'loss'));
-          } else if (headers[index] === 'Win Rate') {
-            td.appendChild(winRateCell(cell));
+          } else if (headers[index] === 'Rendimento') {
+            td.appendChild(performanceCell(cell));
           } else {
             td.textContent = cell;
           }
@@ -405,9 +405,9 @@
         (entry.points_for || 0) + '-' + (entry.points_against || 0);
     }
 
-    function h2hWinRate(entry) {
+    function h2hPerformance(entry) {
       if (!entry || !entry.games) return 0;
-      return (entry.wins || 0) / entry.games;
+      return (entry.points_for || 0) / entry.games;
     }
 
     function updateH2HPairOptions(labels) {
@@ -520,8 +520,8 @@
       summary.appendChild(h2hStatItem(first + ' record', (firstEntry.wins || 0) + 'V - ' + (firstEntry.draws || 0) + 'P - ' + (firstEntry.losses || 0) + 'S'));
       summary.appendChild(h2hStatItem(second + ' record', (secondEntry.wins || 0) + 'V - ' + (secondEntry.draws || 0) + 'P - ' + (secondEntry.losses || 0) + 'S'));
       summary.appendChild(h2hStatItem('Punti', (firstEntry.points_for || 0) + '-' + (firstEntry.points_against || 0)));
-      summary.appendChild(h2hStatItem('Win rate ' + first, pctValue(h2hWinRate(firstEntry))));
-      summary.appendChild(h2hStatItem('Win rate ' + second, pctValue(h2hWinRate(secondEntry))));
+      summary.appendChild(h2hStatItem('Rendimento ' + first, pointsValue(h2hPerformance(firstEntry))));
+      summary.appendChild(h2hStatItem('Rendimento ' + second, pointsValue(h2hPerformance(secondEntry))));
       card.appendChild(summary);
 
       const note = document.createElement('p');
@@ -532,7 +532,7 @@
       const bar = document.createElement('div');
       bar.className = 'h2h-duel-bar';
       const fill = document.createElement('span');
-      fill.style.width = Math.round(h2hWinRate(firstEntry) * 100) + '%';
+      fill.style.width = Math.round(Math.min(100, (h2hPerformance(firstEntry) / 3) * 100)) + '%';
       bar.appendChild(fill);
       card.appendChild(bar);
 
@@ -672,14 +672,14 @@
 
       table(
         document.getElementById('players'),
-        ['Giocatore', 'Punti', 'TB', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
-        byPlayer.map(x => [x.player, x.points || 0, x.tie_breaker || '-', x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
+        ['Giocatore', 'Punti', 'TB', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento'],
+        byPlayer.map(x => [x.player, x.points || 0, x.tie_breaker || '-', x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0)])
       );
 
       table(
         document.getElementById('teams'),
-        ['Squadra', 'Punti', 'TB', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Win Rate'],
-        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.tie_breaker || '-', x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pctValue(x.winrate || 0)])
+        ['Squadra', 'Punti', 'TB', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento'],
+        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.tie_breaker || '-', x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0)])
       );
 
       setupLeaderboardStickyFallback();

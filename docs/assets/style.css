@@ -2217,7 +2217,7 @@ pre {
   color: #8a4232;
 }
 
-.winrate-cell {
+.performance-cell {
   display: grid;
   min-width: 108px;
   gap: 6px;
@@ -2225,12 +2225,12 @@ pre {
   font-variant-numeric: tabular-nums;
 }
 
-.winrate-cell > span:first-child {
+.performance-cell > span:first-child {
   color: var(--accent-strong);
   font-weight: 900;
 }
 
-.winrate-track {
+.performance-track {
   display: block;
   width: 92px;
   height: 7px;
@@ -2239,7 +2239,7 @@ pre {
   background: #e8eee9;
 }
 
-.winrate-fill {
+.performance-fill {
   display: block;
   height: 100%;
   border-radius: inherit;
@@ -2327,7 +2327,7 @@ pre {
     padding: 5px 8px;
   }
 
-  .winrate-cell {
+  .performance-cell {
     justify-items: start;
     min-width: 96px;
   }

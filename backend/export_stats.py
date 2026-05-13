@@ -174,14 +174,23 @@ def compute_head_to_head(matches: List[Dict], player_labels: List[str], team_row
     }
 
 
-def tie_breaker_label(row: Dict) -> str:
-    direct_points = row.get("tie_direct_points")
-    if direct_points is None:
+def format_points_rate(value: float | None) -> str:
+    if value is None:
         return "-"
-    return f"SD {direct_points} · V {row.get('wins', 0)} · WR {round((row.get('winrate') or 0) * 100)}%"
+    text = f"{float(value):.2f}"
+    return text.rstrip("0").rstrip(".") if "." in text else text
 
 
-def apply_tie_breakers(rows: List[Dict], label_key: str, matrix: Dict[str, Dict[str, Dict]]) -> None:
+def tie_breaker_label(row: Dict, use_direct: bool) -> str:
+    parts = []
+    if use_direct:
+        parts.append(f"SD {row.get('tie_direct_points', 0)}")
+    parts.append(f"V {row.get('wins', 0)}")
+    parts.append(f"Rend {format_points_rate(row.get('points_rate') or 0)}")
+    return " · ".join(parts)
+
+
+def apply_tie_breakers(rows: List[Dict], label_key: str, matrix: Dict[str, Dict[str, Dict]] | None = None, use_direct: bool = False) -> None:
     groups: Dict[int, List[Dict]] = {}
     for row in rows:
         groups.setdefault(int(row.get("points") or 0), []).append(row)
@@ -189,38 +198,41 @@ def apply_tie_breakers(rows: List[Dict], label_key: str, matrix: Dict[str, Dict[
         row["tie_direct_wins"] = 0
         row["tie_breaker"] = "-"
 
+    matrix = matrix or {}
     for tied_rows in groups.values():
         if len(tied_rows) < 2:
             continue
         tied_labels = [row[label_key] for row in tied_rows]
         for row in tied_rows:
-            label = row[label_key]
-            direct_points = 0
-            direct_wins = 0
-            for opponent in tied_labels:
-                if opponent == label:
-                    continue
-                entry = (matrix.get(label) or {}).get(opponent) or {}
-                direct_points += int(entry.get("points_for") or 0)
-                direct_wins += int(entry.get("wins") or 0)
-            row["tie_direct_points"] = direct_points
-            row["tie_direct_wins"] = direct_wins
-            row["tie_breaker"] = tie_breaker_label(row)
+            if use_direct:
+                label = row[label_key]
+                direct_points = 0
+                direct_wins = 0
+                for opponent in tied_labels:
+                    if opponent == label:
+                        continue
+                    entry = (matrix.get(label) or {}).get(opponent) or {}
+                    direct_points += int(entry.get("points_for") or 0)
+                    direct_wins += int(entry.get("wins") or 0)
+                row["tie_direct_points"] = direct_points
+                row["tie_direct_wins"] = direct_wins
+            row["tie_breaker"] = tie_breaker_label(row, use_direct=use_direct)
 
 
-def ranking_key(label_key: str):
+def ranking_key(label_key: str, use_direct: bool = False):
     def key(row: Dict):
-        return (
-            -int(row.get("points") or 0),
+        direct_values = (
             -int(row.get("tie_direct_points") or 0),
             -int(row.get("tie_direct_wins") or 0),
+        ) if use_direct else ()
+        return (
+            -int(row.get("points") or 0),
+            *direct_values,
             -int(row.get("wins") or 0),
-            -(row.get("winrate") or 0),
             -(row.get("points_rate") or 0),
             str(row.get(label_key) or "").lower(),
         )
     return key
-
 
 def compute_view(matches: List[Dict]) -> Dict:
     by_player: Dict[str, Dict] = {}
@@ -307,14 +319,12 @@ def compute_view(matches: List[Dict]) -> Dict:
     player_rows = list(by_player.values())
     for row in player_rows:
         row["points_rate"] = round(row["points"] / row["games"], 4) if row["games"] else 0.0
-        row["winrate"] = round(row["wins"] / row["games"], 4) if row["games"] else 0.0
 
     team_rows = list(by_team.values())
     for row in team_rows:
         row["points_rate"] = round(row["points"] / row["games"], 4) if row["games"] else 0.0
-        row["winrate"] = round(row["wins"] / row["games"], 4) if row["games"] else 0.0
 
-    # Calcola gli scontri diretti prima dell'ordinamento finale: servono anche come tie breaker.
+    # Calcola gli scontri diretti: per il tie breaker sono usati solo nella classifica squadre.
     head_to_head = compute_head_to_head(
         matches,
         sorted([row["player"] for row in player_rows]),
@@ -328,11 +338,11 @@ def compute_view(matches: List[Dict]) -> Dict:
     for row in team_rows:
         row["_h2h_label"] = team_display_by_key[row["team_key"]]
 
-    apply_tie_breakers(player_rows, "player", head_to_head["players"]["matrix"])
-    apply_tie_breakers(team_rows, "_h2h_label", head_to_head["teams"]["matrix"])
+    apply_tie_breakers(player_rows, "player", use_direct=False)
+    apply_tie_breakers(team_rows, "_h2h_label", head_to_head["teams"]["matrix"], use_direct=True)
 
-    player_rows.sort(key=ranking_key("player"))
-    team_rows.sort(key=ranking_key("team_label"))
+    player_rows.sort(key=ranking_key("player", use_direct=False))
+    team_rows.sort(key=ranking_key("team_label", use_direct=True))
 
     for row in team_rows:
         row.pop("_h2h_label", None)
@@ -344,10 +354,8 @@ def compute_view(matches: List[Dict]) -> Dict:
     for row in split_rows:
         row["solo_points_rate"] = round(row["solo_points"] / row["solo_games"], 4) if row["solo_games"] else None
         row["team_points_rate"] = round(row["team_points"] / row["team_games"], 4) if row["team_games"] else None
-        row["solo_winrate"] = round(row["solo_wins"] / row["solo_games"], 4) if row["solo_games"] else None
-        row["team_winrate"] = round(row["team_wins"] / row["team_games"], 4) if row["team_games"] else None
-        solo_value = row["solo_winrate"] if row["solo_winrate"] is not None else 0.0
-        team_value = row["team_winrate"] if row["team_winrate"] is not None else 0.0
+        solo_value = row["solo_points_rate"] if row["solo_points_rate"] is not None else 0.0
+        team_value = row["team_points_rate"] if row["team_points_rate"] is not None else 0.0
         row["delta"] = round(team_value - solo_value, 4)
     split_rows.sort(
         key=lambda x: (
@@ -385,13 +393,13 @@ def compute_stats(matches: List[Dict]) -> Dict:
         views[year] = compute_view([match for match in matches if match_year(match) == year])
 
     payload = {
-        "version": "golf-stats.v6",
+        "version": "golf-stats.v7",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "scoring": {
             "win_points": 3,
             "draw_points": 1,
             "loss_points": 0,
-            "winrate_rule": "wins / games; draws are not counted as wins",
+            "performance_rule": "points / games; in Italian UI this is shown as rendimento",
         },
         "years": years,
         "views": views,
