@@ -226,9 +226,10 @@ Dove:
 Su mobile la matrice viene sostituita da una vista a card più leggibile:
 
 - selezione del giocatore o team;
-- ordinamento dei confronti;
-- card per ogni avversario;
+- card per ogni avversario, ordinate automaticamente per numero di partite;
 - record, punti, numero partite e win rate.
+
+Su mobile non esiste il concetto di riga: tutti i valori sono letti dal punto di vista del giocatore o team selezionato. Per esempio, se selezioni `Lele`, la card `vs Ale P` mostra vittorie, pareggi, sconfitte e punti di Lele contro Ale P.
 
 Questa vista evita lo scroll orizzontale e rimane consultabile anche quando aumentano giocatori e squadre.
 

@@ -75,7 +75,8 @@
         <div>
           <p class="section-kicker">Matrici</p>
           <h2>Head2Head</h2>
-          <p class="small">Ogni cella legge il confronto dal punto di vista della riga. Record = Vittorie-Pareggi-Sconfitte.</p>
+          <p class="small desktop-h2h-help">Desktop: ogni cella si legge dal punto di vista della riga. Record = Vittorie-Pareggi-Sconfitte.</p>
+          <p class="small mobile-h2h-help">Mobile: scegli un giocatore o team. Ogni card si legge dal suo punto di vista contro l'avversario indicato.</p>
         </div>
         <div class="matrix-controls">
           <div class="matrix-control-field">
@@ -109,16 +110,6 @@
           <div class="matrix-control-field">
             <label for="h2h_subject">Confronti di</label>
             <select id="h2h_subject"></select>
-          </div>
-          <div class="matrix-control-field">
-            <label for="h2h_sort">Ordina per</label>
-            <select id="h2h_sort">
-              <option value="games" selected>Piu partite</option>
-              <option value="wins">Piu vittorie</option>
-              <option value="points">Piu punti</option>
-              <option value="winrate">Win rate</option>
-              <option value="name">Nome avversario</option>
-            </select>
           </div>
         </div>
         <div class="h2h-mobile-list" id="h2h-mobile-list"></div>
@@ -398,23 +389,16 @@
       return subjectSelect.value;
     }
 
-    function sortH2HOpponents(rows, sortMode) {
-      const sorted = rows.slice();
-      sorted.sort((a, b) => {
-        if (sortMode === 'name') return a.label.localeCompare(b.label, 'it');
-        if (sortMode === 'wins') return (b.entry.wins || 0) - (a.entry.wins || 0) || b.entry.games - a.entry.games || a.label.localeCompare(b.label, 'it');
-        if (sortMode === 'points') return (b.entry.points_for || 0) - (a.entry.points_for || 0) || b.entry.games - a.entry.games || a.label.localeCompare(b.label, 'it');
-        if (sortMode === 'winrate') return h2hWinRate(b.entry) - h2hWinRate(a.entry) || b.entry.games - a.entry.games || a.label.localeCompare(b.label, 'it');
+    function sortH2HOpponents(rows) {
+      return rows.slice().sort((a, b) => {
         return b.entry.games - a.entry.games || (b.entry.points_for || 0) - (a.entry.points_for || 0) || a.label.localeCompare(b.label, 'it');
       });
-      return sorted;
     }
 
     function renderH2HMobile(labels, matrix, type, minGames) {
       const listEl = document.getElementById('h2h-mobile-list');
       const subjectSelect = document.getElementById('h2h_subject');
-      const sortSelect = document.getElementById('h2h_sort');
-      if (!listEl || !subjectSelect || !sortSelect) return;
+      if (!listEl || !subjectSelect) return;
 
       listEl.innerHTML = '';
       const subject = updateH2HSubjectOptions(labels);
@@ -428,7 +412,7 @@
         .map(label => ({ label, entry: matrix[subject] && matrix[subject][label] }))
         .filter(row => row.entry && row.entry.games >= minGames);
 
-      const sortedRows = sortH2HOpponents(rows, sortSelect.value || 'games');
+      const sortedRows = sortH2HOpponents(rows);
       if (!sortedRows.length) {
         listEl.innerHTML = '<p class="small">Nessun avversario disponibile per ' + subject + ' con questo filtro.</p>';
         return;
@@ -504,8 +488,8 @@
       renderH2HMobile(labels, matrix, type, minGames);
       tableEl.innerHTML = '';
       legend.textContent = format === 'points'
-        ? 'Formato punti = punti riga - punti avversario. Ogni cella e dal punto di vista della riga.'
-        : 'Record V-P-S = vittorie, pareggi, sconfitte. Ogni cella e dal punto di vista della riga.';
+        ? 'Desktop: punti = punti riga - punti avversario. Mobile: punti del soggetto selezionato - punti dell avversario.'
+        : 'Desktop: V-P-S della riga. Mobile: V-P-S del soggetto selezionato contro l avversario.';
 
       if (!labels.length) {
         const caption = document.createElement('caption');
@@ -603,7 +587,7 @@
         document.getElementById('matches_limit').addEventListener('change', function () {
           renderDashboard(window.__statsData);
         });
-        ['matrix_type', 'matrix_format', 'matrix_min_games', 'h2h_subject', 'h2h_sort'].forEach(id => {
+        ['matrix_type', 'matrix_format', 'matrix_min_games', 'h2h_subject'].forEach(id => {
           const control = document.getElementById(id);
           if (control) {
             control.addEventListener('change', function () {

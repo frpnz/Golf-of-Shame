@@ -1562,6 +1562,21 @@ pre {
   }
 }
 
+
+.mobile-h2h-help {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .desktop-h2h-help {
+    display: none;
+  }
+
+  .mobile-h2h-help {
+    display: block;
+  }
+}
+
 /* Head2Head mobile: sostituisce la matrice con card consultabili */
 .h2h-mobile-view {
   display: none;
