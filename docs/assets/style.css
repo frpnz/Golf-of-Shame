@@ -1013,9 +1013,12 @@ pre {
 /* Head2Head matrices */
 .matrix-card {
   margin-bottom: 18px;
-  overflow: hidden;
+  overflow: visible;
   background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(230,243,236,0.76));
 }
+
+/* Chrome/Safari need every ancestor of sticky table cells to allow visible overflow.
+   The horizontal/vertical scroll is handled only by .h2h-table-wrap. */
 
 .matrix-head {
   align-items: flex-start;
@@ -1071,16 +1074,24 @@ pre {
 }
 
 .h2h-table-wrap {
-  padding: 0 16px 18px;
+  position: relative;
+  display: block;
+  margin: 0 16px 18px;
+  padding: 0;
+  max-width: calc(100% - 32px);
   overflow: auto;
   max-height: 70vh;
   isolation: isolate;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .h2h-matrix {
+  width: max-content;
   min-width: 720px;
   border-collapse: separate;
   border-spacing: 0;
+  table-layout: auto;
   border: 1px solid rgba(21,82,60,0.10);
   border-radius: 16px;
   overflow: visible;
@@ -1119,9 +1130,9 @@ pre {
 
 .h2h-matrix thead th:first-child,
 .h2h-matrix tbody th {
-  position: -webkit-sticky;
-  position: sticky;
-  left: 0;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  left: 0 !important;
   z-index: 5;
   min-width: 170px;
   max-width: 210px;
@@ -1134,6 +1145,18 @@ pre {
   white-space: normal;
   word-break: break-word;
   transform: translateZ(0);
+  will-change: transform;
+}
+
+.h2h-matrix tbody th::after,
+.h2h-matrix thead th:first-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  width: 1px;
+  background: #dfe9e2;
 }
 
 .h2h-matrix thead th:first-child {
@@ -1714,5 +1737,55 @@ pre {
 @media (max-width: 420px) {
   .h2h-duel-summary {
     grid-template-columns: 1fr;
+  }
+}
+
+
+/* Head2Head Chrome/Safari/Edge fallback.
+   Chrome can be inconsistent with left: sticky on table cells inside a scrollable table.
+   For non-Firefox browsers, JS updates --h2h-scroll-left and the first column is
+   translated by the horizontal scroll amount, so it remains visually locked. */
+@media (min-width: 761px) {
+  .matrix-card {
+    overflow: visible !important;
+  }
+
+  .h2h-table-wrap {
+    position: relative !important;
+    display: block !important;
+    margin: 0 16px 18px !important;
+    padding: 0 !important;
+    max-width: calc(100% - 32px) !important;
+    overflow: auto !important;
+    max-height: 70vh;
+    isolation: isolate;
+  }
+
+  .h2h-matrix {
+    width: max-content !important;
+    min-width: 720px !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+  }
+
+  .h2h-table-wrap.h2h-js-sticky .h2h-matrix tbody th {
+    position: relative !important;
+    left: auto !important;
+    z-index: 20 !important;
+    transform: translateX(var(--h2h-scroll-left, 0px)) translateZ(0) !important;
+  }
+
+  .h2h-table-wrap.h2h-js-sticky .h2h-matrix thead th:first-child {
+    position: sticky !important;
+    top: 0 !important;
+    left: auto !important;
+    z-index: 30 !important;
+    transform: translateX(var(--h2h-scroll-left, 0px)) translateZ(0) !important;
+  }
+
+  .h2h-table-wrap.h2h-js-sticky .h2h-matrix tbody th,
+  .h2h-table-wrap.h2h-js-sticky .h2h-matrix thead th:first-child {
+    background-clip: padding-box;
+    box-shadow: 8px 0 12px rgba(22,34,28,0.10);
   }
 }

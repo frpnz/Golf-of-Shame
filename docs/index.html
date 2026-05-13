@@ -467,6 +467,29 @@
       });
     }
 
+
+    function setupH2HStickyFallback() {
+      const wrap = document.querySelector('.h2h-table-wrap');
+      if (!wrap) return;
+
+      const isFirefox = /firefox/i.test(navigator.userAgent);
+      wrap.classList.toggle('h2h-js-sticky', !isFirefox);
+      if (isFirefox) {
+        wrap.style.removeProperty('--h2h-scroll-left');
+        return;
+      }
+
+      const update = () => {
+        wrap.style.setProperty('--h2h-scroll-left', `${wrap.scrollLeft || 0}px`);
+      };
+
+      if (wrap.dataset.h2hStickyBound !== 'true') {
+        wrap.addEventListener('scroll', update, { passive: true });
+        wrap.dataset.h2hStickyBound = 'true';
+      }
+      requestAnimationFrame(update);
+    }
+
     function renderH2H(view) {
       const tableEl = document.getElementById('h2h-matrix');
       const legend = document.getElementById('matrix-legend');
@@ -538,6 +561,7 @@
 
       tableEl.appendChild(thead);
       tableEl.appendChild(tbody);
+      setupH2HStickyFallback();
     }
 
     function renderDashboard(data) {
