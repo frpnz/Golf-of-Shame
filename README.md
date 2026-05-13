@@ -1,152 +1,304 @@
 # Golf Match Tracker
 
-App statica per registrare partite di golf, salvare i dati in SQLite e pubblicare una dashboard con classifiche giocatori e squadre.
+Golf Match Tracker è una piccola app statica per registrare partite di golf, salvare lo storico in SQLite e pubblicare una dashboard con classifiche, statistiche e confronti Head2Head.
 
-Il frontend vive in `docs/` ed è pensato per essere pubblicato con GitHub Pages. Il backend è composto da script Python che lavorano localmente sul database SQLite in `data/golf_tracker.sqlite`.
+Il progetto è pensato per due utilizzi:
+
+- **in locale**, tramite `localhost`, per consultare e testare l'app;
+- **online**, tramite GitHub Pages, pubblicando la cartella `docs/`.
+
+## Funzionalità principali
+
+- Creazione di una nuova partita da interfaccia web.
+- Download del JSON della partita.
+- Import del match in SQLite tramite script Python.
+- Dashboard statica con:
+  - KPI generali;
+  - classifica giocatori;
+  - classifica squadre;
+  - filtro per anno;
+  - ultime partite;
+  - Head2Head Player;
+  - Head2Head Team.
+- Vista Head2Head responsive:
+  - matrice su desktop;
+  - card filtrabili su mobile.
+- Script di manutenzione per:
+  - importare match;
+  - esportare statistiche;
+  - eliminare match;
+  - rinominare squadre/side;
+  - rinominare giocatori.
 
 ## Struttura progetto
 
 ```text
 backend/
   common.py
+  init_db.py
   import_match.py
   export_stats.py
   delete_match.py
   rename_side.py
   rename_player.py
-  init_db.py
 
+# opzionale, creata localmente
 data/
   golf_tracker.sqlite
 
 docs/
-  index.html              # dashboard / entry point GitHub Pages
+  index.html              # dashboard
   new-match/
-    index.html
+    index.html            # creazione nuovo match
   data/
-    stats.json
+    stats.json            # dati statici letti dalla dashboard
     match.schema.json
   assets/
     style.css
+
+check.js                  # controllo sintassi JS
+README.md
 ```
 
-## Flusso operativo
+## Requisiti
 
-1. Apri `docs/new-match/index.html` per creare una partita, oppure `docs/index.html` per vedere la dashboard.
-2. Crea la partita e scarica il JSON generato.
-3. Importa il JSON nel database SQLite.
-4. Rigenera le statistiche statiche in `docs/data/`.
-5. Pubblica/aggiorna il repository su GitHub: GitHub Pages leggerà i file aggiornati in `docs/`.
+- Python 3.10 o superiore.
+- Un browser moderno.
+- Opzionale: `sqlite3`, utile solo per ispezionare il database da terminale.
+
+Non servono dipendenze frontend, framework o build step.
+
+## Avvio in locale su localhost
+
+Dalla root del progetto, avvia un server statico puntando alla cartella `docs/`:
+
+```bash
+python -m http.server 8000 --directory docs
+```
+
+Poi apri nel browser:
+
+```text
+http://localhost:8000/
+```
+
+Per creare una nuova partita:
+
+```text
+http://localhost:8000/new-match/
+```
+
+Per fermare il server, torna nel terminale e premi `CTRL+C`.
+
+### Perché usare localhost invece di aprire i file direttamente
+
+Puoi aprire anche `docs/index.html` con doppio click, ma è meglio usare `localhost` perché il browser gestisce in modo più corretto il caricamento di file JSON come `docs/data/stats.json`.
+
+## Primo setup del database
+
+Se non esiste ancora il database, crealo con:
+
+```bash
+mkdir -p data
+python backend/init_db.py --db data/golf_tracker.sqlite
+```
+
+Poi genera i file statici della dashboard:
+
+```bash
+python backend/export_stats.py --db data/golf_tracker.sqlite --docs docs
+```
+
+## Flusso operativo consigliato
+
+1. Avvia l'app in locale:
+
+   ```bash
+   python -m http.server 8000 --directory docs
+   ```
+
+2. Apri la pagina di creazione match:
+
+   ```text
+   http://localhost:8000/new-match/
+   ```
+
+3. Inserisci la partita e scarica il file JSON.
+
+4. Importa il JSON nel database:
+
+   ```bash
+   python backend/import_match.py --db data/golf_tracker.sqlite --input golf-match.json --export-docs docs
+   ```
+
+5. Ricarica la dashboard locale:
+
+   ```text
+   http://localhost:8000/
+   ```
+
+6. Se pubblichi su GitHub Pages, fai commit e push dei file aggiornati.
 
 ## Punteggio
 
-Il sistema usa punteggio all'italiana:
+Il sistema usa il punteggio all'italiana:
 
-- vittoria: 3 punti
-- pareggio: 1 punto
-- sconfitta: 0 punti
+| Risultato | Punti |
+|---|---:|
+| Vittoria | 3 |
+| Pareggio | 1 |
+| Sconfitta | 0 |
 
-Nel JSON ogni side con `is_winner: true` è considerato un side a punto.
+Nel JSON ogni side con:
 
-- Se un solo side ha `is_winner: true`, quel side vince e prende 3 punti.
-- Se due o più side hanno `is_winner: true`, la partita è un pareggio e ciascuno di quei side prende 1 punto.
-- I side con `is_winner: false` prendono 0 punti.
-
-La regola vale sia per i giocatori sia per le squadre.
-
-## Classifiche
-
-### Classifica giocatori
-
-La dashboard mostra:
-
-- Giocatore
-- Punti
-- Partite giocate
-- Vittorie
-- Pareggi
-- Sconfitte
-- Win Rate
-
-Il Win Rate è calcolato come:
-
-```text
-vittorie / partite giocate
+```json
+"is_winner": true
 ```
 
-I pareggi non contano come vittorie nel Win Rate, ma contano come partite giocate e assegnano 1 punto.
+è considerato un side a punto.
 
-### Classifica squadre
+Regole:
 
-La dashboard mostra:
+- se un solo side ha `is_winner: true`, quel side vince e prende 3 punti;
+- se due o più side hanno `is_winner: true`, la partita è un pareggio e ciascuno prende 1 punto;
+- i side con `is_winner: false` prendono 0 punti.
 
-- Squadra
-- Punti
-- Componenti
-- Partite giocate
-- Vittorie
-- Pareggi
-- Sconfitte
-- Win Rate
+La regola vale sia per giocatori singoli sia per squadre.
 
-Una squadra è identificata dalla stessa combinazione di giocatori.
+## Dashboard
 
-### Filtro per anno
+La dashboard principale si trova in:
 
-La dashboard genera automaticamente le classifiche per anno partendo dalle date delle partite (`played_at`).
+```text
+docs/index.html
+```
 
-Nel file `docs/data/stats.json` vengono salvati:
+Legge i dati da:
 
-- i dati globali, compatibili con il formato precedente;
-- `years`, con gli anni disponibili ordinati dal più recente;
-- `views.all`, con la vista complessiva;
-- `views.YYYY`, con classifiche, KPI e storico filtrati per singolo anno.
+```text
+docs/data/stats.json
+```
 
-Il filtro `Anno` nella dashboard aggiorna insieme:
+Mostra:
 
-- classifica giocatori;
-- classifica squadre;
-- matrici Head2Head;
-- dati aggregati;
-- ultime partite.
+- riepilogo generale;
+- classifiche giocatori e squadre;
+- filtro per anno;
+- ultime partite;
+- Head2Head Player e Team.
 
-### Matrici Head2Head
+## Head2Head
 
-La dashboard include una sezione `Head2Head` con due matrici:
+La sezione Head2Head include due modalità di visualizzazione.
 
-- `Head2Head - Player`
-- `Head2Head - Team`
+### Desktop
 
-`Head2Head - Player` usa solo le partite individuali 1v1, cioe match con due side e un solo giocatore per side. I punti ottenuti da un giocatore in squadra continuano a valere nella classifica giocatori, ma non entrano nella matrice player.
+Su schermi grandi viene mostrata una matrice classica:
 
-`Head2Head - Team` usa i confronti tra side composti da almeno due giocatori.
+- righe = soggetto;
+- colonne = avversario;
+- celle = record o punti del confronto.
 
-Ogni cella legge il confronto dal punto di vista della riga.
+Il valore è sempre letto dal punto di vista della riga.
 
-Formato `Record`:
+Formato record:
 
 ```text
 V-P-S
 ```
 
-dove:
-
-- `V` = vittorie della riga contro la colonna;
-- `P` = pareggi;
-- `S` = sconfitte.
-
-Formato `Punti`:
+Formato punti:
 
 ```text
 PF-PS
 ```
 
-dove:
+Dove:
 
-- `PF` = punti fatti dal soggetto della riga;
-- `PS` = punti fatti dall'avversario in colonna.
+- `V` = vittorie;
+- `P` = pareggi;
+- `S` = sconfitte;
+- `PF` = punti fatti;
+- `PS` = punti subiti.
 
-Le matrici usano lo stesso filtro anno della dashboard. Il filtro `Min. partite` nasconde i confronti con meno partite del valore selezionato.
+### Mobile
+
+Su mobile la matrice viene sostituita da una vista a card più leggibile:
+
+- selezione del giocatore o team;
+- ordinamento dei confronti;
+- card per ogni avversario;
+- record, punti, numero partite e win rate.
+
+Questa vista evita lo scroll orizzontale e rimane consultabile anche quando aumentano giocatori e squadre.
+
+### Criteri di calcolo
+
+`Head2Head - Player` considera solo partite individuali 1 contro 1, cioè match con due side e un solo giocatore per side.
+
+I punti ottenuti in squadra continuano a valere nella classifica giocatori, ma non entrano nella matrice Head2Head Player.
+
+`Head2Head - Team` considera i confronti tra side composti da almeno due giocatori.
+
+## Classifiche
+
+### Giocatori
+
+La classifica giocatori mostra:
+
+- giocatore;
+- punti;
+- partite;
+- vittorie;
+- pareggi;
+- sconfitte;
+- media punti;
+- win rate.
+
+Il win rate è calcolato come:
+
+```text
+vittorie / partite giocate
+```
+
+I pareggi non contano come vittorie, ma contano come partite giocate e assegnano 1 punto.
+
+### Squadre
+
+La classifica squadre mostra:
+
+- squadra;
+- componenti;
+- punti;
+- partite;
+- vittorie;
+- pareggi;
+- sconfitte;
+- media punti;
+- win rate.
+
+Una squadra viene identificata dalla combinazione dei suoi giocatori.
+
+## Filtro per anno
+
+Le statistiche vengono esportate in viste multiple dentro `docs/data/stats.json`:
+
+```json
+{
+  "years": ["2026"],
+  "views": {
+    "all": {},
+    "2026": {}
+  }
+}
+```
+
+Il filtro anno aggiorna insieme:
+
+- KPI;
+- classifiche;
+- Head2Head;
+- ultime partite.
 
 ## Importare una partita
 
@@ -156,69 +308,52 @@ Dalla root del progetto:
 python backend/import_match.py --db data/golf_tracker.sqlite --input golf-match.json --export-docs docs
 ```
 
-L'opzione `--export-docs docs` rigenera `docs/data/stats.json` subito dopo l'import.
+L'opzione `--export-docs docs` rigenera subito:
+
+```text
+docs/data/stats.json
+docs/data/match.schema.json
+```
 
 ## Rigenerare le statistiche
+
+Quando vuoi aggiornare solo i file statici della dashboard:
 
 ```bash
 python backend/export_stats.py --db data/golf_tracker.sqlite --docs docs
 ```
 
-Questo comando aggiorna:
-
-- `docs/data/stats.json`
-- `docs/data/match.schema.json`
-
-Dopo avere rigenerato le statistiche, fai commit e push dei file aggiornati, in particolare:
-
-```text
-data/golf_tracker.sqlite
-docs/data/stats.json
-docs/data/match.schema.json
-```
-
 ## Eliminare un match
 
-L'eliminazione agisce direttamente sul database SQLite.
-
-Puoi eliminare tramite ID match:
+Per eliminare un match tramite ID:
 
 ```bash
 python backend/delete_match.py --db data/golf_tracker.sqlite --id 3 --export-docs docs
 ```
 
-Oppure tramite `import_key`:
+Per eliminarlo tramite `import_key`:
 
 ```bash
 python backend/delete_match.py --db data/golf_tracker.sqlite --import-key match-abc123 --export-docs docs
 ```
 
-L'opzione `--export-docs docs` rigenera la dashboard dopo l'eliminazione.
+La dashboard mostra ID, `import_key` e comando pronto nella sezione `Ultime partite`.
 
-## Come trovare ID o import_key
+## Trovare ID e import_key
 
-Dalla dashboard, nella sezione `Ultime partite`, ogni match mostra:
-
-- ID match
-- `import_key`
-- comando di eliminazione già pronto da copiare
-
-In alternativa, puoi interrogare il database:
+Con `sqlite3`:
 
 ```bash
 sqlite3 data/golf_tracker.sqlite "SELECT id, import_key, played_at, course, holes, notes FROM match ORDER BY played_at DESC;"
 ```
 
-Se non hai `sqlite3` installato, puoi usare Python:
+Senza `sqlite3`, usando Python:
 
 ```bash
 python -c "import sqlite3; con=sqlite3.connect('data/golf_tracker.sqlite'); cur=con.execute('SELECT id, import_key, played_at, course, holes, notes FROM match ORDER BY played_at DESC'); [print(row) for row in cur.fetchall()]"
 ```
 
-
-## Rinominare una side/squadra
-
-La rinomina agisce direttamente sul database SQLite e aggiorna tutte le side/team con lo stesso nome.
+## Rinominare una squadra o side
 
 Esempio:
 
@@ -226,23 +361,19 @@ Esempio:
 python backend/rename_side.py --db data/golf_tracker.sqlite --from "Team A" --to "I Ferri Corti" --export-docs docs
 ```
 
-Per controllare prima quali side verrebbero aggiornate senza modificare il database:
+Anteprima senza modificare il database:
 
 ```bash
 python backend/rename_side.py --db data/golf_tracker.sqlite --from "Team A" --to "I Ferri Corti" --dry-run
 ```
 
-Per cercare il nome ignorando maiuscole/minuscole:
+Ricerca ignorando maiuscole e minuscole:
 
 ```bash
 python backend/rename_side.py --db data/golf_tracker.sqlite --from "team a" --to "I Ferri Corti" --case-insensitive --export-docs docs
 ```
 
-L'opzione `--export-docs docs` rigenera la dashboard dopo la rinomina.
-
-## Rinominare un player
-
-La rinomina agisce direttamente sul database SQLite e aggiorna tutte le occorrenze del player in `match_player.player_name`.
+## Rinominare un giocatore
 
 Esempio:
 
@@ -250,45 +381,36 @@ Esempio:
 python backend/rename_player.py --db data/golf_tracker.sqlite --from "Mario R." --to "Mario Rossi" --export-docs docs
 ```
 
-Per controllare prima quali occorrenze verrebbero aggiornate senza modificare il database:
+Anteprima senza modificare il database:
 
 ```bash
 python backend/rename_player.py --db data/golf_tracker.sqlite --from "Mario R." --to "Mario Rossi" --dry-run
 ```
 
-Per cercare il nome ignorando maiuscole/minuscole:
+Ricerca ignorando maiuscole e minuscole:
 
 ```bash
 python backend/rename_player.py --db data/golf_tracker.sqlite --from "mario r." --to "Mario Rossi" --case-insensitive --export-docs docs
 ```
 
-L'opzione `--export-docs docs` rigenera la dashboard dopo la rinomina.
+Nota: i nomi dei giocatori e i nomi delle side/team sono campi diversi. La rinomina giocatore viene però bloccata se il nuovo nome è già presente nello stesso match, per evitare duplicati nella stessa partita.
 
-Nota: i nomi player e i nomi side/team sono campi diversi, quindi non c'è conflitto tecnico tra un player e un team con lo stesso nome. La rinomina player viene pero bloccata se il nuovo nome è già presente nello stesso match, per evitare duplicati nella stessa partita.
+## Correggere un match
 
-## Modifica match
+La modifica diretta dei match non è prevista.
 
-La modifica dei match è stata rimossa dal progetto.
-
-Per correggere una partita già importata, il flusso consigliato è:
+Flusso consigliato:
 
 1. elimina il match errato;
-2. crea/importa nuovamente il JSON corretto;
-3. rigenera le statistiche.
+2. crea un nuovo JSON corretto;
+3. importa il nuovo JSON;
+4. rigenera le statistiche, se non hai usato `--export-docs`.
 
 ## Pubblicazione con GitHub Pages
 
 Il progetto è già organizzato per pubblicare il frontend dalla cartella `docs/`.
 
-### 1. Crea il repository GitHub
-
-Crea un nuovo repository, ad esempio:
-
-```text
-golf-match-tracker
-```
-
-Poi inizializza e carica il progetto:
+### 1. Crea il repository
 
 ```bash
 git init
@@ -305,58 +427,34 @@ Su GitHub:
 
 1. apri il repository;
 2. vai in `Settings`;
-3. nel menu laterale vai in `Pages`;
-4. in `Build and deployment`, imposta `Source` su `Deploy from a branch`;
-5. in `Branch`, seleziona:
-   - branch: `main`
-   - folder: `/docs`
-6. clicca `Save`.
+3. vai in `Pages`;
+4. imposta `Source` su `Deploy from a branch`;
+5. seleziona branch `main` e cartella `/docs`;
+6. salva.
 
-GitHub pubblicherà il sito partendo dalla cartella `docs/`.
-
-### 3. URL della dashboard
-
-Dopo l'attivazione, GitHub Pages pubblica il sito a un indirizzo simile a:
+La dashboard sarà disponibile a un indirizzo simile a:
 
 ```text
 https://TUO-USERNAME.github.io/golf-match-tracker/
 ```
 
-Le pagine principali saranno:
+La pagina per creare match sarà:
 
 ```text
-https://TUO-USERNAME.github.io/golf-match-tracker/
 https://TUO-USERNAME.github.io/golf-match-tracker/new-match/
 ```
 
+## Aggiornare il sito dopo nuovi dati
 
-### 4. Aggiornare il sito dopo nuovi match
+Dopo import, eliminazione o rinomina, assicurati che siano aggiornati:
 
-Ogni volta che importi, elimini o rinomini dati nel database:
-
-```bash
-python backend/import_match.py --db data/golf_tracker.sqlite --input golf-match.json --export-docs docs
+```text
+data/golf_tracker.sqlite
+docs/data/stats.json
+docs/data/match.schema.json
 ```
 
-oppure:
-
-```bash
-python backend/delete_match.py --db data/golf_tracker.sqlite --id 3 --export-docs docs
-```
-
-oppure:
-
-```bash
-python backend/rename_side.py --db data/golf_tracker.sqlite --from "Team A" --to "I Ferri Corti" --export-docs docs
-```
-
-oppure:
-
-```bash
-python backend/rename_player.py --db data/golf_tracker.sqlite --from "Mario R." --to "Mario Rossi" --export-docs docs
-```
-
-poi pubblica gli aggiornamenti:
+Poi pubblica:
 
 ```bash
 git add data/golf_tracker.sqlite docs/data/stats.json docs/data/match.schema.json
@@ -364,11 +462,26 @@ git commit -m "Update golf stats"
 git push
 ```
 
-GitHub Pages si aggiornerà automaticamente dopo il push su `main`.
+GitHub Pages si aggiornerà automaticamente dopo il push.
+
+## Controlli utili
+
+Controllo sintassi JavaScript:
+
+```bash
+node --check check.js
+```
+
+Controllo sintassi Python:
+
+```bash
+python -m compileall backend
+```
 
 ## Note importanti
 
-- Il frontend è statico: non scrive direttamente sul database.
+- Il frontend è statico e non scrive direttamente nel database.
 - Il database viene aggiornato solo dagli script Python in `backend/`.
-- GitHub Pages pubblica il contenuto di `docs/`, ma non esegue gli script Python.
-- Per questo motivo, dopo ogni import/eliminazione bisogna rigenerare `docs/data/stats.json` e fare push.
+- GitHub Pages pubblica i file in `docs/`, ma non esegue script Python.
+- Dopo ogni modifica ai dati bisogna rigenerare `docs/data/stats.json`.
+- In locale usa `localhost` per testare correttamente il caricamento dei file JSON.

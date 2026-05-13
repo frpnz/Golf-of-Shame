@@ -104,6 +104,25 @@
         </div>
       </div>
       <div class="matrix-legend" id="matrix-legend">Record V-P-S = vittorie, pareggi, sconfitte.</div>
+      <div class="h2h-mobile-view" id="h2h-mobile-view" aria-live="polite">
+        <div class="h2h-mobile-controls">
+          <div class="matrix-control-field">
+            <label for="h2h_subject">Confronti di</label>
+            <select id="h2h_subject"></select>
+          </div>
+          <div class="matrix-control-field">
+            <label for="h2h_sort">Ordina per</label>
+            <select id="h2h_sort">
+              <option value="games" selected>Piu partite</option>
+              <option value="wins">Piu vittorie</option>
+              <option value="points">Piu punti</option>
+              <option value="winrate">Win rate</option>
+              <option value="name">Nome avversario</option>
+            </select>
+          </div>
+        </div>
+        <div class="h2h-mobile-list" id="h2h-mobile-list"></div>
+      </div>
       <div class="table-wrap h2h-table-wrap">
         <table id="h2h-matrix" class="h2h-matrix"></table>
       </div>
@@ -355,6 +374,115 @@
         (entry.points_for || 0) + '-' + (entry.points_against || 0);
     }
 
+    function h2hWinRate(entry) {
+      if (!entry || !entry.games) return 0;
+      return (entry.wins || 0) / entry.games;
+    }
+
+    function updateH2HSubjectOptions(labels) {
+      const subjectSelect = document.getElementById('h2h_subject');
+      if (!subjectSelect) return '';
+      const previous = subjectSelect.value;
+      subjectSelect.innerHTML = '';
+      labels.forEach(label => {
+        const option = document.createElement('option');
+        option.value = label;
+        option.textContent = label;
+        subjectSelect.appendChild(option);
+      });
+      if (labels.includes(previous)) {
+        subjectSelect.value = previous;
+      } else if (labels.length) {
+        subjectSelect.value = labels[0];
+      }
+      return subjectSelect.value;
+    }
+
+    function sortH2HOpponents(rows, sortMode) {
+      const sorted = rows.slice();
+      sorted.sort((a, b) => {
+        if (sortMode === 'name') return a.label.localeCompare(b.label, 'it');
+        if (sortMode === 'wins') return (b.entry.wins || 0) - (a.entry.wins || 0) || b.entry.games - a.entry.games || a.label.localeCompare(b.label, 'it');
+        if (sortMode === 'points') return (b.entry.points_for || 0) - (a.entry.points_for || 0) || b.entry.games - a.entry.games || a.label.localeCompare(b.label, 'it');
+        if (sortMode === 'winrate') return h2hWinRate(b.entry) - h2hWinRate(a.entry) || b.entry.games - a.entry.games || a.label.localeCompare(b.label, 'it');
+        return b.entry.games - a.entry.games || (b.entry.points_for || 0) - (a.entry.points_for || 0) || a.label.localeCompare(b.label, 'it');
+      });
+      return sorted;
+    }
+
+    function renderH2HMobile(labels, matrix, type, minGames) {
+      const listEl = document.getElementById('h2h-mobile-list');
+      const subjectSelect = document.getElementById('h2h_subject');
+      const sortSelect = document.getElementById('h2h_sort');
+      if (!listEl || !subjectSelect || !sortSelect) return;
+
+      listEl.innerHTML = '';
+      const subject = updateH2HSubjectOptions(labels);
+      if (!subject) {
+        listEl.innerHTML = '<p class="small">Nessun confronto disponibile con il filtro selezionato.</p>';
+        return;
+      }
+
+      const rows = labels
+        .filter(label => label !== subject)
+        .map(label => ({ label, entry: matrix[subject] && matrix[subject][label] }))
+        .filter(row => row.entry && row.entry.games >= minGames);
+
+      const sortedRows = sortH2HOpponents(rows, sortSelect.value || 'games');
+      if (!sortedRows.length) {
+        listEl.innerHTML = '<p class="small">Nessun avversario disponibile per ' + subject + ' con questo filtro.</p>';
+        return;
+      }
+
+      sortedRows.forEach(row => {
+        const entry = row.entry;
+        const card = document.createElement('article');
+        card.className = 'h2h-duel-card ' + h2hCellClass(entry);
+
+        const title = document.createElement('div');
+        title.className = 'h2h-duel-title';
+        const subjectSpan = document.createElement('span');
+        subjectSpan.textContent = subject;
+        const vsSpan = document.createElement('span');
+        vsSpan.className = 'h2h-vs';
+        vsSpan.textContent = 'vs';
+        const opponentStrong = document.createElement('strong');
+        opponentStrong.textContent = row.label;
+        title.appendChild(subjectSpan);
+        title.appendChild(vsSpan);
+        title.appendChild(opponentStrong);
+        card.appendChild(title);
+
+        const summary = document.createElement('div');
+        summary.className = 'h2h-duel-summary';
+        [
+          ['Partite', String(entry.games)],
+          ['Record', (entry.wins || 0) + 'V - ' + (entry.draws || 0) + 'P - ' + (entry.losses || 0) + 'S'],
+          ['Punti', (entry.points_for || 0) + '-' + (entry.points_against || 0)],
+          ['Win rate', pctValue(h2hWinRate(entry))]
+        ].forEach(([label, value]) => {
+          const item = document.createElement('span');
+          const itemLabel = document.createElement('small');
+          itemLabel.textContent = label;
+          const itemValue = document.createElement('strong');
+          itemValue.textContent = value;
+          item.appendChild(itemLabel);
+          item.appendChild(itemValue);
+          summary.appendChild(item);
+        });
+        card.appendChild(summary);
+
+        const bar = document.createElement('div');
+        bar.className = 'h2h-duel-bar';
+        const fill = document.createElement('span');
+        fill.style.width = Math.round(h2hWinRate(entry) * 100) + '%';
+        bar.appendChild(fill);
+        card.appendChild(bar);
+
+        listEl.appendChild(card);
+      });
+    }
+
     function renderH2H(view) {
       const tableEl = document.getElementById('h2h-matrix');
       const legend = document.getElementById('matrix-legend');
@@ -373,6 +501,7 @@
         });
       });
 
+      renderH2HMobile(labels, matrix, type, minGames);
       tableEl.innerHTML = '';
       legend.textContent = format === 'points'
         ? 'Formato punti = punti riga - punti avversario. Ogni cella e dal punto di vista della riga.'
@@ -474,7 +603,7 @@
         document.getElementById('matches_limit').addEventListener('change', function () {
           renderDashboard(window.__statsData);
         });
-        ['matrix_type', 'matrix_format', 'matrix_min_games'].forEach(id => {
+        ['matrix_type', 'matrix_format', 'matrix_min_games', 'h2h_subject', 'h2h_sort'].forEach(id => {
           const control = document.getElementById(id);
           if (control) {
             control.addEventListener('change', function () {
