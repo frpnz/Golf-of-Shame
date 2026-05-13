@@ -21,8 +21,9 @@ Il progetto è pensato per due utilizzi:
   - Head2Head Player;
   - Head2Head Team.
 - Vista Head2Head responsive:
-  - matrice su desktop;
-  - card filtrabili su mobile.
+  - confronto diretto “Confronta due”;
+  - matrice completa su desktop;
+  - card di confronto su mobile.
 - Script di manutenzione per:
   - importare match;
   - esportare statistiche;
@@ -189,27 +190,40 @@ Mostra:
 
 ## Head2Head
 
-La sezione Head2Head include due modalità di visualizzazione.
+La sezione Head2Head è pensata per restare consultabile anche quando aumentano giocatori e squadre.
+
+### Confronta due
+
+La modalità principale è `Confronta due`:
+
+- scegli il primo giocatore o team;
+- scegli l'avversario;
+- la card mostra partite, record, punti e win rate di entrambi.
+
+Il valore dei punti è sempre mostrato come:
+
+```text
+Punti primo selezionato - punti avversario
+```
+
+Esempio: se scegli `Lele` contro `Ale P`, la card spiega il confronto dal punto di vista di `Lele` e mostra anche il record inverso di `Ale P`.
+
+Su mobile questa è la vista principale: non c'è il concetto di riga della matrice, quindi la lettura è esplicita e legata ai due soggetti selezionati.
 
 ### Desktop
 
-Su schermi grandi viene mostrata una matrice classica:
+Su schermi grandi resta disponibile anche la matrice completa:
 
 - righe = soggetto;
 - colonne = avversario;
-- celle = record o punti del confronto.
+- ogni cella mostra entrambi i formati del confronto.
 
-Il valore è sempre letto dal punto di vista della riga.
+Nella matrice il valore è sempre letto dal punto di vista della riga.
 
-Formato record:
+Ogni cella è composta da due righe:
 
 ```text
 V-P-S
-```
-
-Formato punti:
-
-```text
 PF-PS
 ```
 
@@ -221,17 +235,11 @@ Dove:
 - `PF` = punti fatti;
 - `PS` = punti subiti.
 
+Non ci sono più selettori per formato o minimo partite: la vista desktop mostra direttamente tutte le informazioni disponibili in una sola tabella.
+
 ### Mobile
 
-Su mobile la matrice viene sostituita da una vista a card più leggibile:
-
-- selezione del giocatore o team;
-- card per ogni avversario, ordinate automaticamente per numero di partite;
-- record, punti, numero partite e win rate.
-
-Su mobile non esiste il concetto di riga: tutti i valori sono letti dal punto di vista del giocatore o team selezionato. Per esempio, se selezioni `Lele`, la card `vs Ale P` mostra vittorie, pareggi, sconfitte e punti di Lele contro Ale P.
-
-Questa vista evita lo scroll orizzontale e rimane consultabile anche quando aumentano giocatori e squadre.
+Su mobile la matrice viene nascosta e rimane solo la card `Confronta due`. Questa vista evita lo scroll orizzontale e rimane leggibile anche con molti giocatori o team.
 
 ### Criteri di calcolo
 

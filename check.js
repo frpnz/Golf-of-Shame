@@ -1,5 +1,4 @@
-
-    function pointsValue(value) {
+function pointsValue(value) {
       return value == null ? '-' : Number(value).toFixed(2).replace(/\.00$/, '');
     }
 
@@ -168,11 +167,6 @@
       return select ? select.value : 'players';
     }
 
-    function currentMatrixFormat() {
-      const select = document.getElementById('matrix_format');
-      return select ? select.value : 'record';
-    }
-
     function h2hCellClass(entry) {
       if (!entry || !entry.games) return 'empty';
       if (entry.wins > entry.losses) return 'positive';
@@ -180,12 +174,11 @@
       return 'neutral';
     }
 
-    function h2hCellText(entry, format) {
+    function h2hCellText(entry) {
       if (!entry || !entry.games) return '·';
-      if (format === 'points') {
-        return String(entry.points_for || 0) + '-' + String(entry.points_against || 0);
-      }
-      return String(entry.wins || 0) + '-' + String(entry.draws || 0) + '-' + String(entry.losses || 0);
+      const record = String(entry.wins || 0) + '-' + String(entry.draws || 0) + '-' + String(entry.losses || 0);
+      const points = String(entry.points_for || 0) + '-' + String(entry.points_against || 0);
+      return record + '\n' + points;
     }
 
     function h2hTitle(rowLabel, colLabel, entry) {
@@ -203,103 +196,134 @@
       return (entry.wins || 0) / entry.games;
     }
 
-    function updateH2HSubjectOptions(labels) {
-      const subjectSelect = document.getElementById('h2h_subject');
-      if (!subjectSelect) return '';
-      const previous = subjectSelect.value;
-      subjectSelect.innerHTML = '';
-      labels.forEach(label => {
-        const option = document.createElement('option');
-        option.value = label;
-        option.textContent = label;
-        subjectSelect.appendChild(option);
+    function updateH2HPairOptions(labels) {
+      const firstSelect = document.getElementById('h2h_subject_a');
+      const secondSelect = document.getElementById('h2h_subject_b');
+      if (!firstSelect || !secondSelect) return { first: '', second: '' };
+
+      const previousFirst = firstSelect.value;
+      const previousSecond = secondSelect.value;
+
+      [firstSelect, secondSelect].forEach(select => {
+        select.innerHTML = '';
+        labels.forEach(label => {
+          const option = document.createElement('option');
+          option.value = label;
+          option.textContent = label;
+          select.appendChild(option);
+        });
       });
-      if (labels.includes(previous)) {
-        subjectSelect.value = previous;
+
+      if (labels.includes(previousFirst)) {
+        firstSelect.value = previousFirst;
       } else if (labels.length) {
-        subjectSelect.value = labels[0];
+        firstSelect.value = labels[0];
       }
-      return subjectSelect.value;
+
+      if (labels.includes(previousSecond) && previousSecond !== firstSelect.value) {
+        secondSelect.value = previousSecond;
+      } else if (labels.length > 1) {
+        secondSelect.value = labels.find(label => label !== firstSelect.value) || labels[0];
+      } else if (labels.length) {
+        secondSelect.value = labels[0];
+      }
+
+      return { first: firstSelect.value, second: secondSelect.value };
     }
 
-    function sortH2HOpponents(rows) {
-      return rows.slice().sort((a, b) => {
-        return b.entry.games - a.entry.games || (b.entry.points_for || 0) - (a.entry.points_for || 0) || a.label.localeCompare(b.label, 'it');
-      });
+    function reverseH2HEntry(entry) {
+      if (!entry) return null;
+      return {
+        games: entry.games || 0,
+        wins: entry.losses || 0,
+        draws: entry.draws || 0,
+        losses: entry.wins || 0,
+        points_for: entry.points_against || 0,
+        points_against: entry.points_for || 0
+      };
     }
 
-    function renderH2HMobile(labels, matrix, type, minGames) {
+    function h2hStatItem(label, value) {
+      const item = document.createElement('span');
+      const itemLabel = document.createElement('small');
+      itemLabel.textContent = label;
+      const itemValue = document.createElement('strong');
+      itemValue.textContent = value;
+      item.appendChild(itemLabel);
+      item.appendChild(itemValue);
+      return item;
+    }
+
+    function renderH2HCompare(labels, matrix, type) {
       const listEl = document.getElementById('h2h-mobile-list');
-      const subjectSelect = document.getElementById('h2h_subject');
-      if (!listEl || !subjectSelect) return;
+      if (!listEl) return;
 
       listEl.innerHTML = '';
-      const subject = updateH2HSubjectOptions(labels);
-      if (!subject) {
+      const pair = updateH2HPairOptions(labels);
+      const first = pair.first;
+      const second = pair.second;
+
+      if (!labels.length) {
         listEl.innerHTML = '<p class="small">Nessun confronto disponibile con il filtro selezionato.</p>';
         return;
       }
-
-      const rows = labels
-        .filter(label => label !== subject)
-        .map(label => ({ label, entry: matrix[subject] && matrix[subject][label] }))
-        .filter(row => row.entry && row.entry.games >= minGames);
-
-      const sortedRows = sortH2HOpponents(rows);
-      if (!sortedRows.length) {
-        listEl.innerHTML = '<p class="small">Nessun avversario disponibile per ' + subject + ' con questo filtro.</p>';
+      if (labels.length < 2) {
+        listEl.innerHTML = '<p class="small">Serve almeno un altro ' + (type === 'players' ? 'giocatore' : 'team') + ' per confrontare due elementi.</p>';
+        return;
+      }
+      if (!first || !second || first === second) {
+        listEl.innerHTML = '<p class="small">Scegli due ' + (type === 'players' ? 'giocatori' : 'team') + ' diversi.</p>';
         return;
       }
 
-      sortedRows.forEach(row => {
-        const entry = row.entry;
-        const card = document.createElement('article');
-        card.className = 'h2h-duel-card ' + h2hCellClass(entry);
+      const firstEntry = matrix[first] && matrix[first][second];
+      if (!firstEntry || !firstEntry.games) {
+        listEl.innerHTML = '<p class="small">Nessun confronto diretto tra ' + first + ' e ' + second + '.</p>';
+        return;
+      }
+      const secondEntry = (matrix[second] && matrix[second][first]) || reverseH2HEntry(firstEntry);
 
-        const title = document.createElement('div');
-        title.className = 'h2h-duel-title';
-        const subjectSpan = document.createElement('span');
-        subjectSpan.textContent = subject;
-        const vsSpan = document.createElement('span');
-        vsSpan.className = 'h2h-vs';
-        vsSpan.textContent = 'vs';
-        const opponentStrong = document.createElement('strong');
-        opponentStrong.textContent = row.label;
-        title.appendChild(subjectSpan);
-        title.appendChild(vsSpan);
-        title.appendChild(opponentStrong);
-        card.appendChild(title);
+      const card = document.createElement('article');
+      card.className = 'h2h-duel-card h2h-compare-card ' + h2hCellClass(firstEntry);
 
-        const summary = document.createElement('div');
-        summary.className = 'h2h-duel-summary';
-        [
-          ['Partite', String(entry.games)],
-          ['Record', (entry.wins || 0) + 'V - ' + (entry.draws || 0) + 'P - ' + (entry.losses || 0) + 'S'],
-          ['Punti', (entry.points_for || 0) + '-' + (entry.points_against || 0)],
-          ['Win rate', pctValue(h2hWinRate(entry))]
-        ].forEach(([label, value]) => {
-          const item = document.createElement('span');
-          const itemLabel = document.createElement('small');
-          itemLabel.textContent = label;
-          const itemValue = document.createElement('strong');
-          itemValue.textContent = value;
-          item.appendChild(itemLabel);
-          item.appendChild(itemValue);
-          summary.appendChild(item);
-        });
-        card.appendChild(summary);
+      const title = document.createElement('div');
+      title.className = 'h2h-duel-title h2h-compare-title';
+      const firstStrong = document.createElement('strong');
+      firstStrong.textContent = first;
+      const vsSpan = document.createElement('span');
+      vsSpan.className = 'h2h-vs';
+      vsSpan.textContent = 'vs';
+      const secondStrong = document.createElement('strong');
+      secondStrong.textContent = second;
+      title.appendChild(firstStrong);
+      title.appendChild(vsSpan);
+      title.appendChild(secondStrong);
+      card.appendChild(title);
 
-        const bar = document.createElement('div');
-        bar.className = 'h2h-duel-bar';
-        const fill = document.createElement('span');
-        fill.style.width = Math.round(h2hWinRate(entry) * 100) + '%';
-        bar.appendChild(fill);
-        card.appendChild(bar);
+      const summary = document.createElement('div');
+      summary.className = 'h2h-duel-summary h2h-compare-summary';
+      summary.appendChild(h2hStatItem('Partite', String(firstEntry.games || 0)));
+      summary.appendChild(h2hStatItem(first + ' record', (firstEntry.wins || 0) + 'V - ' + (firstEntry.draws || 0) + 'P - ' + (firstEntry.losses || 0) + 'S'));
+      summary.appendChild(h2hStatItem(second + ' record', (secondEntry.wins || 0) + 'V - ' + (secondEntry.draws || 0) + 'P - ' + (secondEntry.losses || 0) + 'S'));
+      summary.appendChild(h2hStatItem('Punti', (firstEntry.points_for || 0) + '-' + (firstEntry.points_against || 0)));
+      summary.appendChild(h2hStatItem('Win rate ' + first, pctValue(h2hWinRate(firstEntry))));
+      summary.appendChild(h2hStatItem('Win rate ' + second, pctValue(h2hWinRate(secondEntry))));
+      card.appendChild(summary);
 
-        listEl.appendChild(card);
-      });
+      const note = document.createElement('p');
+      note.className = 'small h2h-compare-note';
+      note.textContent = 'Lettura: ' + first + ' ha ' + (firstEntry.wins || 0) + ' vittorie, ' + (firstEntry.draws || 0) + ' pareggi e ' + (firstEntry.losses || 0) + ' sconfitte contro ' + second + '. Punti ' + (firstEntry.points_for || 0) + '-' + (firstEntry.points_against || 0) + '.';
+      card.appendChild(note);
+
+      const bar = document.createElement('div');
+      bar.className = 'h2h-duel-bar';
+      const fill = document.createElement('span');
+      fill.style.width = Math.round(h2hWinRate(firstEntry) * 100) + '%';
+      bar.appendChild(fill);
+      card.appendChild(bar);
+
+      listEl.appendChild(card);
     }
-
 
 
 
@@ -350,8 +374,6 @@
       const tableEl = document.getElementById('h2h-matrix');
       const legend = document.getElementById('matrix-legend');
       const type = currentMatrixType();
-      const format = currentMatrixFormat();
-      const minGames = Number(document.getElementById('matrix_min_games').value || 1);
       const h2h = (view.head_to_head || {})[type] || { labels: [], matrix: {} };
       const allLabels = h2h.labels || [];
       const matrix = h2h.matrix || {};
@@ -360,15 +382,13 @@
         return allLabels.some(other => {
           if (label === other) return false;
           const entry = matrix[label] && matrix[label][other];
-          return entry && entry.games >= minGames;
+          return entry && entry.games;
         });
       });
 
-      renderH2HMobile(labels, matrix, type, minGames);
+      renderH2HCompare(labels, matrix, type);
       tableEl.innerHTML = '';
-      legend.textContent = format === 'points'
-        ? 'Desktop: punti = punti riga - punti avversario. Mobile: punti del soggetto selezionato - punti dell avversario.'
-        : 'Desktop: V-P-S della riga. Mobile: V-P-S del soggetto selezionato contro l avversario.';
+      legend.textContent = 'Desktop: ogni cella mostra Record V-P-S e Punti PF-PS della riga. Mobile: la card mostra il confronto tra i due soggetti selezionati.';
 
       if (!labels.length) {
         const caption = document.createElement('caption');
@@ -406,7 +426,7 @@
             td.className = 'diag';
           } else {
             const entry = matrix[rowLabel] && matrix[rowLabel][colLabel];
-            td.textContent = h2hCellText(entry, format);
+            td.textContent = h2hCellText(entry);
             td.className = h2hCellClass(entry);
             td.title = h2hTitle(rowLabel, colLabel, entry);
           }
@@ -468,7 +488,7 @@
         document.getElementById('matches_limit').addEventListener('change', function () {
           renderDashboard(window.__statsData);
         });
-        ['matrix_type', 'matrix_format', 'matrix_min_games', 'h2h_subject'].forEach(id => {
+        ['matrix_type', 'h2h_subject_a', 'h2h_subject_b'].forEach(id => {
           const control = document.getElementById(id);
           if (control) {
             control.addEventListener('change', function () {
@@ -481,4 +501,3 @@
         document.getElementById('updated-at').textContent = 'Impossibile leggere i dati';
         console.error(err);
       });
-  
