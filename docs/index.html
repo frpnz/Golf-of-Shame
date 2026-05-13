@@ -17,7 +17,7 @@
       <div>
         <p class="eyebrow">Golf Match Tracker</p>
         <h1>Dashboard statistiche</h1>
-        <p class="hero-copy">Vittoria = 3 punti, pareggio = 1, sconfitta = 0. Il rendimento indica i punti medi per partita.</p>
+        <p class="hero-copy">Vittoria = 3 punti, pareggio = 1, sconfitta = 0. Il rendimento indica i punti medi per partita: punti / partite giocate.</p>
       </div>
       <div class="hero-meta">
       <figure class="flavour-quote">
@@ -51,7 +51,7 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica giocatori</h2>
-            <p class="small">Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.</p>
+            <p class="small">Rendimento = punti / partite. Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.</p>
           </div>
           <span class="pill subtle" id="players-count">-</span>
         </div>
@@ -63,7 +63,7 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica squadre</h2>
-            <p class="small">Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, rendimento, nome.</p>
+            <p class="small">Rendimento = punti / partite. Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, rendimento, nome.</p>
           </div>
           <span class="pill subtle" id="teams-count">-</span>
         </div>
@@ -789,14 +789,14 @@
 
       table(
         document.getElementById('players'),
-        ['Giocatore', 'Punti', 'TB', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento'],
-        byPlayer.map(x => [x.player, x.points || 0, x.tie_breaker || '-', x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0)])
+        ['Giocatore', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento', 'TB'],
+        byPlayer.map(x => [x.player, x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0), x.tie_breaker || '-'])
       );
 
       table(
         document.getElementById('teams'),
-        ['Squadra', 'Punti', 'TB', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento'],
-        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.tie_breaker || '-', x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0)])
+        ['Squadra', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento', 'TB'],
+        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0), x.tie_breaker || '-'])
       );
 
       setupLeaderboardStickyFallback();

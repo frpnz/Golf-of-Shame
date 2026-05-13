@@ -600,14 +600,14 @@ function pointsValue(value) {
 
       table(
         document.getElementById('players'),
-        ['Giocatore', 'Punti', 'TB', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento'],
-        byPlayer.map(x => [x.player, x.points || 0, x.tie_breaker || '-', x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0)])
+        ['Giocatore', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento', 'TB'],
+        byPlayer.map(x => [x.player, x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0), x.tie_breaker || '-'])
       );
 
       table(
         document.getElementById('teams'),
-        ['Squadra', 'Punti', 'TB', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento'],
-        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.tie_breaker || '-', x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0)])
+        ['Squadra', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento', 'TB'],
+        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0), x.tie_breaker || '-'])
       );
 
       setupLeaderboardStickyFallback();
