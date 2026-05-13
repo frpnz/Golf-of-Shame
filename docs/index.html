@@ -194,24 +194,71 @@
       return 'ID/import_key non disponibile: rigenera docs/data/stats.json con export_stats.py';
     }
 
+    function metricBadge(value, type) {
+      const span = document.createElement('span');
+      span.className = 'metric-badge ' + type;
+      span.textContent = value;
+      return span;
+    }
+
+    function winRateCell(value) {
+      const raw = parseFloat(String(value).replace('%', '').replace(',', '.')) || 0;
+      const wrap = document.createElement('div');
+      wrap.className = 'winrate-cell';
+      const label = document.createElement('span');
+      label.textContent = value;
+      const track = document.createElement('span');
+      track.className = 'winrate-track';
+      const fill = document.createElement('span');
+      fill.className = 'winrate-fill';
+      fill.style.width = Math.max(0, Math.min(100, raw)) + '%';
+      track.appendChild(fill);
+      wrap.appendChild(label);
+      wrap.appendChild(track);
+      return wrap;
+    }
+
     function table(el, headers, rows) {
       el.innerHTML = '';
       const thead = document.createElement('thead');
       const trh = document.createElement('tr');
-      headers.forEach(h => {
+      headers.forEach((h, index) => {
         const th = document.createElement('th');
-        th.textContent = h;
+        th.textContent = index === 0 ? '#' : h;
         trh.appendChild(th);
       });
       thead.appendChild(trh);
       const tbody = document.createElement('tbody');
-      rows.forEach(row => {
+      rows.forEach((row, rowIndex) => {
         const tr = document.createElement('tr');
+        tr.className = rowIndex < 3 ? 'podium-row podium-' + (rowIndex + 1) : '';
         row.forEach((cell, index) => {
           const td = document.createElement('td');
-          td.textContent = cell;
           td.dataset.label = headers[index];
           if (index > 0) td.className = 'num';
+
+          if (index === 0) {
+            const rank = document.createElement('span');
+            rank.className = 'rank-badge rank-' + (rowIndex + 1);
+            rank.textContent = rowIndex + 1;
+            const name = document.createElement('span');
+            name.className = 'leader-name';
+            name.textContent = cell;
+            td.appendChild(rank);
+            td.appendChild(name);
+          } else if (headers[index] === 'Punti') {
+            td.appendChild(metricBadge(cell, 'points'));
+          } else if (headers[index] === 'Vittorie') {
+            td.appendChild(metricBadge(cell + 'V', 'win'));
+          } else if (headers[index] === 'Pareggi') {
+            td.appendChild(metricBadge(cell + 'P', 'draw'));
+          } else if (headers[index] === 'Sconfitte') {
+            td.appendChild(metricBadge(cell + 'S', 'loss'));
+          } else if (headers[index] === 'Win Rate') {
+            td.appendChild(winRateCell(cell));
+          } else {
+            td.textContent = cell;
+          }
           tr.appendChild(td);
         });
         tbody.appendChild(tr);

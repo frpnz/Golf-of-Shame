@@ -2070,3 +2070,269 @@ pre {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Lightweight visual polish: premium golf-club look without new dependencies */
+:root {
+  --bg: #f7f4ea;
+  --card: #ffffff;
+  --card-soft: #fbfaf4;
+  --text: #1f2923;
+  --muted: #69766f;
+  --line: #e3ded0;
+  --accent: #2e7d4f;
+  --accent-strong: #12372a;
+  --accent-soft: #e8f3eb;
+  --gold: #d8a63a;
+  --gold-soft: #fbf3d6;
+  --win-soft: #e4f5e9;
+  --draw-soft: #fff4d6;
+  --loss-soft: #f7e7e2;
+  --shadow: 0 14px 34px rgba(18, 55, 42, 0.08);
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(216,166,58,0.28), transparent 24%),
+    linear-gradient(135deg, #12372a 0%, #1f6b4f 58%, #2e7d4f 100%);
+}
+
+.hero-card::after {
+  content: "";
+  position: absolute;
+  right: -80px;
+  bottom: -110px;
+  width: 280px;
+  height: 280px;
+  border-radius: 999px;
+  border: 34px solid rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+.hero-card h1 {
+  letter-spacing: -0.055em;
+}
+
+.season-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 18px;
+  background: rgba(255,255,255,0.88);
+}
+
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--gold);
+  box-shadow: 0 0 0 7px rgba(216,166,58,0.12);
+}
+
+.kpi-value {
+  color: var(--accent-strong);
+}
+
+.scoreboard-card::before {
+  background: linear-gradient(90deg, var(--accent-strong), var(--accent), var(--gold));
+}
+
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 999px;
+  background: #eef3ef;
+  color: var(--accent-strong);
+  font-size: 0.82rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  vertical-align: middle;
+}
+
+.rank-1 {
+  background: linear-gradient(180deg, #ffe9a6, #d8a63a);
+  color: #523c08;
+  box-shadow: 0 5px 14px rgba(216,166,58,0.28);
+}
+
+.rank-2 {
+  background: linear-gradient(180deg, #f2f4f5, #c8d0d2);
+  color: #3f4d51;
+}
+
+.rank-3 {
+  background: linear-gradient(180deg, #efd4bd, #c88958);
+  color: #513019;
+}
+
+.leader-name {
+  vertical-align: middle;
+}
+
+.metric-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-badge.points {
+  min-width: 50px;
+  background: var(--accent-strong);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(18,55,42,0.14);
+}
+
+.metric-badge.win {
+  background: var(--win-soft);
+  color: #1d6d43;
+}
+
+.metric-badge.draw {
+  background: var(--draw-soft);
+  color: #8a6414;
+}
+
+.metric-badge.loss {
+  background: var(--loss-soft);
+  color: #8a4232;
+}
+
+.winrate-cell {
+  display: grid;
+  min-width: 108px;
+  gap: 6px;
+  justify-items: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.winrate-cell > span:first-child {
+  color: var(--accent-strong);
+  font-weight: 900;
+}
+
+.winrate-track {
+  display: block;
+  width: 92px;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8eee9;
+}
+
+.winrate-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--gold), var(--accent));
+}
+
+.leaderboard-table tbody tr.podium-row {
+  box-shadow: 0 12px 24px rgba(18, 55, 42, 0.075);
+}
+
+.leaderboard-table tbody tr.podium-1 td:first-child {
+  box-shadow: inset 4px 0 0 var(--gold), 8px 0 12px rgba(22,34,28,0.08);
+}
+
+.h2h-matrix td.positive {
+  background: linear-gradient(180deg, #ffffff, var(--win-soft));
+}
+
+.h2h-matrix td.negative {
+  background: linear-gradient(180deg, #ffffff, var(--loss-soft));
+}
+
+.h2h-matrix td.neutral {
+  background: linear-gradient(180deg, #ffffff, #f4f1e7);
+}
+
+.h2h-matrix td.positive,
+.h2h-matrix td.negative,
+.h2h-matrix td.neutral {
+  border-radius: 10px;
+  box-shadow: inset 0 -1px 0 rgba(18,55,42,0.06);
+}
+
+.h2h-matrix td {
+  font-size: 0.9rem;
+}
+
+.h2h-compare-card {
+  border-top: 4px solid var(--gold);
+}
+
+.match-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.match-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent), var(--gold));
+}
+
+.match-side.is-winner strong::after {
+  content: "  vincitore";
+  display: inline-flex;
+  margin-left: 8px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: var(--win-soft);
+  color: #1d6d43;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+@media (max-width: 760px) {
+  .season-toolbar {
+    display: grid;
+    align-items: stretch;
+  }
+
+  .rank-badge {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+  }
+
+  .metric-badge {
+    min-width: 38px;
+    padding: 5px 8px;
+  }
+
+  .winrate-cell {
+    justify-items: start;
+    min-width: 96px;
+  }
+
+  .leaderboard-table tbody td:nth-child(2) {
+    font-size: 1rem;
+  }
+}
