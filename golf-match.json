@@ -1,21 +1,28 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-mp43im3g-g4ey3qz6",
-  "played_at": "2026-05-13T15:28:00",
-  "course": null,
-  "holes": 18,
+  "import_key": "match-mp9rzlv1-4v77dldf",
+  "played_at": "2026-04-24T14:52:00",
+  "course": "Ciliegi",
+  "holes": 9,
   "notes": null,
   "sides": [
     {
-      "team_name": "Ale M",
+      "team_name": "Lele",
       "is_winner": true,
       "players": [
-        "Ale M"
+        "Lele"
+      ]
+    },
+    {
+      "team_name": "Patrick",
+      "is_winner": false,
+      "players": [
+        "Patrick"
       ]
     },
     {
       "team_name": "Fra",
-      "is_winner": true,
+      "is_winner": false,
       "players": [
         "Fra"
       ]

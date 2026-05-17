@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v7",
-  "generated_at": "2026-05-13T14:04:10.631158+00:00",
+  "generated_at": "2026-05-17T12:55:07.226775+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -13,7 +13,7 @@
   "views": {
     "all": {
       "counts": {
-        "matches": 3,
+        "matches": 4,
         "players": 4,
         "teams": 2
       },
@@ -25,10 +25,23 @@
           "Patrick"
         ],
         "courses": [
+          "Ciliegi",
           "Margherita"
         ]
       },
       "by_player": [
+        {
+          "player": "Lele",
+          "games": 3,
+          "wins": 2,
+          "draws": 1,
+          "losses": 0,
+          "points": 7,
+          "points_rate": 2.3333,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
+        },
         {
           "player": "Ale P",
           "games": 2,
@@ -42,37 +55,25 @@
           "tie_breaker": "V 1 · Rend 2"
         },
         {
-          "player": "Lele",
-          "games": 2,
-          "wins": 1,
-          "draws": 1,
-          "losses": 0,
-          "points": 4,
-          "points_rate": 2.0,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Rend 2"
-        },
-        {
           "player": "Fra",
-          "games": 3,
+          "games": 4,
           "wins": 1,
           "draws": 1,
-          "losses": 1,
+          "losses": 2,
           "points": 4,
-          "points_rate": 1.3333,
+          "points_rate": 1.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Rend 1.33"
+          "tie_breaker": "V 1 · Rend 1"
         },
         {
           "player": "Patrick",
-          "games": 3,
+          "games": 4,
           "wins": 0,
           "draws": 1,
-          "losses": 2,
+          "losses": 3,
           "points": 1,
-          "points_rate": 0.3333,
+          "points_rate": 0.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-"
@@ -118,22 +119,6 @@
       ],
       "solo_vs_team": [
         {
-          "player": "Fra",
-          "solo_games": 1,
-          "solo_wins": 1,
-          "solo_draws": 0,
-          "solo_losses": 0,
-          "solo_points": 3,
-          "team_games": 2,
-          "team_wins": 0,
-          "team_draws": 1,
-          "team_losses": 1,
-          "team_points": 1,
-          "solo_points_rate": 3.0,
-          "team_points_rate": 0.5,
-          "delta": -2.5
-        },
-        {
           "player": "Ale P",
           "solo_games": 0,
           "solo_wins": 0,
@@ -150,27 +135,43 @@
           "delta": 2.0
         },
         {
+          "player": "Fra",
+          "solo_games": 2,
+          "solo_wins": 1,
+          "solo_draws": 0,
+          "solo_losses": 1,
+          "solo_points": 3,
+          "team_games": 2,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 1,
+          "team_points": 1,
+          "solo_points_rate": 1.5,
+          "team_points_rate": 0.5,
+          "delta": -1.0
+        },
+        {
           "player": "Lele",
-          "solo_games": 0,
-          "solo_wins": 0,
+          "solo_games": 1,
+          "solo_wins": 1,
           "solo_draws": 0,
           "solo_losses": 0,
-          "solo_points": 0,
+          "solo_points": 3,
           "team_games": 2,
           "team_wins": 1,
           "team_draws": 1,
           "team_losses": 0,
           "team_points": 4,
-          "solo_points_rate": null,
+          "solo_points_rate": 3.0,
           "team_points_rate": 2.0,
-          "delta": 2.0
+          "delta": -1.0
         },
         {
           "player": "Patrick",
-          "solo_games": 1,
+          "solo_games": 2,
           "solo_wins": 0,
           "solo_draws": 0,
-          "solo_losses": 1,
+          "solo_losses": 2,
           "solo_points": 0,
           "team_games": 2,
           "team_wins": 0,
@@ -185,8 +186,8 @@
       "head_to_head": {
         "players": {
           "labels": [
-            "Ale P",
             "Lele",
+            "Ale P",
             "Fra",
             "Patrick"
           ],
@@ -320,6 +321,38 @@
               "players": [
                 "Ale P",
                 "Lele"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "played_at": "2026-04-24T14:52:00",
+          "course": "Ciliegi",
+          "holes": 9,
+          "notes": null,
+          "import_key": "match-mp9rzlv1-4v77dldf",
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": true,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": false,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
               ]
             }
           ]
@@ -328,7 +361,7 @@
     },
     "2026": {
       "counts": {
-        "matches": 3,
+        "matches": 4,
         "players": 4,
         "teams": 2
       },
@@ -340,10 +373,23 @@
           "Patrick"
         ],
         "courses": [
+          "Ciliegi",
           "Margherita"
         ]
       },
       "by_player": [
+        {
+          "player": "Lele",
+          "games": 3,
+          "wins": 2,
+          "draws": 1,
+          "losses": 0,
+          "points": 7,
+          "points_rate": 2.3333,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
+        },
         {
           "player": "Ale P",
           "games": 2,
@@ -357,37 +403,25 @@
           "tie_breaker": "V 1 · Rend 2"
         },
         {
-          "player": "Lele",
-          "games": 2,
-          "wins": 1,
-          "draws": 1,
-          "losses": 0,
-          "points": 4,
-          "points_rate": 2.0,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Rend 2"
-        },
-        {
           "player": "Fra",
-          "games": 3,
+          "games": 4,
           "wins": 1,
           "draws": 1,
-          "losses": 1,
+          "losses": 2,
           "points": 4,
-          "points_rate": 1.3333,
+          "points_rate": 1.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Rend 1.33"
+          "tie_breaker": "V 1 · Rend 1"
         },
         {
           "player": "Patrick",
-          "games": 3,
+          "games": 4,
           "wins": 0,
           "draws": 1,
-          "losses": 2,
+          "losses": 3,
           "points": 1,
-          "points_rate": 0.3333,
+          "points_rate": 0.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-"
@@ -433,22 +467,6 @@
       ],
       "solo_vs_team": [
         {
-          "player": "Fra",
-          "solo_games": 1,
-          "solo_wins": 1,
-          "solo_draws": 0,
-          "solo_losses": 0,
-          "solo_points": 3,
-          "team_games": 2,
-          "team_wins": 0,
-          "team_draws": 1,
-          "team_losses": 1,
-          "team_points": 1,
-          "solo_points_rate": 3.0,
-          "team_points_rate": 0.5,
-          "delta": -2.5
-        },
-        {
           "player": "Ale P",
           "solo_games": 0,
           "solo_wins": 0,
@@ -465,27 +483,43 @@
           "delta": 2.0
         },
         {
+          "player": "Fra",
+          "solo_games": 2,
+          "solo_wins": 1,
+          "solo_draws": 0,
+          "solo_losses": 1,
+          "solo_points": 3,
+          "team_games": 2,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 1,
+          "team_points": 1,
+          "solo_points_rate": 1.5,
+          "team_points_rate": 0.5,
+          "delta": -1.0
+        },
+        {
           "player": "Lele",
-          "solo_games": 0,
-          "solo_wins": 0,
+          "solo_games": 1,
+          "solo_wins": 1,
           "solo_draws": 0,
           "solo_losses": 0,
-          "solo_points": 0,
+          "solo_points": 3,
           "team_games": 2,
           "team_wins": 1,
           "team_draws": 1,
           "team_losses": 0,
           "team_points": 4,
-          "solo_points_rate": null,
+          "solo_points_rate": 3.0,
           "team_points_rate": 2.0,
-          "delta": 2.0
+          "delta": -1.0
         },
         {
           "player": "Patrick",
-          "solo_games": 1,
+          "solo_games": 2,
           "solo_wins": 0,
           "solo_draws": 0,
-          "solo_losses": 1,
+          "solo_losses": 2,
           "solo_points": 0,
           "team_games": 2,
           "team_wins": 0,
@@ -500,8 +534,8 @@
       "head_to_head": {
         "players": {
           "labels": [
-            "Ale P",
             "Lele",
+            "Ale P",
             "Fra",
             "Patrick"
           ],
@@ -638,12 +672,44 @@
               ]
             }
           ]
+        },
+        {
+          "id": 7,
+          "played_at": "2026-04-24T14:52:00",
+          "course": "Ciliegi",
+          "holes": 9,
+          "notes": null,
+          "import_key": "match-mp9rzlv1-4v77dldf",
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": true,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": false,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            }
+          ]
         }
       ]
     }
   },
   "counts": {
-    "matches": 3,
+    "matches": 4,
     "players": 4,
     "teams": 2
   },
@@ -655,10 +721,23 @@
       "Patrick"
     ],
     "courses": [
+      "Ciliegi",
       "Margherita"
     ]
   },
   "by_player": [
+    {
+      "player": "Lele",
+      "games": 3,
+      "wins": 2,
+      "draws": 1,
+      "losses": 0,
+      "points": 7,
+      "points_rate": 2.3333,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-"
+    },
     {
       "player": "Ale P",
       "games": 2,
@@ -672,37 +751,25 @@
       "tie_breaker": "V 1 · Rend 2"
     },
     {
-      "player": "Lele",
-      "games": 2,
-      "wins": 1,
-      "draws": 1,
-      "losses": 0,
-      "points": 4,
-      "points_rate": 2.0,
-      "tie_direct_points": 0,
-      "tie_direct_wins": 0,
-      "tie_breaker": "V 1 · Rend 2"
-    },
-    {
       "player": "Fra",
-      "games": 3,
+      "games": 4,
       "wins": 1,
       "draws": 1,
-      "losses": 1,
+      "losses": 2,
       "points": 4,
-      "points_rate": 1.3333,
+      "points_rate": 1.0,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "V 1 · Rend 1.33"
+      "tie_breaker": "V 1 · Rend 1"
     },
     {
       "player": "Patrick",
-      "games": 3,
+      "games": 4,
       "wins": 0,
       "draws": 1,
-      "losses": 2,
+      "losses": 3,
       "points": 1,
-      "points_rate": 0.3333,
+      "points_rate": 0.25,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-"
@@ -748,22 +815,6 @@
   ],
   "solo_vs_team": [
     {
-      "player": "Fra",
-      "solo_games": 1,
-      "solo_wins": 1,
-      "solo_draws": 0,
-      "solo_losses": 0,
-      "solo_points": 3,
-      "team_games": 2,
-      "team_wins": 0,
-      "team_draws": 1,
-      "team_losses": 1,
-      "team_points": 1,
-      "solo_points_rate": 3.0,
-      "team_points_rate": 0.5,
-      "delta": -2.5
-    },
-    {
       "player": "Ale P",
       "solo_games": 0,
       "solo_wins": 0,
@@ -780,27 +831,43 @@
       "delta": 2.0
     },
     {
+      "player": "Fra",
+      "solo_games": 2,
+      "solo_wins": 1,
+      "solo_draws": 0,
+      "solo_losses": 1,
+      "solo_points": 3,
+      "team_games": 2,
+      "team_wins": 0,
+      "team_draws": 1,
+      "team_losses": 1,
+      "team_points": 1,
+      "solo_points_rate": 1.5,
+      "team_points_rate": 0.5,
+      "delta": -1.0
+    },
+    {
       "player": "Lele",
-      "solo_games": 0,
-      "solo_wins": 0,
+      "solo_games": 1,
+      "solo_wins": 1,
       "solo_draws": 0,
       "solo_losses": 0,
-      "solo_points": 0,
+      "solo_points": 3,
       "team_games": 2,
       "team_wins": 1,
       "team_draws": 1,
       "team_losses": 0,
       "team_points": 4,
-      "solo_points_rate": null,
+      "solo_points_rate": 3.0,
       "team_points_rate": 2.0,
-      "delta": 2.0
+      "delta": -1.0
     },
     {
       "player": "Patrick",
-      "solo_games": 1,
+      "solo_games": 2,
       "solo_wins": 0,
       "solo_draws": 0,
-      "solo_losses": 1,
+      "solo_losses": 2,
       "solo_points": 0,
       "team_games": 2,
       "team_wins": 0,
@@ -815,8 +882,8 @@
   "head_to_head": {
     "players": {
       "labels": [
-        "Ale P",
         "Lele",
+        "Ale P",
         "Fra",
         "Patrick"
       ],
@@ -950,6 +1017,38 @@
           "players": [
             "Ale P",
             "Lele"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "played_at": "2026-04-24T14:52:00",
+      "course": "Ciliegi",
+      "holes": 9,
+      "notes": null,
+      "import_key": "match-mp9rzlv1-4v77dldf",
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Lele",
+          "is_winner": true,
+          "players": [
+            "Lele"
+          ]
+        },
+        {
+          "team_name": "Patrick",
+          "is_winner": false,
+          "players": [
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Fra",
+          "is_winner": false,
+          "players": [
+            "Fra"
           ]
         }
       ]
