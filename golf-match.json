@@ -1,21 +1,21 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-mp9rzlv1-4v77dldf",
-  "played_at": "2026-04-24T14:52:00",
-  "course": "Ciliegi",
-  "holes": 9,
-  "notes": null,
+  "import_key": "match-mpgr3khr-uni9ffy2",
+  "played_at": "2026-05-18T12:01:00",
+  "course": "Gavi",
+  "holes": 18,
+  "notes": "ProAm - Campanile",
   "sides": [
     {
       "team_name": "Lele",
-      "is_winner": true,
+      "is_winner": false,
       "players": [
         "Lele"
       ]
     },
     {
       "team_name": "Patrick",
-      "is_winner": false,
+      "is_winner": true,
       "players": [
         "Patrick"
       ]
