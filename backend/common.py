@@ -35,6 +35,13 @@ CREATE TABLE IF NOT EXISTS match_player (
   player_name TEXT NOT NULL,
   FOREIGN KEY (side_id) REFERENCES match_side(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS match_tag (
+  match_id INTEGER NOT NULL,
+  tag TEXT NOT NULL,
+  PRIMARY KEY (match_id, tag),
+  FOREIGN KEY (match_id) REFERENCES match(id) ON DELETE CASCADE
+);
 """
 
 
@@ -53,6 +60,34 @@ def ensure_schema(conn: sqlite3.Connection) -> None:
 def canonical_import_key(payload: Dict[str, Any]) -> str:
     normalized = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
+def normalize_tags(value: Any) -> List[str]:
+    if value is None:
+        return []
+    if isinstance(value, str):
+        raw_items = [item.strip() for item in value.split(",")]
+    elif isinstance(value, list):
+        raw_items = []
+        for item in value:
+            if isinstance(item, str):
+                raw_items.extend(part.strip() for part in item.split(","))
+            elif item is not None:
+                raw_items.append(str(item).strip())
+    else:
+        raise ValueError("tags deve essere una lista di stringhe, una stringa separata da virgole o null")
+
+    tags: List[str] = []
+    seen = set()
+    for item in raw_items:
+        tag = " ".join(item.split())
+        if not tag:
+            continue
+        key = tag.casefold()
+        if key not in seen:
+            seen.add(key)
+            tags.append(tag)
+    return tags
 
 
 def validate_match_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
@@ -108,12 +143,16 @@ def validate_match_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
         except (TypeError, ValueError):
             raise ValueError("holes deve essere un intero o null") from None
 
+    tags_value = payload.get("tags", payload.get("tag"))
+    tags = normalize_tags(tags_value)
+
     return {
         "version": payload.get("version", "golf-match.v1"),
         "played_at": played_at.strip(),
         "course": (payload.get("course") or "").strip() or None,
         "holes": holes,
         "notes": (payload.get("notes") or "").strip() or None,
+        "tags": tags,
         "sides": clean_sides,
     }
 
@@ -135,6 +174,12 @@ def insert_match(conn: sqlite3.Connection, payload: Dict[str, Any]) -> tuple[int
         (clean["played_at"], clean["course"], clean["holes"], clean["notes"], import_key),
     )
     match_id = int(cur.lastrowid)
+    for tag in clean.get("tags", []):
+        conn.execute(
+            "INSERT OR IGNORE INTO match_tag (match_id, tag) VALUES (?, ?)",
+            (match_id, tag),
+        )
+
     for idx, side in enumerate(clean["sides"], start=1):
         cur = conn.execute(
             "INSERT INTO match_side (match_id, side_order, team_name, is_winner) VALUES (?, ?, ?, ?)",
@@ -361,6 +406,13 @@ def fetch_matches(conn: sqlite3.Connection) -> List[Dict[str, Any]]:
                 "is_winner": bool(srow["is_winner"]),
                 "players": players,
             })
+        tags = [
+            trow["tag"]
+            for trow in conn.execute(
+                "SELECT tag FROM match_tag WHERE match_id = ? ORDER BY tag COLLATE NOCASE ASC",
+                (row["id"],),
+            ).fetchall()
+        ]
         matches.append({
             "id": row["id"],
             "played_at": row["played_at"],
@@ -368,6 +420,7 @@ def fetch_matches(conn: sqlite3.Connection) -> List[Dict[str, Any]]:
             "holes": row["holes"],
             "notes": row["notes"],
             "import_key": row["import_key"],
+            "tags": tags,
             "is_draw": sum(1 for side in sides if side["is_winner"]) > 1,
             "sides": sides,
         })

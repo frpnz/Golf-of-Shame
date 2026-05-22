@@ -21,6 +21,12 @@ MATCH_SCHEMA = {
         "course": {"type": ["string", "null"]},
         "holes": {"type": ["integer", "null"]},
         "notes": {"type": ["string", "null"]},
+        "tag": {"type": ["string", "null"], "description": "Compatibilita: singolo tag/competizione. Internamente viene normalizzato in tags."},
+        "tags": {
+            "type": ["array", "string", "null"],
+            "description": "Tag o competizioni associati alla partita. Se stringa, puoi separare piu tag con virgole.",
+            "items": {"type": "string"}
+        },
         "sides": {
             "type": "array",
             "minItems": 2,
@@ -386,14 +392,73 @@ def compute_view(matches: List[Dict]) -> Dict:
     }
 
 
+
+def champion_from(rows: List[Dict], kind: str) -> Dict | None:
+    if not rows:
+        return None
+    first = rows[0]
+    return {
+        "kind": kind,
+        "name": first.get("team_name") or first.get("team_label") or "-" if kind == "team" else first.get("player") or "-",
+        "points": int(first.get("points") or 0),
+        "games": int(first.get("games") or 0),
+        "wins": int(first.get("wins") or 0),
+        "draws": int(first.get("draws") or 0),
+        "losses": int(first.get("losses") or 0),
+        "points_rate": first.get("points_rate") or 0,
+    }
+
+
+def view_summary(view: Dict, *, key: str, label: str, group: str) -> Dict:
+    return {
+        "key": key,
+        "label": label,
+        "group": group,
+        "matches": int((view.get("counts") or {}).get("matches") or 0),
+        "player_champion": champion_from(view.get("by_player") or [], "player"),
+        "team_champion": champion_from(view.get("by_team") or [], "team"),
+    }
+
+
 def compute_stats(matches: List[Dict]) -> Dict:
     years = sorted({year for match in matches if (year := match_year(match))}, reverse=True)
-    views = {"all": compute_view(matches)}
+    tags = sorted({tag for match in matches for tag in (match.get("tags") or [])}, key=lambda x: x.casefold())
+
+    views: Dict[str, Dict] = {"all": compute_view(matches)}
+    view_options = [
+        {"value": "all", "label": "Tutte le partite", "group": "Generale"},
+    ]
+
+    untagged_matches = [match for match in matches if not (match.get("tags") or [])]
+    views["untagged"] = compute_view(untagged_matches)
+    view_options.append({"value": "untagged", "label": "Senza tag", "group": "Generale"})
+
     for year in years:
-        views[year] = compute_view([match for match in matches if match_year(match) == year])
+        key = f"year:{year}"
+        views[key] = compute_view([match for match in matches if match_year(match) == year])
+        view_options.append({"value": key, "label": year, "group": "Stagioni"})
+
+    for tag in tags:
+        key = f"tag:{tag}"
+        views[key] = compute_view([match for match in matches if tag in (match.get("tags") or [])])
+        view_options.append({"value": key, "label": tag, "group": "Competizioni / tag"})
+
+    for option in view_options:
+        view = views.get(option["value"], {})
+        view["meta"] = {
+            "key": option["value"],
+            "label": option["label"],
+            "group": option["group"],
+        }
+        view["hall_of_fame"] = view_summary(
+            view,
+            key=option["value"],
+            label=option["label"],
+            group=option["group"],
+        )
 
     payload = {
-        "version": "golf-stats.v7",
+        "version": "golf-stats.v8",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "scoring": {
             "win_points": 3,
@@ -402,6 +467,8 @@ def compute_stats(matches: List[Dict]) -> Dict:
             "performance_rule": "points / games; in Italian UI this is shown as rendimento",
         },
         "years": years,
+        "tags": tags,
+        "view_options": view_options,
         "views": views,
     }
 

@@ -39,6 +39,12 @@
           <input id="notes" type="text" placeholder="Partita del fottuto venerdì">
         </div>
       </div>
+
+      <div>
+        <label for="tags">Tag / competizioni</label>
+        <input id="tags" type="text" placeholder="Coppa Estate 2026, 9 buche">
+        <p class="small">Separali con virgole. Se lasci vuoto, la partita resta senza tag e vale solo per generale/stagione.</p>
+      </div>
     </div>
 
     <div class="card">
@@ -170,6 +176,19 @@
 
       function normalizeName(name) {
         return (name || '').trim().replace(/\s+/g, ' ');
+      }
+
+      function parseTags(value) {
+        var seen = {};
+        return String(value || '')
+          .split(',')
+          .map(normalizeName)
+          .filter(function (tag) {
+            var key = tag.toLowerCase();
+            if (!tag || seen[key]) return false;
+            seen[key] = true;
+            return true;
+          });
       }
 
       function loadKnownPlayers() {
@@ -458,6 +477,7 @@
           course: normalizeName(byId('course').value) || null,
           holes: Number(byId('holes').value) || null,
           notes: normalizeName(byId('notes').value) || null,
+          tags: parseTags(byId('tags').value),
           sides: state.mode === 'teams' ? buildTeamSides() : buildIndividualSides()
         };
       }

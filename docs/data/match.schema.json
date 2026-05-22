@@ -34,6 +34,24 @@
         "null"
       ]
     },
+    "tag": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Compatibilita: singolo tag/competizione. Internamente viene normalizzato in tags."
+    },
+    "tags": {
+      "type": [
+        "array",
+        "string",
+        "null"
+      ],
+      "description": "Tag o competizioni associati alla partita. Se stringa, puoi separare piu tag con virgole.",
+      "items": {
+        "type": "string"
+      }
+    },
     "sides": {
       "type": "array",
       "minItems": 2,

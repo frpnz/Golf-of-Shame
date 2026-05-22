@@ -33,14 +33,14 @@
 
     <section class="card dashboard-card season-toolbar">
       <div>
-        <p class="section-kicker">Stagione</p>
-        <h2>Classifiche per anno</h2>
-        <p class="small">Filtra classifiche, dati aggregati e storico in base all'anno delle partite.</p>
+        <p class="section-kicker">Vista</p>
+        <h2>Classifiche per vista</h2>
+        <p class="small">Filtra classifiche, dati aggregati, Head2Head, storico e albo d'oro per generale, stagione o tag/competizione.</p>
       </div>
       <div class="season-filter-box compact-filter">
-        <label for="season_filter">Anno</label>
+        <label for="season_filter">Vista</label>
         <select id="season_filter">
-          <option value="all">Tutti gli anni</option>
+          <option value="all">Tutte le partite</option>
         </select>
       </div>
     </section>
@@ -143,8 +143,8 @@
       <div class="section-head card-head hall-head">
         <div>
           <p class="section-kicker">Albo d'oro</p>
-          <h2>Vincitori per anno</h2>
-          <p class="small">Per l'anno in corso il leader resta provvisorio: la stagione viene indicata come ongoing.</p>
+          <h2 id="hall-title">Leader della vista</h2>
+          <p class="small" id="hall-subtitle">L'albo d'oro segue sempre la vista selezionata.</p>
         </div>
         <span class="pill subtle" id="hall-count">-</span>
       </div>
@@ -294,28 +294,51 @@
       el.appendChild(tbody);
     }
 
-    function getView(data, year) {
+    function getView(data, key) {
       const views = data.views || { all: data };
-      return views[year] || views.all || data;
+      return views[key] || views.all || data;
     }
 
-    function selectedYearLabel(year) {
-      return year === 'all' ? 'Tutti gli anni' : year;
+    function selectedViewLabel(data, key) {
+      const option = (data.view_options || []).find(item => item.value === key);
+      if (option) return option.label;
+      if (key === 'all') return 'Tutte le partite';
+      if (key === 'untagged') return 'Senza tag';
+      if (String(key).startsWith('year:')) return String(key).slice(5);
+      if (String(key).startsWith('tag:')) return String(key).slice(4);
+      return key || 'Tutte le partite';
     }
 
     function populateYearFilter(data) {
       const select = document.getElementById('season_filter');
-      const years = Array.isArray(data.years) ? data.years : [];
-      select.innerHTML = '<option value="all">Tutti gli anni</option>';
-      years.forEach(year => {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        select.appendChild(option);
+      const options = Array.isArray(data.view_options) && data.view_options.length
+        ? data.view_options
+        : [{ value: 'all', label: 'Tutte le partite', group: 'Generale' }].concat(
+            (data.years || []).map(year => ({ value: 'year:' + year, label: String(year), group: 'Stagioni' }))
+          );
+      select.innerHTML = '';
+      const groups = [];
+      options.forEach(option => {
+        const groupName = option.group || 'Vista';
+        let group = groups.find(item => item.label === groupName);
+        if (!group) {
+          group = { label: groupName, options: [] };
+          groups.push(group);
+        }
+        group.options.push(option);
       });
-
-      // Default: anno piu recente disponibile. Se non ci sono partite, resta "Tutti gli anni".
-      select.value = years.length ? years[0] : 'all';
+      groups.forEach(group => {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = group.label;
+        group.options.forEach(item => {
+          const option = document.createElement('option');
+          option.value = item.value;
+          option.textContent = item.label;
+          optgroup.appendChild(option);
+        });
+        select.appendChild(optgroup);
+      });
+      select.value = options.some(item => item.value === 'all') ? 'all' : (options[0] && options[0].value) || 'all';
     }
 
     function renderMatches(view) {
@@ -364,6 +387,20 @@
         });
 
         item.appendChild(meta);
+
+        const tags = Array.isArray(match.tags) ? match.tags : [];
+        if (tags.length) {
+          const tagWrap = document.createElement('div');
+          tagWrap.className = 'match-tags';
+          tags.forEach(tag => {
+            const badge = document.createElement('span');
+            badge.className = 'tag-badge';
+            badge.textContent = tag;
+            tagWrap.appendChild(badge);
+          });
+          item.appendChild(tagWrap);
+        }
+
         item.appendChild(body);
 
         const admin = document.createElement('details');
@@ -678,11 +715,6 @@
       setupH2HStickyFallback();
     }
 
-    function getYearView(data, year) {
-      const views = data.views || {};
-      return views[String(year)] || null;
-    }
-
     function championFrom(rows, type) {
       if (!Array.isArray(rows) || !rows.length) return null;
       const first = rows[0];
@@ -717,68 +749,78 @@
       return block;
     }
 
-    function renderHallOfFame(data) {
+    function renderHallOfFame(data, view, key) {
       const container = document.getElementById('hall-of-fame');
       const counter = document.getElementById('hall-count');
+      const title = document.getElementById('hall-title');
+      const subtitle = document.getElementById('hall-subtitle');
+      const card = document.getElementById('hall-of-fame-card');
       if (!container) return;
-      const years = (Array.isArray(data.years) ? data.years : [])
-        .map(year => String(year))
-        .filter(year => year !== 'all');
-      const currentYear = String(new Date().getFullYear());
-      container.innerHTML = '';
-      if (counter) counter.textContent = years.length ? years.length + ' anni' : '0 anni';
 
-      if (!years.length) {
-        container.innerHTML = '<p class="small">Nessuna stagione disponibile.</p>';
+      const label = selectedViewLabel(data, key);
+      const group = (view.meta && view.meta.group) || '';
+      const matches = (view.counts && view.counts.matches) || 0;
+      const playerChampion = championFrom(view.by_player, 'player');
+      const teamChampion = championFrom(view.by_team, 'team');
+
+      if (card) card.style.display = '';
+      if (title) title.textContent = key === 'all' ? 'Leader generale' : ('Leader · ' + label);
+      if (subtitle) {
+        subtitle.textContent = key === 'all'
+          ? 'Leader calcolati su tutte le partite. Cambiando vista cambiano anche i leader mostrati qui.'
+          : 'Leader calcolati solo sulle partite della vista selezionata' + (group ? ' (' + group.toLowerCase() + ')' : '') + '.';
+      }
+      if (counter) counter.textContent = matches + ' partite';
+      container.innerHTML = '';
+
+      if (!matches) {
+        container.innerHTML = '<p class="small">Nessuna partita disponibile per questa vista.</p>';
         return;
       }
 
-      years.forEach(year => {
-        const view = getYearView(data, year);
-        const playerChampion = championFrom(view && view.by_player, 'player');
-        const teamChampion = championFrom(view && view.by_team, 'team');
-        const isOngoing = year === currentYear;
+      const year = key && String(key).startsWith('year:') ? String(key).slice(5) : '';
+      const currentYear = String(new Date().getFullYear());
+      const isOngoing = year && year === currentYear;
 
-        const card = document.createElement('article');
-        card.className = 'hall-year-card' + (isOngoing ? ' is-ongoing' : '');
+      const hallCard = document.createElement('article');
+      hallCard.className = 'hall-year-card' + (isOngoing ? ' is-ongoing' : '');
 
-        const top = document.createElement('div');
-        top.className = 'hall-year-top';
-        const yearEl = document.createElement('strong');
-        yearEl.className = 'hall-year';
-        yearEl.textContent = year;
-        const status = document.createElement('span');
-        status.className = 'hall-status ' + (isOngoing ? 'ongoing' : 'closed');
-        status.textContent = isOngoing ? 'Ongoing' : 'Finale';
-        top.appendChild(yearEl);
-        top.appendChild(status);
-        card.appendChild(top);
+      const top = document.createElement('div');
+      top.className = 'hall-year-top';
+      const labelEl = document.createElement('strong');
+      labelEl.className = 'hall-year';
+      labelEl.textContent = label;
+      const status = document.createElement('span');
+      status.className = 'hall-status ' + (isOngoing ? 'ongoing' : 'closed');
+      status.textContent = isOngoing ? 'Ongoing' : (group || 'Vista');
+      top.appendChild(labelEl);
+      top.appendChild(status);
+      hallCard.appendChild(top);
 
-        const grid = document.createElement('div');
-        grid.className = 'hall-champions-grid';
-        grid.appendChild(championBlock('Player', playerChampion));
-        grid.appendChild(championBlock('Team', teamChampion));
-        card.appendChild(grid);
+      const grid = document.createElement('div');
+      grid.className = 'hall-champions-grid';
+      grid.appendChild(championBlock('Player', playerChampion));
+      grid.appendChild(championBlock('Team', teamChampion));
+      hallCard.appendChild(grid);
 
-        if (isOngoing) {
-          const overlay = document.createElement('div');
-          overlay.className = 'hall-ongoing-ribbon';
-          overlay.textContent = 'Stagione in corso';
-          card.appendChild(overlay);
-        }
+      if (isOngoing) {
+        const overlay = document.createElement('div');
+        overlay.className = 'hall-ongoing-ribbon';
+        overlay.textContent = 'Stagione in corso';
+        hallCard.appendChild(overlay);
+      }
 
-        container.appendChild(card);
-      });
+      container.appendChild(hallCard);
     }
 
     function renderDashboard(data) {
-      const year = document.getElementById('season_filter').value || 'all';
-      const view = getView(data, year);
+      const selectedView = document.getElementById('season_filter').value || 'all';
+      const view = getView(data, selectedView);
       const counts = view.counts || { matches: 0, players: 0, teams: 0 };
       const byPlayer = view.by_player || [];
       const byTeam = view.by_team || [];
       const matches = view.matches || [];
-      const suffix = selectedYearLabel(year);
+      const suffix = selectedViewLabel(data, selectedView);
 
       document.getElementById('kpi-matches').textContent = counts.matches || 0;
       document.getElementById('kpi-players').textContent = counts.players || 0;
@@ -801,6 +843,7 @@
 
       setupLeaderboardStickyFallback();
       renderH2H(view);
+      renderHallOfFame(data, view, selectedView);
       renderMatches(view);
     }
 
@@ -811,7 +854,6 @@
 
         document.getElementById('updated-at').textContent = 'Aggiornato: ' + niceDate(data.generated_at || data.generated_utc || data.generated || '');
         populateYearFilter(data);
-        renderHallOfFame(data);
         renderDashboard(data);
 
         document.getElementById('season_filter').addEventListener('change', function () {
