@@ -1,24 +1,26 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-mpgzfrfs-1l2cnxe2",
-  "played_at": "2026-05-22T15:55:00",
-  "course": "Ciliegi",
+  "import_key": "match-mqf42y48-7re44d6h",
+  "played_at": "2026-06-13T13:08:00",
+  "course": "Golf Sestrieres",
   "holes": 18,
   "notes": null,
-  "tags": [],
+  "tags": [
+    "Coppa Estate 2026"
+  ],
   "sides": [
+    {
+      "team_name": "Fra",
+      "is_winner": true,
+      "players": [
+        "Fra"
+      ]
+    },
     {
       "team_name": "Lele",
       "is_winner": false,
       "players": [
         "Lele"
-      ]
-    },
-    {
-      "team_name": "Patrick",
-      "is_winner": true,
-      "players": [
-        "Patrick"
       ]
     }
   ]
