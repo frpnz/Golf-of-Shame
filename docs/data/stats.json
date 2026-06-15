@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v8",
-  "generated_at": "2026-06-15T11:11:19.826142+00:00",
+  "generated_at": "2026-06-15T11:17:39.836041+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -10,7 +10,9 @@
   "years": [
     "2026"
   ],
-  "tags": [],
+  "tags": [
+    "Coppa Estate 2026"
+  ],
   "view_options": [
     {
       "value": "all",
@@ -26,12 +28,17 @@
       "value": "year:2026",
       "label": "2026",
       "group": "Stagioni"
+    },
+    {
+      "value": "tag:Coppa Estate 2026",
+      "label": "Coppa Estate 2026",
+      "group": "Competizioni / tag"
     }
   ],
   "views": {
     "all": {
       "counts": {
-        "matches": 6,
+        "matches": 7,
         "players": 4,
         "teams": 2
       },
@@ -45,21 +52,34 @@
         "courses": [
           "Ciliegi",
           "Gavi",
+          "Golf Sestrieres",
           "Margherita"
         ]
       },
       "by_player": [
         {
-          "player": "Lele",
-          "games": 5,
+          "player": "Fra",
+          "games": 6,
           "wins": 2,
           "draws": 1,
-          "losses": 2,
+          "losses": 3,
           "points": 7,
-          "points_rate": 1.4,
+          "points_rate": 1.1667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Rend 1.4"
+          "tie_breaker": "V 2 · Rend 1.17"
+        },
+        {
+          "player": "Lele",
+          "games": 6,
+          "wins": 2,
+          "draws": 1,
+          "losses": 3,
+          "points": 7,
+          "points_rate": 1.1667,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 2 · Rend 1.17"
         },
         {
           "player": "Patrick",
@@ -83,19 +103,7 @@
           "points_rate": 2.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Rend 2"
-        },
-        {
-          "player": "Fra",
-          "games": 5,
-          "wins": 1,
-          "draws": 1,
-          "losses": 3,
-          "points": 4,
-          "points_rate": 0.8,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Rend 0.8"
+          "tie_breaker": "-"
         }
       ],
       "by_team": [
@@ -154,7 +162,23 @@
           "delta": 2.0
         },
         {
-          "player": "Patrick",
+          "player": "Lele",
+          "solo_games": 4,
+          "solo_wins": 1,
+          "solo_draws": 0,
+          "solo_losses": 3,
+          "solo_points": 3,
+          "team_games": 2,
+          "team_wins": 1,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 4,
+          "solo_points_rate": 0.75,
+          "team_points_rate": 2.0,
+          "delta": 1.25
+        },
+        {
+          "player": "Fra",
           "solo_games": 4,
           "solo_wins": 2,
           "solo_draws": 0,
@@ -170,49 +194,41 @@
           "delta": -1.0
         },
         {
-          "player": "Lele",
-          "solo_games": 3,
-          "solo_wins": 1,
+          "player": "Patrick",
+          "solo_games": 4,
+          "solo_wins": 2,
           "solo_draws": 0,
           "solo_losses": 2,
-          "solo_points": 3,
-          "team_games": 2,
-          "team_wins": 1,
-          "team_draws": 1,
-          "team_losses": 0,
-          "team_points": 4,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 2.0,
-          "delta": 1.0
-        },
-        {
-          "player": "Fra",
-          "solo_games": 3,
-          "solo_wins": 1,
-          "solo_draws": 0,
-          "solo_losses": 2,
-          "solo_points": 3,
+          "solo_points": 6,
           "team_games": 2,
           "team_wins": 0,
           "team_draws": 1,
           "team_losses": 1,
           "team_points": 1,
-          "solo_points_rate": 1.0,
+          "solo_points_rate": 1.5,
           "team_points_rate": 0.5,
-          "delta": -0.5
+          "delta": -1.0
         }
       ],
       "head_to_head": {
         "players": {
           "labels": [
+            "Fra",
             "Lele",
             "Patrick",
-            "Ale P",
-            "Fra"
+            "Ale P"
           ],
           "matrix": {
             "Ale P": {},
             "Fra": {
+              "Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              },
               "Patrick": {
                 "games": 1,
                 "wins": 1,
@@ -223,6 +239,14 @@
               }
             },
             "Lele": {
+              "Fra": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
               "Patrick": {
                 "games": 1,
                 "wins": 0,
@@ -282,6 +306,34 @@
         }
       },
       "matches": [
+        {
+          "id": 10,
+          "played_at": "2026-06-13T13:08:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-mqf42y48-7re44d6h",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            }
+          ]
+        },
         {
           "id": 9,
           "played_at": "2026-05-22T15:55:00",
@@ -466,16 +518,16 @@
         "key": "all",
         "label": "Tutte le partite",
         "group": "Generale",
-        "matches": 6,
+        "matches": 7,
         "player_champion": {
           "kind": "player",
-          "name": "Lele",
+          "name": "Fra",
           "points": 7,
-          "games": 5,
+          "games": 6,
           "wins": 2,
           "draws": 1,
-          "losses": 2,
-          "points_rate": 1.4
+          "losses": 3,
+          "points_rate": 1.1667
         },
         "team_champion": {
           "kind": "team",
@@ -951,7 +1003,7 @@
     },
     "year:2026": {
       "counts": {
-        "matches": 6,
+        "matches": 7,
         "players": 4,
         "teams": 2
       },
@@ -965,21 +1017,34 @@
         "courses": [
           "Ciliegi",
           "Gavi",
+          "Golf Sestrieres",
           "Margherita"
         ]
       },
       "by_player": [
         {
-          "player": "Lele",
-          "games": 5,
+          "player": "Fra",
+          "games": 6,
           "wins": 2,
           "draws": 1,
-          "losses": 2,
+          "losses": 3,
           "points": 7,
-          "points_rate": 1.4,
+          "points_rate": 1.1667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Rend 1.4"
+          "tie_breaker": "V 2 · Rend 1.17"
+        },
+        {
+          "player": "Lele",
+          "games": 6,
+          "wins": 2,
+          "draws": 1,
+          "losses": 3,
+          "points": 7,
+          "points_rate": 1.1667,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 2 · Rend 1.17"
         },
         {
           "player": "Patrick",
@@ -1003,19 +1068,7 @@
           "points_rate": 2.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Rend 2"
-        },
-        {
-          "player": "Fra",
-          "games": 5,
-          "wins": 1,
-          "draws": 1,
-          "losses": 3,
-          "points": 4,
-          "points_rate": 0.8,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Rend 0.8"
+          "tie_breaker": "-"
         }
       ],
       "by_team": [
@@ -1074,7 +1127,23 @@
           "delta": 2.0
         },
         {
-          "player": "Patrick",
+          "player": "Lele",
+          "solo_games": 4,
+          "solo_wins": 1,
+          "solo_draws": 0,
+          "solo_losses": 3,
+          "solo_points": 3,
+          "team_games": 2,
+          "team_wins": 1,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 4,
+          "solo_points_rate": 0.75,
+          "team_points_rate": 2.0,
+          "delta": 1.25
+        },
+        {
+          "player": "Fra",
           "solo_games": 4,
           "solo_wins": 2,
           "solo_draws": 0,
@@ -1090,49 +1159,41 @@
           "delta": -1.0
         },
         {
-          "player": "Lele",
-          "solo_games": 3,
-          "solo_wins": 1,
+          "player": "Patrick",
+          "solo_games": 4,
+          "solo_wins": 2,
           "solo_draws": 0,
           "solo_losses": 2,
-          "solo_points": 3,
-          "team_games": 2,
-          "team_wins": 1,
-          "team_draws": 1,
-          "team_losses": 0,
-          "team_points": 4,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 2.0,
-          "delta": 1.0
-        },
-        {
-          "player": "Fra",
-          "solo_games": 3,
-          "solo_wins": 1,
-          "solo_draws": 0,
-          "solo_losses": 2,
-          "solo_points": 3,
+          "solo_points": 6,
           "team_games": 2,
           "team_wins": 0,
           "team_draws": 1,
           "team_losses": 1,
           "team_points": 1,
-          "solo_points_rate": 1.0,
+          "solo_points_rate": 1.5,
           "team_points_rate": 0.5,
-          "delta": -0.5
+          "delta": -1.0
         }
       ],
       "head_to_head": {
         "players": {
           "labels": [
+            "Fra",
             "Lele",
             "Patrick",
-            "Ale P",
-            "Fra"
+            "Ale P"
           ],
           "matrix": {
             "Ale P": {},
             "Fra": {
+              "Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              },
               "Patrick": {
                 "games": 1,
                 "wins": 1,
@@ -1143,6 +1204,14 @@
               }
             },
             "Lele": {
+              "Fra": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
               "Patrick": {
                 "games": 1,
                 "wins": 0,
@@ -1202,6 +1271,34 @@
         }
       },
       "matches": [
+        {
+          "id": 10,
+          "played_at": "2026-06-13T13:08:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-mqf42y48-7re44d6h",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            }
+          ]
+        },
         {
           "id": 9,
           "played_at": "2026-05-22T15:55:00",
@@ -1386,16 +1483,16 @@
         "key": "year:2026",
         "label": "2026",
         "group": "Stagioni",
-        "matches": 6,
+        "matches": 7,
         "player_champion": {
           "kind": "player",
-          "name": "Lele",
+          "name": "Fra",
           "points": 7,
-          "games": 5,
+          "games": 6,
           "wins": 2,
           "draws": 1,
-          "losses": 2,
-          "points_rate": 1.4
+          "losses": 3,
+          "points_rate": 1.1667
         },
         "team_champion": {
           "kind": "team",
@@ -1408,10 +1505,173 @@
           "points_rate": 2.0
         }
       }
+    },
+    "tag:Coppa Estate 2026": {
+      "counts": {
+        "matches": 1,
+        "players": 2,
+        "teams": 0
+      },
+      "filters": {
+        "players": [
+          "Fra",
+          "Lele"
+        ],
+        "courses": [
+          "Golf Sestrieres"
+        ]
+      },
+      "by_player": [
+        {
+          "player": "Fra",
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
+        },
+        {
+          "player": "Lele",
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-"
+        }
+      ],
+      "by_team": [],
+      "solo_vs_team": [
+        {
+          "player": "Fra",
+          "solo_games": 1,
+          "solo_wins": 1,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 3,
+          "team_games": 0,
+          "team_wins": 0,
+          "team_draws": 0,
+          "team_losses": 0,
+          "team_points": 0,
+          "solo_points_rate": 3.0,
+          "team_points_rate": null,
+          "delta": -3.0
+        },
+        {
+          "player": "Lele",
+          "solo_games": 1,
+          "solo_wins": 0,
+          "solo_draws": 0,
+          "solo_losses": 1,
+          "solo_points": 0,
+          "team_games": 0,
+          "team_wins": 0,
+          "team_draws": 0,
+          "team_losses": 0,
+          "team_points": 0,
+          "solo_points_rate": 0.0,
+          "team_points_rate": null,
+          "delta": 0.0
+        }
+      ],
+      "head_to_head": {
+        "players": {
+          "labels": [
+            "Fra",
+            "Lele"
+          ],
+          "matrix": {
+            "Fra": {
+              "Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
+            },
+            "Lele": {
+              "Fra": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              }
+            }
+          }
+        },
+        "teams": {
+          "labels": [],
+          "matrix": {}
+        }
+      },
+      "matches": [
+        {
+          "id": 10,
+          "played_at": "2026-06-13T13:08:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-mqf42y48-7re44d6h",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            }
+          ]
+        }
+      ],
+      "meta": {
+        "key": "tag:Coppa Estate 2026",
+        "label": "Coppa Estate 2026",
+        "group": "Competizioni / tag"
+      },
+      "hall_of_fame": {
+        "key": "tag:Coppa Estate 2026",
+        "label": "Coppa Estate 2026",
+        "group": "Competizioni / tag",
+        "matches": 1,
+        "player_champion": {
+          "kind": "player",
+          "name": "Fra",
+          "points": 3,
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points_rate": 3.0
+        },
+        "team_champion": null
+      }
     }
   },
   "counts": {
-    "matches": 6,
+    "matches": 7,
     "players": 4,
     "teams": 2
   },
@@ -1425,21 +1685,34 @@
     "courses": [
       "Ciliegi",
       "Gavi",
+      "Golf Sestrieres",
       "Margherita"
     ]
   },
   "by_player": [
     {
-      "player": "Lele",
-      "games": 5,
+      "player": "Fra",
+      "games": 6,
       "wins": 2,
       "draws": 1,
-      "losses": 2,
+      "losses": 3,
       "points": 7,
-      "points_rate": 1.4,
+      "points_rate": 1.1667,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "V 2 · Rend 1.4"
+      "tie_breaker": "V 2 · Rend 1.17"
+    },
+    {
+      "player": "Lele",
+      "games": 6,
+      "wins": 2,
+      "draws": 1,
+      "losses": 3,
+      "points": 7,
+      "points_rate": 1.1667,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "V 2 · Rend 1.17"
     },
     {
       "player": "Patrick",
@@ -1463,19 +1736,7 @@
       "points_rate": 2.0,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "V 1 · Rend 2"
-    },
-    {
-      "player": "Fra",
-      "games": 5,
-      "wins": 1,
-      "draws": 1,
-      "losses": 3,
-      "points": 4,
-      "points_rate": 0.8,
-      "tie_direct_points": 0,
-      "tie_direct_wins": 0,
-      "tie_breaker": "V 1 · Rend 0.8"
+      "tie_breaker": "-"
     }
   ],
   "by_team": [
@@ -1534,7 +1795,23 @@
       "delta": 2.0
     },
     {
-      "player": "Patrick",
+      "player": "Lele",
+      "solo_games": 4,
+      "solo_wins": 1,
+      "solo_draws": 0,
+      "solo_losses": 3,
+      "solo_points": 3,
+      "team_games": 2,
+      "team_wins": 1,
+      "team_draws": 1,
+      "team_losses": 0,
+      "team_points": 4,
+      "solo_points_rate": 0.75,
+      "team_points_rate": 2.0,
+      "delta": 1.25
+    },
+    {
+      "player": "Fra",
       "solo_games": 4,
       "solo_wins": 2,
       "solo_draws": 0,
@@ -1550,49 +1827,41 @@
       "delta": -1.0
     },
     {
-      "player": "Lele",
-      "solo_games": 3,
-      "solo_wins": 1,
+      "player": "Patrick",
+      "solo_games": 4,
+      "solo_wins": 2,
       "solo_draws": 0,
       "solo_losses": 2,
-      "solo_points": 3,
-      "team_games": 2,
-      "team_wins": 1,
-      "team_draws": 1,
-      "team_losses": 0,
-      "team_points": 4,
-      "solo_points_rate": 1.0,
-      "team_points_rate": 2.0,
-      "delta": 1.0
-    },
-    {
-      "player": "Fra",
-      "solo_games": 3,
-      "solo_wins": 1,
-      "solo_draws": 0,
-      "solo_losses": 2,
-      "solo_points": 3,
+      "solo_points": 6,
       "team_games": 2,
       "team_wins": 0,
       "team_draws": 1,
       "team_losses": 1,
       "team_points": 1,
-      "solo_points_rate": 1.0,
+      "solo_points_rate": 1.5,
       "team_points_rate": 0.5,
-      "delta": -0.5
+      "delta": -1.0
     }
   ],
   "head_to_head": {
     "players": {
       "labels": [
+        "Fra",
         "Lele",
         "Patrick",
-        "Ale P",
-        "Fra"
+        "Ale P"
       ],
       "matrix": {
         "Ale P": {},
         "Fra": {
+          "Lele": {
+            "games": 1,
+            "wins": 1,
+            "draws": 0,
+            "losses": 0,
+            "points_for": 3,
+            "points_against": 0
+          },
           "Patrick": {
             "games": 1,
             "wins": 1,
@@ -1603,6 +1872,14 @@
           }
         },
         "Lele": {
+          "Fra": {
+            "games": 1,
+            "wins": 0,
+            "draws": 0,
+            "losses": 1,
+            "points_for": 0,
+            "points_against": 3
+          },
           "Patrick": {
             "games": 1,
             "wins": 0,
@@ -1662,6 +1939,34 @@
     }
   },
   "matches": [
+    {
+      "id": 10,
+      "played_at": "2026-06-13T13:08:00",
+      "course": "Golf Sestrieres",
+      "holes": 18,
+      "notes": null,
+      "import_key": "match-mqf42y48-7re44d6h",
+      "tags": [
+        "Coppa Estate 2026"
+      ],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Fra",
+          "is_winner": true,
+          "players": [
+            "Fra"
+          ]
+        },
+        {
+          "team_name": "Lele",
+          "is_winner": false,
+          "players": [
+            "Lele"
+          ]
+        }
+      ]
+    },
     {
       "id": 9,
       "played_at": "2026-05-22T15:55:00",
@@ -1846,16 +2151,16 @@
     "key": "all",
     "label": "Tutte le partite",
     "group": "Generale",
-    "matches": 6,
+    "matches": 7,
     "player_champion": {
       "kind": "player",
-      "name": "Lele",
+      "name": "Fra",
       "points": 7,
-      "games": 5,
+      "games": 6,
       "wins": 2,
       "draws": 1,
-      "losses": 2,
-      "points_rate": 1.4
+      "losses": 3,
+      "points_rate": 1.1667
     },
     "team_champion": {
       "kind": "team",
