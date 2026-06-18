@@ -51,9 +51,18 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica giocatori</h2>
-            <p class="small">Rendimento = punti / partite. Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.</p>
+            <p class="small" id="players-sort-help">Ordine per punti assoluti. Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.</p>
           </div>
-          <span class="pill subtle" id="players-count">-</span>
+          <div class="leaderboard-controls">
+            <span class="pill subtle" id="players-count">-</span>
+            <div class="compact-filter ranking-filter">
+              <label for="player_metric">Ordina per</label>
+              <select id="player_metric">
+                <option value="points" selected>Punti</option>
+                <option value="points_rate">Media punti</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="table-wrap leaderboard-table"><table id="players"></table></div>
       </article>
@@ -63,9 +72,18 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica squadre</h2>
-            <p class="small">Rendimento = punti / partite. Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, rendimento, nome.</p>
+            <p class="small" id="teams-sort-help">Ordine per punti assoluti. Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, rendimento, nome.</p>
           </div>
-          <span class="pill subtle" id="teams-count">-</span>
+          <div class="leaderboard-controls">
+            <span class="pill subtle" id="teams-count">-</span>
+            <div class="compact-filter ranking-filter">
+              <label for="team_metric">Ordina per</label>
+              <select id="team_metric">
+                <option value="points" selected>Punti</option>
+                <option value="points_rate">Media punti</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="table-wrap leaderboard-table"><table id="teams"></table></div>
       </article>
@@ -813,12 +831,73 @@
       container.appendChild(hallCard);
     }
 
+    function selectedRankingMetric(id) {
+      const select = document.getElementById(id);
+      return select ? select.value : 'points';
+    }
+
+    function playerRowsForMetric(view, metric) {
+      if (metric === 'points_rate') return view.by_player_points_rate || view.by_player || [];
+      return view.by_player || [];
+    }
+
+    function teamRowsForMetric(view, metric) {
+      if (metric === 'points_rate') return view.by_team_points_rate || view.by_team || [];
+      return view.by_team || [];
+    }
+
+    function renderPlayerLeaderboard(view, suffix) {
+      const metric = selectedRankingMetric('player_metric');
+      const rows = playerRowsForMetric(view, metric);
+      const help = document.getElementById('players-sort-help');
+      document.getElementById('players-count').textContent = rows.length + ' player · ' + suffix;
+
+      if (metric === 'points_rate') {
+        if (help) help.textContent = 'Ordine per media punti. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome.';
+        table(
+          document.getElementById('players'),
+          ['Giocatore', 'Media punti', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
+          rows.map(x => [x.player, pointsValue(x.points_rate || 0), x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_rate || '-'])
+        );
+        return;
+      }
+
+      if (help) help.textContent = 'Ordine per punti assoluti. Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.';
+      table(
+        document.getElementById('players'),
+        ['Giocatore', 'Punti', 'Media punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
+        rows.map(x => [x.player, x.points || 0, pointsValue(x.points_rate || 0), x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_points || x.tie_breaker || '-'])
+      );
+    }
+
+    function renderTeamLeaderboard(view, suffix) {
+      const metric = selectedRankingMetric('team_metric');
+      const rows = teamRowsForMetric(view, metric);
+      const help = document.getElementById('teams-sort-help');
+      document.getElementById('teams-count').textContent = rows.length + ' team · ' + suffix;
+
+      if (metric === 'points_rate') {
+        if (help) help.textContent = 'Ordine per media punti. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome squadra.';
+        table(
+          document.getElementById('teams'),
+          ['Squadra', 'Media punti', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
+          rows.map(x => [x.team_name || x.team_label, pointsValue(x.points_rate || 0), x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_rate || '-'])
+        );
+        return;
+      }
+
+      if (help) help.textContent = 'Ordine per punti assoluti. Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, rendimento, nome.';
+      table(
+        document.getElementById('teams'),
+        ['Squadra', 'Punti', 'Media punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
+        rows.map(x => [x.team_name || x.team_label, x.points || 0, pointsValue(x.points_rate || 0), x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_points || x.tie_breaker || '-'])
+      );
+    }
+
     function renderDashboard(data) {
       const selectedView = document.getElementById('season_filter').value || 'all';
       const view = getView(data, selectedView);
       const counts = view.counts || { matches: 0, players: 0, teams: 0 };
-      const byPlayer = view.by_player || [];
-      const byTeam = view.by_team || [];
       const matches = view.matches || [];
       const suffix = selectedViewLabel(data, selectedView);
 
@@ -826,20 +905,9 @@
       document.getElementById('kpi-players').textContent = counts.players || 0;
       document.getElementById('kpi-teams').textContent = counts.teams || 0;
       document.getElementById('kpi-latest').textContent = matches.length ? niceDate(matches[0].played_at) : '-';
-      document.getElementById('players-count').textContent = byPlayer.length + ' player · ' + suffix;
-      document.getElementById('teams-count').textContent = byTeam.length + ' team · ' + suffix;
 
-      table(
-        document.getElementById('players'),
-        ['Giocatore', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento', 'TB'],
-        byPlayer.map(x => [x.player, x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0), x.tie_breaker || '-'])
-      );
-
-      table(
-        document.getElementById('teams'),
-        ['Squadra', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento', 'TB'],
-        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0), x.tie_breaker || '-'])
-      );
+      renderPlayerLeaderboard(view, suffix);
+      renderTeamLeaderboard(view, suffix);
 
       setupLeaderboardStickyFallback();
       renderH2H(view);
@@ -862,7 +930,7 @@
         document.getElementById('matches_limit').addEventListener('change', function () {
           renderDashboard(window.__statsData);
         });
-        ['matrix_type', 'h2h_subject_a', 'h2h_subject_b'].forEach(id => {
+        ['matrix_type', 'h2h_subject_a', 'h2h_subject_b', 'player_metric', 'team_metric'].forEach(id => {
           const control = document.getElementById(id);
           if (control) {
             control.addEventListener('change', function () {

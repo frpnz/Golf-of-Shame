@@ -187,25 +187,33 @@ def format_points_rate(value: float | None) -> str:
     return text.rstrip("0").rstrip(".") if "." in text else text
 
 
-def tie_breaker_label(row: Dict, use_direct: bool) -> str:
+def points_tie_breaker_label(row: Dict, use_direct: bool) -> str:
     parts = []
     if use_direct:
         parts.append(f"SD {row.get('tie_direct_points', 0)}")
     parts.append(f"V {row.get('wins', 0)}")
-    parts.append(f"Rend {format_points_rate(row.get('points_rate') or 0)}")
+    parts.append(f"Media {format_points_rate(row.get('points_rate') or 0)}")
     return " · ".join(parts)
 
 
+def rate_tie_breaker_label(row: Dict) -> str:
+    return f"G {row.get('games', 0)} · Pt {row.get('points', 0)} · V {row.get('wins', 0)}"
+
+
 def apply_tie_breakers(rows: List[Dict], label_key: str, matrix: Dict[str, Dict[str, Dict]] | None = None, use_direct: bool = False) -> None:
-    groups: Dict[int, List[Dict]] = {}
+    points_groups: Dict[int, List[Dict]] = {}
+    rate_groups: Dict[float, List[Dict]] = {}
     for row in rows:
-        groups.setdefault(int(row.get("points") or 0), []).append(row)
+        points_groups.setdefault(int(row.get("points") or 0), []).append(row)
+        rate_groups.setdefault(float(row.get("points_rate") or 0), []).append(row)
         row["tie_direct_points"] = 0
         row["tie_direct_wins"] = 0
         row["tie_breaker"] = "-"
+        row["tie_breaker_points"] = "-"
+        row["tie_breaker_rate"] = "-"
 
     matrix = matrix or {}
-    for tied_rows in groups.values():
+    for tied_rows in points_groups.values():
         if len(tied_rows) < 2:
             continue
         tied_labels = [row[label_key] for row in tied_rows]
@@ -222,7 +230,14 @@ def apply_tie_breakers(rows: List[Dict], label_key: str, matrix: Dict[str, Dict[
                     direct_wins += int(entry.get("wins") or 0)
                 row["tie_direct_points"] = direct_points
                 row["tie_direct_wins"] = direct_wins
-            row["tie_breaker"] = tie_breaker_label(row, use_direct=use_direct)
+            row["tie_breaker_points"] = points_tie_breaker_label(row, use_direct=use_direct)
+            row["tie_breaker"] = row["tie_breaker_points"]
+
+    for tied_rows in rate_groups.values():
+        if len(tied_rows) < 2:
+            continue
+        for row in tied_rows:
+            row["tie_breaker_rate"] = rate_tie_breaker_label(row)
 
 
 def ranking_key(label_key: str, use_direct: bool = False):
@@ -236,6 +251,18 @@ def ranking_key(label_key: str, use_direct: bool = False):
             *direct_values,
             -int(row.get("wins") or 0),
             -(row.get("points_rate") or 0),
+            str(row.get(label_key) or "").lower(),
+        )
+    return key
+
+
+def rate_ranking_key(label_key: str):
+    def key(row: Dict):
+        return (
+            -(row.get("points_rate") or 0),
+            -int(row.get("games") or 0),
+            -int(row.get("points") or 0),
+            -int(row.get("wins") or 0),
             str(row.get(label_key) or "").lower(),
         )
     return key
@@ -347,8 +374,14 @@ def compute_view(matches: List[Dict]) -> Dict:
     apply_tie_breakers(player_rows, "player", use_direct=False)
     apply_tie_breakers(team_rows, "_h2h_label", head_to_head["teams"]["matrix"], use_direct=True)
 
-    player_rows.sort(key=ranking_key("player", use_direct=False))
-    team_rows.sort(key=ranking_key("team_label", use_direct=True))
+    player_rows_points = sorted(player_rows, key=ranking_key("player", use_direct=False))
+    player_rows_rate = sorted(player_rows, key=rate_ranking_key("player"))
+    team_rows_points = sorted(team_rows, key=ranking_key("team_label", use_direct=True))
+    team_rows_rate = sorted(team_rows, key=rate_ranking_key("team_label"))
+
+    # Backward-compatible default order: absolute points.
+    player_rows = player_rows_points
+    team_rows = team_rows_points
 
     for row in team_rows:
         row.pop("_h2h_label", None)
@@ -386,6 +419,18 @@ def compute_view(matches: List[Dict]) -> Dict:
         },
         "by_player": player_rows,
         "by_team": team_rows,
+        "rankings": {
+            "players": {
+                "points": [row["player"] for row in player_rows_points],
+                "points_rate": [row["player"] for row in player_rows_rate],
+            },
+            "teams": {
+                "points": [row.get("team_name") or row.get("team_label") or row["team_key"] for row in team_rows_points],
+                "points_rate": [row.get("team_name") or row.get("team_label") or row["team_key"] for row in team_rows_rate],
+            },
+        },
+        "by_player_points_rate": player_rows_rate,
+        "by_team_points_rate": team_rows_rate,
         "solo_vs_team": split_rows,
         "head_to_head": head_to_head,
         "matches": matches,
@@ -417,6 +462,8 @@ def view_summary(view: Dict, *, key: str, label: str, group: str) -> Dict:
         "matches": int((view.get("counts") or {}).get("matches") or 0),
         "player_champion": champion_from(view.get("by_player") or [], "player"),
         "team_champion": champion_from(view.get("by_team") or [], "team"),
+        "player_points_rate_champion": champion_from(view.get("by_player_points_rate") or [], "player"),
+        "team_points_rate_champion": champion_from(view.get("by_team_points_rate") or [], "team"),
     }
 
 
@@ -458,13 +505,17 @@ def compute_stats(matches: List[Dict]) -> Dict:
         )
 
     payload = {
-        "version": "golf-stats.v8",
+        "version": "golf-stats.v9",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "scoring": {
             "win_points": 3,
             "draw_points": 1,
             "loss_points": 0,
-            "performance_rule": "points / games; in Italian UI this is shown as rendimento",
+            "performance_rule": "points / games; in Italian UI this is shown as media punti",
+            "ranking_modes": {
+                "points": "points, then wins/direct tie breaker where applicable, then media punti, then name",
+                "points_rate": "media punti, then games, then points, then wins, then name"
+            },
         },
         "years": years,
         "tags": tags,
