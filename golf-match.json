@@ -1,19 +1,17 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-mqf42y48-7re44d6h",
-  "played_at": "2026-06-13T13:08:00",
-  "course": "Golf Sestrieres",
-  "holes": 18,
+  "import_key": "match-mqkytoly-4r6mq85e",
+  "played_at": "2026-06-14T15:26:00",
+  "course": "Pragelato",
+  "holes": 9,
   "notes": null,
-  "tags": [
-    "Coppa Estate 2026"
-  ],
+  "tags": [],
   "sides": [
     {
-      "team_name": "Fra",
+      "team_name": "Ale M",
       "is_winner": true,
       "players": [
-        "Fra"
+        "Ale M"
       ]
     },
     {

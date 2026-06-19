@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v9",
-  "generated_at": "2026-06-15T13:10:13.884022+00:00",
+  "generated_at": "2026-06-19T13:30:20.999867+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -42,12 +42,14 @@
   "views": {
     "all": {
       "counts": {
-        "matches": 7,
-        "players": 4,
-        "teams": 2
+        "matches": 9,
+        "players": 6,
+        "teams": 3
       },
       "filters": {
         "players": [
+          "Alberto",
+          "Ale M",
           "Ale P",
           "Fra",
           "Lele",
@@ -55,53 +57,69 @@
         ],
         "courses": [
           "Ciliegi",
+          "Druento",
           "Gavi",
           "Golf Sestrieres",
-          "Margherita"
+          "Margherita",
+          "Pragelato"
         ]
       },
       "by_player": [
         {
           "player": "Fra",
-          "games": 6,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
-        },
-        {
-          "player": "Lele",
-          "games": 6,
-          "wins": 2,
-          "draws": 1,
-          "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+          "tie_breaker": "V 2 · Media 1.14",
+          "tie_breaker_points": "V 2 · Media 1.14",
+          "tie_breaker_rate": "G 7 · Pt 8 · V 2"
         },
         {
           "player": "Patrick",
-          "games": 6,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+          "tie_breaker": "V 2 · Media 1.14",
+          "tie_breaker_points": "V 2 · Media 1.14",
+          "tie_breaker_rate": "G 7 · Pt 8 · V 2"
+        },
+        {
+          "player": "Lele",
+          "games": 7,
+          "wins": 2,
+          "draws": 1,
+          "losses": 4,
+          "points": 7,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "G 7 · Pt 7 · V 2"
+        },
+        {
+          "player": "Ale M",
+          "games": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "points": 4,
+          "points_rate": 2.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
         },
         {
           "player": "Ale P",
@@ -113,9 +131,23 @@
           "points_rate": 2.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
+        },
+        {
+          "player": "Alberto",
+          "games": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "points": 1,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         }
       ],
       "by_team": [
@@ -142,17 +174,37 @@
         {
           "team_key": "Fra|Patrick",
           "team_label": "Fra + Patrick",
-          "team_name": "Fra&Patrick",
+          "team_name": "Fra-Patrick",
           "components": [
             "Fra",
             "Patrick"
           ],
-          "games": 2,
+          "games": 3,
+          "wins": 0,
+          "draws": 2,
+          "losses": 1,
+          "points": 2,
+          "points_rate": 0.6667,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "team_key": "Alberto|Ale M",
+          "team_label": "Alberto + Ale M",
+          "team_name": "Alberto-Ale M",
+          "components": [
+            "Alberto",
+            "Ale M"
+          ],
+          "games": 1,
           "wins": 0,
           "draws": 1,
-          "losses": 1,
+          "losses": 0,
           "points": 1,
-          "points_rate": 0.5,
+          "points_rate": 1.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -164,29 +216,49 @@
         "players": {
           "points": [
             "Fra",
-            "Lele",
             "Patrick",
-            "Ale P"
+            "Lele",
+            "Ale M",
+            "Ale P",
+            "Alberto"
           ],
           "points_rate": [
+            "Ale M",
             "Ale P",
             "Fra",
+            "Patrick",
             "Lele",
-            "Patrick"
+            "Alberto"
           ]
         },
         "teams": {
           "points": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Fra-Patrick",
+            "Alberto-Ale M"
           ],
           "points_rate": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Alberto-Ale M",
+            "Fra-Patrick"
           ]
         }
       },
       "by_player_points_rate": [
+        {
+          "player": "Ale M",
+          "games": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "points": 4,
+          "points_rate": 2.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
+        },
         {
           "player": "Ale P",
           "games": 2,
@@ -197,51 +269,65 @@
           "points_rate": 2.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
         },
         {
           "player": "Fra",
-          "games": 6,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
-        },
-        {
-          "player": "Lele",
-          "games": 6,
-          "wins": 2,
-          "draws": 1,
-          "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+          "tie_breaker": "V 2 · Media 1.14",
+          "tie_breaker_points": "V 2 · Media 1.14",
+          "tie_breaker_rate": "G 7 · Pt 8 · V 2"
         },
         {
           "player": "Patrick",
-          "games": 6,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+          "tie_breaker": "V 2 · Media 1.14",
+          "tie_breaker_points": "V 2 · Media 1.14",
+          "tie_breaker_rate": "G 7 · Pt 8 · V 2"
+        },
+        {
+          "player": "Lele",
+          "games": 7,
+          "wins": 2,
+          "draws": 1,
+          "losses": 4,
+          "points": 7,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "G 7 · Pt 7 · V 2"
+        },
+        {
+          "player": "Alberto",
+          "games": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "points": 1,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         }
       ],
       "by_team_points_rate": [
@@ -266,19 +352,39 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Alberto|Ale M",
+          "team_label": "Alberto + Ale M",
+          "team_name": "Alberto-Ale M",
+          "components": [
+            "Alberto",
+            "Ale M"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "points": 1,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
           "team_key": "Fra|Patrick",
           "team_label": "Fra + Patrick",
-          "team_name": "Fra&Patrick",
+          "team_name": "Fra-Patrick",
           "components": [
             "Fra",
             "Patrick"
           ],
-          "games": 2,
+          "games": 3,
           "wins": 0,
-          "draws": 1,
+          "draws": 2,
           "losses": 1,
-          "points": 1,
-          "points_rate": 0.5,
+          "points": 2,
+          "points_rate": 0.6667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -287,6 +393,22 @@
         }
       ],
       "solo_vs_team": [
+        {
+          "player": "Ale M",
+          "solo_games": 1,
+          "solo_wins": 1,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 3,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 1,
+          "solo_points_rate": 3.0,
+          "team_points_rate": 1.0,
+          "delta": -2.0
+        },
         {
           "player": "Ale P",
           "solo_games": 0,
@@ -305,19 +427,35 @@
         },
         {
           "player": "Lele",
-          "solo_games": 4,
+          "solo_games": 5,
           "solo_wins": 1,
           "solo_draws": 0,
-          "solo_losses": 3,
+          "solo_losses": 4,
           "solo_points": 3,
           "team_games": 2,
           "team_wins": 1,
           "team_draws": 1,
           "team_losses": 0,
           "team_points": 4,
-          "solo_points_rate": 0.75,
+          "solo_points_rate": 0.6,
           "team_points_rate": 2.0,
-          "delta": 1.25
+          "delta": 1.4
+        },
+        {
+          "player": "Alberto",
+          "solo_games": 0,
+          "solo_wins": 0,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 0,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 1,
+          "solo_points_rate": null,
+          "team_points_rate": 1.0,
+          "delta": 1.0
         },
         {
           "player": "Fra",
@@ -326,14 +464,14 @@
           "solo_draws": 0,
           "solo_losses": 2,
           "solo_points": 6,
-          "team_games": 2,
+          "team_games": 3,
           "team_wins": 0,
-          "team_draws": 1,
+          "team_draws": 2,
           "team_losses": 1,
-          "team_points": 1,
+          "team_points": 2,
           "solo_points_rate": 1.5,
-          "team_points_rate": 0.5,
-          "delta": -1.0
+          "team_points_rate": 0.6667,
+          "delta": -0.8333
         },
         {
           "player": "Patrick",
@@ -342,25 +480,38 @@
           "solo_draws": 0,
           "solo_losses": 2,
           "solo_points": 6,
-          "team_games": 2,
+          "team_games": 3,
           "team_wins": 0,
-          "team_draws": 1,
+          "team_draws": 2,
           "team_losses": 1,
-          "team_points": 1,
+          "team_points": 2,
           "solo_points_rate": 1.5,
-          "team_points_rate": 0.5,
-          "delta": -1.0
+          "team_points_rate": 0.6667,
+          "delta": -0.8333
         }
       ],
       "head_to_head": {
         "players": {
           "labels": [
             "Fra",
-            "Lele",
             "Patrick",
-            "Ale P"
+            "Lele",
+            "Ale M",
+            "Ale P",
+            "Alberto"
           ],
           "matrix": {
+            "Alberto": {},
+            "Ale M": {
+              "Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
+            },
             "Ale P": {},
             "Fra": {
               "Lele": {
@@ -381,6 +532,14 @@
               }
             },
             "Lele": {
+              "Ale M": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
               "Fra": {
                 "games": 1,
                 "wins": 0,
@@ -421,11 +580,22 @@
         "teams": {
           "labels": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Fra-Patrick",
+            "Alberto-Ale M"
           ],
           "matrix": {
+            "Alberto-Ale M": {
+              "Fra-Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 1,
+                "points_against": 1
+              }
+            },
             "Ale P&Lele": {
-              "Fra&Patrick": {
+              "Fra-Patrick": {
                 "games": 2,
                 "wins": 1,
                 "draws": 1,
@@ -434,7 +604,15 @@
                 "points_against": 1
               }
             },
-            "Fra&Patrick": {
+            "Fra-Patrick": {
+              "Alberto-Ale M": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 1,
+                "points_against": 1
+              },
               "Ale P&Lele": {
                 "games": 2,
                 "wins": 0,
@@ -448,6 +626,60 @@
         }
       },
       "matches": [
+        {
+          "id": 11,
+          "played_at": "2026-06-18T15:26:00",
+          "course": "Druento",
+          "holes": 9,
+          "notes": null,
+          "import_key": "match-mqkyrisw-rdbipj3g",
+          "tags": [],
+          "is_draw": true,
+          "sides": [
+            {
+              "team_name": "Fra-Patrick",
+              "is_winner": true,
+              "players": [
+                "Fra",
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Alberto-Ale M",
+              "is_winner": true,
+              "players": [
+                "Alberto",
+                "Ale M"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "played_at": "2026-06-14T15:26:00",
+          "course": "Pragelato",
+          "holes": 9,
+          "notes": null,
+          "import_key": "match-mqkytoly-4r6mq85e",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Ale M",
+              "is_winner": true,
+              "players": [
+                "Ale M"
+              ]
+            },
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            }
+          ]
+        },
         {
           "id": 10,
           "played_at": "2026-06-13T13:08:00",
@@ -660,16 +892,16 @@
         "key": "all",
         "label": "Tutte le partite",
         "group": "Generale",
-        "matches": 7,
+        "matches": 9,
         "player_champion": {
           "kind": "player",
           "name": "Fra",
-          "points": 7,
-          "games": 6,
+          "points": 8,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points_rate": 1.1667
+          "points_rate": 1.1429
         },
         "team_champion": {
           "kind": "team",
@@ -683,7 +915,7 @@
         },
         "player_points_rate_champion": {
           "kind": "player",
-          "name": "Ale P",
+          "name": "Ale M",
           "points": 4,
           "games": 2,
           "wins": 1,
@@ -705,12 +937,14 @@
     },
     "untagged": {
       "counts": {
-        "matches": 6,
-        "players": 4,
-        "teams": 2
+        "matches": 8,
+        "players": 6,
+        "teams": 3
       },
       "filters": {
         "players": [
+          "Alberto",
+          "Ale M",
           "Ale P",
           "Fra",
           "Lele",
@@ -718,27 +952,29 @@
         ],
         "courses": [
           "Ciliegi",
+          "Druento",
           "Gavi",
-          "Margherita"
+          "Margherita",
+          "Pragelato"
         ]
       },
       "by_player": [
         {
-          "player": "Lele",
-          "games": 5,
+          "player": "Patrick",
+          "games": 7,
           "wins": 2,
-          "draws": 1,
-          "losses": 2,
-          "points": 7,
-          "points_rate": 1.4,
+          "draws": 2,
+          "losses": 3,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.4",
-          "tie_breaker_points": "V 2 · Media 1.4",
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Patrick",
+          "player": "Lele",
           "games": 6,
           "wins": 2,
           "draws": 1,
@@ -747,9 +983,37 @@
           "points_rate": 1.1667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
           "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Fra",
+          "games": 6,
+          "wins": 1,
+          "draws": 2,
+          "losses": 3,
+          "points": 5,
+          "points_rate": 0.8333,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Ale M",
+          "games": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "points": 4,
+          "points_rate": 2.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
         },
         {
           "player": "Ale P",
@@ -763,20 +1027,20 @@
           "tie_direct_wins": 0,
           "tie_breaker": "V 1 · Media 2",
           "tie_breaker_points": "V 1 · Media 2",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
         },
         {
-          "player": "Fra",
-          "games": 5,
-          "wins": 1,
+          "player": "Alberto",
+          "games": 1,
+          "wins": 0,
           "draws": 1,
-          "losses": 3,
-          "points": 4,
-          "points_rate": 0.8,
+          "losses": 0,
+          "points": 1,
+          "points_rate": 1.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Media 0.8",
-          "tie_breaker_points": "V 1 · Media 0.8",
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
           "tie_breaker_rate": "-"
         }
       ],
@@ -804,17 +1068,37 @@
         {
           "team_key": "Fra|Patrick",
           "team_label": "Fra + Patrick",
-          "team_name": "Fra&Patrick",
+          "team_name": "Fra-Patrick",
           "components": [
             "Fra",
             "Patrick"
           ],
-          "games": 2,
+          "games": 3,
+          "wins": 0,
+          "draws": 2,
+          "losses": 1,
+          "points": 2,
+          "points_rate": 0.6667,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "team_key": "Alberto|Ale M",
+          "team_label": "Alberto + Ale M",
+          "team_name": "Alberto-Ale M",
+          "components": [
+            "Alberto",
+            "Ale M"
+          ],
+          "games": 1,
           "wins": 0,
           "draws": 1,
-          "losses": 1,
+          "losses": 0,
           "points": 1,
-          "points_rate": 0.5,
+          "points_rate": 1.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -825,30 +1109,50 @@
       "rankings": {
         "players": {
           "points": [
-            "Lele",
             "Patrick",
+            "Lele",
+            "Fra",
+            "Ale M",
             "Ale P",
-            "Fra"
+            "Alberto"
           ],
           "points_rate": [
+            "Ale M",
             "Ale P",
             "Lele",
             "Patrick",
+            "Alberto",
             "Fra"
           ]
         },
         "teams": {
           "points": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Fra-Patrick",
+            "Alberto-Ale M"
           ],
           "points_rate": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Alberto-Ale M",
+            "Fra-Patrick"
           ]
         }
       },
       "by_player_points_rate": [
+        {
+          "player": "Ale M",
+          "games": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "points": 4,
+          "points_rate": 2.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
+        },
         {
           "player": "Ale P",
           "games": 2,
@@ -861,24 +1165,10 @@
           "tie_direct_wins": 0,
           "tie_breaker": "V 1 · Media 2",
           "tie_breaker_points": "V 1 · Media 2",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
         },
         {
           "player": "Lele",
-          "games": 5,
-          "wins": 2,
-          "draws": 1,
-          "losses": 2,
-          "points": 7,
-          "points_rate": 1.4,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.4",
-          "tie_breaker_points": "V 2 · Media 1.4",
-          "tie_breaker_rate": "-"
-        },
-        {
-          "player": "Patrick",
           "games": 6,
           "wins": 2,
           "draws": 1,
@@ -887,22 +1177,50 @@
           "points_rate": 1.1667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Patrick",
+          "games": 7,
+          "wins": 2,
+          "draws": 2,
+          "losses": 3,
+          "points": 8,
+          "points_rate": 1.1429,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Alberto",
+          "games": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "points": 1,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
           "tie_breaker_rate": "-"
         },
         {
           "player": "Fra",
-          "games": 5,
+          "games": 6,
           "wins": 1,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points": 4,
-          "points_rate": 0.8,
+          "points": 5,
+          "points_rate": 0.8333,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Media 0.8",
-          "tie_breaker_points": "V 1 · Media 0.8",
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
           "tie_breaker_rate": "-"
         }
       ],
@@ -928,19 +1246,39 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Alberto|Ale M",
+          "team_label": "Alberto + Ale M",
+          "team_name": "Alberto-Ale M",
+          "components": [
+            "Alberto",
+            "Ale M"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "points": 1,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
           "team_key": "Fra|Patrick",
           "team_label": "Fra + Patrick",
-          "team_name": "Fra&Patrick",
+          "team_name": "Fra-Patrick",
           "components": [
             "Fra",
             "Patrick"
           ],
-          "games": 2,
+          "games": 3,
           "wins": 0,
-          "draws": 1,
+          "draws": 2,
           "losses": 1,
-          "points": 1,
-          "points_rate": 0.5,
+          "points": 2,
+          "points_rate": 0.6667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -949,6 +1287,22 @@
         }
       ],
       "solo_vs_team": [
+        {
+          "player": "Ale M",
+          "solo_games": 1,
+          "solo_wins": 1,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 3,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 1,
+          "solo_points_rate": 3.0,
+          "team_points_rate": 1.0,
+          "delta": -2.0
+        },
         {
           "player": "Ale P",
           "solo_games": 0,
@@ -966,36 +1320,52 @@
           "delta": 2.0
         },
         {
-          "player": "Patrick",
-          "solo_games": 4,
-          "solo_wins": 2,
-          "solo_draws": 0,
-          "solo_losses": 2,
-          "solo_points": 6,
-          "team_games": 2,
-          "team_wins": 0,
-          "team_draws": 1,
-          "team_losses": 1,
-          "team_points": 1,
-          "solo_points_rate": 1.5,
-          "team_points_rate": 0.5,
-          "delta": -1.0
-        },
-        {
           "player": "Lele",
-          "solo_games": 3,
+          "solo_games": 4,
           "solo_wins": 1,
           "solo_draws": 0,
-          "solo_losses": 2,
+          "solo_losses": 3,
           "solo_points": 3,
           "team_games": 2,
           "team_wins": 1,
           "team_draws": 1,
           "team_losses": 0,
           "team_points": 4,
-          "solo_points_rate": 1.0,
+          "solo_points_rate": 0.75,
           "team_points_rate": 2.0,
+          "delta": 1.25
+        },
+        {
+          "player": "Alberto",
+          "solo_games": 0,
+          "solo_wins": 0,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 0,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 1,
+          "solo_points_rate": null,
+          "team_points_rate": 1.0,
           "delta": 1.0
+        },
+        {
+          "player": "Patrick",
+          "solo_games": 4,
+          "solo_wins": 2,
+          "solo_draws": 0,
+          "solo_losses": 2,
+          "solo_points": 6,
+          "team_games": 3,
+          "team_wins": 0,
+          "team_draws": 2,
+          "team_losses": 1,
+          "team_points": 2,
+          "solo_points_rate": 1.5,
+          "team_points_rate": 0.6667,
+          "delta": -0.8333
         },
         {
           "player": "Fra",
@@ -1004,25 +1374,38 @@
           "solo_draws": 0,
           "solo_losses": 2,
           "solo_points": 3,
-          "team_games": 2,
+          "team_games": 3,
           "team_wins": 0,
-          "team_draws": 1,
+          "team_draws": 2,
           "team_losses": 1,
-          "team_points": 1,
+          "team_points": 2,
           "solo_points_rate": 1.0,
-          "team_points_rate": 0.5,
-          "delta": -0.5
+          "team_points_rate": 0.6667,
+          "delta": -0.3333
         }
       ],
       "head_to_head": {
         "players": {
           "labels": [
-            "Lele",
             "Patrick",
+            "Lele",
+            "Fra",
+            "Ale M",
             "Ale P",
-            "Fra"
+            "Alberto"
           ],
           "matrix": {
+            "Alberto": {},
+            "Ale M": {
+              "Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
+            },
             "Ale P": {},
             "Fra": {
               "Patrick": {
@@ -1035,6 +1418,14 @@
               }
             },
             "Lele": {
+              "Ale M": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
               "Patrick": {
                 "games": 1,
                 "wins": 0,
@@ -1067,11 +1458,22 @@
         "teams": {
           "labels": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Fra-Patrick",
+            "Alberto-Ale M"
           ],
           "matrix": {
+            "Alberto-Ale M": {
+              "Fra-Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 1,
+                "points_against": 1
+              }
+            },
             "Ale P&Lele": {
-              "Fra&Patrick": {
+              "Fra-Patrick": {
                 "games": 2,
                 "wins": 1,
                 "draws": 1,
@@ -1080,7 +1482,15 @@
                 "points_against": 1
               }
             },
-            "Fra&Patrick": {
+            "Fra-Patrick": {
+              "Alberto-Ale M": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 1,
+                "points_against": 1
+              },
               "Ale P&Lele": {
                 "games": 2,
                 "wins": 0,
@@ -1094,6 +1504,60 @@
         }
       },
       "matches": [
+        {
+          "id": 11,
+          "played_at": "2026-06-18T15:26:00",
+          "course": "Druento",
+          "holes": 9,
+          "notes": null,
+          "import_key": "match-mqkyrisw-rdbipj3g",
+          "tags": [],
+          "is_draw": true,
+          "sides": [
+            {
+              "team_name": "Fra-Patrick",
+              "is_winner": true,
+              "players": [
+                "Fra",
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Alberto-Ale M",
+              "is_winner": true,
+              "players": [
+                "Alberto",
+                "Ale M"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "played_at": "2026-06-14T15:26:00",
+          "course": "Pragelato",
+          "holes": 9,
+          "notes": null,
+          "import_key": "match-mqkytoly-4r6mq85e",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Ale M",
+              "is_winner": true,
+              "players": [
+                "Ale M"
+              ]
+            },
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            }
+          ]
+        },
         {
           "id": 9,
           "played_at": "2026-05-22T15:55:00",
@@ -1278,16 +1742,16 @@
         "key": "untagged",
         "label": "Senza tag",
         "group": "Generale",
-        "matches": 6,
+        "matches": 8,
         "player_champion": {
           "kind": "player",
-          "name": "Lele",
-          "points": 7,
-          "games": 5,
+          "name": "Patrick",
+          "points": 8,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
-          "losses": 2,
-          "points_rate": 1.4
+          "draws": 2,
+          "losses": 3,
+          "points_rate": 1.1429
         },
         "team_champion": {
           "kind": "team",
@@ -1301,7 +1765,7 @@
         },
         "player_points_rate_champion": {
           "kind": "player",
-          "name": "Ale P",
+          "name": "Ale M",
           "points": 4,
           "games": 2,
           "wins": 1,
@@ -1323,12 +1787,14 @@
     },
     "year:2026": {
       "counts": {
-        "matches": 7,
-        "players": 4,
-        "teams": 2
+        "matches": 9,
+        "players": 6,
+        "teams": 3
       },
       "filters": {
         "players": [
+          "Alberto",
+          "Ale M",
           "Ale P",
           "Fra",
           "Lele",
@@ -1336,53 +1802,69 @@
         ],
         "courses": [
           "Ciliegi",
+          "Druento",
           "Gavi",
           "Golf Sestrieres",
-          "Margherita"
+          "Margherita",
+          "Pragelato"
         ]
       },
       "by_player": [
         {
           "player": "Fra",
-          "games": 6,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
-        },
-        {
-          "player": "Lele",
-          "games": 6,
-          "wins": 2,
-          "draws": 1,
-          "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+          "tie_breaker": "V 2 · Media 1.14",
+          "tie_breaker_points": "V 2 · Media 1.14",
+          "tie_breaker_rate": "G 7 · Pt 8 · V 2"
         },
         {
           "player": "Patrick",
-          "games": 6,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+          "tie_breaker": "V 2 · Media 1.14",
+          "tie_breaker_points": "V 2 · Media 1.14",
+          "tie_breaker_rate": "G 7 · Pt 8 · V 2"
+        },
+        {
+          "player": "Lele",
+          "games": 7,
+          "wins": 2,
+          "draws": 1,
+          "losses": 4,
+          "points": 7,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "G 7 · Pt 7 · V 2"
+        },
+        {
+          "player": "Ale M",
+          "games": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "points": 4,
+          "points_rate": 2.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
         },
         {
           "player": "Ale P",
@@ -1394,9 +1876,23 @@
           "points_rate": 2.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
+        },
+        {
+          "player": "Alberto",
+          "games": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "points": 1,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         }
       ],
       "by_team": [
@@ -1423,17 +1919,37 @@
         {
           "team_key": "Fra|Patrick",
           "team_label": "Fra + Patrick",
-          "team_name": "Fra&Patrick",
+          "team_name": "Fra-Patrick",
           "components": [
             "Fra",
             "Patrick"
           ],
-          "games": 2,
+          "games": 3,
+          "wins": 0,
+          "draws": 2,
+          "losses": 1,
+          "points": 2,
+          "points_rate": 0.6667,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "team_key": "Alberto|Ale M",
+          "team_label": "Alberto + Ale M",
+          "team_name": "Alberto-Ale M",
+          "components": [
+            "Alberto",
+            "Ale M"
+          ],
+          "games": 1,
           "wins": 0,
           "draws": 1,
-          "losses": 1,
+          "losses": 0,
           "points": 1,
-          "points_rate": 0.5,
+          "points_rate": 1.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -1445,29 +1961,49 @@
         "players": {
           "points": [
             "Fra",
-            "Lele",
             "Patrick",
-            "Ale P"
+            "Lele",
+            "Ale M",
+            "Ale P",
+            "Alberto"
           ],
           "points_rate": [
+            "Ale M",
             "Ale P",
             "Fra",
+            "Patrick",
             "Lele",
-            "Patrick"
+            "Alberto"
           ]
         },
         "teams": {
           "points": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Fra-Patrick",
+            "Alberto-Ale M"
           ],
           "points_rate": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Alberto-Ale M",
+            "Fra-Patrick"
           ]
         }
       },
       "by_player_points_rate": [
+        {
+          "player": "Ale M",
+          "games": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "points": 4,
+          "points_rate": 2.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
+        },
         {
           "player": "Ale P",
           "games": 2,
@@ -1478,51 +2014,65 @@
           "points_rate": 2.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "V 1 · Media 2",
+          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker_rate": "G 2 · Pt 4 · V 1"
         },
         {
           "player": "Fra",
-          "games": 6,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
-        },
-        {
-          "player": "Lele",
-          "games": 6,
-          "wins": 2,
-          "draws": 1,
-          "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+          "tie_breaker": "V 2 · Media 1.14",
+          "tie_breaker_points": "V 2 · Media 1.14",
+          "tie_breaker_rate": "G 7 · Pt 8 · V 2"
         },
         {
           "player": "Patrick",
-          "games": 6,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points": 7,
-          "points_rate": 1.1667,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 2 · Media 1.17",
-          "tie_breaker_points": "V 2 · Media 1.17",
-          "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+          "tie_breaker": "V 2 · Media 1.14",
+          "tie_breaker_points": "V 2 · Media 1.14",
+          "tie_breaker_rate": "G 7 · Pt 8 · V 2"
+        },
+        {
+          "player": "Lele",
+          "games": 7,
+          "wins": 2,
+          "draws": 1,
+          "losses": 4,
+          "points": 7,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "G 7 · Pt 7 · V 2"
+        },
+        {
+          "player": "Alberto",
+          "games": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "points": 1,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         }
       ],
       "by_team_points_rate": [
@@ -1547,19 +2097,39 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Alberto|Ale M",
+          "team_label": "Alberto + Ale M",
+          "team_name": "Alberto-Ale M",
+          "components": [
+            "Alberto",
+            "Ale M"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "points": 1,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
           "team_key": "Fra|Patrick",
           "team_label": "Fra + Patrick",
-          "team_name": "Fra&Patrick",
+          "team_name": "Fra-Patrick",
           "components": [
             "Fra",
             "Patrick"
           ],
-          "games": 2,
+          "games": 3,
           "wins": 0,
-          "draws": 1,
+          "draws": 2,
           "losses": 1,
-          "points": 1,
-          "points_rate": 0.5,
+          "points": 2,
+          "points_rate": 0.6667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -1568,6 +2138,22 @@
         }
       ],
       "solo_vs_team": [
+        {
+          "player": "Ale M",
+          "solo_games": 1,
+          "solo_wins": 1,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 3,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 1,
+          "solo_points_rate": 3.0,
+          "team_points_rate": 1.0,
+          "delta": -2.0
+        },
         {
           "player": "Ale P",
           "solo_games": 0,
@@ -1586,19 +2172,35 @@
         },
         {
           "player": "Lele",
-          "solo_games": 4,
+          "solo_games": 5,
           "solo_wins": 1,
           "solo_draws": 0,
-          "solo_losses": 3,
+          "solo_losses": 4,
           "solo_points": 3,
           "team_games": 2,
           "team_wins": 1,
           "team_draws": 1,
           "team_losses": 0,
           "team_points": 4,
-          "solo_points_rate": 0.75,
+          "solo_points_rate": 0.6,
           "team_points_rate": 2.0,
-          "delta": 1.25
+          "delta": 1.4
+        },
+        {
+          "player": "Alberto",
+          "solo_games": 0,
+          "solo_wins": 0,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 0,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 1,
+          "solo_points_rate": null,
+          "team_points_rate": 1.0,
+          "delta": 1.0
         },
         {
           "player": "Fra",
@@ -1607,14 +2209,14 @@
           "solo_draws": 0,
           "solo_losses": 2,
           "solo_points": 6,
-          "team_games": 2,
+          "team_games": 3,
           "team_wins": 0,
-          "team_draws": 1,
+          "team_draws": 2,
           "team_losses": 1,
-          "team_points": 1,
+          "team_points": 2,
           "solo_points_rate": 1.5,
-          "team_points_rate": 0.5,
-          "delta": -1.0
+          "team_points_rate": 0.6667,
+          "delta": -0.8333
         },
         {
           "player": "Patrick",
@@ -1623,25 +2225,38 @@
           "solo_draws": 0,
           "solo_losses": 2,
           "solo_points": 6,
-          "team_games": 2,
+          "team_games": 3,
           "team_wins": 0,
-          "team_draws": 1,
+          "team_draws": 2,
           "team_losses": 1,
-          "team_points": 1,
+          "team_points": 2,
           "solo_points_rate": 1.5,
-          "team_points_rate": 0.5,
-          "delta": -1.0
+          "team_points_rate": 0.6667,
+          "delta": -0.8333
         }
       ],
       "head_to_head": {
         "players": {
           "labels": [
             "Fra",
-            "Lele",
             "Patrick",
-            "Ale P"
+            "Lele",
+            "Ale M",
+            "Ale P",
+            "Alberto"
           ],
           "matrix": {
+            "Alberto": {},
+            "Ale M": {
+              "Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
+            },
             "Ale P": {},
             "Fra": {
               "Lele": {
@@ -1662,6 +2277,14 @@
               }
             },
             "Lele": {
+              "Ale M": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
               "Fra": {
                 "games": 1,
                 "wins": 0,
@@ -1702,11 +2325,22 @@
         "teams": {
           "labels": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Fra-Patrick",
+            "Alberto-Ale M"
           ],
           "matrix": {
+            "Alberto-Ale M": {
+              "Fra-Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 1,
+                "points_against": 1
+              }
+            },
             "Ale P&Lele": {
-              "Fra&Patrick": {
+              "Fra-Patrick": {
                 "games": 2,
                 "wins": 1,
                 "draws": 1,
@@ -1715,7 +2349,15 @@
                 "points_against": 1
               }
             },
-            "Fra&Patrick": {
+            "Fra-Patrick": {
+              "Alberto-Ale M": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 1,
+                "points_against": 1
+              },
               "Ale P&Lele": {
                 "games": 2,
                 "wins": 0,
@@ -1729,6 +2371,60 @@
         }
       },
       "matches": [
+        {
+          "id": 11,
+          "played_at": "2026-06-18T15:26:00",
+          "course": "Druento",
+          "holes": 9,
+          "notes": null,
+          "import_key": "match-mqkyrisw-rdbipj3g",
+          "tags": [],
+          "is_draw": true,
+          "sides": [
+            {
+              "team_name": "Fra-Patrick",
+              "is_winner": true,
+              "players": [
+                "Fra",
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Alberto-Ale M",
+              "is_winner": true,
+              "players": [
+                "Alberto",
+                "Ale M"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "played_at": "2026-06-14T15:26:00",
+          "course": "Pragelato",
+          "holes": 9,
+          "notes": null,
+          "import_key": "match-mqkytoly-4r6mq85e",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Ale M",
+              "is_winner": true,
+              "players": [
+                "Ale M"
+              ]
+            },
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            }
+          ]
+        },
         {
           "id": 10,
           "played_at": "2026-06-13T13:08:00",
@@ -1941,16 +2637,16 @@
         "key": "year:2026",
         "label": "2026",
         "group": "Stagioni",
-        "matches": 7,
+        "matches": 9,
         "player_champion": {
           "kind": "player",
           "name": "Fra",
-          "points": 7,
-          "games": 6,
+          "points": 8,
+          "games": 7,
           "wins": 2,
-          "draws": 1,
+          "draws": 2,
           "losses": 3,
-          "points_rate": 1.1667
+          "points_rate": 1.1429
         },
         "team_champion": {
           "kind": "team",
@@ -1964,7 +2660,7 @@
         },
         "player_points_rate_champion": {
           "kind": "player",
-          "name": "Ale P",
+          "name": "Ale M",
           "points": 4,
           "games": 2,
           "wins": 1,
@@ -2211,12 +2907,14 @@
     }
   },
   "counts": {
-    "matches": 7,
-    "players": 4,
-    "teams": 2
+    "matches": 9,
+    "players": 6,
+    "teams": 3
   },
   "filters": {
     "players": [
+      "Alberto",
+      "Ale M",
       "Ale P",
       "Fra",
       "Lele",
@@ -2224,53 +2922,69 @@
     ],
     "courses": [
       "Ciliegi",
+      "Druento",
       "Gavi",
       "Golf Sestrieres",
-      "Margherita"
+      "Margherita",
+      "Pragelato"
     ]
   },
   "by_player": [
     {
       "player": "Fra",
-      "games": 6,
+      "games": 7,
       "wins": 2,
-      "draws": 1,
+      "draws": 2,
       "losses": 3,
-      "points": 7,
-      "points_rate": 1.1667,
+      "points": 8,
+      "points_rate": 1.1429,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "V 2 · Media 1.17",
-      "tie_breaker_points": "V 2 · Media 1.17",
-      "tie_breaker_rate": "G 6 · Pt 7 · V 2"
-    },
-    {
-      "player": "Lele",
-      "games": 6,
-      "wins": 2,
-      "draws": 1,
-      "losses": 3,
-      "points": 7,
-      "points_rate": 1.1667,
-      "tie_direct_points": 0,
-      "tie_direct_wins": 0,
-      "tie_breaker": "V 2 · Media 1.17",
-      "tie_breaker_points": "V 2 · Media 1.17",
-      "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+      "tie_breaker": "V 2 · Media 1.14",
+      "tie_breaker_points": "V 2 · Media 1.14",
+      "tie_breaker_rate": "G 7 · Pt 8 · V 2"
     },
     {
       "player": "Patrick",
-      "games": 6,
+      "games": 7,
       "wins": 2,
-      "draws": 1,
+      "draws": 2,
       "losses": 3,
-      "points": 7,
-      "points_rate": 1.1667,
+      "points": 8,
+      "points_rate": 1.1429,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "V 2 · Media 1.17",
-      "tie_breaker_points": "V 2 · Media 1.17",
-      "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+      "tie_breaker": "V 2 · Media 1.14",
+      "tie_breaker_points": "V 2 · Media 1.14",
+      "tie_breaker_rate": "G 7 · Pt 8 · V 2"
+    },
+    {
+      "player": "Lele",
+      "games": 7,
+      "wins": 2,
+      "draws": 1,
+      "losses": 4,
+      "points": 7,
+      "points_rate": 1.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-",
+      "tie_breaker_points": "-",
+      "tie_breaker_rate": "G 7 · Pt 7 · V 2"
+    },
+    {
+      "player": "Ale M",
+      "games": 2,
+      "wins": 1,
+      "draws": 1,
+      "losses": 0,
+      "points": 4,
+      "points_rate": 2.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "V 1 · Media 2",
+      "tie_breaker_points": "V 1 · Media 2",
+      "tie_breaker_rate": "G 2 · Pt 4 · V 1"
     },
     {
       "player": "Ale P",
@@ -2282,9 +2996,23 @@
       "points_rate": 2.0,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
+      "tie_breaker": "V 1 · Media 2",
+      "tie_breaker_points": "V 1 · Media 2",
+      "tie_breaker_rate": "G 2 · Pt 4 · V 1"
+    },
+    {
+      "player": "Alberto",
+      "games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "points": 1,
+      "points_rate": 1.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
       "tie_breaker": "-",
       "tie_breaker_points": "-",
-      "tie_breaker_rate": "-"
+      "tie_breaker_rate": "G 1 · Pt 1 · V 0"
     }
   ],
   "by_team": [
@@ -2311,17 +3039,37 @@
     {
       "team_key": "Fra|Patrick",
       "team_label": "Fra + Patrick",
-      "team_name": "Fra&Patrick",
+      "team_name": "Fra-Patrick",
       "components": [
         "Fra",
         "Patrick"
       ],
-      "games": 2,
+      "games": 3,
+      "wins": 0,
+      "draws": 2,
+      "losses": 1,
+      "points": 2,
+      "points_rate": 0.6667,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-",
+      "tie_breaker_points": "-",
+      "tie_breaker_rate": "-"
+    },
+    {
+      "team_key": "Alberto|Ale M",
+      "team_label": "Alberto + Ale M",
+      "team_name": "Alberto-Ale M",
+      "components": [
+        "Alberto",
+        "Ale M"
+      ],
+      "games": 1,
       "wins": 0,
       "draws": 1,
-      "losses": 1,
+      "losses": 0,
       "points": 1,
-      "points_rate": 0.5,
+      "points_rate": 1.0,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -2333,29 +3081,49 @@
     "players": {
       "points": [
         "Fra",
-        "Lele",
         "Patrick",
-        "Ale P"
+        "Lele",
+        "Ale M",
+        "Ale P",
+        "Alberto"
       ],
       "points_rate": [
+        "Ale M",
         "Ale P",
         "Fra",
+        "Patrick",
         "Lele",
-        "Patrick"
+        "Alberto"
       ]
     },
     "teams": {
       "points": [
         "Ale P&Lele",
-        "Fra&Patrick"
+        "Fra-Patrick",
+        "Alberto-Ale M"
       ],
       "points_rate": [
         "Ale P&Lele",
-        "Fra&Patrick"
+        "Alberto-Ale M",
+        "Fra-Patrick"
       ]
     }
   },
   "by_player_points_rate": [
+    {
+      "player": "Ale M",
+      "games": 2,
+      "wins": 1,
+      "draws": 1,
+      "losses": 0,
+      "points": 4,
+      "points_rate": 2.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "V 1 · Media 2",
+      "tie_breaker_points": "V 1 · Media 2",
+      "tie_breaker_rate": "G 2 · Pt 4 · V 1"
+    },
     {
       "player": "Ale P",
       "games": 2,
@@ -2366,51 +3134,65 @@
       "points_rate": 2.0,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "-",
-      "tie_breaker_points": "-",
-      "tie_breaker_rate": "-"
+      "tie_breaker": "V 1 · Media 2",
+      "tie_breaker_points": "V 1 · Media 2",
+      "tie_breaker_rate": "G 2 · Pt 4 · V 1"
     },
     {
       "player": "Fra",
-      "games": 6,
+      "games": 7,
       "wins": 2,
-      "draws": 1,
+      "draws": 2,
       "losses": 3,
-      "points": 7,
-      "points_rate": 1.1667,
+      "points": 8,
+      "points_rate": 1.1429,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "V 2 · Media 1.17",
-      "tie_breaker_points": "V 2 · Media 1.17",
-      "tie_breaker_rate": "G 6 · Pt 7 · V 2"
-    },
-    {
-      "player": "Lele",
-      "games": 6,
-      "wins": 2,
-      "draws": 1,
-      "losses": 3,
-      "points": 7,
-      "points_rate": 1.1667,
-      "tie_direct_points": 0,
-      "tie_direct_wins": 0,
-      "tie_breaker": "V 2 · Media 1.17",
-      "tie_breaker_points": "V 2 · Media 1.17",
-      "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+      "tie_breaker": "V 2 · Media 1.14",
+      "tie_breaker_points": "V 2 · Media 1.14",
+      "tie_breaker_rate": "G 7 · Pt 8 · V 2"
     },
     {
       "player": "Patrick",
-      "games": 6,
+      "games": 7,
       "wins": 2,
-      "draws": 1,
+      "draws": 2,
       "losses": 3,
-      "points": 7,
-      "points_rate": 1.1667,
+      "points": 8,
+      "points_rate": 1.1429,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "V 2 · Media 1.17",
-      "tie_breaker_points": "V 2 · Media 1.17",
-      "tie_breaker_rate": "G 6 · Pt 7 · V 2"
+      "tie_breaker": "V 2 · Media 1.14",
+      "tie_breaker_points": "V 2 · Media 1.14",
+      "tie_breaker_rate": "G 7 · Pt 8 · V 2"
+    },
+    {
+      "player": "Lele",
+      "games": 7,
+      "wins": 2,
+      "draws": 1,
+      "losses": 4,
+      "points": 7,
+      "points_rate": 1.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-",
+      "tie_breaker_points": "-",
+      "tie_breaker_rate": "G 7 · Pt 7 · V 2"
+    },
+    {
+      "player": "Alberto",
+      "games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "points": 1,
+      "points_rate": 1.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-",
+      "tie_breaker_points": "-",
+      "tie_breaker_rate": "G 1 · Pt 1 · V 0"
     }
   ],
   "by_team_points_rate": [
@@ -2435,19 +3217,39 @@
       "tie_breaker_rate": "-"
     },
     {
+      "team_key": "Alberto|Ale M",
+      "team_label": "Alberto + Ale M",
+      "team_name": "Alberto-Ale M",
+      "components": [
+        "Alberto",
+        "Ale M"
+      ],
+      "games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "points": 1,
+      "points_rate": 1.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-",
+      "tie_breaker_points": "-",
+      "tie_breaker_rate": "-"
+    },
+    {
       "team_key": "Fra|Patrick",
       "team_label": "Fra + Patrick",
-      "team_name": "Fra&Patrick",
+      "team_name": "Fra-Patrick",
       "components": [
         "Fra",
         "Patrick"
       ],
-      "games": 2,
+      "games": 3,
       "wins": 0,
-      "draws": 1,
+      "draws": 2,
       "losses": 1,
-      "points": 1,
-      "points_rate": 0.5,
+      "points": 2,
+      "points_rate": 0.6667,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -2456,6 +3258,22 @@
     }
   ],
   "solo_vs_team": [
+    {
+      "player": "Ale M",
+      "solo_games": 1,
+      "solo_wins": 1,
+      "solo_draws": 0,
+      "solo_losses": 0,
+      "solo_points": 3,
+      "team_games": 1,
+      "team_wins": 0,
+      "team_draws": 1,
+      "team_losses": 0,
+      "team_points": 1,
+      "solo_points_rate": 3.0,
+      "team_points_rate": 1.0,
+      "delta": -2.0
+    },
     {
       "player": "Ale P",
       "solo_games": 0,
@@ -2474,19 +3292,35 @@
     },
     {
       "player": "Lele",
-      "solo_games": 4,
+      "solo_games": 5,
       "solo_wins": 1,
       "solo_draws": 0,
-      "solo_losses": 3,
+      "solo_losses": 4,
       "solo_points": 3,
       "team_games": 2,
       "team_wins": 1,
       "team_draws": 1,
       "team_losses": 0,
       "team_points": 4,
-      "solo_points_rate": 0.75,
+      "solo_points_rate": 0.6,
       "team_points_rate": 2.0,
-      "delta": 1.25
+      "delta": 1.4
+    },
+    {
+      "player": "Alberto",
+      "solo_games": 0,
+      "solo_wins": 0,
+      "solo_draws": 0,
+      "solo_losses": 0,
+      "solo_points": 0,
+      "team_games": 1,
+      "team_wins": 0,
+      "team_draws": 1,
+      "team_losses": 0,
+      "team_points": 1,
+      "solo_points_rate": null,
+      "team_points_rate": 1.0,
+      "delta": 1.0
     },
     {
       "player": "Fra",
@@ -2495,14 +3329,14 @@
       "solo_draws": 0,
       "solo_losses": 2,
       "solo_points": 6,
-      "team_games": 2,
+      "team_games": 3,
       "team_wins": 0,
-      "team_draws": 1,
+      "team_draws": 2,
       "team_losses": 1,
-      "team_points": 1,
+      "team_points": 2,
       "solo_points_rate": 1.5,
-      "team_points_rate": 0.5,
-      "delta": -1.0
+      "team_points_rate": 0.6667,
+      "delta": -0.8333
     },
     {
       "player": "Patrick",
@@ -2511,25 +3345,38 @@
       "solo_draws": 0,
       "solo_losses": 2,
       "solo_points": 6,
-      "team_games": 2,
+      "team_games": 3,
       "team_wins": 0,
-      "team_draws": 1,
+      "team_draws": 2,
       "team_losses": 1,
-      "team_points": 1,
+      "team_points": 2,
       "solo_points_rate": 1.5,
-      "team_points_rate": 0.5,
-      "delta": -1.0
+      "team_points_rate": 0.6667,
+      "delta": -0.8333
     }
   ],
   "head_to_head": {
     "players": {
       "labels": [
         "Fra",
-        "Lele",
         "Patrick",
-        "Ale P"
+        "Lele",
+        "Ale M",
+        "Ale P",
+        "Alberto"
       ],
       "matrix": {
+        "Alberto": {},
+        "Ale M": {
+          "Lele": {
+            "games": 1,
+            "wins": 1,
+            "draws": 0,
+            "losses": 0,
+            "points_for": 3,
+            "points_against": 0
+          }
+        },
         "Ale P": {},
         "Fra": {
           "Lele": {
@@ -2550,6 +3397,14 @@
           }
         },
         "Lele": {
+          "Ale M": {
+            "games": 1,
+            "wins": 0,
+            "draws": 0,
+            "losses": 1,
+            "points_for": 0,
+            "points_against": 3
+          },
           "Fra": {
             "games": 1,
             "wins": 0,
@@ -2590,11 +3445,22 @@
     "teams": {
       "labels": [
         "Ale P&Lele",
-        "Fra&Patrick"
+        "Fra-Patrick",
+        "Alberto-Ale M"
       ],
       "matrix": {
+        "Alberto-Ale M": {
+          "Fra-Patrick": {
+            "games": 1,
+            "wins": 0,
+            "draws": 1,
+            "losses": 0,
+            "points_for": 1,
+            "points_against": 1
+          }
+        },
         "Ale P&Lele": {
-          "Fra&Patrick": {
+          "Fra-Patrick": {
             "games": 2,
             "wins": 1,
             "draws": 1,
@@ -2603,7 +3469,15 @@
             "points_against": 1
           }
         },
-        "Fra&Patrick": {
+        "Fra-Patrick": {
+          "Alberto-Ale M": {
+            "games": 1,
+            "wins": 0,
+            "draws": 1,
+            "losses": 0,
+            "points_for": 1,
+            "points_against": 1
+          },
           "Ale P&Lele": {
             "games": 2,
             "wins": 0,
@@ -2617,6 +3491,60 @@
     }
   },
   "matches": [
+    {
+      "id": 11,
+      "played_at": "2026-06-18T15:26:00",
+      "course": "Druento",
+      "holes": 9,
+      "notes": null,
+      "import_key": "match-mqkyrisw-rdbipj3g",
+      "tags": [],
+      "is_draw": true,
+      "sides": [
+        {
+          "team_name": "Fra-Patrick",
+          "is_winner": true,
+          "players": [
+            "Fra",
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Alberto-Ale M",
+          "is_winner": true,
+          "players": [
+            "Alberto",
+            "Ale M"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "played_at": "2026-06-14T15:26:00",
+      "course": "Pragelato",
+      "holes": 9,
+      "notes": null,
+      "import_key": "match-mqkytoly-4r6mq85e",
+      "tags": [],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Ale M",
+          "is_winner": true,
+          "players": [
+            "Ale M"
+          ]
+        },
+        {
+          "team_name": "Lele",
+          "is_winner": false,
+          "players": [
+            "Lele"
+          ]
+        }
+      ]
+    },
     {
       "id": 10,
       "played_at": "2026-06-13T13:08:00",
@@ -2829,16 +3757,16 @@
     "key": "all",
     "label": "Tutte le partite",
     "group": "Generale",
-    "matches": 7,
+    "matches": 9,
     "player_champion": {
       "kind": "player",
       "name": "Fra",
-      "points": 7,
-      "games": 6,
+      "points": 8,
+      "games": 7,
       "wins": 2,
-      "draws": 1,
+      "draws": 2,
       "losses": 3,
-      "points_rate": 1.1667
+      "points_rate": 1.1429
     },
     "team_champion": {
       "kind": "team",
@@ -2852,7 +3780,7 @@
     },
     "player_points_rate_champion": {
       "kind": "player",
-      "name": "Ale P",
+      "name": "Ale M",
       "points": 4,
       "games": 2,
       "wins": 1,
