@@ -1,17 +1,19 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-mqkz0jwu-izztvb4i",
-  "played_at": "2026-06-06T15:32:00",
-  "course": "Malaga",
+  "import_key": "match-mqyxsgqk-rgel5o0s",
+  "played_at": "2026-06-28T10:05:00",
+  "course": "Golf Sestrieres",
   "holes": 18,
   "notes": null,
-  "tags": [],
+  "tags": [
+    "Coppa Estate 2026"
+  ],
   "sides": [
     {
-      "team_name": "Aloi",
+      "team_name": "Fra",
       "is_winner": false,
       "players": [
-        "Aloi"
+        "Fra"
       ]
     },
     {
@@ -19,13 +21,6 @@
       "is_winner": true,
       "players": [
         "Lele"
-      ]
-    },
-    {
-      "team_name": "Patrick",
-      "is_winner": false,
-      "players": [
-        "Patrick"
       ]
     }
   ]
