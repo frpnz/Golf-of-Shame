@@ -2246,6 +2246,15 @@ pre {
   background: linear-gradient(90deg, var(--gold), var(--accent));
 }
 
+
+.leaderboard-table tbody tr.below-games-threshold {
+  opacity: 0.42;
+}
+
+.leaderboard-table tbody tr.below-games-threshold:hover {
+  opacity: 0.62;
+}
+
 .leaderboard-table tbody tr.podium-row {
   box-shadow: 0 12px 24px rgba(18, 55, 42, 0.075);
 }
@@ -3015,4 +3024,24 @@ button:hover,
   .ranking-filter {
     width: 100%;
   }
+}
+
+
+/* Evidenziazione soglia minima nella classifica per media punti.
+   Le regole usano anche !important per evitare override da righe podio/hover e da cache parziale. */
+.leaderboard-table tbody tr.below-games-threshold,
+.leaderboard-table tbody tr.below-games-threshold:hover {
+  opacity: 0.32 !important;
+  filter: grayscale(0.75) !important;
+}
+
+.leaderboard-table tbody tr.below-games-threshold td,
+.leaderboard-table tbody tr.below-games-threshold .metric-badge,
+.leaderboard-table tbody tr.below-games-threshold .rank-badge,
+.leaderboard-table tbody tr.below-games-threshold .leader-name {
+  opacity: 0.72 !important;
+}
+
+.leaderboard-table tbody tr.below-games-threshold:hover {
+  opacity: 0.46 !important;
 }

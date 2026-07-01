@@ -272,9 +272,15 @@
       });
       thead.appendChild(trh);
       const tbody = document.createElement('tbody');
-      rows.forEach((row, rowIndex) => {
+      rows.forEach((rowData, rowIndex) => {
+        const row = Array.isArray(rowData) ? rowData : (rowData.cells || []);
         const tr = document.createElement('tr');
-        tr.className = rowIndex < 3 ? 'podium-row podium-' + (rowIndex + 1) : '';
+        const rowClasses = [];
+        if (rowIndex < 3) rowClasses.push('podium-row', 'podium-' + (rowIndex + 1));
+        if (!Array.isArray(rowData) && rowData.className) rowClasses.push(rowData.className);
+        tr.className = rowClasses.join(' ');
+        if (!Array.isArray(rowData) && rowData.title) tr.title = rowData.title;
+        if (!Array.isArray(rowData) && rowData.style) tr.setAttribute('style', rowData.style);
         row.forEach((cell, index) => {
           const td = document.createElement('td');
           td.dataset.label = headers[index];
@@ -850,14 +856,20 @@
       const metric = selectedRankingMetric('player_metric');
       const rows = playerRowsForMetric(view, metric);
       const help = document.getElementById('players-sort-help');
+      const MIN_GAMES_FOR_RATE_RANKING = 7;
       document.getElementById('players-count').textContent = rows.length + ' player · ' + suffix;
 
       if (metric === 'points_rate') {
-        if (help) help.textContent = 'Ordine per media punti. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome.';
+        if (help) help.textContent = 'Ordine per media punti. I giocatori con meno di ' + MIN_GAMES_FOR_RATE_RANKING + ' partite restano in classifica ma sono visualizzati opachi. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome.';
         table(
           document.getElementById('players'),
           ['Giocatore', 'Media punti', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
-          rows.map(x => [x.player, pointsValue(x.points_rate || 0), x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_rate || '-'])
+          rows.map(x => ({
+            cells: [x.player, pointsValue(x.points_rate || 0), x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_rate || '-'],
+            className: (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING ? 'below-games-threshold' : '',
+            title: (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING ? 'Meno di ' + MIN_GAMES_FOR_RATE_RANKING + ' partite giocate' : '',
+            style: (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING ? 'opacity: 0.32; filter: grayscale(0.75);' : ''
+          }))
         );
         return;
       }
