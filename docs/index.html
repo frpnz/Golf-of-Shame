@@ -17,7 +17,7 @@
       <div>
         <p class="eyebrow">Golf Match Tracker</p>
         <h1>Golf of Shame</h1>
-        <p class="hero-copy">Vittoria = 3 punti, pareggio = 1, sconfitta = 0. Il rendimento indica i punti medi per partita: punti / partite giocate.</p>
+        <p class="hero-copy">Vittoria = 3 punti, pareggio = 1, sconfitta = 0. La media punti indica i punti medi per partita: punti / partite giocate.</p>
       </div>
       <div class="hero-meta">
       <figure class="flavour-quote">
@@ -205,6 +205,7 @@
   </div>
 
   <script>
+    const MIN_GAMES_FOR_RATE_RANKING = 7;
     function pointsValue(value) {
       return value == null ? '-' : Number(value).toFixed(2).replace(/\.00$/, '');
     }
@@ -245,20 +246,7 @@
     }
 
     function performanceCell(value) {
-      const raw = parseFloat(String(value).replace(',', '.')) || 0;
-      const wrap = document.createElement('div');
-      wrap.className = 'performance-cell';
-      const label = document.createElement('span');
-      label.textContent = value;
-      const track = document.createElement('span');
-      track.className = 'performance-track';
-      const fill = document.createElement('span');
-      fill.className = 'performance-fill';
-      fill.style.width = Math.max(0, Math.min(100, (raw / 3) * 100)) + '%';
-      track.appendChild(fill);
-      wrap.appendChild(label);
-      wrap.appendChild(track);
-      return wrap;
+      return metricBadge(value, 'points');
     }
 
     function table(el, headers, rows) {
@@ -307,7 +295,7 @@
             td.appendChild(metricBadge(cell + 'P', 'draw'));
           } else if (headers[index] === 'Sconfitte') {
             td.appendChild(metricBadge(cell + 'S', 'loss'));
-          } else if (headers[index] === 'Rendimento') {
+          } else if (headers[index] === 'Media punti') {
             td.appendChild(performanceCell(cell));
           } else {
             td.textContent = cell;
@@ -607,8 +595,8 @@
       summary.appendChild(h2hStatItem(first + ' record', (firstEntry.wins || 0) + 'V - ' + (firstEntry.draws || 0) + 'P - ' + (firstEntry.losses || 0) + 'S'));
       summary.appendChild(h2hStatItem(second + ' record', (secondEntry.wins || 0) + 'V - ' + (secondEntry.draws || 0) + 'P - ' + (secondEntry.losses || 0) + 'S'));
       summary.appendChild(h2hStatItem('Punti', (firstEntry.points_for || 0) + '-' + (firstEntry.points_against || 0)));
-      summary.appendChild(h2hStatItem('Rendimento ' + first, pointsValue(h2hPerformance(firstEntry))));
-      summary.appendChild(h2hStatItem('Rendimento ' + second, pointsValue(h2hPerformance(secondEntry))));
+      summary.appendChild(h2hStatItem('Media punti ' + first, pointsValue(h2hPerformance(firstEntry))));
+      summary.appendChild(h2hStatItem('Media punti ' + second, pointsValue(h2hPerformance(secondEntry))));
       card.appendChild(summary);
 
       const note = document.createElement('p');
@@ -743,7 +731,11 @@
 
     function championFrom(rows, type) {
       if (!Array.isArray(rows) || !rows.length) return null;
-      const first = rows[0];
+      const sourceRows = type === 'player'
+        ? rows.filter(row => (row.games || 0) >= MIN_GAMES_FOR_RATE_RANKING)
+        : rows;
+      if (!sourceRows.length) return null;
+      const first = sourceRows[0];
       return {
         name: type === 'team' ? (first.team_name || first.team_label || '-') : (first.player || '-'),
         points: first.points || 0,
@@ -767,7 +759,7 @@
       const meta = document.createElement('span');
       meta.className = 'hall-champion-meta';
       meta.textContent = champion
-        ? (champion.points + ' pt · ' + champion.wins + 'V ' + champion.draws + 'P ' + champion.losses + 'S · Rend ' + champion.performance)
+        ? (champion.points + ' pt · ' + champion.games + ' partite · ' + champion.wins + 'V ' + champion.draws + 'P ' + champion.losses + 'S · Media punti ' + champion.performance)
         : 'Nessun dato disponibile';
       block.appendChild(title);
       block.appendChild(name);
@@ -786,15 +778,15 @@
       const label = selectedViewLabel(data, key);
       const group = (view.meta && view.meta.group) || '';
       const matches = (view.counts && view.counts.matches) || 0;
-      const playerChampion = championFrom(view.by_player, 'player');
-      const teamChampion = championFrom(view.by_team, 'team');
+      const playerChampion = championFrom(view.by_player_points_rate || view.by_player || [], 'player');
+      const teamChampion = championFrom(view.by_team_points_rate || view.by_team || [], 'team');
 
       if (card) card.style.display = '';
       if (title) title.textContent = key === 'all' ? 'Leader generale' : ('Leader · ' + label);
       if (subtitle) {
         subtitle.textContent = key === 'all'
-          ? 'Leader calcolati su tutte le partite. Cambiando vista cambiano anche i leader mostrati qui.'
-          : 'Leader calcolati solo sulle partite della vista selezionata' + (group ? ' (' + group.toLowerCase() + ')' : '') + '.';
+          ? 'Leader calcolati per media punti su tutte le partite. Per i giocatori vale la soglia di almeno ' + MIN_GAMES_FOR_RATE_RANKING + ' partite.'
+          : 'Leader per media punti calcolati solo sulle partite della vista selezionata' + (group ? ' (' + group.toLowerCase() + ')' : '') + '. Per i giocatori vale la soglia di almeno ' + MIN_GAMES_FOR_RATE_RANKING + ' partite.';
       }
       if (counter) counter.textContent = matches + ' partite';
       container.innerHTML = '';
@@ -825,8 +817,8 @@
 
       const grid = document.createElement('div');
       grid.className = 'hall-champions-grid';
-      grid.appendChild(championBlock('Player', playerChampion));
-      grid.appendChild(championBlock('Team', teamChampion));
+      grid.appendChild(championBlock('Player · media punti', playerChampion));
+      grid.appendChild(championBlock('Team · media punti', teamChampion));
       hallCard.appendChild(grid);
 
       if (isOngoing) {
@@ -858,7 +850,6 @@
       const metric = selectedRankingMetric('player_metric');
       const rows = playerRowsForMetric(view, metric);
       const help = document.getElementById('players-sort-help');
-      const MIN_GAMES_FOR_RATE_RANKING = 7;
       document.getElementById('players-count').textContent = rows.length + ' player · ' + suffix;
 
       if (metric === 'points_rate') {
@@ -883,7 +874,7 @@
         return;
       }
 
-      if (help) help.textContent = 'Ordine per punti assoluti. Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.';
+      if (help) help.textContent = 'Ordine per punti assoluti. Tie breaker: punti, vittorie, media punti, nome. I punti ottenuti in squadra contano anche per il giocatore.';
       table(
         document.getElementById('players'),
         ['Giocatore', 'Punti', 'Media punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
@@ -907,7 +898,7 @@
         return;
       }
 
-      if (help) help.textContent = 'Ordine per punti assoluti. Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, rendimento, nome.';
+      if (help) help.textContent = 'Ordine per punti assoluti. Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, media punti, nome.';
       table(
         document.getElementById('teams'),
         ['Squadra', 'Punti', 'Media punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],

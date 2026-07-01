@@ -1,11 +1,12 @@
 {
   "version": "golf-stats.v9",
-  "generated_at": "2026-07-01T22:23:56.320456+00:00",
+  "generated_at": "2026-07-01T22:45:01.124406+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
     "loss_points": 0,
-    "performance_rule": "points / games; in Italian UI this is shown as media punti",
+    "points_rate_rule": "points / games; in Italian UI this is shown as media punti",
+    "player_points_rate_min_games": 7,
     "ranking_modes": {
       "points": "points, then wins/direct tie breaker where applicable, then media punti, then name",
       "points_rate": "media punti, then games, then points, then wins, then name"
@@ -1139,13 +1140,13 @@
         "matches": 15,
         "player_champion": {
           "kind": "player",
-          "name": "Lele",
-          "points": 16,
-          "games": 12,
-          "wins": 5,
-          "draws": 1,
-          "losses": 6,
-          "points_rate": 1.3333
+          "name": "Fra",
+          "points": 15,
+          "games": 11,
+          "wins": 4,
+          "draws": 3,
+          "losses": 4,
+          "points_rate": 1.3636
         },
         "team_champion": {
           "kind": "team",
@@ -1159,13 +1160,13 @@
         },
         "player_points_rate_champion": {
           "kind": "player",
-          "name": "Ale P",
-          "points": 4,
-          "games": 2,
-          "wins": 1,
-          "draws": 1,
-          "losses": 0,
-          "points_rate": 2.0
+          "name": "Fra",
+          "points": 15,
+          "games": 11,
+          "wins": 4,
+          "draws": 3,
+          "losses": 4,
+          "points_rate": 1.3636
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -2125,13 +2126,13 @@
         },
         "player_points_rate_champion": {
           "kind": "player",
-          "name": "Ale M",
-          "points": 4,
-          "games": 2,
-          "wins": 1,
+          "name": "Lele",
+          "points": 13,
+          "games": 8,
+          "wins": 4,
           "draws": 1,
-          "losses": 0,
-          "points_rate": 2.0
+          "losses": 3,
+          "points_rate": 1.625
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -3244,13 +3245,13 @@
         "matches": 15,
         "player_champion": {
           "kind": "player",
-          "name": "Lele",
-          "points": 16,
-          "games": 12,
-          "wins": 5,
-          "draws": 1,
-          "losses": 6,
-          "points_rate": 1.3333
+          "name": "Fra",
+          "points": 15,
+          "games": 11,
+          "wins": 4,
+          "draws": 3,
+          "losses": 4,
+          "points_rate": 1.3636
         },
         "team_champion": {
           "kind": "team",
@@ -3264,13 +3265,13 @@
         },
         "player_points_rate_champion": {
           "kind": "player",
-          "name": "Ale P",
-          "points": 4,
-          "games": 2,
-          "wins": 1,
-          "draws": 1,
-          "losses": 0,
-          "points_rate": 2.0
+          "name": "Fra",
+          "points": 15,
+          "games": 11,
+          "wins": 4,
+          "draws": 3,
+          "losses": 4,
+          "points_rate": 1.3636
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -3663,27 +3664,9 @@
         "label": "Coppa Estate 2026",
         "group": "Competizioni / tag",
         "matches": 5,
-        "player_champion": {
-          "kind": "player",
-          "name": "Fra",
-          "points": 10,
-          "games": 5,
-          "wins": 3,
-          "draws": 1,
-          "losses": 1,
-          "points_rate": 2.0
-        },
+        "player_champion": null,
         "team_champion": null,
-        "player_points_rate_champion": {
-          "kind": "player",
-          "name": "Fra",
-          "points": 10,
-          "games": 5,
-          "wins": 3,
-          "draws": 1,
-          "losses": 1,
-          "points_rate": 2.0
-        },
+        "player_points_rate_champion": null,
         "team_points_rate_champion": null
       }
     }
@@ -4786,13 +4769,13 @@
     "matches": 15,
     "player_champion": {
       "kind": "player",
-      "name": "Lele",
-      "points": 16,
-      "games": 12,
-      "wins": 5,
-      "draws": 1,
-      "losses": 6,
-      "points_rate": 1.3333
+      "name": "Fra",
+      "points": 15,
+      "games": 11,
+      "wins": 4,
+      "draws": 3,
+      "losses": 4,
+      "points_rate": 1.3636
     },
     "team_champion": {
       "kind": "team",
@@ -4806,13 +4789,13 @@
     },
     "player_points_rate_champion": {
       "kind": "player",
-      "name": "Ale P",
-      "points": 4,
-      "games": 2,
-      "wins": 1,
-      "draws": 1,
-      "losses": 0,
-      "points_rate": 2.0
+      "name": "Fra",
+      "points": 15,
+      "games": 11,
+      "wins": 4,
+      "draws": 3,
+      "losses": 4,
+      "points_rate": 1.3636
     },
     "team_points_rate_champion": {
       "kind": "team",

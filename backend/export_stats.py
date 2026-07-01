@@ -9,6 +9,8 @@ from typing import Dict, List
 
 from common import connect, ensure_schema, fetch_matches
 
+MIN_GAMES_FOR_RATE_RANKING = 7
+
 MATCH_SCHEMA = {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "Golf Match Input",
@@ -454,16 +456,25 @@ def champion_from(rows: List[Dict], kind: str) -> Dict | None:
     }
 
 
+def eligible_player_rate_rows(view: Dict) -> List[Dict]:
+    return [
+        row for row in (view.get("by_player_points_rate") or [])
+        if int(row.get("games") or 0) >= MIN_GAMES_FOR_RATE_RANKING
+    ]
+
+
 def view_summary(view: Dict, *, key: str, label: str, group: str) -> Dict:
+    player_rate_champion = champion_from(eligible_player_rate_rows(view), "player")
+    team_rate_champion = champion_from(view.get("by_team_points_rate") or [], "team")
     return {
         "key": key,
         "label": label,
         "group": group,
         "matches": int((view.get("counts") or {}).get("matches") or 0),
-        "player_champion": champion_from(view.get("by_player") or [], "player"),
-        "team_champion": champion_from(view.get("by_team") or [], "team"),
-        "player_points_rate_champion": champion_from(view.get("by_player_points_rate") or [], "player"),
-        "team_points_rate_champion": champion_from(view.get("by_team_points_rate") or [], "team"),
+        "player_champion": player_rate_champion,
+        "team_champion": team_rate_champion,
+        "player_points_rate_champion": player_rate_champion,
+        "team_points_rate_champion": team_rate_champion,
     }
 
 
@@ -511,7 +522,8 @@ def compute_stats(matches: List[Dict]) -> Dict:
             "win_points": 3,
             "draw_points": 1,
             "loss_points": 0,
-            "performance_rule": "points / games; in Italian UI this is shown as media punti",
+            "points_rate_rule": "points / games; in Italian UI this is shown as media punti",
+            "player_points_rate_min_games": MIN_GAMES_FOR_RATE_RANKING,
             "ranking_modes": {
                 "points": "points, then wins/direct tie breaker where applicable, then media punti, then name",
                 "points_rate": "media punti, then games, then points, then wins, then name"

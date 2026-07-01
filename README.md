@@ -1,6 +1,6 @@
 # Golf Match Tracker
 
-App statica per registrare partite di golf, salvare lo storico in SQLite e pubblicare una dashboard con classifiche, rendimento, Head2Head e Albo d'oro.
+App statica per registrare partite di golf, salvare lo storico in SQLite e pubblicare una dashboard con classifiche, media punti, Head2Head e Albo d'oro.
 
 ## Cosa contiene
 
@@ -83,17 +83,17 @@ Nel JSON ogni side con:
 
 è considerato vincente. Se più side hanno `is_winner: true`, la partita è un pareggio e ciascun side prende 1 punto.
 
-## Rendimento
+## Media punti
 
-Il rendimento misura quanti punti produce in media un giocatore o team per ogni partita giocata:
+La media punti misura quanti punti produce in media un giocatore o team per ogni partita giocata:
 
 ```text
-rendimento = punti / partite giocate
+media punti = punti / partite giocate
 ```
 
-Esempio: 12 punti in 6 partite = rendimento 2.00.
+Esempio: 12 punti in 6 partite = media punti 2.00.
 
-È diverso dai punti totali: i punti premiano anche la partecipazione, mentre il rendimento aiuta a confrontare chi ha giocato un numero diverso di partite. Per questo viene usato come criterio di spareggio, non come classifica principale.
+È diverso dai punti totali: i punti premiano anche la partecipazione, mentre la media punti aiuta a confrontare chi ha giocato un numero diverso di partite. Per questo è la classifica predefinita e il criterio usato per decretare i leader dell’albo d’oro nelle viste generale, stagioni e competizioni/tag. Per i giocatori, nella classifica per media punti, servono almeno 7 partite: sotto soglia restano visibili in fondo ma sono esclusi dalla posizione.
 
 ## Classifiche e tie breaker
 
@@ -105,7 +105,7 @@ Ordine:
 
 1. punti totali;
 2. vittorie totali;
-3. rendimento;
+3. media punti;
 4. nome.
 
 Gli scontri diretti non sono usati come tie breaker giocatori, perché nelle partite a squadre due giocatori possono essere compagni in un match e avversari in un altro.
@@ -118,7 +118,7 @@ Ordine:
 2. punti negli scontri diretti tra team a pari punti;
 3. vittorie negli scontri diretti tra team a pari punti;
 4. vittorie totali;
-5. rendimento;
+5. media punti;
 6. nome.
 
 La colonna `TB` è in fondo alle tabelle e riassume lo spareggio solo quando serve.
@@ -126,8 +126,8 @@ La colonna `TB` è in fondo alle tabelle e riassume lo spareggio solo quando ser
 Esempi:
 
 ```text
-V 2 · Rend 1.5
-SD 3 · V 1 · Rend 1.5
+V 2 · Media 1.5
+SD 3 · V 1 · Media 1.5
 ```
 
 `SD` indica i punti negli scontri diretti tra team a pari punti.
