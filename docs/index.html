@@ -51,15 +51,15 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica giocatori</h2>
-            <p class="small" id="players-sort-help">Ordine per punti assoluti. Tie breaker: punti, vittorie, rendimento, nome. I punti ottenuti in squadra contano anche per il giocatore.</p>
+            <p class="small" id="players-sort-help">Ordine per media punti. I giocatori con meno di 7 partite restano in classifica ma sono visualizzati opachi. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome.</p>
           </div>
           <div class="leaderboard-controls">
             <span class="pill subtle" id="players-count">-</span>
             <div class="compact-filter ranking-filter">
               <label for="player_metric">Ordina per</label>
               <select id="player_metric">
-                <option value="points" selected>Punti</option>
-                <option value="points_rate">Media punti</option>
+                <option value="points">Punti</option>
+                <option value="points_rate" selected>Media punti</option>
               </select>
             </div>
           </div>
@@ -72,15 +72,15 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica squadre</h2>
-            <p class="small" id="teams-sort-help">Ordine per punti assoluti. Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, rendimento, nome.</p>
+            <p class="small" id="teams-sort-help">Ordine per media punti. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome squadra.</p>
           </div>
           <div class="leaderboard-controls">
             <span class="pill subtle" id="teams-count">-</span>
             <div class="compact-filter ranking-filter">
               <label for="team_metric">Ordina per</label>
               <select id="team_metric">
-                <option value="points" selected>Punti</option>
-                <option value="points_rate">Media punti</option>
+                <option value="points">Punti</option>
+                <option value="points_rate" selected>Media punti</option>
               </select>
             </div>
           </div>
@@ -274,9 +274,11 @@
       const tbody = document.createElement('tbody');
       rows.forEach((rowData, rowIndex) => {
         const row = Array.isArray(rowData) ? rowData : (rowData.cells || []);
+        const rankValue = Array.isArray(rowData) || rowData.rank === undefined ? rowIndex + 1 : rowData.rank;
+        const rankNumber = Number(rankValue);
         const tr = document.createElement('tr');
         const rowClasses = [];
-        if (rowIndex < 3) rowClasses.push('podium-row', 'podium-' + (rowIndex + 1));
+        if (Number.isInteger(rankNumber) && rankNumber >= 1 && rankNumber <= 3) rowClasses.push('podium-row', 'podium-' + rankNumber);
         if (!Array.isArray(rowData) && rowData.className) rowClasses.push(rowData.className);
         tr.className = rowClasses.join(' ');
         if (!Array.isArray(rowData) && rowData.title) tr.title = rowData.title;
@@ -288,8 +290,8 @@
 
           if (index === 0) {
             const rank = document.createElement('span');
-            rank.className = 'rank-badge rank-' + (rowIndex + 1);
-            rank.textContent = rowIndex + 1;
+            rank.className = 'rank-badge ' + (rankValue ? 'rank-' + rankValue : 'rank-excluded');
+            rank.textContent = rankValue || '-';
             const name = document.createElement('span');
             name.className = 'leader-name';
             name.textContent = cell;
@@ -839,7 +841,7 @@
 
     function selectedRankingMetric(id) {
       const select = document.getElementById(id);
-      return select ? select.value : 'points';
+      return select ? select.value : 'points_rate';
     }
 
     function playerRowsForMetric(view, metric) {
@@ -860,16 +862,23 @@
       document.getElementById('players-count').textContent = rows.length + ' player · ' + suffix;
 
       if (metric === 'points_rate') {
-        if (help) help.textContent = 'Ordine per media punti. I giocatori con meno di ' + MIN_GAMES_FOR_RATE_RANKING + ' partite restano in classifica ma sono visualizzati opachi. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome.';
+        if (help) help.textContent = 'Ordine per media punti. I giocatori con almeno ' + MIN_GAMES_FOR_RATE_RANKING + ' partite entrano in classifica. Gli altri restano visibili in fondo, opachi e senza posizione.';
+        const eligibleRows = rows.filter(x => (x.games || 0) >= MIN_GAMES_FOR_RATE_RANKING);
+        const belowThresholdRows = rows.filter(x => (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING);
+        const displayRows = eligibleRows.concat(belowThresholdRows);
         table(
           document.getElementById('players'),
           ['Giocatore', 'Media punti', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
-          rows.map(x => ({
-            cells: [x.player, pointsValue(x.points_rate || 0), x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_rate || '-'],
-            className: (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING ? 'below-games-threshold' : '',
-            title: (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING ? 'Meno di ' + MIN_GAMES_FOR_RATE_RANKING + ' partite giocate' : '',
-            style: (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING ? 'opacity: 0.32; filter: grayscale(0.75);' : ''
-          }))
+          displayRows.map((x, index) => {
+            const belowThreshold = (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING;
+            return {
+              cells: [x.player, pointsValue(x.points_rate || 0), x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_rate || '-'],
+              rank: belowThreshold ? '' : index + 1,
+              className: belowThreshold ? 'below-games-threshold' : '',
+              title: belowThreshold ? 'Meno di ' + MIN_GAMES_FOR_RATE_RANKING + ' partite giocate: escluso dalla classifica media punti' : '',
+              style: belowThreshold ? 'opacity: 0.32; filter: grayscale(0.75);' : ''
+            };
+          })
         );
         return;
       }
