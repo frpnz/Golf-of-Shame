@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v9",
-  "generated_at": "2026-07-01T22:45:01.124406+00:00",
+  "generated_at": "2026-07-05T15:00:06.220765+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -43,7 +43,7 @@
   "views": {
     "all": {
       "counts": {
-        "matches": 15,
+        "matches": 17,
         "players": 7,
         "teams": 3
       },
@@ -69,13 +69,13 @@
       },
       "by_player": [
         {
-          "player": "Lele",
-          "games": 12,
+          "player": "Fra",
+          "games": 13,
           "wins": 5,
-          "draws": 1,
-          "losses": 6,
-          "points": 16,
-          "points_rate": 1.3333,
+          "draws": 4,
+          "losses": 4,
+          "points": 19,
+          "points_rate": 1.4615,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -83,13 +83,13 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Fra",
-          "games": 11,
-          "wins": 4,
-          "draws": 3,
-          "losses": 4,
-          "points": 15,
-          "points_rate": 1.3636,
+          "player": "Lele",
+          "games": 13,
+          "wins": 5,
+          "draws": 2,
+          "losses": 6,
+          "points": 17,
+          "points_rate": 1.3077,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -98,12 +98,12 @@
         },
         {
           "player": "Patrick",
-          "games": 9,
+          "games": 10,
           "wins": 2,
-          "draws": 2,
+          "draws": 3,
           "losses": 5,
-          "points": 8,
-          "points_rate": 0.8889,
+          "points": 9,
+          "points_rate": 0.9,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -112,12 +112,12 @@
         },
         {
           "player": "Ale M",
-          "games": 3,
+          "games": 4,
           "wins": 1,
           "draws": 2,
-          "losses": 0,
+          "losses": 1,
           "points": 5,
-          "points_rate": 1.6667,
+          "points_rate": 1.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -232,8 +232,8 @@
       "rankings": {
         "players": {
           "points": [
-            "Lele",
             "Fra",
+            "Lele",
             "Patrick",
             "Ale M",
             "Ale P",
@@ -242,9 +242,9 @@
           ],
           "points_rate": [
             "Ale P",
-            "Ale M",
             "Fra",
             "Lele",
+            "Ale M",
             "Alberto",
             "Patrick",
             "Aloi"
@@ -279,27 +279,13 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Ale M",
-          "games": 3,
-          "wins": 1,
-          "draws": 2,
-          "losses": 0,
-          "points": 5,
-          "points_rate": 1.6667,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
-        },
-        {
           "player": "Fra",
-          "games": 11,
-          "wins": 4,
-          "draws": 3,
+          "games": 13,
+          "wins": 5,
+          "draws": 4,
           "losses": 4,
-          "points": 15,
-          "points_rate": 1.3636,
+          "points": 19,
+          "points_rate": 1.4615,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -308,12 +294,26 @@
         },
         {
           "player": "Lele",
-          "games": 12,
+          "games": 13,
           "wins": 5,
-          "draws": 1,
+          "draws": 2,
           "losses": 6,
-          "points": 16,
-          "points_rate": 1.3333,
+          "points": 17,
+          "points_rate": 1.3077,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Ale M",
+          "games": 4,
+          "wins": 1,
+          "draws": 2,
+          "losses": 1,
+          "points": 5,
+          "points_rate": 1.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -336,12 +336,12 @@
         },
         {
           "player": "Patrick",
-          "games": 9,
+          "games": 10,
           "wins": 2,
-          "draws": 2,
+          "draws": 3,
           "losses": 5,
-          "points": 8,
-          "points_rate": 0.8889,
+          "points": 9,
+          "points_rate": 0.9,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -443,20 +443,20 @@
           "delta": 2.0
         },
         {
-          "player": "Ale M",
-          "solo_games": 2,
-          "solo_wins": 1,
-          "solo_draws": 1,
-          "solo_losses": 0,
-          "solo_points": 4,
-          "team_games": 1,
+          "player": "Fra",
+          "solo_games": 10,
+          "solo_wins": 5,
+          "solo_draws": 2,
+          "solo_losses": 3,
+          "solo_points": 17,
+          "team_games": 3,
           "team_wins": 0,
-          "team_draws": 1,
-          "team_losses": 0,
-          "team_points": 1,
-          "solo_points_rate": 2.0,
-          "team_points_rate": 1.0,
-          "delta": -1.0
+          "team_draws": 2,
+          "team_losses": 1,
+          "team_points": 2,
+          "solo_points_rate": 1.7,
+          "team_points_rate": 0.6667,
+          "delta": -1.0333
         },
         {
           "player": "Alberto",
@@ -475,44 +475,28 @@
           "delta": 1.0
         },
         {
-          "player": "Fra",
-          "solo_games": 8,
+          "player": "Lele",
+          "solo_games": 11,
           "solo_wins": 4,
           "solo_draws": 1,
-          "solo_losses": 3,
-          "solo_points": 13,
-          "team_games": 3,
-          "team_wins": 0,
-          "team_draws": 2,
-          "team_losses": 1,
-          "team_points": 2,
-          "solo_points_rate": 1.625,
-          "team_points_rate": 0.6667,
-          "delta": -0.9583
-        },
-        {
-          "player": "Lele",
-          "solo_games": 10,
-          "solo_wins": 4,
-          "solo_draws": 0,
           "solo_losses": 6,
-          "solo_points": 12,
+          "solo_points": 13,
           "team_games": 2,
           "team_wins": 1,
           "team_draws": 1,
           "team_losses": 0,
           "team_points": 4,
-          "solo_points_rate": 1.2,
+          "solo_points_rate": 1.1818,
           "team_points_rate": 2.0,
-          "delta": 0.8
+          "delta": 0.8182
         },
         {
           "player": "Patrick",
-          "solo_games": 6,
+          "solo_games": 7,
           "solo_wins": 2,
-          "solo_draws": 0,
+          "solo_draws": 1,
           "solo_losses": 4,
-          "solo_points": 6,
+          "solo_points": 7,
           "team_games": 3,
           "team_wins": 0,
           "team_draws": 2,
@@ -520,6 +504,22 @@
           "team_points": 2,
           "solo_points_rate": 1.0,
           "team_points_rate": 0.6667,
+          "delta": -0.3333
+        },
+        {
+          "player": "Ale M",
+          "solo_games": 3,
+          "solo_wins": 1,
+          "solo_draws": 1,
+          "solo_losses": 1,
+          "solo_points": 4,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 1,
+          "solo_points_rate": 1.3333,
+          "team_points_rate": 1.0,
           "delta": -0.3333
         },
         {
@@ -542,8 +542,8 @@
       "head_to_head": {
         "players": {
           "labels": [
-            "Lele",
             "Fra",
+            "Lele",
             "Patrick",
             "Ale M",
             "Ale P",
@@ -554,12 +554,12 @@
             "Alberto": {},
             "Ale M": {
               "Fra": {
-                "games": 1,
+                "games": 2,
                 "wins": 0,
                 "draws": 1,
-                "losses": 0,
+                "losses": 1,
                 "points_for": 1,
-                "points_against": 1
+                "points_against": 4
               },
               "Lele": {
                 "games": 1,
@@ -574,11 +574,11 @@
             "Aloi": {},
             "Fra": {
               "Ale M": {
-                "games": 1,
-                "wins": 0,
+                "games": 2,
+                "wins": 1,
                 "draws": 1,
                 "losses": 0,
-                "points_for": 1,
+                "points_for": 4,
                 "points_against": 1
               },
               "Lele": {
@@ -693,6 +693,69 @@
         }
       },
       "matches": [
+        {
+          "id": 19,
+          "played_at": "2026-07-05T16:44:00",
+          "course": null,
+          "holes": 12,
+          "notes": null,
+          "import_key": "match-mr7wn651-1c1mvaj4",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": true,
+          "sides": [
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Lele",
+              "is_winner": true,
+              "players": [
+                "Lele"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "played_at": "2026-07-03T16:44:00",
+          "course": null,
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-mr7wlwxg-e2shjmks",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Ale M",
+              "is_winner": false,
+              "players": [
+                "Ale M"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            }
+          ]
+        },
         {
           "id": 18,
           "played_at": "2026-07-01T16:01:00",
@@ -1137,16 +1200,16 @@
         "key": "all",
         "label": "Tutte le partite",
         "group": "Generale",
-        "matches": 15,
+        "matches": 17,
         "player_champion": {
           "kind": "player",
           "name": "Fra",
-          "points": 15,
-          "games": 11,
-          "wins": 4,
-          "draws": 3,
+          "points": 19,
+          "games": 13,
+          "wins": 5,
+          "draws": 4,
           "losses": 4,
-          "points_rate": 1.3636
+          "points_rate": 1.4615
         },
         "team_champion": {
           "kind": "team",
@@ -1161,12 +1224,12 @@
         "player_points_rate_champion": {
           "kind": "player",
           "name": "Fra",
-          "points": 15,
-          "games": 11,
-          "wins": 4,
-          "draws": 3,
+          "points": 19,
+          "games": 13,
+          "wins": 5,
+          "draws": 4,
           "losses": 4,
-          "points_rate": 1.3636
+          "points_rate": 1.4615
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -2148,7 +2211,7 @@
     },
     "year:2026": {
       "counts": {
-        "matches": 15,
+        "matches": 17,
         "players": 7,
         "teams": 3
       },
@@ -2174,13 +2237,13 @@
       },
       "by_player": [
         {
-          "player": "Lele",
-          "games": 12,
+          "player": "Fra",
+          "games": 13,
           "wins": 5,
-          "draws": 1,
-          "losses": 6,
-          "points": 16,
-          "points_rate": 1.3333,
+          "draws": 4,
+          "losses": 4,
+          "points": 19,
+          "points_rate": 1.4615,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2188,13 +2251,13 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Fra",
-          "games": 11,
-          "wins": 4,
-          "draws": 3,
-          "losses": 4,
-          "points": 15,
-          "points_rate": 1.3636,
+          "player": "Lele",
+          "games": 13,
+          "wins": 5,
+          "draws": 2,
+          "losses": 6,
+          "points": 17,
+          "points_rate": 1.3077,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2203,12 +2266,12 @@
         },
         {
           "player": "Patrick",
-          "games": 9,
+          "games": 10,
           "wins": 2,
-          "draws": 2,
+          "draws": 3,
           "losses": 5,
-          "points": 8,
-          "points_rate": 0.8889,
+          "points": 9,
+          "points_rate": 0.9,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2217,12 +2280,12 @@
         },
         {
           "player": "Ale M",
-          "games": 3,
+          "games": 4,
           "wins": 1,
           "draws": 2,
-          "losses": 0,
+          "losses": 1,
           "points": 5,
-          "points_rate": 1.6667,
+          "points_rate": 1.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2337,8 +2400,8 @@
       "rankings": {
         "players": {
           "points": [
-            "Lele",
             "Fra",
+            "Lele",
             "Patrick",
             "Ale M",
             "Ale P",
@@ -2347,9 +2410,9 @@
           ],
           "points_rate": [
             "Ale P",
-            "Ale M",
             "Fra",
             "Lele",
+            "Ale M",
             "Alberto",
             "Patrick",
             "Aloi"
@@ -2384,27 +2447,13 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Ale M",
-          "games": 3,
-          "wins": 1,
-          "draws": 2,
-          "losses": 0,
-          "points": 5,
-          "points_rate": 1.6667,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
-        },
-        {
           "player": "Fra",
-          "games": 11,
-          "wins": 4,
-          "draws": 3,
+          "games": 13,
+          "wins": 5,
+          "draws": 4,
           "losses": 4,
-          "points": 15,
-          "points_rate": 1.3636,
+          "points": 19,
+          "points_rate": 1.4615,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2413,12 +2462,26 @@
         },
         {
           "player": "Lele",
-          "games": 12,
+          "games": 13,
           "wins": 5,
-          "draws": 1,
+          "draws": 2,
           "losses": 6,
-          "points": 16,
-          "points_rate": 1.3333,
+          "points": 17,
+          "points_rate": 1.3077,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Ale M",
+          "games": 4,
+          "wins": 1,
+          "draws": 2,
+          "losses": 1,
+          "points": 5,
+          "points_rate": 1.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2441,12 +2504,12 @@
         },
         {
           "player": "Patrick",
-          "games": 9,
+          "games": 10,
           "wins": 2,
-          "draws": 2,
+          "draws": 3,
           "losses": 5,
-          "points": 8,
-          "points_rate": 0.8889,
+          "points": 9,
+          "points_rate": 0.9,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2548,20 +2611,20 @@
           "delta": 2.0
         },
         {
-          "player": "Ale M",
-          "solo_games": 2,
-          "solo_wins": 1,
-          "solo_draws": 1,
-          "solo_losses": 0,
-          "solo_points": 4,
-          "team_games": 1,
+          "player": "Fra",
+          "solo_games": 10,
+          "solo_wins": 5,
+          "solo_draws": 2,
+          "solo_losses": 3,
+          "solo_points": 17,
+          "team_games": 3,
           "team_wins": 0,
-          "team_draws": 1,
-          "team_losses": 0,
-          "team_points": 1,
-          "solo_points_rate": 2.0,
-          "team_points_rate": 1.0,
-          "delta": -1.0
+          "team_draws": 2,
+          "team_losses": 1,
+          "team_points": 2,
+          "solo_points_rate": 1.7,
+          "team_points_rate": 0.6667,
+          "delta": -1.0333
         },
         {
           "player": "Alberto",
@@ -2580,44 +2643,28 @@
           "delta": 1.0
         },
         {
-          "player": "Fra",
-          "solo_games": 8,
+          "player": "Lele",
+          "solo_games": 11,
           "solo_wins": 4,
           "solo_draws": 1,
-          "solo_losses": 3,
-          "solo_points": 13,
-          "team_games": 3,
-          "team_wins": 0,
-          "team_draws": 2,
-          "team_losses": 1,
-          "team_points": 2,
-          "solo_points_rate": 1.625,
-          "team_points_rate": 0.6667,
-          "delta": -0.9583
-        },
-        {
-          "player": "Lele",
-          "solo_games": 10,
-          "solo_wins": 4,
-          "solo_draws": 0,
           "solo_losses": 6,
-          "solo_points": 12,
+          "solo_points": 13,
           "team_games": 2,
           "team_wins": 1,
           "team_draws": 1,
           "team_losses": 0,
           "team_points": 4,
-          "solo_points_rate": 1.2,
+          "solo_points_rate": 1.1818,
           "team_points_rate": 2.0,
-          "delta": 0.8
+          "delta": 0.8182
         },
         {
           "player": "Patrick",
-          "solo_games": 6,
+          "solo_games": 7,
           "solo_wins": 2,
-          "solo_draws": 0,
+          "solo_draws": 1,
           "solo_losses": 4,
-          "solo_points": 6,
+          "solo_points": 7,
           "team_games": 3,
           "team_wins": 0,
           "team_draws": 2,
@@ -2625,6 +2672,22 @@
           "team_points": 2,
           "solo_points_rate": 1.0,
           "team_points_rate": 0.6667,
+          "delta": -0.3333
+        },
+        {
+          "player": "Ale M",
+          "solo_games": 3,
+          "solo_wins": 1,
+          "solo_draws": 1,
+          "solo_losses": 1,
+          "solo_points": 4,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 1,
+          "team_losses": 0,
+          "team_points": 1,
+          "solo_points_rate": 1.3333,
+          "team_points_rate": 1.0,
           "delta": -0.3333
         },
         {
@@ -2647,8 +2710,8 @@
       "head_to_head": {
         "players": {
           "labels": [
-            "Lele",
             "Fra",
+            "Lele",
             "Patrick",
             "Ale M",
             "Ale P",
@@ -2659,12 +2722,12 @@
             "Alberto": {},
             "Ale M": {
               "Fra": {
-                "games": 1,
+                "games": 2,
                 "wins": 0,
                 "draws": 1,
-                "losses": 0,
+                "losses": 1,
                 "points_for": 1,
-                "points_against": 1
+                "points_against": 4
               },
               "Lele": {
                 "games": 1,
@@ -2679,11 +2742,11 @@
             "Aloi": {},
             "Fra": {
               "Ale M": {
-                "games": 1,
-                "wins": 0,
+                "games": 2,
+                "wins": 1,
                 "draws": 1,
                 "losses": 0,
-                "points_for": 1,
+                "points_for": 4,
                 "points_against": 1
               },
               "Lele": {
@@ -2798,6 +2861,69 @@
         }
       },
       "matches": [
+        {
+          "id": 19,
+          "played_at": "2026-07-05T16:44:00",
+          "course": null,
+          "holes": 12,
+          "notes": null,
+          "import_key": "match-mr7wn651-1c1mvaj4",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": true,
+          "sides": [
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Lele",
+              "is_winner": true,
+              "players": [
+                "Lele"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "played_at": "2026-07-03T16:44:00",
+          "course": null,
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-mr7wlwxg-e2shjmks",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Ale M",
+              "is_winner": false,
+              "players": [
+                "Ale M"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            }
+          ]
+        },
         {
           "id": 18,
           "played_at": "2026-07-01T16:01:00",
@@ -3242,16 +3368,16 @@
         "key": "year:2026",
         "label": "2026",
         "group": "Stagioni",
-        "matches": 15,
+        "matches": 17,
         "player_champion": {
           "kind": "player",
           "name": "Fra",
-          "points": 15,
-          "games": 11,
-          "wins": 4,
-          "draws": 3,
+          "points": 19,
+          "games": 13,
+          "wins": 5,
+          "draws": 4,
           "losses": 4,
-          "points_rate": 1.3636
+          "points_rate": 1.4615
         },
         "team_champion": {
           "kind": "team",
@@ -3266,12 +3392,12 @@
         "player_points_rate_champion": {
           "kind": "player",
           "name": "Fra",
-          "points": 15,
-          "games": 11,
-          "wins": 4,
-          "draws": 3,
+          "points": 19,
+          "games": 13,
+          "wins": 5,
+          "draws": 4,
           "losses": 4,
-          "points_rate": 1.3636
+          "points_rate": 1.4615
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -3287,15 +3413,16 @@
     },
     "tag:Coppa Estate 2026": {
       "counts": {
-        "matches": 5,
-        "players": 3,
+        "matches": 7,
+        "players": 4,
         "teams": 0
       },
       "filters": {
         "players": [
           "Ale M",
           "Fra",
-          "Lele"
+          "Lele",
+          "Patrick"
         ],
         "courses": [
           "Golf Sestrieres"
@@ -3304,11 +3431,11 @@
       "by_player": [
         {
           "player": "Fra",
-          "games": 5,
-          "wins": 3,
-          "draws": 1,
+          "games": 7,
+          "wins": 4,
+          "draws": 2,
           "losses": 1,
-          "points": 10,
+          "points": 14,
           "points_rate": 2.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
@@ -3318,12 +3445,12 @@
         },
         {
           "player": "Lele",
-          "games": 4,
+          "games": 5,
           "wins": 1,
-          "draws": 0,
+          "draws": 1,
           "losses": 3,
-          "points": 3,
-          "points_rate": 0.75,
+          "points": 4,
+          "points_rate": 0.8,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -3331,7 +3458,7 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Ale M",
+          "player": "Patrick",
           "games": 1,
           "wins": 0,
           "draws": 1,
@@ -3340,8 +3467,22 @@
           "points_rate": 1.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
+          "tie_breaker": "V 0 · Media 1",
+          "tie_breaker_points": "V 0 · Media 1",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Ale M",
+          "games": 2,
+          "wins": 0,
+          "draws": 1,
+          "losses": 1,
+          "points": 1,
+          "points_rate": 0.5,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 0 · Media 0.5",
+          "tie_breaker_points": "V 0 · Media 0.5",
           "tie_breaker_rate": "-"
         }
       ],
@@ -3351,12 +3492,14 @@
           "points": [
             "Fra",
             "Lele",
+            "Patrick",
             "Ale M"
           ],
           "points_rate": [
             "Fra",
-            "Ale M",
-            "Lele"
+            "Patrick",
+            "Lele",
+            "Ale M"
           ]
         },
         "teams": {
@@ -3367,11 +3510,11 @@
       "by_player_points_rate": [
         {
           "player": "Fra",
-          "games": 5,
-          "wins": 3,
-          "draws": 1,
+          "games": 7,
+          "wins": 4,
+          "draws": 2,
           "losses": 1,
-          "points": 10,
+          "points": 14,
           "points_rate": 2.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
@@ -3380,7 +3523,7 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Ale M",
+          "player": "Patrick",
           "games": 1,
           "wins": 0,
           "draws": 1,
@@ -3389,22 +3532,36 @@
           "points_rate": 1.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
+          "tie_breaker": "V 0 · Media 1",
+          "tie_breaker_points": "V 0 · Media 1",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Lele",
+          "games": 5,
+          "wins": 1,
+          "draws": 1,
+          "losses": 3,
+          "points": 4,
+          "points_rate": 0.8,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Lele",
-          "games": 4,
-          "wins": 1,
-          "draws": 0,
-          "losses": 3,
-          "points": 3,
-          "points_rate": 0.75,
+          "player": "Ale M",
+          "games": 2,
+          "wins": 0,
+          "draws": 1,
+          "losses": 1,
+          "points": 1,
+          "points_rate": 0.5,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
+          "tie_breaker": "V 0 · Media 0.5",
+          "tie_breaker_points": "V 0 · Media 0.5",
           "tie_breaker_rate": "-"
         }
       ],
@@ -3412,11 +3569,11 @@
       "solo_vs_team": [
         {
           "player": "Fra",
-          "solo_games": 5,
-          "solo_wins": 3,
-          "solo_draws": 1,
+          "solo_games": 7,
+          "solo_wins": 4,
+          "solo_draws": 2,
           "solo_losses": 1,
-          "solo_points": 10,
+          "solo_points": 14,
           "team_games": 0,
           "team_wins": 0,
           "team_draws": 0,
@@ -3427,7 +3584,7 @@
           "delta": -2.0
         },
         {
-          "player": "Ale M",
+          "player": "Patrick",
           "solo_games": 1,
           "solo_wins": 0,
           "solo_draws": 1,
@@ -3444,19 +3601,35 @@
         },
         {
           "player": "Lele",
-          "solo_games": 4,
+          "solo_games": 5,
           "solo_wins": 1,
-          "solo_draws": 0,
+          "solo_draws": 1,
           "solo_losses": 3,
-          "solo_points": 3,
+          "solo_points": 4,
           "team_games": 0,
           "team_wins": 0,
           "team_draws": 0,
           "team_losses": 0,
           "team_points": 0,
-          "solo_points_rate": 0.75,
+          "solo_points_rate": 0.8,
           "team_points_rate": null,
-          "delta": -0.75
+          "delta": -0.8
+        },
+        {
+          "player": "Ale M",
+          "solo_games": 2,
+          "solo_wins": 0,
+          "solo_draws": 1,
+          "solo_losses": 1,
+          "solo_points": 1,
+          "team_games": 0,
+          "team_wins": 0,
+          "team_draws": 0,
+          "team_losses": 0,
+          "team_points": 0,
+          "solo_points_rate": 0.5,
+          "team_points_rate": null,
+          "delta": -0.5
         }
       ],
       "head_to_head": {
@@ -3464,26 +3637,27 @@
           "labels": [
             "Fra",
             "Lele",
+            "Patrick",
             "Ale M"
           ],
           "matrix": {
             "Ale M": {
               "Fra": {
-                "games": 1,
+                "games": 2,
                 "wins": 0,
                 "draws": 1,
-                "losses": 0,
+                "losses": 1,
                 "points_for": 1,
-                "points_against": 1
+                "points_against": 4
               }
             },
             "Fra": {
               "Ale M": {
-                "games": 1,
-                "wins": 0,
+                "games": 2,
+                "wins": 1,
                 "draws": 1,
                 "losses": 0,
-                "points_for": 1,
+                "points_for": 4,
                 "points_against": 1
               },
               "Lele": {
@@ -3504,7 +3678,8 @@
                 "points_for": 3,
                 "points_against": 9
               }
-            }
+            },
+            "Patrick": {}
           }
         },
         "teams": {
@@ -3513,6 +3688,69 @@
         }
       },
       "matches": [
+        {
+          "id": 19,
+          "played_at": "2026-07-05T16:44:00",
+          "course": null,
+          "holes": 12,
+          "notes": null,
+          "import_key": "match-mr7wn651-1c1mvaj4",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": true,
+          "sides": [
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Lele",
+              "is_winner": true,
+              "players": [
+                "Lele"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "played_at": "2026-07-03T16:44:00",
+          "course": null,
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-mr7wlwxg-e2shjmks",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Ale M",
+              "is_winner": false,
+              "players": [
+                "Ale M"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            }
+          ]
+        },
         {
           "id": 18,
           "played_at": "2026-07-01T16:01:00",
@@ -3663,16 +3901,34 @@
         "key": "tag:Coppa Estate 2026",
         "label": "Coppa Estate 2026",
         "group": "Competizioni / tag",
-        "matches": 5,
-        "player_champion": null,
+        "matches": 7,
+        "player_champion": {
+          "kind": "player",
+          "name": "Fra",
+          "points": 14,
+          "games": 7,
+          "wins": 4,
+          "draws": 2,
+          "losses": 1,
+          "points_rate": 2.0
+        },
         "team_champion": null,
-        "player_points_rate_champion": null,
+        "player_points_rate_champion": {
+          "kind": "player",
+          "name": "Fra",
+          "points": 14,
+          "games": 7,
+          "wins": 4,
+          "draws": 2,
+          "losses": 1,
+          "points_rate": 2.0
+        },
         "team_points_rate_champion": null
       }
     }
   },
   "counts": {
-    "matches": 15,
+    "matches": 17,
     "players": 7,
     "teams": 3
   },
@@ -3698,13 +3954,13 @@
   },
   "by_player": [
     {
-      "player": "Lele",
-      "games": 12,
+      "player": "Fra",
+      "games": 13,
       "wins": 5,
-      "draws": 1,
-      "losses": 6,
-      "points": 16,
-      "points_rate": 1.3333,
+      "draws": 4,
+      "losses": 4,
+      "points": 19,
+      "points_rate": 1.4615,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -3712,13 +3968,13 @@
       "tie_breaker_rate": "-"
     },
     {
-      "player": "Fra",
-      "games": 11,
-      "wins": 4,
-      "draws": 3,
-      "losses": 4,
-      "points": 15,
-      "points_rate": 1.3636,
+      "player": "Lele",
+      "games": 13,
+      "wins": 5,
+      "draws": 2,
+      "losses": 6,
+      "points": 17,
+      "points_rate": 1.3077,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -3727,12 +3983,12 @@
     },
     {
       "player": "Patrick",
-      "games": 9,
+      "games": 10,
       "wins": 2,
-      "draws": 2,
+      "draws": 3,
       "losses": 5,
-      "points": 8,
-      "points_rate": 0.8889,
+      "points": 9,
+      "points_rate": 0.9,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -3741,12 +3997,12 @@
     },
     {
       "player": "Ale M",
-      "games": 3,
+      "games": 4,
       "wins": 1,
       "draws": 2,
-      "losses": 0,
+      "losses": 1,
       "points": 5,
-      "points_rate": 1.6667,
+      "points_rate": 1.25,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -3861,8 +4117,8 @@
   "rankings": {
     "players": {
       "points": [
-        "Lele",
         "Fra",
+        "Lele",
         "Patrick",
         "Ale M",
         "Ale P",
@@ -3871,9 +4127,9 @@
       ],
       "points_rate": [
         "Ale P",
-        "Ale M",
         "Fra",
         "Lele",
+        "Ale M",
         "Alberto",
         "Patrick",
         "Aloi"
@@ -3908,27 +4164,13 @@
       "tie_breaker_rate": "-"
     },
     {
-      "player": "Ale M",
-      "games": 3,
-      "wins": 1,
-      "draws": 2,
-      "losses": 0,
-      "points": 5,
-      "points_rate": 1.6667,
-      "tie_direct_points": 0,
-      "tie_direct_wins": 0,
-      "tie_breaker": "-",
-      "tie_breaker_points": "-",
-      "tie_breaker_rate": "-"
-    },
-    {
       "player": "Fra",
-      "games": 11,
-      "wins": 4,
-      "draws": 3,
+      "games": 13,
+      "wins": 5,
+      "draws": 4,
       "losses": 4,
-      "points": 15,
-      "points_rate": 1.3636,
+      "points": 19,
+      "points_rate": 1.4615,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -3937,12 +4179,26 @@
     },
     {
       "player": "Lele",
-      "games": 12,
+      "games": 13,
       "wins": 5,
-      "draws": 1,
+      "draws": 2,
       "losses": 6,
-      "points": 16,
-      "points_rate": 1.3333,
+      "points": 17,
+      "points_rate": 1.3077,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-",
+      "tie_breaker_points": "-",
+      "tie_breaker_rate": "-"
+    },
+    {
+      "player": "Ale M",
+      "games": 4,
+      "wins": 1,
+      "draws": 2,
+      "losses": 1,
+      "points": 5,
+      "points_rate": 1.25,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -3965,12 +4221,12 @@
     },
     {
       "player": "Patrick",
-      "games": 9,
+      "games": 10,
       "wins": 2,
-      "draws": 2,
+      "draws": 3,
       "losses": 5,
-      "points": 8,
-      "points_rate": 0.8889,
+      "points": 9,
+      "points_rate": 0.9,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -4072,20 +4328,20 @@
       "delta": 2.0
     },
     {
-      "player": "Ale M",
-      "solo_games": 2,
-      "solo_wins": 1,
-      "solo_draws": 1,
-      "solo_losses": 0,
-      "solo_points": 4,
-      "team_games": 1,
+      "player": "Fra",
+      "solo_games": 10,
+      "solo_wins": 5,
+      "solo_draws": 2,
+      "solo_losses": 3,
+      "solo_points": 17,
+      "team_games": 3,
       "team_wins": 0,
-      "team_draws": 1,
-      "team_losses": 0,
-      "team_points": 1,
-      "solo_points_rate": 2.0,
-      "team_points_rate": 1.0,
-      "delta": -1.0
+      "team_draws": 2,
+      "team_losses": 1,
+      "team_points": 2,
+      "solo_points_rate": 1.7,
+      "team_points_rate": 0.6667,
+      "delta": -1.0333
     },
     {
       "player": "Alberto",
@@ -4104,44 +4360,28 @@
       "delta": 1.0
     },
     {
-      "player": "Fra",
-      "solo_games": 8,
+      "player": "Lele",
+      "solo_games": 11,
       "solo_wins": 4,
       "solo_draws": 1,
-      "solo_losses": 3,
-      "solo_points": 13,
-      "team_games": 3,
-      "team_wins": 0,
-      "team_draws": 2,
-      "team_losses": 1,
-      "team_points": 2,
-      "solo_points_rate": 1.625,
-      "team_points_rate": 0.6667,
-      "delta": -0.9583
-    },
-    {
-      "player": "Lele",
-      "solo_games": 10,
-      "solo_wins": 4,
-      "solo_draws": 0,
       "solo_losses": 6,
-      "solo_points": 12,
+      "solo_points": 13,
       "team_games": 2,
       "team_wins": 1,
       "team_draws": 1,
       "team_losses": 0,
       "team_points": 4,
-      "solo_points_rate": 1.2,
+      "solo_points_rate": 1.1818,
       "team_points_rate": 2.0,
-      "delta": 0.8
+      "delta": 0.8182
     },
     {
       "player": "Patrick",
-      "solo_games": 6,
+      "solo_games": 7,
       "solo_wins": 2,
-      "solo_draws": 0,
+      "solo_draws": 1,
       "solo_losses": 4,
-      "solo_points": 6,
+      "solo_points": 7,
       "team_games": 3,
       "team_wins": 0,
       "team_draws": 2,
@@ -4149,6 +4389,22 @@
       "team_points": 2,
       "solo_points_rate": 1.0,
       "team_points_rate": 0.6667,
+      "delta": -0.3333
+    },
+    {
+      "player": "Ale M",
+      "solo_games": 3,
+      "solo_wins": 1,
+      "solo_draws": 1,
+      "solo_losses": 1,
+      "solo_points": 4,
+      "team_games": 1,
+      "team_wins": 0,
+      "team_draws": 1,
+      "team_losses": 0,
+      "team_points": 1,
+      "solo_points_rate": 1.3333,
+      "team_points_rate": 1.0,
       "delta": -0.3333
     },
     {
@@ -4171,8 +4427,8 @@
   "head_to_head": {
     "players": {
       "labels": [
-        "Lele",
         "Fra",
+        "Lele",
         "Patrick",
         "Ale M",
         "Ale P",
@@ -4183,12 +4439,12 @@
         "Alberto": {},
         "Ale M": {
           "Fra": {
-            "games": 1,
+            "games": 2,
             "wins": 0,
             "draws": 1,
-            "losses": 0,
+            "losses": 1,
             "points_for": 1,
-            "points_against": 1
+            "points_against": 4
           },
           "Lele": {
             "games": 1,
@@ -4203,11 +4459,11 @@
         "Aloi": {},
         "Fra": {
           "Ale M": {
-            "games": 1,
-            "wins": 0,
+            "games": 2,
+            "wins": 1,
             "draws": 1,
             "losses": 0,
-            "points_for": 1,
+            "points_for": 4,
             "points_against": 1
           },
           "Lele": {
@@ -4322,6 +4578,69 @@
     }
   },
   "matches": [
+    {
+      "id": 19,
+      "played_at": "2026-07-05T16:44:00",
+      "course": null,
+      "holes": 12,
+      "notes": null,
+      "import_key": "match-mr7wn651-1c1mvaj4",
+      "tags": [
+        "Coppa Estate 2026"
+      ],
+      "is_draw": true,
+      "sides": [
+        {
+          "team_name": "Fra",
+          "is_winner": true,
+          "players": [
+            "Fra"
+          ]
+        },
+        {
+          "team_name": "Patrick",
+          "is_winner": true,
+          "players": [
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Lele",
+          "is_winner": true,
+          "players": [
+            "Lele"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "played_at": "2026-07-03T16:44:00",
+      "course": null,
+      "holes": 18,
+      "notes": null,
+      "import_key": "match-mr7wlwxg-e2shjmks",
+      "tags": [
+        "Coppa Estate 2026"
+      ],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Ale M",
+          "is_winner": false,
+          "players": [
+            "Ale M"
+          ]
+        },
+        {
+          "team_name": "Fra",
+          "is_winner": true,
+          "players": [
+            "Fra"
+          ]
+        }
+      ]
+    },
     {
       "id": 18,
       "played_at": "2026-07-01T16:01:00",
@@ -4766,16 +5085,16 @@
     "key": "all",
     "label": "Tutte le partite",
     "group": "Generale",
-    "matches": 15,
+    "matches": 17,
     "player_champion": {
       "kind": "player",
       "name": "Fra",
-      "points": 15,
-      "games": 11,
-      "wins": 4,
-      "draws": 3,
+      "points": 19,
+      "games": 13,
+      "wins": 5,
+      "draws": 4,
       "losses": 4,
-      "points_rate": 1.3636
+      "points_rate": 1.4615
     },
     "team_champion": {
       "kind": "team",
@@ -4790,12 +5109,12 @@
     "player_points_rate_champion": {
       "kind": "player",
       "name": "Fra",
-      "points": 15,
-      "games": 11,
-      "wins": 4,
-      "draws": 3,
+      "points": 19,
+      "games": 13,
+      "wins": 5,
+      "draws": 4,
       "losses": 4,
-      "points_rate": 1.3636
+      "points_rate": 1.4615
     },
     "team_points_rate_champion": {
       "kind": "team",
