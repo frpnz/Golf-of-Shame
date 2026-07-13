@@ -9,7 +9,7 @@ from typing import Dict, List
 
 from common import connect, ensure_schema, fetch_matches
 
-MIN_GAMES_FOR_RATE_RANKING = 7
+MIN_GAMES_FOR_RATE_RANKING = 5
 
 MATCH_SCHEMA = {
     "$schema": "https://json-schema.org/draft/2020-12/schema",

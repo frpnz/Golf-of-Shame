@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modifica partita · Golf Match Tracker</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="../">Dashboard</a>
+      <a href="../new-match/">Nuova partita</a>
+      <a href="./" class="active">Modifica partita</a>
+    </nav>
+
+    <div class="card">
+      <h1>Modifica partita</h1>
+      <p class="small">Carica una partita da <code>stats.json</code>, modifica tag, vincitori, side o partecipanti, poi scarica il JSON aggiornato. Per applicarlo al database usa lo script <code>backend/update_match.py</code>.</p>
+      <p class="small" id="load_status">Caricamento dati...</p>
+    </div>
+
+    <div class="card" id="match_picker_card" hidden>
+      <label for="match_picker">Partita da modificare</label>
+      <select id="match_picker"></select>
+      <p class="small">Puoi arrivare qui anche dal bottone <strong>Modifica match</strong> nello storico della dashboard.</p>
+    </div>
+
+    <div class="card" id="editor_card" hidden>
+      <div class="grid two-cols">
+        <div>
+          <label for="played_at">Data e ora</label>
+          <input id="played_at" type="datetime-local">
+        </div>
+        <div>
+          <label for="course">Campo</label>
+          <input id="course" type="text" placeholder="Golf Sestrieres">
+        </div>
+      </div>
+
+      <div class="grid two-cols">
+        <div>
+          <label for="holes">Buche</label>
+          <input id="holes" type="number" min="1" step="1">
+        </div>
+        <div>
+          <label for="notes">Note</label>
+          <input id="notes" type="text" placeholder="Note partita">
+        </div>
+      </div>
+
+      <div>
+        <label for="tags">Tag / competizioni</label>
+        <input id="tags" type="text" placeholder="Coppa Estate 2026, 9 buche">
+        <p class="small">Separali con virgole. Puoi aggiungere, rimuovere o rinominare tag.</p>
+      </div>
+
+      <div>
+        <label>Import key</label>
+        <pre id="import_key_box" class="delete-command"></pre>
+      </div>
+    </div>
+
+    <div class="card" id="sides_card" hidden>
+      <div class="section-head">
+        <div>
+          <h2>Side, partecipanti e vincitori</h2>
+          <p class="small">Ogni side deve avere almeno un player. Metti la spunta ai side a punti: uno solo = vittoria da 3 punti, piu side = pareggio da 1 punto ciascuno.</p>
+        </div>
+        <button id="add_side" type="button" class="secondary">+ Side</button>
+      </div>
+      <div id="sides_list" class="stack"></div>
+    </div>
+
+    <div class="card" id="actions_card" hidden>
+      <div class="grid two-cols">
+        <button id="build" type="button">Genera JSON modificato</button>
+        <button id="download" type="button" class="secondary" disabled>Scarica JSON</button>
+      </div>
+    </div>
+
+    <div class="card" id="command_card" hidden>
+      <h2>Comando di aggiornamento</h2>
+      <p class="small">Dopo aver scaricato il JSON, spostalo nella root del repo o adatta il percorso nel comando.</p>
+      <pre id="update_command" class="delete-command"></pre>
+    </div>
+
+    <div class="card">
+      <h2>Anteprima JSON</h2>
+      <pre id="output">Seleziona una partita dallo storico e premi "Modifica match".</pre>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var state = {
+        match: null,
+        matches: [],
+        sides: [],
+        latestText: ''
+      };
+
+      function byId(id) {
+        return document.getElementById(id);
+      }
+
+      function normalizeName(value) {
+        return String(value || '').trim().replace(/\s+/g, ' ');
+      }
+
+      function parseTags(value) {
+        var seen = {};
+        return String(value || '')
+          .split(',')
+          .map(normalizeName)
+          .filter(function (tag) {
+            var key = tag.toLowerCase();
+            if (!tag || seen[key]) return false;
+            seen[key] = true;
+            return true;
+          });
+      }
+
+      function parsePlayers(value) {
+        var seen = {};
+        return String(value || '')
+          .split(',')
+          .map(normalizeName)
+          .filter(function (name) {
+            var key = name.toLowerCase();
+            if (!name || seen[key]) return false;
+            seen[key] = true;
+            return true;
+          });
+      }
+
+      function toDateTimeLocal(value) {
+        var text = String(value || '');
+        if (!text) return '';
+        if (text.indexOf('T') === -1) return text + 'T00:00';
+        return text.slice(0, 16);
+      }
+
+      function fromDateTimeLocal(value) {
+        if (!value) throw new Error('Data e ora obbligatoria');
+        return value.length === 16 ? value + ':00' : value;
+      }
+
+      function getParam(name) {
+        return new URLSearchParams(window.location.search).get(name);
+      }
+
+      function collectMatches(data) {
+        if (data && data.views && data.views.all && Array.isArray(data.views.all.matches)) {
+          return data.views.all.matches;
+        }
+        if (data && Array.isArray(data.matches)) {
+          return data.matches;
+        }
+        return [];
+      }
+
+      function matchLabel(match) {
+        var date = String(match.played_at || '').slice(0, 10) || 'data n/d';
+        var course = match.course || 'campo n/d';
+        var sides = Array.isArray(match.sides) ? match.sides.map(function (side) {
+          return side.team_name || (Array.isArray(side.players) ? side.players.join('+') : 'side');
+        }).join(' vs ') : 'side n/d';
+        return '#' + (match.id != null ? match.id : 'n/d') + ' · ' + date + ' · ' + course + ' · ' + sides;
+      }
+
+      function matchKey(match) {
+        if (match && match.import_key) return 'import_key:' + match.import_key;
+        return 'id:' + String(match && match.id != null ? match.id : '');
+      }
+
+      function findMatch(matches) {
+        var importKey = getParam('import_key');
+        var id = getParam('id');
+        if (importKey) {
+          return matches.find(function (match) { return String(match.import_key || '') === importKey; });
+        }
+        if (id) {
+          return matches.find(function (match) { return String(match.id) === String(id); });
+        }
+        return matches[0] || null;
+      }
+
+      function renderMatchPicker(matches, selectedMatch) {
+        var card = byId('match_picker_card');
+        var select = byId('match_picker');
+        if (!card || !select || !matches.length) return;
+        select.innerHTML = '';
+        matches.forEach(function (match) {
+          var option = document.createElement('option');
+          option.value = matchKey(match);
+          option.textContent = matchLabel(match);
+          select.appendChild(option);
+        });
+        if (selectedMatch) select.value = matchKey(selectedMatch);
+        card.hidden = false;
+      }
+
+      function selectMatchByPickerValue(value) {
+        if (!value) return null;
+        var parts = value.split(':');
+        var type = parts.shift();
+        var key = parts.join(':');
+        if (type === 'import_key') {
+          return state.matches.find(function (match) { return String(match.import_key || '') === key; });
+        }
+        return state.matches.find(function (match) { return String(match.id) === key; });
+      }
+
+      function renderSideCard(side, index) {
+        var card = document.createElement('div');
+        card.className = 'card compact-side-editor';
+        card.dataset.sideIndex = String(index);
+
+        var head = document.createElement('div');
+        head.className = 'section-head';
+        var title = document.createElement('h3');
+        title.textContent = 'Side ' + (index + 1);
+        var remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'secondary';
+        remove.textContent = 'Rimuovi';
+        remove.addEventListener('click', function () {
+          if (state.sides.length <= 2) {
+            alert('Servono almeno 2 side.');
+            return;
+          }
+          state.sides.splice(index, 1);
+          renderSides();
+        });
+        head.appendChild(title);
+        head.appendChild(remove);
+        card.appendChild(head);
+
+        var grid = document.createElement('div');
+        grid.className = 'grid two-cols';
+
+        var teamBox = document.createElement('div');
+        var teamLabel = document.createElement('label');
+        teamLabel.textContent = 'Nome side / team';
+        var teamInput = document.createElement('input');
+        teamInput.type = 'text';
+        teamInput.value = side.team_name || '';
+        teamInput.dataset.field = 'team_name';
+        teamBox.appendChild(teamLabel);
+        teamBox.appendChild(teamInput);
+        grid.appendChild(teamBox);
+
+        var winBox = document.createElement('div');
+        var winLabel = document.createElement('label');
+        winLabel.className = 'row-option';
+        var winInput = document.createElement('input');
+        winInput.type = 'checkbox';
+        winInput.checked = !!side.is_winner;
+        winInput.dataset.field = 'is_winner';
+        var winText = document.createElement('span');
+        winText.textContent = 'Side a punti / vincitore';
+        winLabel.appendChild(winInput);
+        winLabel.appendChild(winText);
+        winBox.appendChild(winLabel);
+        grid.appendChild(winBox);
+        card.appendChild(grid);
+
+        var playersLabel = document.createElement('label');
+        playersLabel.textContent = 'Partecipanti';
+        var playersInput = document.createElement('input');
+        playersInput.type = 'text';
+        playersInput.value = (side.players || []).join(', ');
+        playersInput.placeholder = 'Fra, Lele';
+        playersInput.dataset.field = 'players';
+        card.appendChild(playersLabel);
+        card.appendChild(playersInput);
+
+        [teamInput, winInput, playersInput].forEach(function (input) {
+          input.addEventListener('input', syncSidesFromDom);
+          input.addEventListener('change', syncSidesFromDom);
+        });
+
+        return card;
+      }
+
+      function syncSidesFromDom() {
+        var cards = Array.prototype.slice.call(document.querySelectorAll('[data-side-index]'));
+        state.sides = cards.map(function (card) {
+          return {
+            team_name: normalizeName(card.querySelector('[data-field="team_name"]').value) || null,
+            is_winner: card.querySelector('[data-field="is_winner"]').checked,
+            players: parsePlayers(card.querySelector('[data-field="players"]').value)
+          };
+        });
+      }
+
+      function renderSides() {
+        var list = byId('sides_list');
+        list.innerHTML = '';
+        state.sides.forEach(function (side, index) {
+          list.appendChild(renderSideCard(side, index));
+        });
+      }
+
+      function defaultTeamName(players) {
+        return players.slice().sort().join('-');
+      }
+
+      function buildPayload() {
+        syncSidesFromDom();
+        if (!state.match) throw new Error('Match non caricato');
+        if (state.sides.length < 2) throw new Error('Servono almeno 2 side');
+
+        var seenPlayers = {};
+        var cleanSides = state.sides.map(function (side, index) {
+          var players = side.players || [];
+          if (!players.length) throw new Error('Side ' + (index + 1) + ': inserisci almeno un player');
+          players.forEach(function (player) {
+            var key = player.toLowerCase();
+            if (seenPlayers[key]) throw new Error('Player duplicato nella partita: ' + player);
+            seenPlayers[key] = true;
+          });
+          return {
+            team_name: side.team_name || defaultTeamName(players),
+            is_winner: !!side.is_winner,
+            players: players
+          };
+        });
+
+        if (!cleanSides.some(function (side) { return side.is_winner; })) {
+          throw new Error('Scegli almeno un side a punti/vincitore');
+        }
+
+        return {
+          version: 'golf-match.v1',
+          import_key: state.match.import_key,
+          played_at: fromDateTimeLocal(byId('played_at').value),
+          course: normalizeName(byId('course').value) || null,
+          holes: Number(byId('holes').value) || null,
+          notes: normalizeName(byId('notes').value) || null,
+          tags: parseTags(byId('tags').value),
+          sides: cleanSides
+        };
+      }
+
+      function updateCommand(payload) {
+        var fileName = 'edited-golf-match.json';
+        return 'python backend/update_match.py --db data/golf_tracker.sqlite --input ' + fileName + ' --import-key "' + String(payload.import_key).replace(/"/g, '\\"') + '" --export-docs docs';
+      }
+
+      function populate(match) {
+        state.match = match;
+        state.sides = (match.sides || []).map(function (side) {
+          return {
+            team_name: side.team_name || '',
+            is_winner: !!side.is_winner,
+            players: (side.players || []).slice()
+          };
+        });
+
+        byId('played_at').value = toDateTimeLocal(match.played_at);
+        byId('course').value = match.course || '';
+        byId('holes').value = match.holes || '';
+        byId('notes').value = match.notes || '';
+        byId('tags').value = (match.tags || []).join(', ');
+        byId('import_key_box').textContent = match.import_key || 'n/d';
+        byId('load_status').textContent = 'Match caricato: ID #' + (match.id || 'n/d') + ' - ' + (match.course || 'Campo n/d');
+
+        ['editor_card', 'sides_card', 'actions_card', 'command_card'].forEach(function (id) {
+          byId(id).hidden = false;
+        });
+        renderSides();
+      }
+
+      byId('add_side').addEventListener('click', function () {
+        syncSidesFromDom();
+        state.sides.push({ team_name: '', is_winner: false, players: [] });
+        renderSides();
+      });
+
+      byId('build').addEventListener('click', function () {
+        try {
+          var payload = buildPayload();
+          state.latestText = JSON.stringify(payload, null, 2);
+          byId('output').textContent = state.latestText;
+          byId('update_command').textContent = updateCommand(payload);
+          byId('download').disabled = false;
+        } catch (err) {
+          state.latestText = '';
+          byId('output').textContent = 'Errore: ' + err.message;
+          byId('download').disabled = true;
+        }
+      });
+
+      byId('download').addEventListener('click', function () {
+        if (!state.latestText) return;
+        var blob = new Blob([state.latestText], { type: 'application/json' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'edited-golf-match.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      });
+
+      byId('match_picker').addEventListener('change', function () {
+        var match = selectMatchByPickerValue(this.value);
+        if (match) populate(match);
+      });
+
+      fetch('../data/stats.json')
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          state.matches = collectMatches(data);
+          var match = findMatch(state.matches);
+          if (!match) {
+            byId('load_status').textContent = 'Nessun match trovato in stats.json.';
+            return;
+          }
+          renderMatchPicker(state.matches, match);
+          populate(match);
+        })
+        .catch(function (err) {
+          byId('load_status').textContent = 'Impossibile leggere stats.json.';
+          byId('output').textContent = String(err && err.message ? err.message : err);
+        });
+    })();
+  </script>
+</body>
+</html>

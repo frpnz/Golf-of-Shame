@@ -11,6 +11,7 @@
     <nav class="topnav">
       <a href="./" class="active">Dashboard</a>
       <a href="new-match/">Nuova partita</a>
+      <a href="edit-match/">Modifica partita</a>
     </nav>
 
     <section class="hero-card">
@@ -51,7 +52,7 @@
           <div>
             <p class="section-kicker">Leaderboard</p>
             <h2>Classifica giocatori</h2>
-            <p class="small" id="players-sort-help">Ordine per media punti. I giocatori con meno di 7 partite restano in classifica ma sono visualizzati opachi. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome.</p>
+            <p class="small" id="players-sort-help">Ordine per media punti. I giocatori sotto soglia restano in classifica ma sono visualizzati opachi. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome.</p>
           </div>
           <div class="leaderboard-controls">
             <span class="pill subtle" id="players-count">-</span>
@@ -171,12 +172,12 @@
 
 
     <section class="card dashboard-card matches-card">
-      <details class="matches-details">
+      <details class="matches-details" open>
         <summary class="matches-summary">
           <span>
             <span class="section-kicker">Storico</span>
             <strong>Ultime partite</strong>
-            <small>Apri per consultare le partite piu recenti e i comandi di gestione.</small>
+            <small>Apri per consultare le partite piu recenti, modificarle o usare i comandi di gestione.</small>
           </span>
           <span class="summary-toggle" aria-hidden="true">Apri</span>
         </summary>
@@ -205,7 +206,7 @@
   </div>
 
   <script>
-    const MIN_GAMES_FOR_RATE_RANKING = 7;
+    let MIN_GAMES_FOR_RATE_RANKING = 5;
     function pointsValue(value) {
       return value == null ? '-' : Number(value).toFixed(2).replace(/\.00$/, '');
     }
@@ -236,6 +237,16 @@
         return 'python backend/delete_match.py --db data/golf_tracker.sqlite --import-key "' + String(match.import_key).replace(/"/g, '\\"') + '" --export-docs docs';
       }
       return 'ID/import_key non disponibile: rigenera docs/data/stats.json con export_stats.py';
+    }
+
+    function editUrl(match) {
+      if (match && match.import_key) {
+        return 'edit-match/?import_key=' + encodeURIComponent(match.import_key);
+      }
+      if (match && match.id != null) {
+        return 'edit-match/?id=' + encodeURIComponent(String(match.id));
+      }
+      return 'edit-match/';
     }
 
     function metricBadge(value, type) {
@@ -416,6 +427,16 @@
         }
 
         item.appendChild(body);
+
+        const actions = document.createElement('div');
+        actions.className = 'match-actions';
+        const edit = document.createElement('a');
+        edit.className = 'button-link secondary edit-match-button';
+        edit.href = editUrl(match);
+        edit.textContent = 'Modifica match';
+        edit.title = 'Modifica tag, vincitori e partecipanti di questa partita';
+        actions.appendChild(edit);
+        item.appendChild(actions);
 
         const admin = document.createElement('details');
         admin.className = 'match-admin';
@@ -931,6 +952,7 @@
       .then(r => r.json())
       .then(data => {
         window.__statsData = data;
+        MIN_GAMES_FOR_RATE_RANKING = Number((data.scoring && data.scoring.player_points_rate_min_games) || MIN_GAMES_FOR_RATE_RANKING);
 
         document.getElementById('updated-at').textContent = 'Aggiornato: ' + niceDate(data.generated_at || data.generated_utc || data.generated || '');
         populateYearFilter(data);

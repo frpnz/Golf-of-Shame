@@ -195,6 +195,74 @@ def insert_match(conn: sqlite3.Connection, payload: Dict[str, Any]) -> tuple[int
     return match_id, True
 
 
+
+def _insert_match_details(conn: sqlite3.Connection, match_id: int, clean: Dict[str, Any]) -> None:
+    for tag in clean.get("tags", []):
+        conn.execute(
+            "INSERT OR IGNORE INTO match_tag (match_id, tag) VALUES (?, ?)",
+            (match_id, tag),
+        )
+
+    for idx, side in enumerate(clean["sides"], start=1):
+        cur = conn.execute(
+            "INSERT INTO match_side (match_id, side_order, team_name, is_winner) VALUES (?, ?, ?, ?)",
+            (match_id, idx, side["team_name"], 1 if side["is_winner"] else 0),
+        )
+        side_id = int(cur.lastrowid)
+        for player in side["players"]:
+            conn.execute(
+                "INSERT INTO match_player (side_id, player_name) VALUES (?, ?)",
+                (side_id, player),
+            )
+
+
+def update_match(
+    conn: sqlite3.Connection,
+    payload: Dict[str, Any],
+    *,
+    match_id: int | None = None,
+    import_key: str | None = None,
+) -> int:
+    if match_id is None and not import_key and not payload.get("import_key"):
+        raise ValueError("Specificare match_id, import_key oppure import_key nel JSON")
+    if match_id is not None and import_key:
+        raise ValueError("Specificare solo uno tra match_id e import_key")
+
+    clean = validate_match_payload(payload)
+    payload_import_key = str(payload.get("import_key") or "").strip()
+    lookup_import_key = str(import_key or payload_import_key or "").strip()
+
+    if match_id is None:
+        match_id = find_match_by_import_key(conn, lookup_import_key)
+        if match_id is None:
+            raise ValueError(f"Nessuna partita trovata con import_key={lookup_import_key}")
+    else:
+        row = conn.execute("SELECT id FROM match WHERE id = ?", (match_id,)).fetchone()
+        if row is None:
+            raise ValueError(f"Nessuna partita trovata con id={match_id}")
+
+    new_import_key = payload_import_key or lookup_import_key
+    if not new_import_key:
+        row = conn.execute("SELECT import_key FROM match WHERE id = ?", (match_id,)).fetchone()
+        new_import_key = str(row["import_key"])
+
+    conflict = conn.execute(
+        "SELECT id FROM match WHERE import_key = ? AND id <> ?",
+        (new_import_key, match_id),
+    ).fetchone()
+    if conflict is not None:
+        raise ValueError(f"import_key gia usata da un altro match: {new_import_key}")
+
+    with conn:
+        conn.execute(
+            "UPDATE match SET played_at = ?, course = ?, holes = ?, notes = ?, import_key = ? WHERE id = ?",
+            (clean["played_at"], clean["course"], clean["holes"], clean["notes"], new_import_key, match_id),
+        )
+        conn.execute("DELETE FROM match_tag WHERE match_id = ?", (match_id,))
+        conn.execute("DELETE FROM match_side WHERE match_id = ?", (match_id,))
+        _insert_match_details(conn, match_id, clean)
+    return int(match_id)
+
 def delete_match(conn: sqlite3.Connection, *, match_id: int | None = None, import_key: str | None = None) -> bool:
     if match_id is None and not import_key:
         raise ValueError("Specificare match_id oppure import_key")

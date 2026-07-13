@@ -236,3 +236,19 @@ python -m compileall backend
 - Il database viene aggiornato solo dagli script Python.
 - GitHub Pages non esegue Python: dopo import, eliminazioni o rinomine bisogna rigenerare `docs/data/stats.json`.
 - Il restyling è solo CSS: nessuna libreria aggiunta.
+
+## Modifica match esistenti
+
+Dalla dashboard, nello storico partite, usa **Modifica match** per aprire la pagina `docs/edit-match/` con il match preselezionato. La pagina permette di modificare tag, vincitori, side e partecipanti e scarica un file `edited-golf-match.json`.
+
+Per applicare la modifica al database locale e rigenerare il JSON del sito:
+
+```bash
+python backend/update_match.py --db data/golf_tracker.sqlite --input edited-golf-match.json --export-docs docs
+```
+
+Se vuoi forzare il match da aggiornare:
+
+```bash
+python backend/update_match.py --db data/golf_tracker.sqlite --input edited-golf-match.json --import-key "IMPORT_KEY" --export-docs docs
+```

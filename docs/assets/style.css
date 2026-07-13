@@ -3045,3 +3045,41 @@ button:hover,
 .leaderboard-table tbody tr.below-games-threshold:hover {
   opacity: 0.46 !important;
 }
+
+.match-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-height: 40px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  background: var(--accent);
+  color: #fff;
+}
+.button-link.secondary {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.compact-side-editor {
+  margin: 0;
+  box-shadow: none;
+  border: 1px solid var(--line);
+}
+
+.edit-match-button {
+  margin-top: 0;
+}
+
+#match_picker {
+  width: 100%;
+}

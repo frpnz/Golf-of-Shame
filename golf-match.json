@@ -1,8 +1,8 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-mrivw9yh-otg7ffnw",
-  "played_at": "2026-07-08T09:10:00",
-  "course": "Golf Sestrieres",
+  "import_key": "match-mqkyrisw-rdbipj3g",
+  "played_at": "2026-06-18T15:26:00",
+  "course": "Druento",
   "holes": 9,
   "notes": null,
   "tags": [
@@ -10,17 +10,19 @@
   ],
   "sides": [
     {
-      "team_name": "Ale M",
-      "is_winner": false,
+      "team_name": "Fra-Patrick",
+      "is_winner": true,
       "players": [
-        "Ale M"
+        "Fra",
+        "Patrick"
       ]
     },
     {
-      "team_name": "Fra",
+      "team_name": "Alberto-Ale M",
       "is_winner": true,
       "players": [
-        "Fra"
+        "Alberto",
+        "Ale M"
       ]
     }
   ]
