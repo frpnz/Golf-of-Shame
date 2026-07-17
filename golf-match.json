@@ -1,28 +1,33 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-mqkyrisw-rdbipj3g",
-  "played_at": "2026-06-18T15:26:00",
-  "course": "Druento",
-  "holes": 9,
+  "import_key": "match-mrpi2ij4-c538qrq6",
+  "played_at": "2026-07-18T00:15:00",
+  "course": "Golf Sestrieres",
+  "holes": 12,
   "notes": null,
   "tags": [
     "Coppa Estate 2026"
   ],
   "sides": [
     {
-      "team_name": "Fra-Patrick",
-      "is_winner": true,
+      "team_name": "Fra",
+      "is_winner": false,
       "players": [
-        "Fra",
-        "Patrick"
+        "Fra"
       ]
     },
     {
-      "team_name": "Alberto-Ale M",
+      "team_name": "Lele",
       "is_winner": true,
       "players": [
-        "Alberto",
-        "Ale M"
+        "Lele"
+      ]
+    },
+    {
+      "team_name": "Patrick",
+      "is_winner": false,
+      "players": [
+        "Patrick"
       ]
     }
   ]
