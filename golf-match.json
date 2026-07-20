@@ -1,32 +1,27 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-mrpi2ij4-c538qrq6",
-  "played_at": "2026-07-18T00:15:00",
-  "course": "Golf Sestrieres",
-  "holes": 12,
-  "notes": null,
+  "import_key": "match-mrsxyywv-402j3kgg",
+  "played_at": "2026-07-18T10:06:00",
+  "course": "Courmayeur",
+  "holes": 9,
+  "notes": "Louisiana a 2",
   "tags": [
     "Coppa Estate 2026"
   ],
   "sides": [
     {
-      "team_name": "Fra",
-      "is_winner": false,
-      "players": [
-        "Fra"
-      ]
-    },
-    {
-      "team_name": "Lele",
+      "team_name": "Ale P-Lele",
       "is_winner": true,
       "players": [
+        "Ale P",
         "Lele"
       ]
     },
     {
-      "team_name": "Patrick",
-      "is_winner": false,
+      "team_name": "Fra-Patrick",
+      "is_winner": true,
       "players": [
+        "Fra",
         "Patrick"
       ]
     }
