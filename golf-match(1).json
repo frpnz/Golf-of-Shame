@@ -1,0 +1,29 @@
+{
+  "version": "golf-match.v1",
+  "import_key": "match-ms0fv2oc-qo8ys2vi",
+  "played_at": "2026-07-25T18:01:00",
+  "course": "Golf Sestrieres",
+  "holes": 18,
+  "notes": null,
+  "tags": [
+    "Coppa Estate 2026"
+  ],
+  "sides": [
+    {
+      "team_name": "Lele-Patrick",
+      "is_winner": true,
+      "players": [
+        "Lele",
+        "Patrick"
+      ]
+    },
+    {
+      "team_name": "Ale M-Valter",
+      "is_winner": false,
+      "players": [
+        "Ale M",
+        "Valter"
+      ]
+    }
+  ]
+}

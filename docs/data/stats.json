@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v9",
-  "generated_at": "2026-07-20T13:39:21.651627+00:00",
+  "generated_at": "2026-07-25T14:04:04.873762+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -43,9 +43,9 @@
   "views": {
     "all": {
       "counts": {
-        "matches": 25,
-        "players": 8,
-        "teams": 5
+        "matches": 28,
+        "players": 9,
+        "teams": 7
       },
       "filters": {
         "players": [
@@ -56,7 +56,8 @@
           "Fra",
           "Lele",
           "Patrick",
-          "Riccardo (Golf Torino)"
+          "Riccardo (Golf Torino)",
+          "Valter"
         ],
         "courses": [
           "Ciliegi",
@@ -72,12 +73,12 @@
       "by_player": [
         {
           "player": "Lele",
-          "games": 20,
-          "wins": 10,
+          "games": 23,
+          "wins": 11,
           "draws": 3,
-          "losses": 7,
-          "points": 33,
-          "points_rate": 1.65,
+          "losses": 9,
+          "points": 36,
+          "points_rate": 1.5652,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -100,12 +101,12 @@
         },
         {
           "player": "Patrick",
-          "games": 14,
-          "wins": 3,
+          "games": 17,
+          "wins": 6,
           "draws": 4,
           "losses": 7,
-          "points": 13,
-          "points_rate": 0.9286,
+          "points": 22,
+          "points_rate": 1.2941,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -114,12 +115,12 @@
         },
         {
           "player": "Ale M",
-          "games": 6,
+          "games": 7,
           "wins": 2,
           "draws": 2,
-          "losses": 2,
+          "losses": 3,
           "points": 8,
-          "points_rate": 1.3333,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -128,12 +129,12 @@
         },
         {
           "player": "Ale P",
-          "games": 3,
+          "games": 4,
           "wins": 1,
           "draws": 2,
-          "losses": 0,
+          "losses": 1,
           "points": 5,
-          "points_rate": 1.6667,
+          "points_rate": 1.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -170,6 +171,20 @@
         },
         {
           "player": "Riccardo (Golf Torino)",
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 0 · Media 0",
+          "tie_breaker_points": "V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
+          "player": "Valter",
           "games": 1,
           "wins": 0,
           "draws": 0,
@@ -222,7 +237,27 @@
           "tie_direct_wins": 0,
           "tie_breaker": "SD 0 · V 1 · Media 3",
           "tie_breaker_points": "SD 0 · V 1 · Media 3",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
+          "team_key": "Lele|Patrick",
+          "team_label": "Lele + Patrick",
+          "team_name": "Lele-Patrick",
+          "components": [
+            "Lele",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 3",
+          "tie_breaker_points": "SD 0 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
           "team_key": "Fra|Patrick",
@@ -265,6 +300,26 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Ale M|Valter",
+          "team_label": "Ale M + Valter",
+          "team_name": "Ale M-Valter",
+          "components": [
+            "Ale M",
+            "Valter"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
           "team_key": "Fra|Riccardo (Golf Torino)",
           "team_label": "Fra + Riccardo (Golf Torino)",
           "team_name": "Fra-Riccardo (Golf Torino)",
@@ -280,9 +335,9 @@
           "points_rate": 0.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
         }
       ],
       "rankings": {
@@ -295,45 +350,51 @@
             "Ale P",
             "Alberto",
             "Aloi",
-            "Riccardo (Golf Torino)"
+            "Riccardo (Golf Torino)",
+            "Valter"
           ],
           "points_rate": [
-            "Ale P",
             "Lele",
+            "Patrick",
+            "Ale P",
             "Ale M",
             "Fra",
             "Alberto",
-            "Patrick",
             "Aloi",
-            "Riccardo (Golf Torino)"
+            "Riccardo (Golf Torino)",
+            "Valter"
           ]
         },
         "teams": {
           "points": [
             "Ale P-Lele",
             "Ale M-Lele",
+            "Lele-Patrick",
             "Fra-Patrick",
             "Alberto-Ale M",
+            "Ale M-Valter",
             "Fra-Riccardo (Golf Torino)"
           ],
           "points_rate": [
             "Ale M-Lele",
+            "Lele-Patrick",
             "Ale P-Lele",
             "Alberto-Ale M",
             "Fra-Patrick",
+            "Ale M-Valter",
             "Fra-Riccardo (Golf Torino)"
           ]
         }
       },
       "by_player_points_rate": [
         {
-          "player": "Ale P",
-          "games": 3,
-          "wins": 1,
-          "draws": 2,
-          "losses": 0,
-          "points": 5,
-          "points_rate": 1.6667,
+          "player": "Lele",
+          "games": 23,
+          "wins": 11,
+          "draws": 3,
+          "losses": 9,
+          "points": 36,
+          "points_rate": 1.5652,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -341,13 +402,27 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Lele",
-          "games": 20,
-          "wins": 10,
-          "draws": 3,
+          "player": "Patrick",
+          "games": 17,
+          "wins": 6,
+          "draws": 4,
           "losses": 7,
-          "points": 33,
-          "points_rate": 1.65,
+          "points": 22,
+          "points_rate": 1.2941,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Ale P",
+          "games": 4,
+          "wins": 1,
+          "draws": 2,
+          "losses": 1,
+          "points": 5,
+          "points_rate": 1.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -356,12 +431,12 @@
         },
         {
           "player": "Ale M",
-          "games": 6,
+          "games": 7,
           "wins": 2,
           "draws": 2,
-          "losses": 2,
+          "losses": 3,
           "points": 8,
-          "points_rate": 1.3333,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -397,20 +472,6 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Patrick",
-          "games": 14,
-          "wins": 3,
-          "draws": 4,
-          "losses": 7,
-          "points": 13,
-          "points_rate": 0.9286,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
-        },
-        {
           "player": "Aloi",
           "games": 2,
           "wins": 0,
@@ -426,6 +487,20 @@
         },
         {
           "player": "Riccardo (Golf Torino)",
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 0 · Media 0",
+          "tie_breaker_points": "V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
+          "player": "Valter",
           "games": 1,
           "wins": 0,
           "draws": 0,
@@ -458,7 +533,27 @@
           "tie_direct_wins": 0,
           "tie_breaker": "SD 0 · V 1 · Media 3",
           "tie_breaker_points": "SD 0 · V 1 · Media 3",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
+          "team_key": "Lele|Patrick",
+          "team_label": "Lele + Patrick",
+          "team_name": "Lele-Patrick",
+          "components": [
+            "Lele",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 3",
+          "tie_breaker_points": "SD 0 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
           "team_key": "Ale P|Lele",
@@ -521,6 +616,26 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Ale M|Valter",
+          "team_label": "Ale M + Valter",
+          "team_name": "Ale M-Valter",
+          "components": [
+            "Ale M",
+            "Valter"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
           "team_key": "Fra|Riccardo (Golf Torino)",
           "team_label": "Fra + Riccardo (Golf Torino)",
           "team_name": "Fra-Riccardo (Golf Torino)",
@@ -536,43 +651,27 @@
           "points_rate": 0.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
         }
       ],
       "solo_vs_team": [
         {
           "player": "Ale P",
-          "solo_games": 0,
+          "solo_games": 1,
           "solo_wins": 0,
           "solo_draws": 0,
-          "solo_losses": 0,
+          "solo_losses": 1,
           "solo_points": 0,
           "team_games": 3,
           "team_wins": 1,
           "team_draws": 2,
           "team_losses": 0,
           "team_points": 5,
-          "solo_points_rate": null,
+          "solo_points_rate": 0.0,
           "team_points_rate": 1.6667,
           "delta": 1.6667
-        },
-        {
-          "player": "Ale M",
-          "solo_games": 4,
-          "solo_wins": 1,
-          "solo_draws": 1,
-          "solo_losses": 2,
-          "solo_points": 4,
-          "team_games": 2,
-          "team_wins": 1,
-          "team_draws": 1,
-          "team_losses": 0,
-          "team_points": 4,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 2.0,
-          "delta": 1.0
         },
         {
           "player": "Alberto",
@@ -591,6 +690,22 @@
           "delta": 1.0
         },
         {
+          "player": "Lele",
+          "solo_games": 18,
+          "solo_wins": 8,
+          "solo_draws": 1,
+          "solo_losses": 9,
+          "solo_points": 25,
+          "team_games": 5,
+          "team_wins": 3,
+          "team_draws": 2,
+          "team_losses": 0,
+          "team_points": 11,
+          "solo_points_rate": 1.3889,
+          "team_points_rate": 2.2,
+          "delta": 0.8111
+        },
+        {
           "player": "Fra",
           "solo_games": 16,
           "solo_wins": 6,
@@ -607,36 +722,36 @@
           "delta": -0.65
         },
         {
-          "player": "Lele",
-          "solo_games": 16,
-          "solo_wins": 8,
+          "player": "Ale M",
+          "solo_games": 4,
+          "solo_wins": 1,
           "solo_draws": 1,
-          "solo_losses": 7,
-          "solo_points": 25,
-          "team_games": 4,
-          "team_wins": 2,
-          "team_draws": 2,
-          "team_losses": 0,
-          "team_points": 8,
-          "solo_points_rate": 1.5625,
-          "team_points_rate": 2.0,
-          "delta": 0.4375
+          "solo_losses": 2,
+          "solo_points": 4,
+          "team_games": 3,
+          "team_wins": 1,
+          "team_draws": 1,
+          "team_losses": 1,
+          "team_points": 4,
+          "solo_points_rate": 1.0,
+          "team_points_rate": 1.3333,
+          "delta": 0.3333
         },
         {
           "player": "Patrick",
-          "solo_games": 10,
-          "solo_wins": 3,
+          "solo_games": 12,
+          "solo_wins": 5,
           "solo_draws": 1,
           "solo_losses": 6,
-          "solo_points": 10,
-          "team_games": 4,
-          "team_wins": 0,
+          "solo_points": 16,
+          "team_games": 5,
+          "team_wins": 1,
           "team_draws": 3,
           "team_losses": 1,
-          "team_points": 3,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 0.75,
-          "delta": -0.25
+          "team_points": 6,
+          "solo_points_rate": 1.3333,
+          "team_points_rate": 1.2,
+          "delta": -0.1333
         },
         {
           "player": "Aloi",
@@ -669,6 +784,22 @@
           "solo_points_rate": null,
           "team_points_rate": 0.0,
           "delta": 0.0
+        },
+        {
+          "player": "Valter",
+          "solo_games": 0,
+          "solo_wins": 0,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 0,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 0,
+          "team_losses": 1,
+          "team_points": 0,
+          "solo_points_rate": null,
+          "team_points_rate": 0.0,
+          "delta": 0.0
         }
       ],
       "head_to_head": {
@@ -681,7 +812,8 @@
             "Ale P",
             "Alberto",
             "Aloi",
-            "Riccardo (Golf Torino)"
+            "Riccardo (Golf Torino)",
+            "Valter"
           ],
           "matrix": {
             "Alberto": {},
@@ -732,6 +864,14 @@
               }
             },
             "Lele": {
+              "Patrick": {
+                "games": 2,
+                "wins": 0,
+                "draws": 0,
+                "losses": 2,
+                "points_for": 0,
+                "points_against": 6
+              },
               "Fra": {
                 "games": 6,
                 "wins": 3,
@@ -747,23 +887,15 @@
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
-              },
-              "Patrick": {
-                "games": 1,
-                "wins": 0,
-                "draws": 0,
-                "losses": 1,
-                "points_for": 0,
-                "points_against": 3
               }
             },
             "Patrick": {
               "Lele": {
-                "games": 1,
-                "wins": 1,
+                "games": 2,
+                "wins": 2,
                 "draws": 0,
                 "losses": 0,
-                "points_for": 3,
+                "points_for": 6,
                 "points_against": 0
               },
               "Fra": {
@@ -775,15 +907,18 @@
                 "points_against": 3
               }
             },
-            "Riccardo (Golf Torino)": {}
+            "Riccardo (Golf Torino)": {},
+            "Valter": {}
           }
         },
         "teams": {
           "labels": [
             "Ale P-Lele",
             "Ale M-Lele",
+            "Lele-Patrick",
             "Fra-Patrick",
             "Alberto-Ale M",
+            "Ale M-Valter",
             "Fra-Riccardo (Golf Torino)"
           ],
           "matrix": {
@@ -805,6 +940,16 @@
                 "losses": 0,
                 "points_for": 3,
                 "points_against": 0
+              }
+            },
+            "Ale M-Valter": {
+              "Lele-Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
               }
             },
             "Ale P-Lele": {
@@ -844,11 +989,114 @@
                 "points_for": 0,
                 "points_against": 3
               }
+            },
+            "Lele-Patrick": {
+              "Ale M-Valter": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
             }
           }
         }
       },
       "matches": [
+        {
+          "id": 31,
+          "played_at": "2026-07-25T18:01:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-ms0fvjla-xbtyhucb",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "played_at": "2026-07-25T18:01:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-ms0fv2oc-qo8ys2vi",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele-Patrick",
+              "is_winner": true,
+              "players": [
+                "Lele",
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Ale M-Valter",
+              "is_winner": false,
+              "players": [
+                "Ale M",
+                "Valter"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "played_at": "2026-07-25T16:01:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-ms0fu145-u3j35mjx",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            }
+          ]
+        },
         {
           "id": 28,
           "played_at": "2026-07-20T15:37:00",
@@ -1609,16 +1857,16 @@
         "key": "all",
         "label": "Tutte le partite",
         "group": "Generale",
-        "matches": 25,
+        "matches": 28,
         "player_champion": {
           "kind": "player",
           "name": "Lele",
-          "points": 33,
-          "games": 20,
-          "wins": 10,
+          "points": 36,
+          "games": 23,
+          "wins": 11,
           "draws": 3,
-          "losses": 7,
-          "points_rate": 1.65
+          "losses": 9,
+          "points_rate": 1.5652
         },
         "team_champion": {
           "kind": "team",
@@ -1633,12 +1881,12 @@
         "player_points_rate_champion": {
           "kind": "player",
           "name": "Lele",
-          "points": 33,
-          "games": 20,
-          "wins": 10,
+          "points": 36,
+          "games": 23,
+          "wins": 11,
           "draws": 3,
-          "losses": 7,
-          "points_rate": 1.65
+          "losses": 9,
+          "points_rate": 1.5652
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -2388,9 +2636,9 @@
     },
     "year:2026": {
       "counts": {
-        "matches": 25,
-        "players": 8,
-        "teams": 5
+        "matches": 28,
+        "players": 9,
+        "teams": 7
       },
       "filters": {
         "players": [
@@ -2401,7 +2649,8 @@
           "Fra",
           "Lele",
           "Patrick",
-          "Riccardo (Golf Torino)"
+          "Riccardo (Golf Torino)",
+          "Valter"
         ],
         "courses": [
           "Ciliegi",
@@ -2417,12 +2666,12 @@
       "by_player": [
         {
           "player": "Lele",
-          "games": 20,
-          "wins": 10,
+          "games": 23,
+          "wins": 11,
           "draws": 3,
-          "losses": 7,
-          "points": 33,
-          "points_rate": 1.65,
+          "losses": 9,
+          "points": 36,
+          "points_rate": 1.5652,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2445,12 +2694,12 @@
         },
         {
           "player": "Patrick",
-          "games": 14,
-          "wins": 3,
+          "games": 17,
+          "wins": 6,
           "draws": 4,
           "losses": 7,
-          "points": 13,
-          "points_rate": 0.9286,
+          "points": 22,
+          "points_rate": 1.2941,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2459,12 +2708,12 @@
         },
         {
           "player": "Ale M",
-          "games": 6,
+          "games": 7,
           "wins": 2,
           "draws": 2,
-          "losses": 2,
+          "losses": 3,
           "points": 8,
-          "points_rate": 1.3333,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2473,12 +2722,12 @@
         },
         {
           "player": "Ale P",
-          "games": 3,
+          "games": 4,
           "wins": 1,
           "draws": 2,
-          "losses": 0,
+          "losses": 1,
           "points": 5,
-          "points_rate": 1.6667,
+          "points_rate": 1.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2515,6 +2764,20 @@
         },
         {
           "player": "Riccardo (Golf Torino)",
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 0 · Media 0",
+          "tie_breaker_points": "V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
+          "player": "Valter",
           "games": 1,
           "wins": 0,
           "draws": 0,
@@ -2567,7 +2830,27 @@
           "tie_direct_wins": 0,
           "tie_breaker": "SD 0 · V 1 · Media 3",
           "tie_breaker_points": "SD 0 · V 1 · Media 3",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
+          "team_key": "Lele|Patrick",
+          "team_label": "Lele + Patrick",
+          "team_name": "Lele-Patrick",
+          "components": [
+            "Lele",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 3",
+          "tie_breaker_points": "SD 0 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
           "team_key": "Fra|Patrick",
@@ -2610,6 +2893,26 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Ale M|Valter",
+          "team_label": "Ale M + Valter",
+          "team_name": "Ale M-Valter",
+          "components": [
+            "Ale M",
+            "Valter"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
           "team_key": "Fra|Riccardo (Golf Torino)",
           "team_label": "Fra + Riccardo (Golf Torino)",
           "team_name": "Fra-Riccardo (Golf Torino)",
@@ -2625,9 +2928,9 @@
           "points_rate": 0.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
         }
       ],
       "rankings": {
@@ -2640,45 +2943,51 @@
             "Ale P",
             "Alberto",
             "Aloi",
-            "Riccardo (Golf Torino)"
+            "Riccardo (Golf Torino)",
+            "Valter"
           ],
           "points_rate": [
-            "Ale P",
             "Lele",
+            "Patrick",
+            "Ale P",
             "Ale M",
             "Fra",
             "Alberto",
-            "Patrick",
             "Aloi",
-            "Riccardo (Golf Torino)"
+            "Riccardo (Golf Torino)",
+            "Valter"
           ]
         },
         "teams": {
           "points": [
             "Ale P-Lele",
             "Ale M-Lele",
+            "Lele-Patrick",
             "Fra-Patrick",
             "Alberto-Ale M",
+            "Ale M-Valter",
             "Fra-Riccardo (Golf Torino)"
           ],
           "points_rate": [
             "Ale M-Lele",
+            "Lele-Patrick",
             "Ale P-Lele",
             "Alberto-Ale M",
             "Fra-Patrick",
+            "Ale M-Valter",
             "Fra-Riccardo (Golf Torino)"
           ]
         }
       },
       "by_player_points_rate": [
         {
-          "player": "Ale P",
-          "games": 3,
-          "wins": 1,
-          "draws": 2,
-          "losses": 0,
-          "points": 5,
-          "points_rate": 1.6667,
+          "player": "Lele",
+          "games": 23,
+          "wins": 11,
+          "draws": 3,
+          "losses": 9,
+          "points": 36,
+          "points_rate": 1.5652,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2686,13 +2995,27 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Lele",
-          "games": 20,
-          "wins": 10,
-          "draws": 3,
+          "player": "Patrick",
+          "games": 17,
+          "wins": 6,
+          "draws": 4,
           "losses": 7,
-          "points": 33,
-          "points_rate": 1.65,
+          "points": 22,
+          "points_rate": 1.2941,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Ale P",
+          "games": 4,
+          "wins": 1,
+          "draws": 2,
+          "losses": 1,
+          "points": 5,
+          "points_rate": 1.25,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2701,12 +3024,12 @@
         },
         {
           "player": "Ale M",
-          "games": 6,
+          "games": 7,
           "wins": 2,
           "draws": 2,
-          "losses": 2,
+          "losses": 3,
           "points": 8,
-          "points_rate": 1.3333,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -2742,20 +3065,6 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Patrick",
-          "games": 14,
-          "wins": 3,
-          "draws": 4,
-          "losses": 7,
-          "points": 13,
-          "points_rate": 0.9286,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
-        },
-        {
           "player": "Aloi",
           "games": 2,
           "wins": 0,
@@ -2771,6 +3080,20 @@
         },
         {
           "player": "Riccardo (Golf Torino)",
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 0 · Media 0",
+          "tie_breaker_points": "V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
+          "player": "Valter",
           "games": 1,
           "wins": 0,
           "draws": 0,
@@ -2803,7 +3126,27 @@
           "tie_direct_wins": 0,
           "tie_breaker": "SD 0 · V 1 · Media 3",
           "tie_breaker_points": "SD 0 · V 1 · Media 3",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
+          "team_key": "Lele|Patrick",
+          "team_label": "Lele + Patrick",
+          "team_name": "Lele-Patrick",
+          "components": [
+            "Lele",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 3",
+          "tie_breaker_points": "SD 0 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
           "team_key": "Ale P|Lele",
@@ -2866,6 +3209,26 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Ale M|Valter",
+          "team_label": "Ale M + Valter",
+          "team_name": "Ale M-Valter",
+          "components": [
+            "Ale M",
+            "Valter"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
           "team_key": "Fra|Riccardo (Golf Torino)",
           "team_label": "Fra + Riccardo (Golf Torino)",
           "team_name": "Fra-Riccardo (Golf Torino)",
@@ -2881,43 +3244,27 @@
           "points_rate": 0.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
         }
       ],
       "solo_vs_team": [
         {
           "player": "Ale P",
-          "solo_games": 0,
+          "solo_games": 1,
           "solo_wins": 0,
           "solo_draws": 0,
-          "solo_losses": 0,
+          "solo_losses": 1,
           "solo_points": 0,
           "team_games": 3,
           "team_wins": 1,
           "team_draws": 2,
           "team_losses": 0,
           "team_points": 5,
-          "solo_points_rate": null,
+          "solo_points_rate": 0.0,
           "team_points_rate": 1.6667,
           "delta": 1.6667
-        },
-        {
-          "player": "Ale M",
-          "solo_games": 4,
-          "solo_wins": 1,
-          "solo_draws": 1,
-          "solo_losses": 2,
-          "solo_points": 4,
-          "team_games": 2,
-          "team_wins": 1,
-          "team_draws": 1,
-          "team_losses": 0,
-          "team_points": 4,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 2.0,
-          "delta": 1.0
         },
         {
           "player": "Alberto",
@@ -2936,6 +3283,22 @@
           "delta": 1.0
         },
         {
+          "player": "Lele",
+          "solo_games": 18,
+          "solo_wins": 8,
+          "solo_draws": 1,
+          "solo_losses": 9,
+          "solo_points": 25,
+          "team_games": 5,
+          "team_wins": 3,
+          "team_draws": 2,
+          "team_losses": 0,
+          "team_points": 11,
+          "solo_points_rate": 1.3889,
+          "team_points_rate": 2.2,
+          "delta": 0.8111
+        },
+        {
           "player": "Fra",
           "solo_games": 16,
           "solo_wins": 6,
@@ -2952,36 +3315,36 @@
           "delta": -0.65
         },
         {
-          "player": "Lele",
-          "solo_games": 16,
-          "solo_wins": 8,
+          "player": "Ale M",
+          "solo_games": 4,
+          "solo_wins": 1,
           "solo_draws": 1,
-          "solo_losses": 7,
-          "solo_points": 25,
-          "team_games": 4,
-          "team_wins": 2,
-          "team_draws": 2,
-          "team_losses": 0,
-          "team_points": 8,
-          "solo_points_rate": 1.5625,
-          "team_points_rate": 2.0,
-          "delta": 0.4375
+          "solo_losses": 2,
+          "solo_points": 4,
+          "team_games": 3,
+          "team_wins": 1,
+          "team_draws": 1,
+          "team_losses": 1,
+          "team_points": 4,
+          "solo_points_rate": 1.0,
+          "team_points_rate": 1.3333,
+          "delta": 0.3333
         },
         {
           "player": "Patrick",
-          "solo_games": 10,
-          "solo_wins": 3,
+          "solo_games": 12,
+          "solo_wins": 5,
           "solo_draws": 1,
           "solo_losses": 6,
-          "solo_points": 10,
-          "team_games": 4,
-          "team_wins": 0,
+          "solo_points": 16,
+          "team_games": 5,
+          "team_wins": 1,
           "team_draws": 3,
           "team_losses": 1,
-          "team_points": 3,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 0.75,
-          "delta": -0.25
+          "team_points": 6,
+          "solo_points_rate": 1.3333,
+          "team_points_rate": 1.2,
+          "delta": -0.1333
         },
         {
           "player": "Aloi",
@@ -3014,6 +3377,22 @@
           "solo_points_rate": null,
           "team_points_rate": 0.0,
           "delta": 0.0
+        },
+        {
+          "player": "Valter",
+          "solo_games": 0,
+          "solo_wins": 0,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 0,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 0,
+          "team_losses": 1,
+          "team_points": 0,
+          "solo_points_rate": null,
+          "team_points_rate": 0.0,
+          "delta": 0.0
         }
       ],
       "head_to_head": {
@@ -3026,7 +3405,8 @@
             "Ale P",
             "Alberto",
             "Aloi",
-            "Riccardo (Golf Torino)"
+            "Riccardo (Golf Torino)",
+            "Valter"
           ],
           "matrix": {
             "Alberto": {},
@@ -3077,6 +3457,14 @@
               }
             },
             "Lele": {
+              "Patrick": {
+                "games": 2,
+                "wins": 0,
+                "draws": 0,
+                "losses": 2,
+                "points_for": 0,
+                "points_against": 6
+              },
               "Fra": {
                 "games": 6,
                 "wins": 3,
@@ -3092,23 +3480,15 @@
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
-              },
-              "Patrick": {
-                "games": 1,
-                "wins": 0,
-                "draws": 0,
-                "losses": 1,
-                "points_for": 0,
-                "points_against": 3
               }
             },
             "Patrick": {
               "Lele": {
-                "games": 1,
-                "wins": 1,
+                "games": 2,
+                "wins": 2,
                 "draws": 0,
                 "losses": 0,
-                "points_for": 3,
+                "points_for": 6,
                 "points_against": 0
               },
               "Fra": {
@@ -3120,15 +3500,18 @@
                 "points_against": 3
               }
             },
-            "Riccardo (Golf Torino)": {}
+            "Riccardo (Golf Torino)": {},
+            "Valter": {}
           }
         },
         "teams": {
           "labels": [
             "Ale P-Lele",
             "Ale M-Lele",
+            "Lele-Patrick",
             "Fra-Patrick",
             "Alberto-Ale M",
+            "Ale M-Valter",
             "Fra-Riccardo (Golf Torino)"
           ],
           "matrix": {
@@ -3150,6 +3533,16 @@
                 "losses": 0,
                 "points_for": 3,
                 "points_against": 0
+              }
+            },
+            "Ale M-Valter": {
+              "Lele-Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
               }
             },
             "Ale P-Lele": {
@@ -3189,11 +3582,114 @@
                 "points_for": 0,
                 "points_against": 3
               }
+            },
+            "Lele-Patrick": {
+              "Ale M-Valter": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
             }
           }
         }
       },
       "matches": [
+        {
+          "id": 31,
+          "played_at": "2026-07-25T18:01:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-ms0fvjla-xbtyhucb",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "played_at": "2026-07-25T18:01:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-ms0fv2oc-qo8ys2vi",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele-Patrick",
+              "is_winner": true,
+              "players": [
+                "Lele",
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Ale M-Valter",
+              "is_winner": false,
+              "players": [
+                "Ale M",
+                "Valter"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "played_at": "2026-07-25T16:01:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-ms0fu145-u3j35mjx",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            }
+          ]
+        },
         {
           "id": 28,
           "played_at": "2026-07-20T15:37:00",
@@ -3954,16 +4450,16 @@
         "key": "year:2026",
         "label": "2026",
         "group": "Stagioni",
-        "matches": 25,
+        "matches": 28,
         "player_champion": {
           "kind": "player",
           "name": "Lele",
-          "points": 33,
-          "games": 20,
-          "wins": 10,
+          "points": 36,
+          "games": 23,
+          "wins": 11,
           "draws": 3,
-          "losses": 7,
-          "points_rate": 1.65
+          "losses": 9,
+          "points_rate": 1.5652
         },
         "team_champion": {
           "kind": "team",
@@ -3978,12 +4474,12 @@
         "player_points_rate_champion": {
           "kind": "player",
           "name": "Lele",
-          "points": 33,
-          "games": 20,
-          "wins": 10,
+          "points": 36,
+          "games": 23,
+          "wins": 11,
           "draws": 3,
-          "losses": 7,
-          "points_rate": 1.65
+          "losses": 9,
+          "points_rate": 1.5652
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -3999,9 +4495,9 @@
     },
     "tag:Coppa Estate 2026": {
       "counts": {
-        "matches": 17,
-        "players": 7,
-        "teams": 5
+        "matches": 20,
+        "players": 8,
+        "teams": 7
       },
       "filters": {
         "players": [
@@ -4011,7 +4507,8 @@
           "Fra",
           "Lele",
           "Patrick",
-          "Riccardo (Golf Torino)"
+          "Riccardo (Golf Torino)",
+          "Valter"
         ],
         "courses": [
           "Courmayeur",
@@ -4023,12 +4520,12 @@
       "by_player": [
         {
           "player": "Lele",
-          "games": 13,
-          "wins": 6,
+          "games": 16,
+          "wins": 7,
           "draws": 2,
-          "losses": 5,
-          "points": 20,
-          "points_rate": 1.5385,
+          "losses": 7,
+          "points": 23,
+          "points_rate": 1.4375,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -4050,13 +4547,13 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Ale M",
-          "games": 6,
-          "wins": 2,
-          "draws": 2,
+          "player": "Patrick",
+          "games": 9,
+          "wins": 4,
+          "draws": 3,
           "losses": 2,
-          "points": 8,
-          "points_rate": 1.3333,
+          "points": 15,
+          "points_rate": 1.6667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -4064,18 +4561,18 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Patrick",
-          "games": 6,
-          "wins": 1,
-          "draws": 3,
-          "losses": 2,
-          "points": 6,
-          "points_rate": 1.0,
+          "player": "Ale M",
+          "games": 7,
+          "wins": 2,
+          "draws": 2,
+          "losses": 3,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 6 · Pt 6 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Alberto",
@@ -4089,21 +4586,21 @@
           "tie_direct_wins": 0,
           "tie_breaker": "V 0 · Media 1",
           "tie_breaker_points": "V 0 · Media 1",
-          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Ale P",
-          "games": 1,
+          "games": 2,
           "wins": 0,
           "draws": 1,
-          "losses": 0,
+          "losses": 1,
           "points": 1,
-          "points_rate": 1.0,
+          "points_rate": 0.5,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 0 · Media 1",
-          "tie_breaker_points": "V 0 · Media 1",
-          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
+          "tie_breaker": "V 0 · Media 0.5",
+          "tie_breaker_points": "V 0 · Media 0.5",
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Riccardo (Golf Torino)",
@@ -4115,9 +4612,23 @@
           "points_rate": 0.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "V 0 · Media 0",
+          "tie_breaker_points": "V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
+          "player": "Valter",
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 0 · Media 0",
+          "tie_breaker_points": "V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
         }
       ],
       "by_team": [
@@ -4137,9 +4648,29 @@
           "points_rate": 3.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "SD 0 · V 1 · Media 3",
+          "tie_breaker_points": "SD 0 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
+          "team_key": "Lele|Patrick",
+          "team_label": "Lele + Patrick",
+          "team_name": "Lele-Patrick",
+          "components": [
+            "Lele",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 3",
+          "tie_breaker_points": "SD 0 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
           "team_key": "Fra|Patrick",
@@ -4202,6 +4733,26 @@
           "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         },
         {
+          "team_key": "Ale M|Valter",
+          "team_label": "Ale M + Valter",
+          "team_name": "Ale M-Valter",
+          "components": [
+            "Ale M",
+            "Valter"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
           "team_key": "Fra|Riccardo (Golf Torino)",
           "team_label": "Fra + Riccardo (Golf Torino)",
           "team_name": "Fra-Riccardo (Golf Torino)",
@@ -4217,9 +4768,9 @@
           "points_rate": 0.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
         }
       ],
       "rankings": {
@@ -4227,48 +4778,54 @@
           "points": [
             "Lele",
             "Fra",
-            "Ale M",
             "Patrick",
+            "Ale M",
             "Alberto",
             "Ale P",
-            "Riccardo (Golf Torino)"
+            "Riccardo (Golf Torino)",
+            "Valter"
           ],
           "points_rate": [
-            "Lele",
-            "Ale M",
-            "Fra",
             "Patrick",
+            "Lele",
+            "Fra",
+            "Ale M",
             "Alberto",
             "Ale P",
-            "Riccardo (Golf Torino)"
+            "Riccardo (Golf Torino)",
+            "Valter"
           ]
         },
         "teams": {
           "points": [
             "Ale M-Lele",
+            "Lele-Patrick",
             "Fra-Patrick",
             "Alberto-Ale M",
             "Ale P-Lele",
+            "Ale M-Valter",
             "Fra-Riccardo (Golf Torino)"
           ],
           "points_rate": [
             "Ale M-Lele",
+            "Lele-Patrick",
             "Fra-Patrick",
             "Alberto-Ale M",
             "Ale P-Lele",
+            "Ale M-Valter",
             "Fra-Riccardo (Golf Torino)"
           ]
         }
       },
       "by_player_points_rate": [
         {
-          "player": "Lele",
-          "games": 13,
-          "wins": 6,
-          "draws": 2,
-          "losses": 5,
-          "points": 20,
-          "points_rate": 1.5385,
+          "player": "Patrick",
+          "games": 9,
+          "wins": 4,
+          "draws": 3,
+          "losses": 2,
+          "points": 15,
+          "points_rate": 1.6667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -4276,13 +4833,13 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Ale M",
-          "games": 6,
-          "wins": 2,
+          "player": "Lele",
+          "games": 16,
+          "wins": 7,
           "draws": 2,
-          "losses": 2,
-          "points": 8,
-          "points_rate": 1.3333,
+          "losses": 7,
+          "points": 23,
+          "points_rate": 1.4375,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -4304,18 +4861,18 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Patrick",
-          "games": 6,
-          "wins": 1,
-          "draws": 3,
-          "losses": 2,
-          "points": 6,
-          "points_rate": 1.0,
+          "player": "Ale M",
+          "games": 7,
+          "wins": 2,
+          "draws": 2,
+          "losses": 3,
+          "points": 8,
+          "points_rate": 1.1429,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 6 · Pt 6 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Alberto",
@@ -4329,21 +4886,21 @@
           "tie_direct_wins": 0,
           "tie_breaker": "V 0 · Media 1",
           "tie_breaker_points": "V 0 · Media 1",
-          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Ale P",
-          "games": 1,
+          "games": 2,
           "wins": 0,
           "draws": 1,
-          "losses": 0,
+          "losses": 1,
           "points": 1,
-          "points_rate": 1.0,
+          "points_rate": 0.5,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 0 · Media 1",
-          "tie_breaker_points": "V 0 · Media 1",
-          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
+          "tie_breaker": "V 0 · Media 0.5",
+          "tie_breaker_points": "V 0 · Media 0.5",
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Riccardo (Golf Torino)",
@@ -4355,9 +4912,23 @@
           "points_rate": 0.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "V 0 · Media 0",
+          "tie_breaker_points": "V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
+          "player": "Valter",
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 0 · Media 0",
+          "tie_breaker_points": "V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
         }
       ],
       "by_team_points_rate": [
@@ -4377,9 +4948,29 @@
           "points_rate": 3.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "SD 0 · V 1 · Media 3",
+          "tie_breaker_points": "SD 0 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
+          "team_key": "Lele|Patrick",
+          "team_label": "Lele + Patrick",
+          "team_name": "Lele-Patrick",
+          "components": [
+            "Lele",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 3",
+          "tie_breaker_points": "SD 0 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
           "team_key": "Fra|Patrick",
@@ -4442,6 +5033,26 @@
           "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         },
         {
+          "team_key": "Ale M|Valter",
+          "team_label": "Ale M + Valter",
+          "team_name": "Ale M-Valter",
+          "components": [
+            "Ale M",
+            "Valter"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+        },
+        {
           "team_key": "Fra|Riccardo (Golf Torino)",
           "team_label": "Fra + Riccardo (Golf Torino)",
           "team_name": "Fra-Riccardo (Golf Torino)",
@@ -4457,46 +5068,46 @@
           "points_rate": 0.0,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker": "SD 0 · V 0 · Media 0",
+          "tie_breaker_points": "SD 0 · V 0 · Media 0",
+          "tie_breaker_rate": "G 1 · Pt 0 · V 0"
         }
       ],
       "solo_vs_team": [
         {
-          "player": "Ale M",
-          "solo_games": 4,
-          "solo_wins": 1,
+          "player": "Lele",
+          "solo_games": 13,
+          "solo_wins": 5,
           "solo_draws": 1,
-          "solo_losses": 2,
-          "solo_points": 4,
-          "team_games": 2,
-          "team_wins": 1,
+          "solo_losses": 7,
+          "solo_points": 16,
+          "team_games": 3,
+          "team_wins": 2,
           "team_draws": 1,
           "team_losses": 0,
-          "team_points": 4,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 2.0,
-          "delta": 1.0
+          "team_points": 7,
+          "solo_points_rate": 1.2308,
+          "team_points_rate": 2.3333,
+          "delta": 1.1025
         },
         {
-          "player": "Alberto",
-          "solo_games": 0,
+          "player": "Ale P",
+          "solo_games": 1,
           "solo_wins": 0,
           "solo_draws": 0,
-          "solo_losses": 0,
+          "solo_losses": 1,
           "solo_points": 0,
           "team_games": 1,
           "team_wins": 0,
           "team_draws": 1,
           "team_losses": 0,
           "team_points": 1,
-          "solo_points_rate": null,
+          "solo_points_rate": 0.0,
           "team_points_rate": 1.0,
           "delta": 1.0
         },
         {
-          "player": "Ale P",
+          "player": "Alberto",
           "solo_games": 0,
           "solo_wins": 0,
           "solo_draws": 0,
@@ -4528,39 +5139,55 @@
           "delta": -0.641
         },
         {
-          "player": "Lele",
-          "solo_games": 11,
-          "solo_wins": 5,
-          "solo_draws": 1,
-          "solo_losses": 5,
-          "solo_points": 16,
-          "team_games": 2,
-          "team_wins": 1,
-          "team_draws": 1,
-          "team_losses": 0,
-          "team_points": 4,
-          "solo_points_rate": 1.4545,
-          "team_points_rate": 2.0,
-          "delta": 0.5455
-        },
-        {
-          "player": "Patrick",
+          "player": "Ale M",
           "solo_games": 4,
           "solo_wins": 1,
           "solo_draws": 1,
           "solo_losses": 2,
           "solo_points": 4,
-          "team_games": 2,
-          "team_wins": 0,
+          "team_games": 3,
+          "team_wins": 1,
+          "team_draws": 1,
+          "team_losses": 1,
+          "team_points": 4,
+          "solo_points_rate": 1.0,
+          "team_points_rate": 1.3333,
+          "delta": 0.3333
+        },
+        {
+          "player": "Patrick",
+          "solo_games": 6,
+          "solo_wins": 3,
+          "solo_draws": 1,
+          "solo_losses": 2,
+          "solo_points": 10,
+          "team_games": 3,
+          "team_wins": 1,
           "team_draws": 2,
           "team_losses": 0,
-          "team_points": 2,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 1.0,
+          "team_points": 5,
+          "solo_points_rate": 1.6667,
+          "team_points_rate": 1.6667,
           "delta": 0.0
         },
         {
           "player": "Riccardo (Golf Torino)",
+          "solo_games": 0,
+          "solo_wins": 0,
+          "solo_draws": 0,
+          "solo_losses": 0,
+          "solo_points": 0,
+          "team_games": 1,
+          "team_wins": 0,
+          "team_draws": 0,
+          "team_losses": 1,
+          "team_points": 0,
+          "solo_points_rate": null,
+          "team_points_rate": 0.0,
+          "delta": 0.0
+        },
+        {
+          "player": "Valter",
           "solo_games": 0,
           "solo_wins": 0,
           "solo_draws": 0,
@@ -4581,11 +5208,12 @@
           "labels": [
             "Lele",
             "Fra",
-            "Ale M",
             "Patrick",
+            "Ale M",
             "Alberto",
             "Ale P",
-            "Riccardo (Golf Torino)"
+            "Riccardo (Golf Torino)",
+            "Valter"
           ],
           "matrix": {
             "Alberto": {},
@@ -4627,6 +5255,14 @@
               }
             },
             "Lele": {
+              "Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
               "Fra": {
                 "games": 6,
                 "wins": 3,
@@ -4644,16 +5280,28 @@
                 "points_against": 3
               }
             },
-            "Patrick": {},
-            "Riccardo (Golf Torino)": {}
+            "Patrick": {
+              "Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
+            },
+            "Riccardo (Golf Torino)": {},
+            "Valter": {}
           }
         },
         "teams": {
           "labels": [
             "Ale M-Lele",
+            "Lele-Patrick",
             "Fra-Patrick",
             "Alberto-Ale M",
             "Ale P-Lele",
+            "Ale M-Valter",
             "Fra-Riccardo (Golf Torino)"
           ],
           "matrix": {
@@ -4675,6 +5323,16 @@
                 "losses": 0,
                 "points_for": 3,
                 "points_against": 0
+              }
+            },
+            "Ale M-Valter": {
+              "Lele-Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
               }
             },
             "Ale P-Lele": {
@@ -4714,11 +5372,114 @@
                 "points_for": 0,
                 "points_against": 3
               }
+            },
+            "Lele-Patrick": {
+              "Ale M-Valter": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
             }
           }
         }
       },
       "matches": [
+        {
+          "id": 31,
+          "played_at": "2026-07-25T18:01:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-ms0fvjla-xbtyhucb",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "played_at": "2026-07-25T18:01:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-ms0fv2oc-qo8ys2vi",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele-Patrick",
+              "is_winner": true,
+              "players": [
+                "Lele",
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Ale M-Valter",
+              "is_winner": false,
+              "players": [
+                "Ale M",
+                "Valter"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "played_at": "2026-07-25T16:01:00",
+          "course": "Golf Sestrieres",
+          "holes": 18,
+          "notes": null,
+          "import_key": "match-ms0fu145-u3j35mjx",
+          "tags": [
+            "Coppa Estate 2026"
+          ],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            }
+          ]
+        },
         {
           "id": 28,
           "played_at": "2026-07-20T15:37:00",
@@ -5239,16 +6000,16 @@
         "key": "tag:Coppa Estate 2026",
         "label": "Coppa Estate 2026",
         "group": "Competizioni / tag",
-        "matches": 17,
+        "matches": 20,
         "player_champion": {
           "kind": "player",
-          "name": "Lele",
-          "points": 20,
-          "games": 13,
-          "wins": 6,
-          "draws": 2,
-          "losses": 5,
-          "points_rate": 1.5385
+          "name": "Patrick",
+          "points": 15,
+          "games": 9,
+          "wins": 4,
+          "draws": 3,
+          "losses": 2,
+          "points_rate": 1.6667
         },
         "team_champion": {
           "kind": "team",
@@ -5262,13 +6023,13 @@
         },
         "player_points_rate_champion": {
           "kind": "player",
-          "name": "Lele",
-          "points": 20,
-          "games": 13,
-          "wins": 6,
-          "draws": 2,
-          "losses": 5,
-          "points_rate": 1.5385
+          "name": "Patrick",
+          "points": 15,
+          "games": 9,
+          "wins": 4,
+          "draws": 3,
+          "losses": 2,
+          "points_rate": 1.6667
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -5284,9 +6045,9 @@
     }
   },
   "counts": {
-    "matches": 25,
-    "players": 8,
-    "teams": 5
+    "matches": 28,
+    "players": 9,
+    "teams": 7
   },
   "filters": {
     "players": [
@@ -5297,7 +6058,8 @@
       "Fra",
       "Lele",
       "Patrick",
-      "Riccardo (Golf Torino)"
+      "Riccardo (Golf Torino)",
+      "Valter"
     ],
     "courses": [
       "Ciliegi",
@@ -5313,12 +6075,12 @@
   "by_player": [
     {
       "player": "Lele",
-      "games": 20,
-      "wins": 10,
+      "games": 23,
+      "wins": 11,
       "draws": 3,
-      "losses": 7,
-      "points": 33,
-      "points_rate": 1.65,
+      "losses": 9,
+      "points": 36,
+      "points_rate": 1.5652,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -5341,12 +6103,12 @@
     },
     {
       "player": "Patrick",
-      "games": 14,
-      "wins": 3,
+      "games": 17,
+      "wins": 6,
       "draws": 4,
       "losses": 7,
-      "points": 13,
-      "points_rate": 0.9286,
+      "points": 22,
+      "points_rate": 1.2941,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -5355,12 +6117,12 @@
     },
     {
       "player": "Ale M",
-      "games": 6,
+      "games": 7,
       "wins": 2,
       "draws": 2,
-      "losses": 2,
+      "losses": 3,
       "points": 8,
-      "points_rate": 1.3333,
+      "points_rate": 1.1429,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -5369,12 +6131,12 @@
     },
     {
       "player": "Ale P",
-      "games": 3,
+      "games": 4,
       "wins": 1,
       "draws": 2,
-      "losses": 0,
+      "losses": 1,
       "points": 5,
-      "points_rate": 1.6667,
+      "points_rate": 1.25,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -5411,6 +6173,20 @@
     },
     {
       "player": "Riccardo (Golf Torino)",
+      "games": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "points": 0,
+      "points_rate": 0.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "V 0 · Media 0",
+      "tie_breaker_points": "V 0 · Media 0",
+      "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+    },
+    {
+      "player": "Valter",
       "games": 1,
       "wins": 0,
       "draws": 0,
@@ -5463,7 +6239,27 @@
       "tie_direct_wins": 0,
       "tie_breaker": "SD 0 · V 1 · Media 3",
       "tie_breaker_points": "SD 0 · V 1 · Media 3",
-      "tie_breaker_rate": "-"
+      "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+    },
+    {
+      "team_key": "Lele|Patrick",
+      "team_label": "Lele + Patrick",
+      "team_name": "Lele-Patrick",
+      "components": [
+        "Lele",
+        "Patrick"
+      ],
+      "games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "points": 3,
+      "points_rate": 3.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "SD 0 · V 1 · Media 3",
+      "tie_breaker_points": "SD 0 · V 1 · Media 3",
+      "tie_breaker_rate": "G 1 · Pt 3 · V 1"
     },
     {
       "team_key": "Fra|Patrick",
@@ -5506,6 +6302,26 @@
       "tie_breaker_rate": "-"
     },
     {
+      "team_key": "Ale M|Valter",
+      "team_label": "Ale M + Valter",
+      "team_name": "Ale M-Valter",
+      "components": [
+        "Ale M",
+        "Valter"
+      ],
+      "games": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "points": 0,
+      "points_rate": 0.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "SD 0 · V 0 · Media 0",
+      "tie_breaker_points": "SD 0 · V 0 · Media 0",
+      "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+    },
+    {
       "team_key": "Fra|Riccardo (Golf Torino)",
       "team_label": "Fra + Riccardo (Golf Torino)",
       "team_name": "Fra-Riccardo (Golf Torino)",
@@ -5521,9 +6337,9 @@
       "points_rate": 0.0,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "-",
-      "tie_breaker_points": "-",
-      "tie_breaker_rate": "-"
+      "tie_breaker": "SD 0 · V 0 · Media 0",
+      "tie_breaker_points": "SD 0 · V 0 · Media 0",
+      "tie_breaker_rate": "G 1 · Pt 0 · V 0"
     }
   ],
   "rankings": {
@@ -5536,45 +6352,51 @@
         "Ale P",
         "Alberto",
         "Aloi",
-        "Riccardo (Golf Torino)"
+        "Riccardo (Golf Torino)",
+        "Valter"
       ],
       "points_rate": [
-        "Ale P",
         "Lele",
+        "Patrick",
+        "Ale P",
         "Ale M",
         "Fra",
         "Alberto",
-        "Patrick",
         "Aloi",
-        "Riccardo (Golf Torino)"
+        "Riccardo (Golf Torino)",
+        "Valter"
       ]
     },
     "teams": {
       "points": [
         "Ale P-Lele",
         "Ale M-Lele",
+        "Lele-Patrick",
         "Fra-Patrick",
         "Alberto-Ale M",
+        "Ale M-Valter",
         "Fra-Riccardo (Golf Torino)"
       ],
       "points_rate": [
         "Ale M-Lele",
+        "Lele-Patrick",
         "Ale P-Lele",
         "Alberto-Ale M",
         "Fra-Patrick",
+        "Ale M-Valter",
         "Fra-Riccardo (Golf Torino)"
       ]
     }
   },
   "by_player_points_rate": [
     {
-      "player": "Ale P",
-      "games": 3,
-      "wins": 1,
-      "draws": 2,
-      "losses": 0,
-      "points": 5,
-      "points_rate": 1.6667,
+      "player": "Lele",
+      "games": 23,
+      "wins": 11,
+      "draws": 3,
+      "losses": 9,
+      "points": 36,
+      "points_rate": 1.5652,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -5582,13 +6404,27 @@
       "tie_breaker_rate": "-"
     },
     {
-      "player": "Lele",
-      "games": 20,
-      "wins": 10,
-      "draws": 3,
+      "player": "Patrick",
+      "games": 17,
+      "wins": 6,
+      "draws": 4,
       "losses": 7,
-      "points": 33,
-      "points_rate": 1.65,
+      "points": 22,
+      "points_rate": 1.2941,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-",
+      "tie_breaker_points": "-",
+      "tie_breaker_rate": "-"
+    },
+    {
+      "player": "Ale P",
+      "games": 4,
+      "wins": 1,
+      "draws": 2,
+      "losses": 1,
+      "points": 5,
+      "points_rate": 1.25,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -5597,12 +6433,12 @@
     },
     {
       "player": "Ale M",
-      "games": 6,
+      "games": 7,
       "wins": 2,
       "draws": 2,
-      "losses": 2,
+      "losses": 3,
       "points": 8,
-      "points_rate": 1.3333,
+      "points_rate": 1.1429,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -5638,20 +6474,6 @@
       "tie_breaker_rate": "-"
     },
     {
-      "player": "Patrick",
-      "games": 14,
-      "wins": 3,
-      "draws": 4,
-      "losses": 7,
-      "points": 13,
-      "points_rate": 0.9286,
-      "tie_direct_points": 0,
-      "tie_direct_wins": 0,
-      "tie_breaker": "-",
-      "tie_breaker_points": "-",
-      "tie_breaker_rate": "-"
-    },
-    {
       "player": "Aloi",
       "games": 2,
       "wins": 0,
@@ -5667,6 +6489,20 @@
     },
     {
       "player": "Riccardo (Golf Torino)",
+      "games": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "points": 0,
+      "points_rate": 0.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "V 0 · Media 0",
+      "tie_breaker_points": "V 0 · Media 0",
+      "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+    },
+    {
+      "player": "Valter",
       "games": 1,
       "wins": 0,
       "draws": 0,
@@ -5699,7 +6535,27 @@
       "tie_direct_wins": 0,
       "tie_breaker": "SD 0 · V 1 · Media 3",
       "tie_breaker_points": "SD 0 · V 1 · Media 3",
-      "tie_breaker_rate": "-"
+      "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+    },
+    {
+      "team_key": "Lele|Patrick",
+      "team_label": "Lele + Patrick",
+      "team_name": "Lele-Patrick",
+      "components": [
+        "Lele",
+        "Patrick"
+      ],
+      "games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "points": 3,
+      "points_rate": 3.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "SD 0 · V 1 · Media 3",
+      "tie_breaker_points": "SD 0 · V 1 · Media 3",
+      "tie_breaker_rate": "G 1 · Pt 3 · V 1"
     },
     {
       "team_key": "Ale P|Lele",
@@ -5762,6 +6618,26 @@
       "tie_breaker_rate": "-"
     },
     {
+      "team_key": "Ale M|Valter",
+      "team_label": "Ale M + Valter",
+      "team_name": "Ale M-Valter",
+      "components": [
+        "Ale M",
+        "Valter"
+      ],
+      "games": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "points": 0,
+      "points_rate": 0.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "SD 0 · V 0 · Media 0",
+      "tie_breaker_points": "SD 0 · V 0 · Media 0",
+      "tie_breaker_rate": "G 1 · Pt 0 · V 0"
+    },
+    {
       "team_key": "Fra|Riccardo (Golf Torino)",
       "team_label": "Fra + Riccardo (Golf Torino)",
       "team_name": "Fra-Riccardo (Golf Torino)",
@@ -5777,43 +6653,27 @@
       "points_rate": 0.0,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
-      "tie_breaker": "-",
-      "tie_breaker_points": "-",
-      "tie_breaker_rate": "-"
+      "tie_breaker": "SD 0 · V 0 · Media 0",
+      "tie_breaker_points": "SD 0 · V 0 · Media 0",
+      "tie_breaker_rate": "G 1 · Pt 0 · V 0"
     }
   ],
   "solo_vs_team": [
     {
       "player": "Ale P",
-      "solo_games": 0,
+      "solo_games": 1,
       "solo_wins": 0,
       "solo_draws": 0,
-      "solo_losses": 0,
+      "solo_losses": 1,
       "solo_points": 0,
       "team_games": 3,
       "team_wins": 1,
       "team_draws": 2,
       "team_losses": 0,
       "team_points": 5,
-      "solo_points_rate": null,
+      "solo_points_rate": 0.0,
       "team_points_rate": 1.6667,
       "delta": 1.6667
-    },
-    {
-      "player": "Ale M",
-      "solo_games": 4,
-      "solo_wins": 1,
-      "solo_draws": 1,
-      "solo_losses": 2,
-      "solo_points": 4,
-      "team_games": 2,
-      "team_wins": 1,
-      "team_draws": 1,
-      "team_losses": 0,
-      "team_points": 4,
-      "solo_points_rate": 1.0,
-      "team_points_rate": 2.0,
-      "delta": 1.0
     },
     {
       "player": "Alberto",
@@ -5832,6 +6692,22 @@
       "delta": 1.0
     },
     {
+      "player": "Lele",
+      "solo_games": 18,
+      "solo_wins": 8,
+      "solo_draws": 1,
+      "solo_losses": 9,
+      "solo_points": 25,
+      "team_games": 5,
+      "team_wins": 3,
+      "team_draws": 2,
+      "team_losses": 0,
+      "team_points": 11,
+      "solo_points_rate": 1.3889,
+      "team_points_rate": 2.2,
+      "delta": 0.8111
+    },
+    {
       "player": "Fra",
       "solo_games": 16,
       "solo_wins": 6,
@@ -5848,36 +6724,36 @@
       "delta": -0.65
     },
     {
-      "player": "Lele",
-      "solo_games": 16,
-      "solo_wins": 8,
+      "player": "Ale M",
+      "solo_games": 4,
+      "solo_wins": 1,
       "solo_draws": 1,
-      "solo_losses": 7,
-      "solo_points": 25,
-      "team_games": 4,
-      "team_wins": 2,
-      "team_draws": 2,
-      "team_losses": 0,
-      "team_points": 8,
-      "solo_points_rate": 1.5625,
-      "team_points_rate": 2.0,
-      "delta": 0.4375
+      "solo_losses": 2,
+      "solo_points": 4,
+      "team_games": 3,
+      "team_wins": 1,
+      "team_draws": 1,
+      "team_losses": 1,
+      "team_points": 4,
+      "solo_points_rate": 1.0,
+      "team_points_rate": 1.3333,
+      "delta": 0.3333
     },
     {
       "player": "Patrick",
-      "solo_games": 10,
-      "solo_wins": 3,
+      "solo_games": 12,
+      "solo_wins": 5,
       "solo_draws": 1,
       "solo_losses": 6,
-      "solo_points": 10,
-      "team_games": 4,
-      "team_wins": 0,
+      "solo_points": 16,
+      "team_games": 5,
+      "team_wins": 1,
       "team_draws": 3,
       "team_losses": 1,
-      "team_points": 3,
-      "solo_points_rate": 1.0,
-      "team_points_rate": 0.75,
-      "delta": -0.25
+      "team_points": 6,
+      "solo_points_rate": 1.3333,
+      "team_points_rate": 1.2,
+      "delta": -0.1333
     },
     {
       "player": "Aloi",
@@ -5910,6 +6786,22 @@
       "solo_points_rate": null,
       "team_points_rate": 0.0,
       "delta": 0.0
+    },
+    {
+      "player": "Valter",
+      "solo_games": 0,
+      "solo_wins": 0,
+      "solo_draws": 0,
+      "solo_losses": 0,
+      "solo_points": 0,
+      "team_games": 1,
+      "team_wins": 0,
+      "team_draws": 0,
+      "team_losses": 1,
+      "team_points": 0,
+      "solo_points_rate": null,
+      "team_points_rate": 0.0,
+      "delta": 0.0
     }
   ],
   "head_to_head": {
@@ -5922,7 +6814,8 @@
         "Ale P",
         "Alberto",
         "Aloi",
-        "Riccardo (Golf Torino)"
+        "Riccardo (Golf Torino)",
+        "Valter"
       ],
       "matrix": {
         "Alberto": {},
@@ -5973,6 +6866,14 @@
           }
         },
         "Lele": {
+          "Patrick": {
+            "games": 2,
+            "wins": 0,
+            "draws": 0,
+            "losses": 2,
+            "points_for": 0,
+            "points_against": 6
+          },
           "Fra": {
             "games": 6,
             "wins": 3,
@@ -5988,23 +6889,15 @@
             "losses": 1,
             "points_for": 0,
             "points_against": 3
-          },
-          "Patrick": {
-            "games": 1,
-            "wins": 0,
-            "draws": 0,
-            "losses": 1,
-            "points_for": 0,
-            "points_against": 3
           }
         },
         "Patrick": {
           "Lele": {
-            "games": 1,
-            "wins": 1,
+            "games": 2,
+            "wins": 2,
             "draws": 0,
             "losses": 0,
-            "points_for": 3,
+            "points_for": 6,
             "points_against": 0
           },
           "Fra": {
@@ -6016,15 +6909,18 @@
             "points_against": 3
           }
         },
-        "Riccardo (Golf Torino)": {}
+        "Riccardo (Golf Torino)": {},
+        "Valter": {}
       }
     },
     "teams": {
       "labels": [
         "Ale P-Lele",
         "Ale M-Lele",
+        "Lele-Patrick",
         "Fra-Patrick",
         "Alberto-Ale M",
+        "Ale M-Valter",
         "Fra-Riccardo (Golf Torino)"
       ],
       "matrix": {
@@ -6046,6 +6942,16 @@
             "losses": 0,
             "points_for": 3,
             "points_against": 0
+          }
+        },
+        "Ale M-Valter": {
+          "Lele-Patrick": {
+            "games": 1,
+            "wins": 0,
+            "draws": 0,
+            "losses": 1,
+            "points_for": 0,
+            "points_against": 3
           }
         },
         "Ale P-Lele": {
@@ -6085,11 +6991,114 @@
             "points_for": 0,
             "points_against": 3
           }
+        },
+        "Lele-Patrick": {
+          "Ale M-Valter": {
+            "games": 1,
+            "wins": 1,
+            "draws": 0,
+            "losses": 0,
+            "points_for": 3,
+            "points_against": 0
+          }
         }
       }
     }
   },
   "matches": [
+    {
+      "id": 31,
+      "played_at": "2026-07-25T18:01:00",
+      "course": "Golf Sestrieres",
+      "holes": 18,
+      "notes": null,
+      "import_key": "match-ms0fvjla-xbtyhucb",
+      "tags": [
+        "Coppa Estate 2026"
+      ],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Lele",
+          "is_winner": false,
+          "players": [
+            "Lele"
+          ]
+        },
+        {
+          "team_name": "Patrick",
+          "is_winner": true,
+          "players": [
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Ale P",
+          "is_winner": false,
+          "players": [
+            "Ale P"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "played_at": "2026-07-25T18:01:00",
+      "course": "Golf Sestrieres",
+      "holes": 18,
+      "notes": null,
+      "import_key": "match-ms0fv2oc-qo8ys2vi",
+      "tags": [
+        "Coppa Estate 2026"
+      ],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Lele-Patrick",
+          "is_winner": true,
+          "players": [
+            "Lele",
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Ale M-Valter",
+          "is_winner": false,
+          "players": [
+            "Ale M",
+            "Valter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "played_at": "2026-07-25T16:01:00",
+      "course": "Golf Sestrieres",
+      "holes": 18,
+      "notes": null,
+      "import_key": "match-ms0fu145-u3j35mjx",
+      "tags": [
+        "Coppa Estate 2026"
+      ],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Lele",
+          "is_winner": false,
+          "players": [
+            "Lele"
+          ]
+        },
+        {
+          "team_name": "Patrick",
+          "is_winner": true,
+          "players": [
+            "Patrick"
+          ]
+        }
+      ]
+    },
     {
       "id": 28,
       "played_at": "2026-07-20T15:37:00",
@@ -6850,16 +7859,16 @@
     "key": "all",
     "label": "Tutte le partite",
     "group": "Generale",
-    "matches": 25,
+    "matches": 28,
     "player_champion": {
       "kind": "player",
       "name": "Lele",
-      "points": 33,
-      "games": 20,
-      "wins": 10,
+      "points": 36,
+      "games": 23,
+      "wins": 11,
       "draws": 3,
-      "losses": 7,
-      "points_rate": 1.65
+      "losses": 9,
+      "points_rate": 1.5652
     },
     "team_champion": {
       "kind": "team",
@@ -6874,12 +7883,12 @@
     "player_points_rate_champion": {
       "kind": "player",
       "name": "Lele",
-      "points": 33,
-      "games": 20,
-      "wins": 10,
+      "points": 36,
+      "games": 23,
+      "wins": 11,
       "draws": 3,
-      "losses": 7,
-      "points_rate": 1.65
+      "losses": 9,
+      "points_rate": 1.5652
     },
     "team_points_rate_champion": {
       "kind": "team",

@@ -1,7 +1,7 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-ms0fu145-u3j35mjx",
-  "played_at": "2026-07-25T16:01:00",
+  "import_key": "match-ms0fvjla-xbtyhucb",
+  "played_at": "2026-07-25T18:01:00",
   "course": "Golf Sestrieres",
   "holes": 18,
   "notes": null,
@@ -21,6 +21,13 @@
       "is_winner": true,
       "players": [
         "Patrick"
+      ]
+    },
+    {
+      "team_name": "Ale P",
+      "is_winner": false,
+      "players": [
+        "Ale P"
       ]
     }
   ]
