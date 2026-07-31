@@ -1,8 +1,8 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-ms4fmtrh-7hhrzton",
-  "played_at": "2026-07-25T11:05:00",
-  "course": null,
+  "import_key": "match-ms8ye7iv-keo8032j",
+  "played_at": "2026-07-28T15:03:00",
+  "course": "Golf Sestrieres",
   "holes": 18,
   "notes": null,
   "tags": [
@@ -17,10 +17,10 @@
       ]
     },
     {
-      "team_name": "Patrick",
+      "team_name": "Fra",
       "is_winner": false,
       "players": [
-        "Patrick"
+        "Fra"
       ]
     }
   ]
