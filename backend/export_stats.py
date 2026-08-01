@@ -125,11 +125,11 @@ def compute_head_to_head(matches: List[Dict], player_labels: List[str], team_row
                 "team_key": "|".join(players) if len(players) >= 2 else None,
             })
 
-        # Head2Head - Player: consider only true individual 1v1 matches.
-        # Player points earned as members of a team still count in the player standings,
-        # but they are intentionally excluded from this matrix.
-        is_individual_1v1 = (
-            len(enriched_sides) == 2
+        # Head2Head - Player: include every individual match, also with 3+ players.
+        # A match is individual only when every side contains exactly one player.
+        # Team matches remain excluded because their outcome also depends on teammates.
+        is_individual_match = (
+            len(enriched_sides) >= 2
             and all(len(side["players"]) == 1 for side in enriched_sides)
         )
 
@@ -138,7 +138,7 @@ def compute_head_to_head(matches: List[Dict], player_labels: List[str], team_row
                 if i == j:
                     continue
 
-                if is_individual_1v1:
+                if is_individual_match:
                     source_player = source_side["players"][0]
                     target_player = target_side["players"][0]
                     if (

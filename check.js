@@ -1,4 +1,6 @@
-function pointsValue(value) {
+
+    let MIN_GAMES_FOR_RATE_RANKING = 5;
+    function pointsValue(value) {
       return value == null ? '-' : Number(value).toFixed(2).replace(/\.00$/, '');
     }
 
@@ -30,6 +32,16 @@ function pointsValue(value) {
       return 'ID/import_key non disponibile: rigenera docs/data/stats.json con export_stats.py';
     }
 
+    function editUrl(match) {
+      if (match && match.import_key) {
+        return 'edit-match/?import_key=' + encodeURIComponent(match.import_key);
+      }
+      if (match && match.id != null) {
+        return 'edit-match/?id=' + encodeURIComponent(String(match.id));
+      }
+      return 'edit-match/';
+    }
+
     function metricBadge(value, type) {
       const span = document.createElement('span');
       span.className = 'metric-badge ' + type;
@@ -38,20 +50,7 @@ function pointsValue(value) {
     }
 
     function performanceCell(value) {
-      const raw = parseFloat(String(value).replace(',', '.')) || 0;
-      const wrap = document.createElement('div');
-      wrap.className = 'performance-cell';
-      const label = document.createElement('span');
-      label.textContent = value;
-      const track = document.createElement('span');
-      track.className = 'performance-track';
-      const fill = document.createElement('span');
-      fill.className = 'performance-fill';
-      fill.style.width = Math.max(0, Math.min(100, (raw / 3) * 100)) + '%';
-      track.appendChild(fill);
-      wrap.appendChild(label);
-      wrap.appendChild(track);
-      return wrap;
+      return metricBadge(value, 'points');
     }
 
     function table(el, headers, rows) {
@@ -65,9 +64,17 @@ function pointsValue(value) {
       });
       thead.appendChild(trh);
       const tbody = document.createElement('tbody');
-      rows.forEach((row, rowIndex) => {
+      rows.forEach((rowData, rowIndex) => {
+        const row = Array.isArray(rowData) ? rowData : (rowData.cells || []);
+        const rankValue = Array.isArray(rowData) || rowData.rank === undefined ? rowIndex + 1 : rowData.rank;
+        const rankNumber = Number(rankValue);
         const tr = document.createElement('tr');
-        tr.className = rowIndex < 3 ? 'podium-row podium-' + (rowIndex + 1) : '';
+        const rowClasses = [];
+        if (Number.isInteger(rankNumber) && rankNumber >= 1 && rankNumber <= 3) rowClasses.push('podium-row', 'podium-' + rankNumber);
+        if (!Array.isArray(rowData) && rowData.className) rowClasses.push(rowData.className);
+        tr.className = rowClasses.join(' ');
+        if (!Array.isArray(rowData) && rowData.title) tr.title = rowData.title;
+        if (!Array.isArray(rowData) && rowData.style) tr.setAttribute('style', rowData.style);
         row.forEach((cell, index) => {
           const td = document.createElement('td');
           td.dataset.label = headers[index];
@@ -75,8 +82,8 @@ function pointsValue(value) {
 
           if (index === 0) {
             const rank = document.createElement('span');
-            rank.className = 'rank-badge rank-' + (rowIndex + 1);
-            rank.textContent = rowIndex + 1;
+            rank.className = 'rank-badge ' + (rankValue ? 'rank-' + rankValue : 'rank-excluded');
+            rank.textContent = rankValue || '-';
             const name = document.createElement('span');
             name.className = 'leader-name';
             name.textContent = cell;
@@ -92,7 +99,7 @@ function pointsValue(value) {
             td.appendChild(metricBadge(cell + 'P', 'draw'));
           } else if (headers[index] === 'Sconfitte') {
             td.appendChild(metricBadge(cell + 'S', 'loss'));
-          } else if (headers[index] === 'Rendimento') {
+          } else if (headers[index] === 'Media punti') {
             td.appendChild(performanceCell(cell));
           } else {
             td.textContent = cell;
@@ -105,28 +112,51 @@ function pointsValue(value) {
       el.appendChild(tbody);
     }
 
-    function getView(data, year) {
+    function getView(data, key) {
       const views = data.views || { all: data };
-      return views[year] || views.all || data;
+      return views[key] || views.all || data;
     }
 
-    function selectedYearLabel(year) {
-      return year === 'all' ? 'Tutti gli anni' : year;
+    function selectedViewLabel(data, key) {
+      const option = (data.view_options || []).find(item => item.value === key);
+      if (option) return option.label;
+      if (key === 'all') return 'Tutte le partite';
+      if (key === 'untagged') return 'Senza tag';
+      if (String(key).startsWith('year:')) return String(key).slice(5);
+      if (String(key).startsWith('tag:')) return String(key).slice(4);
+      return key || 'Tutte le partite';
     }
 
     function populateYearFilter(data) {
       const select = document.getElementById('season_filter');
-      const years = Array.isArray(data.years) ? data.years : [];
-      select.innerHTML = '<option value="all">Tutti gli anni</option>';
-      years.forEach(year => {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        select.appendChild(option);
+      const options = Array.isArray(data.view_options) && data.view_options.length
+        ? data.view_options
+        : [{ value: 'all', label: 'Tutte le partite', group: 'Generale' }].concat(
+            (data.years || []).map(year => ({ value: 'year:' + year, label: String(year), group: 'Stagioni' }))
+          );
+      select.innerHTML = '';
+      const groups = [];
+      options.forEach(option => {
+        const groupName = option.group || 'Vista';
+        let group = groups.find(item => item.label === groupName);
+        if (!group) {
+          group = { label: groupName, options: [] };
+          groups.push(group);
+        }
+        group.options.push(option);
       });
-
-      // Default: anno piu recente disponibile. Se non ci sono partite, resta "Tutti gli anni".
-      select.value = years.length ? years[0] : 'all';
+      groups.forEach(group => {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = group.label;
+        group.options.forEach(item => {
+          const option = document.createElement('option');
+          option.value = item.value;
+          option.textContent = item.label;
+          optgroup.appendChild(option);
+        });
+        select.appendChild(optgroup);
+      });
+      select.value = options.some(item => item.value === 'all') ? 'all' : (options[0] && options[0].value) || 'all';
     }
 
     function renderMatches(view) {
@@ -175,7 +205,31 @@ function pointsValue(value) {
         });
 
         item.appendChild(meta);
+
+        const tags = Array.isArray(match.tags) ? match.tags : [];
+        if (tags.length) {
+          const tagWrap = document.createElement('div');
+          tagWrap.className = 'match-tags';
+          tags.forEach(tag => {
+            const badge = document.createElement('span');
+            badge.className = 'tag-badge';
+            badge.textContent = tag;
+            tagWrap.appendChild(badge);
+          });
+          item.appendChild(tagWrap);
+        }
+
         item.appendChild(body);
+
+        const actions = document.createElement('div');
+        actions.className = 'match-actions';
+        const edit = document.createElement('a');
+        edit.className = 'button-link secondary edit-match-button';
+        edit.href = editUrl(match);
+        edit.textContent = 'Modifica match';
+        edit.title = 'Modifica tag, vincitori e partecipanti di questa partita';
+        actions.appendChild(edit);
+        item.appendChild(actions);
 
         const admin = document.createElement('details');
         admin.className = 'match-admin';
@@ -223,11 +277,26 @@ function pointsValue(value) {
       return 'neutral';
     }
 
+    function h2hPerformance(entry) {
+      if (!entry || !entry.games) return 0;
+      return (entry.points_for || 0) / entry.games;
+    }
+
+    function h2hDelta(entry) {
+      if (!entry || !entry.games) return 0;
+      return ((entry.points_for || 0) - (entry.points_against || 0)) / entry.games;
+    }
+
+    function signedPointsValue(value) {
+      const numeric = Number(value || 0);
+      if (Math.abs(numeric) < 0.00005) return '0';
+      return (numeric > 0 ? '+' : '') + pointsValue(numeric);
+    }
+
     function h2hCellText(entry) {
       if (!entry || !entry.games) return '·';
       const record = String(entry.wins || 0) + '-' + String(entry.draws || 0) + '-' + String(entry.losses || 0);
-      const points = String(entry.points_for || 0) + '-' + String(entry.points_against || 0);
-      return record + '\n' + points;
+      return record + '\nΔ ' + signedPointsValue(h2hDelta(entry));
     }
 
     function h2hTitle(rowLabel, colLabel, entry) {
@@ -236,13 +305,8 @@ function pointsValue(value) {
         entry.games + ' partite · ' +
         (entry.wins || 0) + ' vittorie · ' +
         (entry.draws || 0) + ' pareggi · ' +
-        (entry.losses || 0) + ' sconfitte · punti ' +
-        (entry.points_for || 0) + '-' + (entry.points_against || 0);
-    }
-
-    function h2hPerformance(entry) {
-      if (!entry || !entry.games) return 0;
-      return (entry.points_for || 0) / entry.games;
+        (entry.losses || 0) + ' sconfitte · Δ media punti ' +
+        signedPointsValue(h2hDelta(entry));
     }
 
     function updateH2HPairOptions(labels) {
@@ -354,14 +418,14 @@ function pointsValue(value) {
       summary.appendChild(h2hStatItem('Partite', String(firstEntry.games || 0)));
       summary.appendChild(h2hStatItem(first + ' record', (firstEntry.wins || 0) + 'V - ' + (firstEntry.draws || 0) + 'P - ' + (firstEntry.losses || 0) + 'S'));
       summary.appendChild(h2hStatItem(second + ' record', (secondEntry.wins || 0) + 'V - ' + (secondEntry.draws || 0) + 'P - ' + (secondEntry.losses || 0) + 'S'));
-      summary.appendChild(h2hStatItem('Punti', (firstEntry.points_for || 0) + '-' + (firstEntry.points_against || 0)));
-      summary.appendChild(h2hStatItem('Rendimento ' + first, pointsValue(h2hPerformance(firstEntry))));
-      summary.appendChild(h2hStatItem('Rendimento ' + second, pointsValue(h2hPerformance(secondEntry))));
+      summary.appendChild(h2hStatItem('Media punti ' + first, pointsValue(h2hPerformance(firstEntry))));
+      summary.appendChild(h2hStatItem('Media punti ' + second, pointsValue(h2hPerformance(secondEntry))));
+      summary.appendChild(h2hStatItem('Δ media punti', signedPointsValue(h2hDelta(firstEntry))));
       card.appendChild(summary);
 
       const note = document.createElement('p');
       note.className = 'small h2h-compare-note';
-      note.textContent = 'Lettura: ' + first + ' ha ' + (firstEntry.wins || 0) + ' vittorie, ' + (firstEntry.draws || 0) + ' pareggi e ' + (firstEntry.losses || 0) + ' sconfitte contro ' + second + '. Punti ' + (firstEntry.points_for || 0) + '-' + (firstEntry.points_against || 0) + '.';
+      note.textContent = 'Lettura: ' + first + ' ha ' + (firstEntry.wins || 0) + ' vittorie, ' + (firstEntry.draws || 0) + ' pareggi e ' + (firstEntry.losses || 0) + ' sconfitte contro ' + second + '. Il suo delta della media punti è ' + signedPointsValue(h2hDelta(firstEntry)) + '.';
       card.appendChild(note);
 
       const bar = document.createElement('div');
@@ -437,7 +501,7 @@ function pointsValue(value) {
 
       renderH2HCompare(labels, matrix, type);
       tableEl.innerHTML = '';
-      legend.textContent = 'Desktop: ogni cella mostra Record V-P-S e Punti PF-PS della riga. Mobile: la card mostra il confronto tra i due soggetti selezionati.';
+      legend.textContent = 'Desktop: ogni cella mostra Record V-P-S e Δ media punti della riga. Mobile: la card mostra medie e delta del confronto selezionato.';
 
       if (!labels.length) {
         const caption = document.createElement('caption');
@@ -489,14 +553,13 @@ function pointsValue(value) {
       setupH2HStickyFallback();
     }
 
-    function getYearView(data, year) {
-      const views = data.views || {};
-      return views[String(year)] || null;
-    }
-
     function championFrom(rows, type) {
       if (!Array.isArray(rows) || !rows.length) return null;
-      const first = rows[0];
+      const sourceRows = type === 'player'
+        ? rows.filter(row => (row.games || 0) >= MIN_GAMES_FOR_RATE_RANKING)
+        : rows;
+      if (!sourceRows.length) return null;
+      const first = sourceRows[0];
       return {
         name: type === 'team' ? (first.team_name || first.team_label || '-') : (first.player || '-'),
         points: first.points || 0,
@@ -520,7 +583,7 @@ function pointsValue(value) {
       const meta = document.createElement('span');
       meta.className = 'hall-champion-meta';
       meta.textContent = champion
-        ? (champion.points + ' pt · ' + champion.wins + 'V ' + champion.draws + 'P ' + champion.losses + 'S · Rend ' + champion.performance)
+        ? (champion.points + ' pt · ' + champion.games + ' partite · ' + champion.wins + 'V ' + champion.draws + 'P ' + champion.losses + 'S · Media punti ' + champion.performance)
         : 'Nessun dato disponibile';
       block.appendChild(title);
       block.appendChild(name);
@@ -528,90 +591,163 @@ function pointsValue(value) {
       return block;
     }
 
-    function renderHallOfFame(data) {
+    function renderHallOfFame(data, view, key) {
       const container = document.getElementById('hall-of-fame');
       const counter = document.getElementById('hall-count');
+      const title = document.getElementById('hall-title');
+      const subtitle = document.getElementById('hall-subtitle');
+      const card = document.getElementById('hall-of-fame-card');
       if (!container) return;
-      const years = (Array.isArray(data.years) ? data.years : [])
-        .map(year => String(year))
-        .filter(year => year !== 'all');
-      const currentYear = String(new Date().getFullYear());
-      container.innerHTML = '';
-      if (counter) counter.textContent = years.length ? years.length + ' anni' : '0 anni';
 
-      if (!years.length) {
-        container.innerHTML = '<p class="small">Nessuna stagione disponibile.</p>';
+      const label = selectedViewLabel(data, key);
+      const group = (view.meta && view.meta.group) || '';
+      const matches = (view.counts && view.counts.matches) || 0;
+      const playerChampion = championFrom(view.by_player_points_rate || view.by_player || [], 'player');
+      const teamChampion = championFrom(view.by_team_points_rate || view.by_team || [], 'team');
+
+      if (card) card.style.display = '';
+      if (title) title.textContent = key === 'all' ? 'Leader generale' : ('Leader · ' + label);
+      if (subtitle) {
+        subtitle.textContent = key === 'all'
+          ? 'Leader calcolati per media punti su tutte le partite. Per i giocatori vale la soglia di almeno ' + MIN_GAMES_FOR_RATE_RANKING + ' partite.'
+          : 'Leader per media punti calcolati solo sulle partite della vista selezionata' + (group ? ' (' + group.toLowerCase() + ')' : '') + '. Per i giocatori vale la soglia di almeno ' + MIN_GAMES_FOR_RATE_RANKING + ' partite.';
+      }
+      if (counter) counter.textContent = matches + ' partite';
+      container.innerHTML = '';
+
+      if (!matches) {
+        container.innerHTML = '<p class="small">Nessuna partita disponibile per questa vista.</p>';
         return;
       }
 
-      years.forEach(year => {
-        const view = getYearView(data, year);
-        const playerChampion = championFrom(view && view.by_player, 'player');
-        const teamChampion = championFrom(view && view.by_team, 'team');
-        const isOngoing = year === currentYear;
+      const year = key && String(key).startsWith('year:') ? String(key).slice(5) : '';
+      const currentYear = String(new Date().getFullYear());
+      const isOngoing = year && year === currentYear;
 
-        const card = document.createElement('article');
-        card.className = 'hall-year-card' + (isOngoing ? ' is-ongoing' : '');
+      const hallCard = document.createElement('article');
+      hallCard.className = 'hall-year-card' + (isOngoing ? ' is-ongoing' : '');
 
-        const top = document.createElement('div');
-        top.className = 'hall-year-top';
-        const yearEl = document.createElement('strong');
-        yearEl.className = 'hall-year';
-        yearEl.textContent = year;
-        const status = document.createElement('span');
-        status.className = 'hall-status ' + (isOngoing ? 'ongoing' : 'closed');
-        status.textContent = isOngoing ? 'Ongoing' : 'Finale';
-        top.appendChild(yearEl);
-        top.appendChild(status);
-        card.appendChild(top);
+      const top = document.createElement('div');
+      top.className = 'hall-year-top';
+      const labelEl = document.createElement('strong');
+      labelEl.className = 'hall-year';
+      labelEl.textContent = label;
+      const status = document.createElement('span');
+      status.className = 'hall-status ' + (isOngoing ? 'ongoing' : 'closed');
+      status.textContent = isOngoing ? 'Ongoing' : (group || 'Vista');
+      top.appendChild(labelEl);
+      top.appendChild(status);
+      hallCard.appendChild(top);
 
-        const grid = document.createElement('div');
-        grid.className = 'hall-champions-grid';
-        grid.appendChild(championBlock('Player', playerChampion));
-        grid.appendChild(championBlock('Team', teamChampion));
-        card.appendChild(grid);
+      const grid = document.createElement('div');
+      grid.className = 'hall-champions-grid';
+      grid.appendChild(championBlock('Player · media punti', playerChampion));
+      grid.appendChild(championBlock('Team · media punti', teamChampion));
+      hallCard.appendChild(grid);
 
-        if (isOngoing) {
-          const overlay = document.createElement('div');
-          overlay.className = 'hall-ongoing-ribbon';
-          overlay.textContent = 'Stagione in corso';
-          card.appendChild(overlay);
-        }
+      if (isOngoing) {
+        const overlay = document.createElement('div');
+        overlay.className = 'hall-ongoing-ribbon';
+        overlay.textContent = 'Stagione in corso';
+        hallCard.appendChild(overlay);
+      }
 
-        container.appendChild(card);
-      });
+      container.appendChild(hallCard);
+    }
+
+    function selectedRankingMetric(id) {
+      const select = document.getElementById(id);
+      return select ? select.value : 'points_rate';
+    }
+
+    function playerRowsForMetric(view, metric) {
+      if (metric === 'points_rate') return view.by_player_points_rate || view.by_player || [];
+      return view.by_player || [];
+    }
+
+    function teamRowsForMetric(view, metric) {
+      if (metric === 'points_rate') return view.by_team_points_rate || view.by_team || [];
+      return view.by_team || [];
+    }
+
+    function renderPlayerLeaderboard(view, suffix) {
+      const metric = selectedRankingMetric('player_metric');
+      const rows = playerRowsForMetric(view, metric);
+      const help = document.getElementById('players-sort-help');
+      document.getElementById('players-count').textContent = rows.length + ' player · ' + suffix;
+
+      if (metric === 'points_rate') {
+        if (help) help.textContent = 'Ordine per media punti. I giocatori con almeno ' + MIN_GAMES_FOR_RATE_RANKING + ' partite entrano in classifica. Gli altri restano visibili in fondo, opachi e senza posizione.';
+        const eligibleRows = rows.filter(x => (x.games || 0) >= MIN_GAMES_FOR_RATE_RANKING);
+        const belowThresholdRows = rows.filter(x => (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING);
+        const displayRows = eligibleRows.concat(belowThresholdRows);
+        table(
+          document.getElementById('players'),
+          ['Giocatore', 'Media punti', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
+          displayRows.map((x, index) => {
+            const belowThreshold = (x.games || 0) < MIN_GAMES_FOR_RATE_RANKING;
+            return {
+              cells: [x.player, pointsValue(x.points_rate || 0), x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_rate || '-'],
+              rank: belowThreshold ? '' : index + 1,
+              className: belowThreshold ? 'below-games-threshold' : '',
+              title: belowThreshold ? 'Meno di ' + MIN_GAMES_FOR_RATE_RANKING + ' partite giocate: escluso dalla classifica media punti' : '',
+              style: belowThreshold ? 'opacity: 0.32; filter: grayscale(0.75);' : ''
+            };
+          })
+        );
+        return;
+      }
+
+      if (help) help.textContent = 'Ordine per punti assoluti. Tie breaker: punti, vittorie, media punti, nome. I punti ottenuti in squadra contano anche per il giocatore.';
+      table(
+        document.getElementById('players'),
+        ['Giocatore', 'Punti', 'Media punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
+        rows.map(x => [x.player, x.points || 0, pointsValue(x.points_rate || 0), x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_points || x.tie_breaker || '-'])
+      );
+    }
+
+    function renderTeamLeaderboard(view, suffix) {
+      const metric = selectedRankingMetric('team_metric');
+      const rows = teamRowsForMetric(view, metric);
+      const help = document.getElementById('teams-sort-help');
+      document.getElementById('teams-count').textContent = rows.length + ' team · ' + suffix;
+
+      if (metric === 'points_rate') {
+        if (help) help.textContent = 'Ordine per media punti. Tie breaker: media punti, partite giocate, punti totali, vittorie, nome squadra.';
+        table(
+          document.getElementById('teams'),
+          ['Squadra', 'Media punti', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
+          rows.map(x => [x.team_name || x.team_label, pointsValue(x.points_rate || 0), x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_rate || '-'])
+        );
+        return;
+      }
+
+      if (help) help.textContent = 'Ordine per punti assoluti. Tie breaker: punti, scontri diretti tra team a pari punti, vittorie, media punti, nome.';
+      table(
+        document.getElementById('teams'),
+        ['Squadra', 'Punti', 'Media punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'TB'],
+        rows.map(x => [x.team_name || x.team_label, x.points || 0, pointsValue(x.points_rate || 0), x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, x.tie_breaker_points || x.tie_breaker || '-'])
+      );
     }
 
     function renderDashboard(data) {
-      const year = document.getElementById('season_filter').value || 'all';
-      const view = getView(data, year);
+      const selectedView = document.getElementById('season_filter').value || 'all';
+      const view = getView(data, selectedView);
       const counts = view.counts || { matches: 0, players: 0, teams: 0 };
-      const byPlayer = view.by_player || [];
-      const byTeam = view.by_team || [];
       const matches = view.matches || [];
-      const suffix = selectedYearLabel(year);
+      const suffix = selectedViewLabel(data, selectedView);
 
       document.getElementById('kpi-matches').textContent = counts.matches || 0;
       document.getElementById('kpi-players').textContent = counts.players || 0;
       document.getElementById('kpi-teams').textContent = counts.teams || 0;
       document.getElementById('kpi-latest').textContent = matches.length ? niceDate(matches[0].played_at) : '-';
-      document.getElementById('players-count').textContent = byPlayer.length + ' player · ' + suffix;
-      document.getElementById('teams-count').textContent = byTeam.length + ' team · ' + suffix;
 
-      table(
-        document.getElementById('players'),
-        ['Giocatore', 'Punti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento', 'TB'],
-        byPlayer.map(x => [x.player, x.points || 0, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0), x.tie_breaker || '-'])
-      );
-
-      table(
-        document.getElementById('teams'),
-        ['Squadra', 'Punti', 'Componenti', 'Partite giocate', 'Vittorie', 'Pareggi', 'Sconfitte', 'Rendimento', 'TB'],
-        byTeam.map(x => [x.team_name || x.team_label, x.points || 0, x.team_label, x.games, x.wins || 0, x.draws || 0, x.losses || 0, pointsValue(x.points_rate || 0), x.tie_breaker || '-'])
-      );
+      renderPlayerLeaderboard(view, suffix);
+      renderTeamLeaderboard(view, suffix);
 
       setupLeaderboardStickyFallback();
       renderH2H(view);
+      renderHallOfFame(data, view, selectedView);
       renderMatches(view);
     }
 
@@ -619,10 +755,10 @@ function pointsValue(value) {
       .then(r => r.json())
       .then(data => {
         window.__statsData = data;
+        MIN_GAMES_FOR_RATE_RANKING = Number((data.scoring && data.scoring.player_points_rate_min_games) || MIN_GAMES_FOR_RATE_RANKING);
 
         document.getElementById('updated-at').textContent = 'Aggiornato: ' + niceDate(data.generated_at || data.generated_utc || data.generated || '');
         populateYearFilter(data);
-        renderHallOfFame(data);
         renderDashboard(data);
 
         document.getElementById('season_filter').addEventListener('change', function () {
@@ -631,7 +767,7 @@ function pointsValue(value) {
         document.getElementById('matches_limit').addEventListener('change', function () {
           renderDashboard(window.__statsData);
         });
-        ['matrix_type', 'h2h_subject_a', 'h2h_subject_b'].forEach(id => {
+        ['matrix_type', 'h2h_subject_a', 'h2h_subject_b', 'player_metric', 'team_metric'].forEach(id => {
           const control = document.getElementById(id);
           if (control) {
             control.addEventListener('change', function () {
@@ -644,3 +780,4 @@ function pointsValue(value) {
         document.getElementById('updated-at').textContent = 'Impossibile leggere i dati';
         console.error(err);
       });
+  

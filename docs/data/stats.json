@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v9",
-  "generated_at": "2026-08-01T14:17:42.155097+00:00",
+  "generated_at": "2026-08-01T14:35:15.681534+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -816,7 +816,24 @@
             "Valter"
           ],
           "matrix": {
-            "Alberto": {},
+            "Alberto": {
+              "Fra": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
+              },
+              "Lele": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              }
+            },
             "Ale M": {
               "Fra": {
                 "games": 5,
@@ -843,16 +860,66 @@
                 "points_against": 0
               }
             },
-            "Ale P": {},
-            "Aloi": {},
+            "Ale P": {
+              "Lele": {
+                "games": 2,
+                "wins": 0,
+                "draws": 1,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
+              "Patrick": {
+                "games": 2,
+                "wins": 0,
+                "draws": 1,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              }
+            },
+            "Aloi": {
+              "Lele": {
+                "games": 2,
+                "wins": 0,
+                "draws": 0,
+                "losses": 2,
+                "points_for": 0,
+                "points_against": 6
+              },
+              "Patrick": {
+                "games": 2,
+                "wins": 0,
+                "draws": 2,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
+              }
+            },
             "Fra": {
               "Lele": {
+                "games": 16,
+                "wins": 5,
+                "draws": 3,
+                "losses": 8,
+                "points_for": 16,
+                "points_against": 25
+              },
+              "Patrick": {
                 "games": 8,
-                "wins": 4,
-                "draws": 0,
-                "losses": 4,
-                "points_for": 12,
-                "points_against": 12
+                "wins": 2,
+                "draws": 4,
+                "losses": 2,
+                "points_for": 7,
+                "points_against": 7
+              },
+              "Alberto": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
               },
               "Ale M": {
                 "games": 5,
@@ -861,32 +928,40 @@
                 "losses": 1,
                 "points_for": 10,
                 "points_against": 4
+              }
+            },
+            "Lele": {
+              "Fra": {
+                "games": 16,
+                "wins": 8,
+                "draws": 3,
+                "losses": 5,
+                "points_for": 25,
+                "points_against": 16
               },
               "Patrick": {
+                "games": 13,
+                "wins": 6,
+                "draws": 2,
+                "losses": 5,
+                "points_for": 19,
+                "points_against": 16
+              },
+              "Alberto": {
                 "games": 1,
                 "wins": 1,
                 "draws": 0,
                 "losses": 0,
                 "points_for": 3,
                 "points_against": 0
-              }
-            },
-            "Lele": {
-              "Fra": {
-                "games": 8,
-                "wins": 4,
-                "draws": 0,
-                "losses": 4,
-                "points_for": 12,
-                "points_against": 12
               },
-              "Patrick": {
+              "Ale P": {
                 "games": 2,
-                "wins": 0,
-                "draws": 0,
-                "losses": 2,
-                "points_for": 0,
-                "points_against": 6
+                "wins": 1,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
               },
               "Ale M": {
                 "games": 1,
@@ -895,15 +970,39 @@
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
-              }
-            },
-            "Patrick": {
-              "Lele": {
+              },
+              "Aloi": {
                 "games": 2,
                 "wins": 2,
                 "draws": 0,
                 "losses": 0,
                 "points_for": 6,
+                "points_against": 0
+              }
+            },
+            "Patrick": {
+              "Fra": {
+                "games": 8,
+                "wins": 2,
+                "draws": 4,
+                "losses": 2,
+                "points_for": 7,
+                "points_against": 7
+              },
+              "Lele": {
+                "games": 13,
+                "wins": 5,
+                "draws": 2,
+                "losses": 6,
+                "points_for": 16,
+                "points_against": 19
+              },
+              "Ale P": {
+                "games": 2,
+                "wins": 1,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 3,
                 "points_against": 0
               },
               "Ale M": {
@@ -914,13 +1013,13 @@
                 "points_for": 0,
                 "points_against": 6
               },
-              "Fra": {
-                "games": 1,
+              "Aloi": {
+                "games": 2,
                 "wins": 0,
-                "draws": 0,
-                "losses": 1,
+                "draws": 2,
+                "losses": 0,
                 "points_for": 0,
-                "points_against": 3
+                "points_against": 0
               }
             },
             "Riccardo (Golf Torino)": {},
@@ -2559,42 +2658,91 @@
           ],
           "matrix": {
             "Ale P": {},
-            "Aloi": {},
-            "Fra": {
-              "Patrick": {
-                "games": 1,
-                "wins": 1,
+            "Aloi": {
+              "Lele": {
+                "games": 2,
+                "wins": 0,
                 "draws": 0,
+                "losses": 2,
+                "points_for": 0,
+                "points_against": 6
+              },
+              "Patrick": {
+                "games": 2,
+                "wins": 0,
+                "draws": 2,
                 "losses": 0,
-                "points_for": 3,
+                "points_for": 0,
                 "points_against": 0
               }
             },
-            "Lele": {
-              "Patrick": {
-                "games": 1,
+            "Fra": {
+              "Lele": {
+                "games": 2,
                 "wins": 0,
-                "draws": 0,
+                "draws": 1,
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
+              },
+              "Patrick": {
+                "games": 3,
+                "wins": 1,
+                "draws": 1,
+                "losses": 1,
+                "points_for": 3,
+                "points_against": 3
               }
             },
-            "Patrick": {
-              "Lele": {
-                "games": 1,
-                "wins": 1,
+            "Lele": {
+              "Aloi": {
+                "games": 2,
+                "wins": 2,
                 "draws": 0,
+                "losses": 0,
+                "points_for": 6,
+                "points_against": 0
+              },
+              "Patrick": {
+                "games": 5,
+                "wins": 3,
+                "draws": 0,
+                "losses": 2,
+                "points_for": 9,
+                "points_against": 6
+              },
+              "Fra": {
+                "games": 2,
+                "wins": 1,
+                "draws": 1,
                 "losses": 0,
                 "points_for": 3,
                 "points_against": 0
+              }
+            },
+            "Patrick": {
+              "Aloi": {
+                "games": 2,
+                "wins": 0,
+                "draws": 2,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
+              },
+              "Lele": {
+                "games": 5,
+                "wins": 2,
+                "draws": 0,
+                "losses": 3,
+                "points_for": 6,
+                "points_against": 9
               },
               "Fra": {
-                "games": 1,
-                "wins": 0,
-                "draws": 0,
+                "games": 3,
+                "wins": 1,
+                "draws": 1,
                 "losses": 1,
-                "points_for": 0,
+                "points_for": 3,
                 "points_against": 3
               }
             }
@@ -3698,7 +3846,24 @@
             "Valter"
           ],
           "matrix": {
-            "Alberto": {},
+            "Alberto": {
+              "Fra": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
+              },
+              "Lele": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              }
+            },
             "Ale M": {
               "Fra": {
                 "games": 5,
@@ -3725,16 +3890,66 @@
                 "points_against": 0
               }
             },
-            "Ale P": {},
-            "Aloi": {},
+            "Ale P": {
+              "Lele": {
+                "games": 2,
+                "wins": 0,
+                "draws": 1,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
+              "Patrick": {
+                "games": 2,
+                "wins": 0,
+                "draws": 1,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              }
+            },
+            "Aloi": {
+              "Lele": {
+                "games": 2,
+                "wins": 0,
+                "draws": 0,
+                "losses": 2,
+                "points_for": 0,
+                "points_against": 6
+              },
+              "Patrick": {
+                "games": 2,
+                "wins": 0,
+                "draws": 2,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
+              }
+            },
             "Fra": {
               "Lele": {
+                "games": 16,
+                "wins": 5,
+                "draws": 3,
+                "losses": 8,
+                "points_for": 16,
+                "points_against": 25
+              },
+              "Patrick": {
                 "games": 8,
-                "wins": 4,
-                "draws": 0,
-                "losses": 4,
-                "points_for": 12,
-                "points_against": 12
+                "wins": 2,
+                "draws": 4,
+                "losses": 2,
+                "points_for": 7,
+                "points_against": 7
+              },
+              "Alberto": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
               },
               "Ale M": {
                 "games": 5,
@@ -3743,32 +3958,40 @@
                 "losses": 1,
                 "points_for": 10,
                 "points_against": 4
+              }
+            },
+            "Lele": {
+              "Fra": {
+                "games": 16,
+                "wins": 8,
+                "draws": 3,
+                "losses": 5,
+                "points_for": 25,
+                "points_against": 16
               },
               "Patrick": {
+                "games": 13,
+                "wins": 6,
+                "draws": 2,
+                "losses": 5,
+                "points_for": 19,
+                "points_against": 16
+              },
+              "Alberto": {
                 "games": 1,
                 "wins": 1,
                 "draws": 0,
                 "losses": 0,
                 "points_for": 3,
                 "points_against": 0
-              }
-            },
-            "Lele": {
-              "Fra": {
-                "games": 8,
-                "wins": 4,
-                "draws": 0,
-                "losses": 4,
-                "points_for": 12,
-                "points_against": 12
               },
-              "Patrick": {
+              "Ale P": {
                 "games": 2,
-                "wins": 0,
-                "draws": 0,
-                "losses": 2,
-                "points_for": 0,
-                "points_against": 6
+                "wins": 1,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
               },
               "Ale M": {
                 "games": 1,
@@ -3777,15 +4000,39 @@
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
-              }
-            },
-            "Patrick": {
-              "Lele": {
+              },
+              "Aloi": {
                 "games": 2,
                 "wins": 2,
                 "draws": 0,
                 "losses": 0,
                 "points_for": 6,
+                "points_against": 0
+              }
+            },
+            "Patrick": {
+              "Fra": {
+                "games": 8,
+                "wins": 2,
+                "draws": 4,
+                "losses": 2,
+                "points_for": 7,
+                "points_against": 7
+              },
+              "Lele": {
+                "games": 13,
+                "wins": 5,
+                "draws": 2,
+                "losses": 6,
+                "points_for": 16,
+                "points_against": 19
+              },
+              "Ale P": {
+                "games": 2,
+                "wins": 1,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 3,
                 "points_against": 0
               },
               "Ale M": {
@@ -3796,13 +4043,13 @@
                 "points_for": 0,
                 "points_against": 6
               },
-              "Fra": {
-                "games": 1,
+              "Aloi": {
+                "games": 2,
                 "wins": 0,
-                "draws": 0,
-                "losses": 1,
+                "draws": 2,
+                "losses": 0,
                 "points_for": 0,
-                "points_against": 3
+                "points_against": 0
               }
             },
             "Riccardo (Golf Torino)": {},
@@ -5794,7 +6041,24 @@
             "Valter"
           ],
           "matrix": {
-            "Alberto": {},
+            "Alberto": {
+              "Fra": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
+              },
+              "Lele": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              }
+            },
             "Ale M": {
               "Fra": {
                 "games": 5,
@@ -5821,15 +6085,48 @@
                 "points_against": 0
               }
             },
-            "Ale P": {},
+            "Ale P": {
+              "Lele": {
+                "games": 2,
+                "wins": 0,
+                "draws": 1,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
+              "Patrick": {
+                "games": 2,
+                "wins": 0,
+                "draws": 1,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              }
+            },
             "Fra": {
               "Lele": {
-                "games": 8,
-                "wins": 4,
-                "draws": 0,
-                "losses": 4,
-                "points_for": 12,
-                "points_against": 12
+                "games": 14,
+                "wins": 5,
+                "draws": 2,
+                "losses": 7,
+                "points_for": 16,
+                "points_against": 22
+              },
+              "Patrick": {
+                "games": 5,
+                "wins": 1,
+                "draws": 3,
+                "losses": 1,
+                "points_for": 4,
+                "points_against": 4
+              },
+              "Alberto": {
+                "games": 1,
+                "wins": 0,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
               },
               "Ale M": {
                 "games": 5,
@@ -5842,20 +6139,36 @@
             },
             "Lele": {
               "Fra": {
-                "games": 8,
-                "wins": 4,
-                "draws": 0,
-                "losses": 4,
-                "points_for": 12,
-                "points_against": 12
+                "games": 14,
+                "wins": 7,
+                "draws": 2,
+                "losses": 5,
+                "points_for": 22,
+                "points_against": 16
               },
               "Patrick": {
+                "games": 8,
+                "wins": 3,
+                "draws": 2,
+                "losses": 3,
+                "points_for": 10,
+                "points_against": 10
+              },
+              "Alberto": {
                 "games": 1,
-                "wins": 0,
+                "wins": 1,
                 "draws": 0,
-                "losses": 1,
-                "points_for": 0,
-                "points_against": 3
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              },
+              "Ale P": {
+                "games": 2,
+                "wins": 1,
+                "draws": 1,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
               },
               "Ale M": {
                 "games": 1,
@@ -5867,10 +6180,26 @@
               }
             },
             "Patrick": {
-              "Lele": {
-                "games": 1,
+              "Fra": {
+                "games": 5,
                 "wins": 1,
-                "draws": 0,
+                "draws": 3,
+                "losses": 1,
+                "points_for": 4,
+                "points_against": 4
+              },
+              "Lele": {
+                "games": 8,
+                "wins": 3,
+                "draws": 2,
+                "losses": 3,
+                "points_for": 10,
+                "points_against": 10
+              },
+              "Ale P": {
+                "games": 2,
+                "wins": 1,
+                "draws": 1,
                 "losses": 0,
                 "points_for": 3,
                 "points_against": 0
@@ -7685,7 +8014,24 @@
         "Valter"
       ],
       "matrix": {
-        "Alberto": {},
+        "Alberto": {
+          "Fra": {
+            "games": 1,
+            "wins": 0,
+            "draws": 1,
+            "losses": 0,
+            "points_for": 0,
+            "points_against": 0
+          },
+          "Lele": {
+            "games": 1,
+            "wins": 0,
+            "draws": 0,
+            "losses": 1,
+            "points_for": 0,
+            "points_against": 3
+          }
+        },
         "Ale M": {
           "Fra": {
             "games": 5,
@@ -7712,16 +8058,66 @@
             "points_against": 0
           }
         },
-        "Ale P": {},
-        "Aloi": {},
+        "Ale P": {
+          "Lele": {
+            "games": 2,
+            "wins": 0,
+            "draws": 1,
+            "losses": 1,
+            "points_for": 0,
+            "points_against": 3
+          },
+          "Patrick": {
+            "games": 2,
+            "wins": 0,
+            "draws": 1,
+            "losses": 1,
+            "points_for": 0,
+            "points_against": 3
+          }
+        },
+        "Aloi": {
+          "Lele": {
+            "games": 2,
+            "wins": 0,
+            "draws": 0,
+            "losses": 2,
+            "points_for": 0,
+            "points_against": 6
+          },
+          "Patrick": {
+            "games": 2,
+            "wins": 0,
+            "draws": 2,
+            "losses": 0,
+            "points_for": 0,
+            "points_against": 0
+          }
+        },
         "Fra": {
           "Lele": {
+            "games": 16,
+            "wins": 5,
+            "draws": 3,
+            "losses": 8,
+            "points_for": 16,
+            "points_against": 25
+          },
+          "Patrick": {
             "games": 8,
-            "wins": 4,
-            "draws": 0,
-            "losses": 4,
-            "points_for": 12,
-            "points_against": 12
+            "wins": 2,
+            "draws": 4,
+            "losses": 2,
+            "points_for": 7,
+            "points_against": 7
+          },
+          "Alberto": {
+            "games": 1,
+            "wins": 0,
+            "draws": 1,
+            "losses": 0,
+            "points_for": 0,
+            "points_against": 0
           },
           "Ale M": {
             "games": 5,
@@ -7730,32 +8126,40 @@
             "losses": 1,
             "points_for": 10,
             "points_against": 4
+          }
+        },
+        "Lele": {
+          "Fra": {
+            "games": 16,
+            "wins": 8,
+            "draws": 3,
+            "losses": 5,
+            "points_for": 25,
+            "points_against": 16
           },
           "Patrick": {
+            "games": 13,
+            "wins": 6,
+            "draws": 2,
+            "losses": 5,
+            "points_for": 19,
+            "points_against": 16
+          },
+          "Alberto": {
             "games": 1,
             "wins": 1,
             "draws": 0,
             "losses": 0,
             "points_for": 3,
             "points_against": 0
-          }
-        },
-        "Lele": {
-          "Fra": {
-            "games": 8,
-            "wins": 4,
-            "draws": 0,
-            "losses": 4,
-            "points_for": 12,
-            "points_against": 12
           },
-          "Patrick": {
+          "Ale P": {
             "games": 2,
-            "wins": 0,
-            "draws": 0,
-            "losses": 2,
-            "points_for": 0,
-            "points_against": 6
+            "wins": 1,
+            "draws": 1,
+            "losses": 0,
+            "points_for": 3,
+            "points_against": 0
           },
           "Ale M": {
             "games": 1,
@@ -7764,15 +8168,39 @@
             "losses": 1,
             "points_for": 0,
             "points_against": 3
-          }
-        },
-        "Patrick": {
-          "Lele": {
+          },
+          "Aloi": {
             "games": 2,
             "wins": 2,
             "draws": 0,
             "losses": 0,
             "points_for": 6,
+            "points_against": 0
+          }
+        },
+        "Patrick": {
+          "Fra": {
+            "games": 8,
+            "wins": 2,
+            "draws": 4,
+            "losses": 2,
+            "points_for": 7,
+            "points_against": 7
+          },
+          "Lele": {
+            "games": 13,
+            "wins": 5,
+            "draws": 2,
+            "losses": 6,
+            "points_for": 16,
+            "points_against": 19
+          },
+          "Ale P": {
+            "games": 2,
+            "wins": 1,
+            "draws": 1,
+            "losses": 0,
+            "points_for": 3,
             "points_against": 0
           },
           "Ale M": {
@@ -7783,13 +8211,13 @@
             "points_for": 0,
             "points_against": 6
           },
-          "Fra": {
-            "games": 1,
+          "Aloi": {
+            "games": 2,
             "wins": 0,
-            "draws": 0,
-            "losses": 1,
+            "draws": 2,
+            "losses": 0,
             "points_for": 0,
-            "points_against": 3
+            "points_against": 0
           }
         },
         "Riccardo (Golf Torino)": {},

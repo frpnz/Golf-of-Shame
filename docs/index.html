@@ -95,8 +95,8 @@
         <div>
           <p class="section-kicker">Vista completa</p>
           <h2>Head2Head</h2>
-          <p class="small desktop-h2h-help">Desktop: ogni cella si legge dal punto di vista della riga e mostra insieme record V-P-S e punti PF-PS.</p>
-          <p class="small mobile-h2h-help">Mobile: scegli i due giocatori o team da confrontare. La card spiega esplicitamente il risultato del confronto.</p>
+          <p class="small desktop-h2h-help">Desktop: ogni cella si legge dal punto di vista della riga e mostra il record V-P-S e il delta della media punti rispetto all’avversario.</p>
+          <p class="small mobile-h2h-help">Mobile: scegli due giocatori o team. La card mostra record, medie punti nelle partite condivise e relativo delta.</p>
         </div>
         <div class="matrix-controls">
           <div class="matrix-control-field">
@@ -108,14 +108,14 @@
           </div>
         </div>
       </div>
-      <div class="matrix-legend" id="matrix-legend">Desktop: ogni cella mostra Record V-P-S e Punti PF-PS letti dal punto di vista della riga.</div>
+      <div class="matrix-legend" id="matrix-legend">Desktop: ogni cella mostra Record V-P-S e Δ media punti, letti dal punto di vista della riga.</div>
       <div class="h2h-mobile-view" id="h2h-mobile-view" aria-live="polite">
         <div class="h2h-compare-head">
           <div>
             <p class="section-kicker">Confronto diretto</p>
             <h3>Confronta due</h3>
           </div>
-          <p class="small">Scegli due giocatori o due team: i valori sono letti dal punto di vista del primo selezionato e confrontati con l'avversario.</p>
+          <p class="small">Scegli due giocatori o due team: il Δ media punti è la media del primo meno quella dell’avversario nelle sole partite condivise.</p>
         </div>
         <div class="h2h-mobile-controls h2h-compare-controls">
           <div class="matrix-control-field">
@@ -484,11 +484,26 @@
       return 'neutral';
     }
 
+    function h2hPerformance(entry) {
+      if (!entry || !entry.games) return 0;
+      return (entry.points_for || 0) / entry.games;
+    }
+
+    function h2hDelta(entry) {
+      if (!entry || !entry.games) return 0;
+      return ((entry.points_for || 0) - (entry.points_against || 0)) / entry.games;
+    }
+
+    function signedPointsValue(value) {
+      const numeric = Number(value || 0);
+      if (Math.abs(numeric) < 0.00005) return '0';
+      return (numeric > 0 ? '+' : '') + pointsValue(numeric);
+    }
+
     function h2hCellText(entry) {
       if (!entry || !entry.games) return '·';
       const record = String(entry.wins || 0) + '-' + String(entry.draws || 0) + '-' + String(entry.losses || 0);
-      const points = String(entry.points_for || 0) + '-' + String(entry.points_against || 0);
-      return record + '\n' + points;
+      return record + '\nΔ ' + signedPointsValue(h2hDelta(entry));
     }
 
     function h2hTitle(rowLabel, colLabel, entry) {
@@ -497,13 +512,8 @@
         entry.games + ' partite · ' +
         (entry.wins || 0) + ' vittorie · ' +
         (entry.draws || 0) + ' pareggi · ' +
-        (entry.losses || 0) + ' sconfitte · punti ' +
-        (entry.points_for || 0) + '-' + (entry.points_against || 0);
-    }
-
-    function h2hPerformance(entry) {
-      if (!entry || !entry.games) return 0;
-      return (entry.points_for || 0) / entry.games;
+        (entry.losses || 0) + ' sconfitte · Δ media punti ' +
+        signedPointsValue(h2hDelta(entry));
     }
 
     function updateH2HPairOptions(labels) {
@@ -615,14 +625,14 @@
       summary.appendChild(h2hStatItem('Partite', String(firstEntry.games || 0)));
       summary.appendChild(h2hStatItem(first + ' record', (firstEntry.wins || 0) + 'V - ' + (firstEntry.draws || 0) + 'P - ' + (firstEntry.losses || 0) + 'S'));
       summary.appendChild(h2hStatItem(second + ' record', (secondEntry.wins || 0) + 'V - ' + (secondEntry.draws || 0) + 'P - ' + (secondEntry.losses || 0) + 'S'));
-      summary.appendChild(h2hStatItem('Punti', (firstEntry.points_for || 0) + '-' + (firstEntry.points_against || 0)));
       summary.appendChild(h2hStatItem('Media punti ' + first, pointsValue(h2hPerformance(firstEntry))));
       summary.appendChild(h2hStatItem('Media punti ' + second, pointsValue(h2hPerformance(secondEntry))));
+      summary.appendChild(h2hStatItem('Δ media punti', signedPointsValue(h2hDelta(firstEntry))));
       card.appendChild(summary);
 
       const note = document.createElement('p');
       note.className = 'small h2h-compare-note';
-      note.textContent = 'Lettura: ' + first + ' ha ' + (firstEntry.wins || 0) + ' vittorie, ' + (firstEntry.draws || 0) + ' pareggi e ' + (firstEntry.losses || 0) + ' sconfitte contro ' + second + '. Punti ' + (firstEntry.points_for || 0) + '-' + (firstEntry.points_against || 0) + '.';
+      note.textContent = 'Lettura: ' + first + ' ha ' + (firstEntry.wins || 0) + ' vittorie, ' + (firstEntry.draws || 0) + ' pareggi e ' + (firstEntry.losses || 0) + ' sconfitte contro ' + second + '. Il suo delta della media punti è ' + signedPointsValue(h2hDelta(firstEntry)) + '.';
       card.appendChild(note);
 
       const bar = document.createElement('div');
@@ -698,7 +708,7 @@
 
       renderH2HCompare(labels, matrix, type);
       tableEl.innerHTML = '';
-      legend.textContent = 'Desktop: ogni cella mostra Record V-P-S e Punti PF-PS della riga. Mobile: la card mostra il confronto tra i due soggetti selezionati.';
+      legend.textContent = 'Desktop: ogni cella mostra Record V-P-S e Δ media punti della riga. Mobile: la card mostra medie e delta del confronto selezionato.';
 
       if (!labels.length) {
         const caption = document.createElement('caption');

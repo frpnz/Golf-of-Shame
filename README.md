@@ -141,16 +141,23 @@ La sezione Head2Head ha due modalità:
 
 ```text
 V-P-S
-PF-PS
+Δ media punti
 ```
 
-Dove `V` = vittorie, `P` = pareggi, `S` = sconfitte, `PF` = punti fatti, `PS` = punti subiti.
+Dove `V` = vittorie, `P` = pareggi e `S` = sconfitte. Il delta confronta la media punti ottenuta dai due soggetti nelle sole partite condivise valide per quello specifico Head2Head:
+
+```text
+Δ media punti = media punti soggetto della riga - media punti avversario
+```
+
+Un valore positivo indica un vantaggio medio del soggetto della riga, un valore negativo uno svantaggio e zero un confronto equilibrato.
 
 Note di calcolo:
 
-- Head2Head Player considera solo partite individuali 1 contro 1.
-- I punti ottenuti in squadra valgono nella classifica giocatori, ma non entrano nell'Head2Head Player.
-- Head2Head Team considera side composti da almeno due giocatori.
+- **Head2Head Player** considera tutte le partite individuali, comprese quelle con tre o più giocatori, incrociando ogni coppia di partecipanti.
+- Le partite a squadre sono escluse dall'Head2Head Player, perché il risultato dipende anche dai compagni. Continuano però a valere nella classifica generale dei giocatori.
+- **Head2Head Team** considera solo confronti tra squadre composte esattamente dagli stessi giocatori. Composizioni diverse sono trattate come squadre differenti.
+- Punti totali e rapporto punti fatti/subiti non vengono mostrati nell'Head2Head: il confronto quantitativo è espresso dal delta della media punti.
 
 ## Albo d'oro
 
