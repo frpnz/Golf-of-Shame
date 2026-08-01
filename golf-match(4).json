@@ -1,0 +1,34 @@
+{
+  "version": "golf-match.v1",
+  "import_key": "match-msagfpfe-x2qzjycl",
+  "played_at": "2026-08-01T16:16:00",
+  "course": null,
+  "holes": 18,
+  "notes": null,
+  "tags": [
+    "Coppa Estate 2026"
+  ],
+  "sides": [
+    {
+      "team_name": "Fra",
+      "is_winner": true,
+      "players": [
+        "Fra"
+      ]
+    },
+    {
+      "team_name": "Lele",
+      "is_winner": false,
+      "players": [
+        "Lele"
+      ]
+    },
+    {
+      "team_name": "Patrick",
+      "is_winner": false,
+      "players": [
+        "Patrick"
+      ]
+    }
+  ]
+}
