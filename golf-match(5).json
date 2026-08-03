@@ -1,0 +1,41 @@
+{
+  "version": "golf-match.v1",
+  "import_key": "match-msdpnn7u-6d7t7zq9",
+  "played_at": "2026-08-03T18:00:00",
+  "course": "Golf Sestrieres",
+  "holes": 18,
+  "notes": null,
+  "tags": [
+    "Coppa Estate 2026"
+  ],
+  "sides": [
+    {
+      "team_name": "Fra",
+      "is_winner": true,
+      "players": [
+        "Fra"
+      ]
+    },
+    {
+      "team_name": "Lele",
+      "is_winner": false,
+      "players": [
+        "Lele"
+      ]
+    },
+    {
+      "team_name": "Patrick",
+      "is_winner": false,
+      "players": [
+        "Patrick"
+      ]
+    },
+    {
+      "team_name": "Riky Tav",
+      "is_winner": false,
+      "players": [
+        "Riky Tav"
+      ]
+    }
+  ]
+}
