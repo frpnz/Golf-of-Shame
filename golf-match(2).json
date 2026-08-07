@@ -1,10 +1,10 @@
 {
   "version": "golf-match.v1",
-  "import_key": "match-msdpnn7u-6d7t7zq9",
-  "played_at": "2026-08-03T18:00:00",
+  "import_key": "match-msjf4rzv-1n7tcxi5",
+  "played_at": "2026-08-06T22:47:00",
   "course": "Golf Sestrieres",
   "holes": 18,
-  "notes": null,
+  "notes": "Coppa d'oro - 2nd giorno - lordo",
   "tags": [
     "Coppa Estate 2026"
   ],
@@ -17,24 +17,10 @@
       ]
     },
     {
-      "team_name": "Lele",
-      "is_winner": false,
-      "players": [
-        "Lele"
-      ]
-    },
-    {
       "team_name": "Patrick",
       "is_winner": false,
       "players": [
         "Patrick"
-      ]
-    },
-    {
-      "team_name": "Riky Tav",
-      "is_winner": false,
-      "players": [
-        "Riky Tav"
       ]
     }
   ]
