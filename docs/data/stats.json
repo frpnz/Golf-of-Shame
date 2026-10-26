@@ -1,6 +1,6 @@
 {
   "version": "golf-stats.v9",
-  "generated_at": "2026-09-21T22:03:22.963058+00:00",
+  "generated_at": "2026-10-26T11:54:19.938691+00:00",
   "scoring": {
     "win_points": 3,
     "draw_points": 1,
@@ -43,9 +43,9 @@
   "views": {
     "all": {
       "counts": {
-        "matches": 50,
+        "matches": 55,
         "players": 10,
-        "teams": 12
+        "teams": 13
       },
       "filters": {
         "players": [
@@ -67,23 +67,25 @@
           "Druento",
           "Gavi",
           "Girasoli",
+          "Golf Opio-Valbonne",
           "Golf Sestrieres",
           "Malaga",
           "Margherita",
           "Moncalieri",
           "Pragelato",
+          "San Remo",
           "golf Sestrieres"
         ]
       },
       "by_player": [
         {
           "player": "Lele",
-          "games": 40,
-          "wins": 17,
+          "games": 45,
+          "wins": 18,
           "draws": 5,
-          "losses": 18,
-          "points": 56,
-          "points_rate": 1.4,
+          "losses": 22,
+          "points": 59,
+          "points_rate": 1.3111,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -92,12 +94,12 @@
         },
         {
           "player": "Fra",
-          "games": 39,
-          "wins": 14,
+          "games": 44,
+          "wins": 15,
           "draws": 6,
-          "losses": 19,
-          "points": 48,
-          "points_rate": 1.2308,
+          "losses": 23,
+          "points": 51,
+          "points_rate": 1.1591,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -106,12 +108,12 @@
         },
         {
           "player": "Patrick",
-          "games": 31,
-          "wins": 11,
+          "games": 36,
+          "wins": 14,
           "draws": 5,
-          "losses": 15,
-          "points": 38,
-          "points_rate": 1.2258,
+          "losses": 17,
+          "points": 47,
+          "points_rate": 1.3056,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -134,17 +136,17 @@
         },
         {
           "player": "Ale P",
-          "games": 5,
-          "wins": 1,
+          "games": 9,
+          "wins": 2,
           "draws": 2,
-          "losses": 2,
-          "points": 5,
-          "points_rate": 1.0,
+          "losses": 5,
+          "points": 8,
+          "points_rate": 0.8889,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 5 · Pt 5 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Alberto",
@@ -158,7 +160,7 @@
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 4 · Pt 4 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Riky Tav",
@@ -279,6 +281,26 @@
           "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
+          "team_key": "Ale P|Patrick",
+          "team_label": "Ale P + Patrick",
+          "team_name": "Ale P-Patrick",
+          "components": [
+            "Ale P",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 3,
+          "tie_direct_wins": 1,
+          "tie_breaker": "SD 3 · V 1 · Media 3",
+          "tie_breaker_points": "SD 3 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
           "team_key": "Fra|Riky Tav",
           "team_label": "Fra + Riky Tav",
           "team_name": "Fra-Riky Tav",
@@ -319,26 +341,6 @@
           "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
-          "team_key": "Fra|Lele",
-          "team_label": "Fra + Lele",
-          "team_name": "Fra-Lele",
-          "components": [
-            "Fra",
-            "Lele"
-          ],
-          "games": 2,
-          "wins": 1,
-          "draws": 0,
-          "losses": 1,
-          "points": 3,
-          "points_rate": 1.5,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_rate": "G 2 · Pt 3 · V 1"
-        },
-        {
           "team_key": "Lele|Patrick",
           "team_label": "Lele + Patrick",
           "team_name": "Lele-Patrick",
@@ -356,7 +358,27 @@
           "tie_direct_wins": 0,
           "tie_breaker": "SD 0 · V 1 · Media 1.5",
           "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_rate": "G 2 · Pt 3 · V 1"
+          "tie_breaker_rate": "-"
+        },
+        {
+          "team_key": "Fra|Lele",
+          "team_label": "Fra + Lele",
+          "team_name": "Fra-Lele",
+          "components": [
+            "Fra",
+            "Lele"
+          ],
+          "games": 3,
+          "wins": 1,
+          "draws": 0,
+          "losses": 2,
+          "points": 3,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 1",
+          "tie_breaker_points": "SD 0 · V 1 · Media 1",
+          "tie_breaker_rate": "G 3 · Pt 3 · V 1"
         },
         {
           "team_key": "Alberto|Ale M",
@@ -376,7 +398,7 @@
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         },
         {
           "team_key": "Ale M|Valter",
@@ -474,12 +496,12 @@
             "Valter"
           ],
           "points_rate": [
-            "Lele",
             "Ale M",
-            "Fra",
+            "Lele",
             "Patrick",
-            "Ale P",
+            "Fra",
             "Alberto",
+            "Ale P",
             "Riky Tav",
             "Aloi",
             "Riccardo (Golf Torino)",
@@ -491,10 +513,11 @@
             "Fra-Patrick",
             "Ale P-Lele",
             "Alberto-Patrick",
+            "Ale P-Patrick",
             "Fra-Riky Tav",
             "Ale M-Lele",
-            "Fra-Lele",
             "Lele-Patrick",
+            "Fra-Lele",
             "Alberto-Ale M",
             "Ale M-Valter",
             "Aloi-Lele",
@@ -504,11 +527,12 @@
           "points_rate": [
             "Alberto-Patrick",
             "Ale M-Lele",
+            "Ale P-Patrick",
             "Fra-Riky Tav",
             "Ale P-Lele",
-            "Fra-Lele",
             "Lele-Patrick",
             "Fra-Patrick",
+            "Fra-Lele",
             "Alberto-Ale M",
             "Ale M-Valter",
             "Aloi-Lele",
@@ -518,20 +542,6 @@
         }
       },
       "by_player_points_rate": [
-        {
-          "player": "Lele",
-          "games": 40,
-          "wins": 17,
-          "draws": 5,
-          "losses": 18,
-          "points": 56,
-          "points_rate": 1.4,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
-        },
         {
           "player": "Ale M",
           "games": 13,
@@ -547,13 +557,13 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Fra",
-          "games": 39,
-          "wins": 14,
-          "draws": 6,
-          "losses": 19,
-          "points": 48,
-          "points_rate": 1.2308,
+          "player": "Lele",
+          "games": 45,
+          "wins": 18,
+          "draws": 5,
+          "losses": 22,
+          "points": 59,
+          "points_rate": 1.3111,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -562,12 +572,12 @@
         },
         {
           "player": "Patrick",
-          "games": 31,
-          "wins": 11,
+          "games": 36,
+          "wins": 14,
           "draws": 5,
-          "losses": 15,
-          "points": 38,
-          "points_rate": 1.2258,
+          "losses": 17,
+          "points": 47,
+          "points_rate": 1.3056,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -575,18 +585,18 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Ale P",
-          "games": 5,
-          "wins": 1,
-          "draws": 2,
-          "losses": 2,
-          "points": 5,
-          "points_rate": 1.0,
+          "player": "Fra",
+          "games": 44,
+          "wins": 15,
+          "draws": 6,
+          "losses": 23,
+          "points": 51,
+          "points_rate": 1.1591,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 5 · Pt 5 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Alberto",
@@ -600,7 +610,21 @@
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 4 · Pt 4 · V 1"
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Ale P",
+          "games": 9,
+          "wins": 2,
+          "draws": 2,
+          "losses": 5,
+          "points": 8,
+          "points_rate": 0.8889,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Riky Tav",
@@ -701,6 +725,26 @@
           "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
+          "team_key": "Ale P|Patrick",
+          "team_label": "Ale P + Patrick",
+          "team_name": "Ale P-Patrick",
+          "components": [
+            "Ale P",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 3,
+          "tie_direct_wins": 1,
+          "tie_breaker": "SD 3 · V 1 · Media 3",
+          "tie_breaker_points": "SD 3 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
           "team_key": "Fra|Riky Tav",
           "team_label": "Fra + Riky Tav",
           "team_name": "Fra-Riky Tav",
@@ -741,26 +785,6 @@
           "tie_breaker_rate": "-"
         },
         {
-          "team_key": "Fra|Lele",
-          "team_label": "Fra + Lele",
-          "team_name": "Fra-Lele",
-          "components": [
-            "Fra",
-            "Lele"
-          ],
-          "games": 2,
-          "wins": 1,
-          "draws": 0,
-          "losses": 1,
-          "points": 3,
-          "points_rate": 1.5,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_rate": "G 2 · Pt 3 · V 1"
-        },
-        {
           "team_key": "Lele|Patrick",
           "team_label": "Lele + Patrick",
           "team_name": "Lele-Patrick",
@@ -778,7 +802,7 @@
           "tie_direct_wins": 0,
           "tie_breaker": "SD 0 · V 1 · Media 1.5",
           "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_rate": "G 2 · Pt 3 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "team_key": "Fra|Patrick",
@@ -801,6 +825,26 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Fra|Lele",
+          "team_label": "Fra + Lele",
+          "team_name": "Fra-Lele",
+          "components": [
+            "Fra",
+            "Lele"
+          ],
+          "games": 3,
+          "wins": 1,
+          "draws": 0,
+          "losses": 2,
+          "points": 3,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 1",
+          "tie_breaker_points": "SD 0 · V 1 · Media 1",
+          "tie_breaker_rate": "G 3 · Pt 3 · V 1"
+        },
+        {
           "team_key": "Alberto|Ale M",
           "team_label": "Alberto + Ale M",
           "team_name": "Alberto-Ale M",
@@ -818,7 +862,7 @@
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         },
         {
           "team_key": "Ale M|Valter",
@@ -903,6 +947,22 @@
       ],
       "solo_vs_team": [
         {
+          "player": "Ale P",
+          "solo_games": 5,
+          "solo_wins": 0,
+          "solo_draws": 0,
+          "solo_losses": 5,
+          "solo_points": 0,
+          "team_games": 4,
+          "team_wins": 2,
+          "team_draws": 2,
+          "team_losses": 0,
+          "team_points": 8,
+          "solo_points_rate": 0.0,
+          "team_points_rate": 2.0,
+          "delta": 2.0
+        },
+        {
           "player": "Alberto",
           "solo_games": 2,
           "solo_wins": 0,
@@ -917,22 +977,6 @@
           "solo_points_rate": 0.0,
           "team_points_rate": 2.0,
           "delta": 2.0
-        },
-        {
-          "player": "Ale P",
-          "solo_games": 2,
-          "solo_wins": 0,
-          "solo_draws": 0,
-          "solo_losses": 2,
-          "solo_points": 0,
-          "team_games": 3,
-          "team_wins": 1,
-          "team_draws": 2,
-          "team_losses": 0,
-          "team_points": 5,
-          "solo_points_rate": 0.0,
-          "team_points_rate": 1.6667,
-          "delta": 1.6667
         },
         {
           "player": "Riky Tav",
@@ -951,52 +995,36 @@
           "delta": 1.5
         },
         {
+          "player": "Patrick",
+          "solo_games": 26,
+          "solo_wins": 10,
+          "solo_draws": 2,
+          "solo_losses": 14,
+          "solo_points": 32,
+          "team_games": 10,
+          "team_wins": 4,
+          "team_draws": 3,
+          "team_losses": 3,
+          "team_points": 15,
+          "solo_points_rate": 1.2308,
+          "team_points_rate": 1.5,
+          "delta": 0.2692
+        },
+        {
           "player": "Lele",
-          "solo_games": 31,
-          "solo_wins": 13,
+          "solo_games": 35,
+          "solo_wins": 14,
           "solo_draws": 3,
-          "solo_losses": 15,
-          "solo_points": 42,
-          "team_games": 9,
+          "solo_losses": 18,
+          "solo_points": 45,
+          "team_games": 10,
           "team_wins": 4,
           "team_draws": 2,
-          "team_losses": 3,
+          "team_losses": 4,
           "team_points": 14,
-          "solo_points_rate": 1.3548,
-          "team_points_rate": 1.5556,
-          "delta": 0.2008
-        },
-        {
-          "player": "Patrick",
-          "solo_games": 22,
-          "solo_wins": 8,
-          "solo_draws": 2,
-          "solo_losses": 12,
-          "solo_points": 26,
-          "team_games": 9,
-          "team_wins": 3,
-          "team_draws": 3,
-          "team_losses": 3,
-          "team_points": 12,
-          "solo_points_rate": 1.1818,
-          "team_points_rate": 1.3333,
-          "delta": 0.1515
-        },
-        {
-          "player": "Fra",
-          "solo_games": 30,
-          "solo_wins": 11,
-          "solo_draws": 3,
-          "solo_losses": 16,
-          "solo_points": 36,
-          "team_games": 9,
-          "team_wins": 3,
-          "team_draws": 3,
-          "team_losses": 3,
-          "team_points": 12,
-          "solo_points_rate": 1.2,
-          "team_points_rate": 1.3333,
-          "delta": 0.1333
+          "solo_points_rate": 1.2857,
+          "team_points_rate": 1.4,
+          "delta": 0.1143
         },
         {
           "player": "Ale M",
@@ -1013,6 +1041,22 @@
           "solo_points_rate": 1.4,
           "team_points_rate": 1.3333,
           "delta": -0.0667
+        },
+        {
+          "player": "Fra",
+          "solo_games": 34,
+          "solo_wins": 12,
+          "solo_draws": 3,
+          "solo_losses": 19,
+          "solo_points": 39,
+          "team_games": 10,
+          "team_wins": 3,
+          "team_draws": 3,
+          "team_losses": 4,
+          "team_points": 12,
+          "solo_points_rate": 1.1471,
+          "team_points_rate": 1.2,
+          "delta": 0.0529
         },
         {
           "player": "Aloi",
@@ -1140,17 +1184,25 @@
             },
             "Ale P": {
               "Lele": {
-                "games": 2,
+                "games": 5,
                 "wins": 0,
-                "draws": 1,
+                "draws": 4,
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
               },
               "Patrick": {
-                "games": 2,
+                "games": 5,
                 "wins": 0,
-                "draws": 1,
+                "draws": 2,
+                "losses": 3,
+                "points_for": 0,
+                "points_against": 9
+              },
+              "Fra": {
+                "games": 3,
+                "wins": 0,
+                "draws": 2,
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
@@ -1176,20 +1228,28 @@
             },
             "Fra": {
               "Lele": {
-                "games": 23,
-                "wins": 6,
-                "draws": 7,
-                "losses": 10,
-                "points_for": 20,
-                "points_against": 32
+                "games": 27,
+                "wins": 7,
+                "draws": 9,
+                "losses": 11,
+                "points_for": 23,
+                "points_against": 35
               },
               "Patrick": {
-                "games": 14,
-                "wins": 4,
-                "draws": 5,
-                "losses": 5,
-                "points_for": 14,
-                "points_against": 17
+                "games": 18,
+                "wins": 5,
+                "draws": 6,
+                "losses": 7,
+                "points_for": 17,
+                "points_against": 23
+              },
+              "Ale P": {
+                "games": 3,
+                "wins": 1,
+                "draws": 2,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
               },
               "Alberto": {
                 "games": 2,
@@ -1217,21 +1277,29 @@
               }
             },
             "Lele": {
-              "Fra": {
-                "games": 23,
-                "wins": 10,
-                "draws": 7,
-                "losses": 6,
-                "points_for": 32,
-                "points_against": 20
-              },
               "Patrick": {
-                "games": 18,
-                "wins": 6,
+                "games": 22,
+                "wins": 7,
+                "draws": 5,
+                "losses": 10,
+                "points_for": 23,
+                "points_against": 32
+              },
+              "Fra": {
+                "games": 27,
+                "wins": 11,
+                "draws": 9,
+                "losses": 7,
+                "points_for": 35,
+                "points_against": 23
+              },
+              "Ale P": {
+                "games": 5,
+                "wins": 1,
                 "draws": 4,
-                "losses": 8,
-                "points_for": 20,
-                "points_against": 26
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
               },
               "Alberto": {
                 "games": 2,
@@ -1257,14 +1325,6 @@
                 "points_for": 0,
                 "points_against": 0
               },
-              "Ale P": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 3,
-                "points_against": 0
-              },
               "Aloi": {
                 "games": 2,
                 "wins": 2,
@@ -1275,21 +1335,29 @@
               }
             },
             "Patrick": {
-              "Fra": {
-                "games": 14,
-                "wins": 5,
-                "draws": 5,
-                "losses": 4,
-                "points_for": 17,
-                "points_against": 14
-              },
               "Lele": {
+                "games": 22,
+                "wins": 10,
+                "draws": 5,
+                "losses": 7,
+                "points_for": 32,
+                "points_against": 23
+              },
+              "Fra": {
                 "games": 18,
-                "wins": 8,
-                "draws": 4,
-                "losses": 6,
-                "points_for": 26,
-                "points_against": 20
+                "wins": 7,
+                "draws": 6,
+                "losses": 5,
+                "points_for": 23,
+                "points_against": 17
+              },
+              "Ale P": {
+                "games": 5,
+                "wins": 3,
+                "draws": 2,
+                "losses": 0,
+                "points_for": 9,
+                "points_against": 0
               },
               "Alberto": {
                 "games": 1,
@@ -1314,14 +1382,6 @@
                 "losses": 2,
                 "points_for": 3,
                 "points_against": 6
-              },
-              "Ale P": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 3,
-                "points_against": 0
               },
               "Aloi": {
                 "games": 2,
@@ -1375,10 +1435,11 @@
             "Fra-Patrick",
             "Ale P-Lele",
             "Alberto-Patrick",
+            "Ale P-Patrick",
             "Fra-Riky Tav",
             "Ale M-Lele",
-            "Fra-Lele",
             "Lele-Patrick",
+            "Fra-Lele",
             "Alberto-Ale M",
             "Ale M-Valter",
             "Aloi-Lele",
@@ -1436,6 +1497,16 @@
                 "points_against": 2
               }
             },
+            "Ale P-Patrick": {
+              "Fra-Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
+            },
             "Aloi-Lele": {
               "Fra-Patrick": {
                 "games": 1,
@@ -1447,6 +1518,14 @@
               }
             },
             "Fra-Lele": {
+              "Ale P-Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
               "Alberto-Patrick": {
                 "games": 1,
                 "wins": 0,
@@ -1542,6 +1621,187 @@
         }
       },
       "matches": [
+        {
+          "id": 58,
+          "played_at": "2026-10-11T12:46:00",
+          "course": "San Remo",
+          "holes": 9,
+          "notes": "Netto",
+          "import_key": "match-mvp72g1e-43wvx7lv",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": true,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": false,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto globale",
+          "import_key": "match-mvp71r57-7dmfkhgq",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Ale P-Patrick",
+              "is_winner": true,
+              "players": [
+                "Ale P",
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra-Lele",
+              "is_winner": false,
+              "players": [
+                "Fra",
+                "Lele"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto globale",
+          "import_key": "match-mvp7106i-x2if4siu",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto pomeriggio",
+          "import_key": "match-mvp70ov7-4s5n5m9q",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": false,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto mattina",
+          "import_key": "match-mvp703sj-3fkw41d8",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
         {
           "id": 53,
           "played_at": "2026-09-21T23:56:00",
@@ -3103,16 +3363,16 @@
         "key": "all",
         "label": "Tutte le partite",
         "group": "Generale",
-        "matches": 50,
+        "matches": 55,
         "player_champion": {
           "kind": "player",
-          "name": "Lele",
-          "points": 56,
-          "games": 40,
-          "wins": 17,
-          "draws": 5,
-          "losses": 18,
-          "points_rate": 1.4
+          "name": "Ale M",
+          "points": 18,
+          "games": 13,
+          "wins": 5,
+          "draws": 3,
+          "losses": 5,
+          "points_rate": 1.3846
         },
         "team_champion": {
           "kind": "team",
@@ -3126,13 +3386,13 @@
         },
         "player_points_rate_champion": {
           "kind": "player",
-          "name": "Lele",
-          "points": 56,
-          "games": 40,
-          "wins": 17,
-          "draws": 5,
-          "losses": 18,
-          "points_rate": 1.4
+          "name": "Ale M",
+          "points": 18,
+          "games": 13,
+          "wins": 5,
+          "draws": 3,
+          "losses": 5,
+          "points_rate": 1.3846
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -3148,9 +3408,9 @@
     },
     "untagged": {
       "counts": {
-        "matches": 8,
+        "matches": 13,
         "players": 5,
-        "teams": 2
+        "teams": 4
       },
       "filters": {
         "players": [
@@ -3163,65 +3423,67 @@
         "courses": [
           "Ciliegi",
           "Gavi",
+          "Golf Opio-Valbonne",
           "Malaga",
-          "Margherita"
+          "Margherita",
+          "San Remo"
         ]
       },
       "by_player": [
         {
           "player": "Lele",
-          "games": 7,
-          "wins": 4,
+          "games": 12,
+          "wins": 5,
           "draws": 1,
-          "losses": 2,
-          "points": 13,
-          "points_rate": 1.8571,
+          "losses": 6,
+          "points": 16,
+          "points_rate": 1.3333,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
+          "tie_breaker": "V 5 · Media 1.33",
+          "tie_breaker_points": "V 5 · Media 1.33",
           "tie_breaker_rate": "-"
         },
         {
           "player": "Patrick",
-          "games": 8,
-          "wins": 2,
+          "games": 13,
+          "wins": 5,
           "draws": 1,
-          "losses": 5,
-          "points": 7,
-          "points_rate": 0.875,
+          "losses": 7,
+          "points": 16,
+          "points_rate": 1.2308,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
+          "tie_breaker": "V 5 · Media 1.23",
+          "tie_breaker_points": "V 5 · Media 1.23",
           "tie_breaker_rate": "-"
         },
         {
           "player": "Ale P",
-          "games": 2,
-          "wins": 1,
+          "games": 6,
+          "wins": 2,
           "draws": 1,
-          "losses": 0,
-          "points": 4,
-          "points_rate": 2.0,
+          "losses": 3,
+          "points": 7,
+          "points_rate": 1.1667,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Media 2",
-          "tie_breaker_points": "V 1 · Media 2",
+          "tie_breaker": "V 2 · Media 1.17",
+          "tie_breaker_points": "V 2 · Media 1.17",
           "tie_breaker_rate": "-"
         },
         {
           "player": "Fra",
-          "games": 5,
-          "wins": 1,
+          "games": 10,
+          "wins": 2,
           "draws": 1,
-          "losses": 3,
-          "points": 4,
-          "points_rate": 0.8,
+          "losses": 7,
+          "points": 7,
+          "points_rate": 0.7,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Media 0.8",
-          "tie_breaker_points": "V 1 · Media 0.8",
+          "tie_breaker": "V 2 · Media 0.7",
+          "tie_breaker_points": "V 2 · Media 0.7",
           "tie_breaker_rate": "-"
         },
         {
@@ -3261,6 +3523,26 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Ale P|Patrick",
+          "team_label": "Ale P + Patrick",
+          "team_name": "Ale P-Patrick",
+          "components": [
+            "Ale P",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
+        {
           "team_key": "Fra|Patrick",
           "team_label": "Fra + Patrick",
           "team_name": "Fra&Patrick",
@@ -3279,6 +3561,26 @@
           "tie_breaker": "-",
           "tie_breaker_points": "-",
           "tie_breaker_rate": "-"
+        },
+        {
+          "team_key": "Fra|Lele",
+          "team_label": "Fra + Lele",
+          "team_name": "Fra-Lele",
+          "components": [
+            "Fra",
+            "Lele"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
         }
       ],
       "rankings": {
@@ -3291,9 +3593,9 @@
             "Aloi"
           ],
           "points_rate": [
-            "Ale P",
             "Lele",
             "Patrick",
+            "Ale P",
             "Fra",
             "Aloi"
           ]
@@ -3301,69 +3603,73 @@
         "teams": {
           "points": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Ale P-Patrick",
+            "Fra&Patrick",
+            "Fra-Lele"
           ],
           "points_rate": [
+            "Ale P-Patrick",
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Fra&Patrick",
+            "Fra-Lele"
           ]
         }
       },
       "by_player_points_rate": [
         {
-          "player": "Ale P",
-          "games": 2,
-          "wins": 1,
-          "draws": 1,
-          "losses": 0,
-          "points": 4,
-          "points_rate": 2.0,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Media 2",
-          "tie_breaker_points": "V 1 · Media 2",
-          "tie_breaker_rate": "-"
-        },
-        {
           "player": "Lele",
-          "games": 7,
-          "wins": 4,
+          "games": 12,
+          "wins": 5,
           "draws": 1,
-          "losses": 2,
-          "points": 13,
-          "points_rate": 1.8571,
+          "losses": 6,
+          "points": 16,
+          "points_rate": 1.3333,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
+          "tie_breaker": "V 5 · Media 1.33",
+          "tie_breaker_points": "V 5 · Media 1.33",
           "tie_breaker_rate": "-"
         },
         {
           "player": "Patrick",
-          "games": 8,
-          "wins": 2,
+          "games": 13,
+          "wins": 5,
           "draws": 1,
-          "losses": 5,
-          "points": 7,
-          "points_rate": 0.875,
+          "losses": 7,
+          "points": 16,
+          "points_rate": 1.2308,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
+          "tie_breaker": "V 5 · Media 1.23",
+          "tie_breaker_points": "V 5 · Media 1.23",
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Ale P",
+          "games": 6,
+          "wins": 2,
+          "draws": 1,
+          "losses": 3,
+          "points": 7,
+          "points_rate": 1.1667,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "V 2 · Media 1.17",
+          "tie_breaker_points": "V 2 · Media 1.17",
           "tie_breaker_rate": "-"
         },
         {
           "player": "Fra",
-          "games": 5,
-          "wins": 1,
+          "games": 10,
+          "wins": 2,
           "draws": 1,
-          "losses": 3,
-          "points": 4,
-          "points_rate": 0.8,
+          "losses": 7,
+          "points": 7,
+          "points_rate": 0.7,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
-          "tie_breaker": "V 1 · Media 0.8",
-          "tie_breaker_points": "V 1 · Media 0.8",
+          "tie_breaker": "V 2 · Media 0.7",
+          "tie_breaker_points": "V 2 · Media 0.7",
           "tie_breaker_rate": "-"
         },
         {
@@ -3382,6 +3688,26 @@
         }
       ],
       "by_team_points_rate": [
+        {
+          "team_key": "Ale P|Patrick",
+          "team_label": "Ale P + Patrick",
+          "team_name": "Ale P-Patrick",
+          "components": [
+            "Ale P",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
+        },
         {
           "team_key": "Ale P|Lele",
           "team_label": "Ale P + Lele",
@@ -3421,72 +3747,92 @@
           "tie_breaker": "-",
           "tie_breaker_points": "-",
           "tie_breaker_rate": "-"
+        },
+        {
+          "team_key": "Fra|Lele",
+          "team_label": "Fra + Lele",
+          "team_name": "Fra-Lele",
+          "components": [
+            "Fra",
+            "Lele"
+          ],
+          "games": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "points": 0,
+          "points_rate": 0.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
         }
       ],
       "solo_vs_team": [
         {
           "player": "Ale P",
-          "solo_games": 0,
+          "solo_games": 3,
           "solo_wins": 0,
           "solo_draws": 0,
-          "solo_losses": 0,
+          "solo_losses": 3,
           "solo_points": 0,
-          "team_games": 2,
-          "team_wins": 1,
+          "team_games": 3,
+          "team_wins": 2,
           "team_draws": 1,
           "team_losses": 0,
-          "team_points": 4,
-          "solo_points_rate": null,
-          "team_points_rate": 2.0,
-          "delta": 2.0
-        },
-        {
-          "player": "Patrick",
-          "solo_games": 6,
-          "solo_wins": 2,
-          "solo_draws": 0,
-          "solo_losses": 4,
-          "solo_points": 6,
-          "team_games": 2,
-          "team_wins": 0,
-          "team_draws": 1,
-          "team_losses": 1,
-          "team_points": 1,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 0.5,
-          "delta": -0.5
+          "team_points": 7,
+          "solo_points_rate": 0.0,
+          "team_points_rate": 2.3333,
+          "delta": 2.3333
         },
         {
           "player": "Fra",
-          "solo_games": 3,
-          "solo_wins": 1,
+          "solo_games": 7,
+          "solo_wins": 2,
           "solo_draws": 0,
-          "solo_losses": 2,
-          "solo_points": 3,
-          "team_games": 2,
+          "solo_losses": 5,
+          "solo_points": 6,
+          "team_games": 3,
           "team_wins": 0,
           "team_draws": 1,
-          "team_losses": 1,
+          "team_losses": 2,
           "team_points": 1,
-          "solo_points_rate": 1.0,
-          "team_points_rate": 0.5,
-          "delta": -0.5
+          "solo_points_rate": 0.8571,
+          "team_points_rate": 0.3333,
+          "delta": -0.5238
+        },
+        {
+          "player": "Patrick",
+          "solo_games": 10,
+          "solo_wins": 4,
+          "solo_draws": 0,
+          "solo_losses": 6,
+          "solo_points": 12,
+          "team_games": 3,
+          "team_wins": 1,
+          "team_draws": 1,
+          "team_losses": 1,
+          "team_points": 4,
+          "solo_points_rate": 1.2,
+          "team_points_rate": 1.3333,
+          "delta": 0.1333
         },
         {
           "player": "Lele",
-          "solo_games": 5,
-          "solo_wins": 3,
+          "solo_games": 9,
+          "solo_wins": 4,
           "solo_draws": 0,
-          "solo_losses": 2,
-          "solo_points": 9,
-          "team_games": 2,
+          "solo_losses": 5,
+          "solo_points": 12,
+          "team_games": 3,
           "team_wins": 1,
           "team_draws": 1,
-          "team_losses": 0,
+          "team_losses": 1,
           "team_points": 4,
-          "solo_points_rate": 1.8,
-          "team_points_rate": 2.0,
-          "delta": 0.2
+          "solo_points_rate": 1.3333,
+          "team_points_rate": 1.3333,
+          "delta": 0.0
         },
         {
           "player": "Aloi",
@@ -3515,7 +3861,32 @@
             "Aloi"
           ],
           "matrix": {
-            "Ale P": {},
+            "Ale P": {
+              "Lele": {
+                "games": 3,
+                "wins": 0,
+                "draws": 3,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
+              },
+              "Patrick": {
+                "games": 3,
+                "wins": 0,
+                "draws": 1,
+                "losses": 2,
+                "points_for": 0,
+                "points_against": 6
+              },
+              "Fra": {
+                "games": 3,
+                "wins": 0,
+                "draws": 2,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              }
+            },
             "Aloi": {
               "Lele": {
                 "games": 2,
@@ -3536,23 +3907,55 @@
             },
             "Fra": {
               "Lele": {
-                "games": 2,
-                "wins": 0,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 0,
-                "points_against": 3
+                "games": 6,
+                "wins": 1,
+                "draws": 3,
+                "losses": 2,
+                "points_for": 3,
+                "points_against": 6
               },
               "Patrick": {
+                "games": 7,
+                "wins": 2,
+                "draws": 2,
+                "losses": 3,
+                "points_for": 6,
+                "points_against": 9
+              },
+              "Ale P": {
                 "games": 3,
                 "wins": 1,
-                "draws": 1,
-                "losses": 1,
+                "draws": 2,
+                "losses": 0,
                 "points_for": 3,
-                "points_against": 3
+                "points_against": 0
               }
             },
             "Lele": {
+              "Patrick": {
+                "games": 9,
+                "wins": 4,
+                "draws": 1,
+                "losses": 4,
+                "points_for": 12,
+                "points_against": 12
+              },
+              "Fra": {
+                "games": 6,
+                "wins": 2,
+                "draws": 3,
+                "losses": 1,
+                "points_for": 6,
+                "points_against": 3
+              },
+              "Ale P": {
+                "games": 3,
+                "wins": 0,
+                "draws": 3,
+                "losses": 0,
+                "points_for": 0,
+                "points_against": 0
+              },
               "Aloi": {
                 "games": 2,
                 "wins": 2,
@@ -3560,25 +3963,33 @@
                 "losses": 0,
                 "points_for": 6,
                 "points_against": 0
+              }
+            },
+            "Patrick": {
+              "Lele": {
+                "games": 9,
+                "wins": 4,
+                "draws": 1,
+                "losses": 4,
+                "points_for": 12,
+                "points_against": 12
               },
-              "Patrick": {
-                "games": 5,
+              "Fra": {
+                "games": 7,
                 "wins": 3,
-                "draws": 0,
+                "draws": 2,
                 "losses": 2,
                 "points_for": 9,
                 "points_against": 6
               },
-              "Fra": {
-                "games": 2,
-                "wins": 1,
+              "Ale P": {
+                "games": 3,
+                "wins": 2,
                 "draws": 1,
                 "losses": 0,
-                "points_for": 3,
+                "points_for": 6,
                 "points_against": 0
-              }
-            },
-            "Patrick": {
+              },
               "Aloi": {
                 "games": 2,
                 "wins": 0,
@@ -3586,22 +3997,6 @@
                 "losses": 0,
                 "points_for": 0,
                 "points_against": 0
-              },
-              "Lele": {
-                "games": 5,
-                "wins": 2,
-                "draws": 0,
-                "losses": 3,
-                "points_for": 6,
-                "points_against": 9
-              },
-              "Fra": {
-                "games": 3,
-                "wins": 1,
-                "draws": 1,
-                "losses": 1,
-                "points_for": 3,
-                "points_against": 3
               }
             }
           }
@@ -3609,7 +4004,9 @@
         "teams": {
           "labels": [
             "Ale P&Lele",
-            "Fra&Patrick"
+            "Ale P-Patrick",
+            "Fra&Patrick",
+            "Fra-Lele"
           ],
           "matrix": {
             "Ale P&Lele": {
@@ -3620,6 +4017,26 @@
                 "losses": 0,
                 "points_for": 4,
                 "points_against": 1
+              }
+            },
+            "Ale P-Patrick": {
+              "Fra-Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
+            },
+            "Fra-Lele": {
+              "Ale P-Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
               }
             },
             "Fra&Patrick": {
@@ -3636,6 +4053,187 @@
         }
       },
       "matches": [
+        {
+          "id": 58,
+          "played_at": "2026-10-11T12:46:00",
+          "course": "San Remo",
+          "holes": 9,
+          "notes": "Netto",
+          "import_key": "match-mvp72g1e-43wvx7lv",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": true,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": false,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto globale",
+          "import_key": "match-mvp71r57-7dmfkhgq",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Ale P-Patrick",
+              "is_winner": true,
+              "players": [
+                "Ale P",
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra-Lele",
+              "is_winner": false,
+              "players": [
+                "Fra",
+                "Lele"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto globale",
+          "import_key": "match-mvp7106i-x2if4siu",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto pomeriggio",
+          "import_key": "match-mvp70ov7-4s5n5m9q",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": false,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto mattina",
+          "import_key": "match-mvp703sj-3fkw41d8",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
         {
           "id": 13,
           "played_at": "2026-06-07T15:32:00",
@@ -3886,54 +4484,54 @@
         "key": "untagged",
         "label": "Senza tag",
         "group": "Generale",
-        "matches": 8,
+        "matches": 13,
         "player_champion": {
           "kind": "player",
           "name": "Lele",
-          "points": 13,
-          "games": 7,
-          "wins": 4,
+          "points": 16,
+          "games": 12,
+          "wins": 5,
           "draws": 1,
-          "losses": 2,
-          "points_rate": 1.8571
+          "losses": 6,
+          "points_rate": 1.3333
         },
         "team_champion": {
           "kind": "team",
-          "name": "Ale P&Lele",
-          "points": 4,
-          "games": 2,
+          "name": "Ale P-Patrick",
+          "points": 3,
+          "games": 1,
           "wins": 1,
-          "draws": 1,
+          "draws": 0,
           "losses": 0,
-          "points_rate": 2.0
+          "points_rate": 3.0
         },
         "player_points_rate_champion": {
           "kind": "player",
           "name": "Lele",
-          "points": 13,
-          "games": 7,
-          "wins": 4,
+          "points": 16,
+          "games": 12,
+          "wins": 5,
           "draws": 1,
-          "losses": 2,
-          "points_rate": 1.8571
+          "losses": 6,
+          "points_rate": 1.3333
         },
         "team_points_rate_champion": {
           "kind": "team",
-          "name": "Ale P&Lele",
-          "points": 4,
-          "games": 2,
+          "name": "Ale P-Patrick",
+          "points": 3,
+          "games": 1,
           "wins": 1,
-          "draws": 1,
+          "draws": 0,
           "losses": 0,
-          "points_rate": 2.0
+          "points_rate": 3.0
         }
       }
     },
     "year:2026": {
       "counts": {
-        "matches": 50,
+        "matches": 55,
         "players": 10,
-        "teams": 12
+        "teams": 13
       },
       "filters": {
         "players": [
@@ -3955,23 +4553,25 @@
           "Druento",
           "Gavi",
           "Girasoli",
+          "Golf Opio-Valbonne",
           "Golf Sestrieres",
           "Malaga",
           "Margherita",
           "Moncalieri",
           "Pragelato",
+          "San Remo",
           "golf Sestrieres"
         ]
       },
       "by_player": [
         {
           "player": "Lele",
-          "games": 40,
-          "wins": 17,
+          "games": 45,
+          "wins": 18,
           "draws": 5,
-          "losses": 18,
-          "points": 56,
-          "points_rate": 1.4,
+          "losses": 22,
+          "points": 59,
+          "points_rate": 1.3111,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -3980,12 +4580,12 @@
         },
         {
           "player": "Fra",
-          "games": 39,
-          "wins": 14,
+          "games": 44,
+          "wins": 15,
           "draws": 6,
-          "losses": 19,
-          "points": 48,
-          "points_rate": 1.2308,
+          "losses": 23,
+          "points": 51,
+          "points_rate": 1.1591,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -3994,12 +4594,12 @@
         },
         {
           "player": "Patrick",
-          "games": 31,
-          "wins": 11,
+          "games": 36,
+          "wins": 14,
           "draws": 5,
-          "losses": 15,
-          "points": 38,
-          "points_rate": 1.2258,
+          "losses": 17,
+          "points": 47,
+          "points_rate": 1.3056,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -4022,17 +4622,17 @@
         },
         {
           "player": "Ale P",
-          "games": 5,
-          "wins": 1,
+          "games": 9,
+          "wins": 2,
           "draws": 2,
-          "losses": 2,
-          "points": 5,
-          "points_rate": 1.0,
+          "losses": 5,
+          "points": 8,
+          "points_rate": 0.8889,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 5 · Pt 5 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Alberto",
@@ -4046,7 +4646,7 @@
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 4 · Pt 4 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Riky Tav",
@@ -4167,6 +4767,26 @@
           "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
+          "team_key": "Ale P|Patrick",
+          "team_label": "Ale P + Patrick",
+          "team_name": "Ale P-Patrick",
+          "components": [
+            "Ale P",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 3,
+          "tie_direct_wins": 1,
+          "tie_breaker": "SD 3 · V 1 · Media 3",
+          "tie_breaker_points": "SD 3 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
           "team_key": "Fra|Riky Tav",
           "team_label": "Fra + Riky Tav",
           "team_name": "Fra-Riky Tav",
@@ -4207,26 +4827,6 @@
           "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
-          "team_key": "Fra|Lele",
-          "team_label": "Fra + Lele",
-          "team_name": "Fra-Lele",
-          "components": [
-            "Fra",
-            "Lele"
-          ],
-          "games": 2,
-          "wins": 1,
-          "draws": 0,
-          "losses": 1,
-          "points": 3,
-          "points_rate": 1.5,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_rate": "G 2 · Pt 3 · V 1"
-        },
-        {
           "team_key": "Lele|Patrick",
           "team_label": "Lele + Patrick",
           "team_name": "Lele-Patrick",
@@ -4244,7 +4844,27 @@
           "tie_direct_wins": 0,
           "tie_breaker": "SD 0 · V 1 · Media 1.5",
           "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_rate": "G 2 · Pt 3 · V 1"
+          "tie_breaker_rate": "-"
+        },
+        {
+          "team_key": "Fra|Lele",
+          "team_label": "Fra + Lele",
+          "team_name": "Fra-Lele",
+          "components": [
+            "Fra",
+            "Lele"
+          ],
+          "games": 3,
+          "wins": 1,
+          "draws": 0,
+          "losses": 2,
+          "points": 3,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 1",
+          "tie_breaker_points": "SD 0 · V 1 · Media 1",
+          "tie_breaker_rate": "G 3 · Pt 3 · V 1"
         },
         {
           "team_key": "Alberto|Ale M",
@@ -4264,7 +4884,7 @@
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         },
         {
           "team_key": "Ale M|Valter",
@@ -4362,12 +4982,12 @@
             "Valter"
           ],
           "points_rate": [
-            "Lele",
             "Ale M",
-            "Fra",
+            "Lele",
             "Patrick",
-            "Ale P",
+            "Fra",
             "Alberto",
+            "Ale P",
             "Riky Tav",
             "Aloi",
             "Riccardo (Golf Torino)",
@@ -4379,10 +4999,11 @@
             "Fra-Patrick",
             "Ale P-Lele",
             "Alberto-Patrick",
+            "Ale P-Patrick",
             "Fra-Riky Tav",
             "Ale M-Lele",
-            "Fra-Lele",
             "Lele-Patrick",
+            "Fra-Lele",
             "Alberto-Ale M",
             "Ale M-Valter",
             "Aloi-Lele",
@@ -4392,11 +5013,12 @@
           "points_rate": [
             "Alberto-Patrick",
             "Ale M-Lele",
+            "Ale P-Patrick",
             "Fra-Riky Tav",
             "Ale P-Lele",
-            "Fra-Lele",
             "Lele-Patrick",
             "Fra-Patrick",
+            "Fra-Lele",
             "Alberto-Ale M",
             "Ale M-Valter",
             "Aloi-Lele",
@@ -4406,20 +5028,6 @@
         }
       },
       "by_player_points_rate": [
-        {
-          "player": "Lele",
-          "games": 40,
-          "wins": 17,
-          "draws": 5,
-          "losses": 18,
-          "points": 56,
-          "points_rate": 1.4,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "-",
-          "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
-        },
         {
           "player": "Ale M",
           "games": 13,
@@ -4435,13 +5043,13 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Fra",
-          "games": 39,
-          "wins": 14,
-          "draws": 6,
-          "losses": 19,
-          "points": 48,
-          "points_rate": 1.2308,
+          "player": "Lele",
+          "games": 45,
+          "wins": 18,
+          "draws": 5,
+          "losses": 22,
+          "points": 59,
+          "points_rate": 1.3111,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -4450,12 +5058,12 @@
         },
         {
           "player": "Patrick",
-          "games": 31,
-          "wins": 11,
+          "games": 36,
+          "wins": 14,
           "draws": 5,
-          "losses": 15,
-          "points": 38,
-          "points_rate": 1.2258,
+          "losses": 17,
+          "points": 47,
+          "points_rate": 1.3056,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
@@ -4463,18 +5071,18 @@
           "tie_breaker_rate": "-"
         },
         {
-          "player": "Ale P",
-          "games": 5,
-          "wins": 1,
-          "draws": 2,
-          "losses": 2,
-          "points": 5,
-          "points_rate": 1.0,
+          "player": "Fra",
+          "games": 44,
+          "wins": 15,
+          "draws": 6,
+          "losses": 23,
+          "points": 51,
+          "points_rate": 1.1591,
           "tie_direct_points": 0,
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 5 · Pt 5 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Alberto",
@@ -4488,7 +5096,21 @@
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "G 4 · Pt 4 · V 1"
+          "tie_breaker_rate": "-"
+        },
+        {
+          "player": "Ale P",
+          "games": 9,
+          "wins": 2,
+          "draws": 2,
+          "losses": 5,
+          "points": 8,
+          "points_rate": 0.8889,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "-",
+          "tie_breaker_points": "-",
+          "tie_breaker_rate": "-"
         },
         {
           "player": "Riky Tav",
@@ -4589,6 +5211,26 @@
           "tie_breaker_rate": "G 1 · Pt 3 · V 1"
         },
         {
+          "team_key": "Ale P|Patrick",
+          "team_label": "Ale P + Patrick",
+          "team_name": "Ale P-Patrick",
+          "components": [
+            "Ale P",
+            "Patrick"
+          ],
+          "games": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "points": 3,
+          "points_rate": 3.0,
+          "tie_direct_points": 3,
+          "tie_direct_wins": 1,
+          "tie_breaker": "SD 3 · V 1 · Media 3",
+          "tie_breaker_points": "SD 3 · V 1 · Media 3",
+          "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+        },
+        {
           "team_key": "Fra|Riky Tav",
           "team_label": "Fra + Riky Tav",
           "team_name": "Fra-Riky Tav",
@@ -4629,26 +5271,6 @@
           "tie_breaker_rate": "-"
         },
         {
-          "team_key": "Fra|Lele",
-          "team_label": "Fra + Lele",
-          "team_name": "Fra-Lele",
-          "components": [
-            "Fra",
-            "Lele"
-          ],
-          "games": 2,
-          "wins": 1,
-          "draws": 0,
-          "losses": 1,
-          "points": 3,
-          "points_rate": 1.5,
-          "tie_direct_points": 0,
-          "tie_direct_wins": 0,
-          "tie_breaker": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_rate": "G 2 · Pt 3 · V 1"
-        },
-        {
           "team_key": "Lele|Patrick",
           "team_label": "Lele + Patrick",
           "team_name": "Lele-Patrick",
@@ -4666,7 +5288,7 @@
           "tie_direct_wins": 0,
           "tie_breaker": "SD 0 · V 1 · Media 1.5",
           "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-          "tie_breaker_rate": "G 2 · Pt 3 · V 1"
+          "tie_breaker_rate": "-"
         },
         {
           "team_key": "Fra|Patrick",
@@ -4689,6 +5311,26 @@
           "tie_breaker_rate": "-"
         },
         {
+          "team_key": "Fra|Lele",
+          "team_label": "Fra + Lele",
+          "team_name": "Fra-Lele",
+          "components": [
+            "Fra",
+            "Lele"
+          ],
+          "games": 3,
+          "wins": 1,
+          "draws": 0,
+          "losses": 2,
+          "points": 3,
+          "points_rate": 1.0,
+          "tie_direct_points": 0,
+          "tie_direct_wins": 0,
+          "tie_breaker": "SD 0 · V 1 · Media 1",
+          "tie_breaker_points": "SD 0 · V 1 · Media 1",
+          "tie_breaker_rate": "G 3 · Pt 3 · V 1"
+        },
+        {
           "team_key": "Alberto|Ale M",
           "team_label": "Alberto + Ale M",
           "team_name": "Alberto-Ale M",
@@ -4706,7 +5348,7 @@
           "tie_direct_wins": 0,
           "tie_breaker": "-",
           "tie_breaker_points": "-",
-          "tie_breaker_rate": "-"
+          "tie_breaker_rate": "G 1 · Pt 1 · V 0"
         },
         {
           "team_key": "Ale M|Valter",
@@ -4791,6 +5433,22 @@
       ],
       "solo_vs_team": [
         {
+          "player": "Ale P",
+          "solo_games": 5,
+          "solo_wins": 0,
+          "solo_draws": 0,
+          "solo_losses": 5,
+          "solo_points": 0,
+          "team_games": 4,
+          "team_wins": 2,
+          "team_draws": 2,
+          "team_losses": 0,
+          "team_points": 8,
+          "solo_points_rate": 0.0,
+          "team_points_rate": 2.0,
+          "delta": 2.0
+        },
+        {
           "player": "Alberto",
           "solo_games": 2,
           "solo_wins": 0,
@@ -4805,22 +5463,6 @@
           "solo_points_rate": 0.0,
           "team_points_rate": 2.0,
           "delta": 2.0
-        },
-        {
-          "player": "Ale P",
-          "solo_games": 2,
-          "solo_wins": 0,
-          "solo_draws": 0,
-          "solo_losses": 2,
-          "solo_points": 0,
-          "team_games": 3,
-          "team_wins": 1,
-          "team_draws": 2,
-          "team_losses": 0,
-          "team_points": 5,
-          "solo_points_rate": 0.0,
-          "team_points_rate": 1.6667,
-          "delta": 1.6667
         },
         {
           "player": "Riky Tav",
@@ -4839,52 +5481,36 @@
           "delta": 1.5
         },
         {
+          "player": "Patrick",
+          "solo_games": 26,
+          "solo_wins": 10,
+          "solo_draws": 2,
+          "solo_losses": 14,
+          "solo_points": 32,
+          "team_games": 10,
+          "team_wins": 4,
+          "team_draws": 3,
+          "team_losses": 3,
+          "team_points": 15,
+          "solo_points_rate": 1.2308,
+          "team_points_rate": 1.5,
+          "delta": 0.2692
+        },
+        {
           "player": "Lele",
-          "solo_games": 31,
-          "solo_wins": 13,
+          "solo_games": 35,
+          "solo_wins": 14,
           "solo_draws": 3,
-          "solo_losses": 15,
-          "solo_points": 42,
-          "team_games": 9,
+          "solo_losses": 18,
+          "solo_points": 45,
+          "team_games": 10,
           "team_wins": 4,
           "team_draws": 2,
-          "team_losses": 3,
+          "team_losses": 4,
           "team_points": 14,
-          "solo_points_rate": 1.3548,
-          "team_points_rate": 1.5556,
-          "delta": 0.2008
-        },
-        {
-          "player": "Patrick",
-          "solo_games": 22,
-          "solo_wins": 8,
-          "solo_draws": 2,
-          "solo_losses": 12,
-          "solo_points": 26,
-          "team_games": 9,
-          "team_wins": 3,
-          "team_draws": 3,
-          "team_losses": 3,
-          "team_points": 12,
-          "solo_points_rate": 1.1818,
-          "team_points_rate": 1.3333,
-          "delta": 0.1515
-        },
-        {
-          "player": "Fra",
-          "solo_games": 30,
-          "solo_wins": 11,
-          "solo_draws": 3,
-          "solo_losses": 16,
-          "solo_points": 36,
-          "team_games": 9,
-          "team_wins": 3,
-          "team_draws": 3,
-          "team_losses": 3,
-          "team_points": 12,
-          "solo_points_rate": 1.2,
-          "team_points_rate": 1.3333,
-          "delta": 0.1333
+          "solo_points_rate": 1.2857,
+          "team_points_rate": 1.4,
+          "delta": 0.1143
         },
         {
           "player": "Ale M",
@@ -4901,6 +5527,22 @@
           "solo_points_rate": 1.4,
           "team_points_rate": 1.3333,
           "delta": -0.0667
+        },
+        {
+          "player": "Fra",
+          "solo_games": 34,
+          "solo_wins": 12,
+          "solo_draws": 3,
+          "solo_losses": 19,
+          "solo_points": 39,
+          "team_games": 10,
+          "team_wins": 3,
+          "team_draws": 3,
+          "team_losses": 4,
+          "team_points": 12,
+          "solo_points_rate": 1.1471,
+          "team_points_rate": 1.2,
+          "delta": 0.0529
         },
         {
           "player": "Aloi",
@@ -5028,17 +5670,25 @@
             },
             "Ale P": {
               "Lele": {
-                "games": 2,
+                "games": 5,
                 "wins": 0,
-                "draws": 1,
+                "draws": 4,
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
               },
               "Patrick": {
-                "games": 2,
+                "games": 5,
                 "wins": 0,
-                "draws": 1,
+                "draws": 2,
+                "losses": 3,
+                "points_for": 0,
+                "points_against": 9
+              },
+              "Fra": {
+                "games": 3,
+                "wins": 0,
+                "draws": 2,
                 "losses": 1,
                 "points_for": 0,
                 "points_against": 3
@@ -5064,20 +5714,28 @@
             },
             "Fra": {
               "Lele": {
-                "games": 23,
-                "wins": 6,
-                "draws": 7,
-                "losses": 10,
-                "points_for": 20,
-                "points_against": 32
+                "games": 27,
+                "wins": 7,
+                "draws": 9,
+                "losses": 11,
+                "points_for": 23,
+                "points_against": 35
               },
               "Patrick": {
-                "games": 14,
-                "wins": 4,
-                "draws": 5,
-                "losses": 5,
-                "points_for": 14,
-                "points_against": 17
+                "games": 18,
+                "wins": 5,
+                "draws": 6,
+                "losses": 7,
+                "points_for": 17,
+                "points_against": 23
+              },
+              "Ale P": {
+                "games": 3,
+                "wins": 1,
+                "draws": 2,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
               },
               "Alberto": {
                 "games": 2,
@@ -5105,21 +5763,29 @@
               }
             },
             "Lele": {
-              "Fra": {
-                "games": 23,
-                "wins": 10,
-                "draws": 7,
-                "losses": 6,
-                "points_for": 32,
-                "points_against": 20
-              },
               "Patrick": {
-                "games": 18,
-                "wins": 6,
+                "games": 22,
+                "wins": 7,
+                "draws": 5,
+                "losses": 10,
+                "points_for": 23,
+                "points_against": 32
+              },
+              "Fra": {
+                "games": 27,
+                "wins": 11,
+                "draws": 9,
+                "losses": 7,
+                "points_for": 35,
+                "points_against": 23
+              },
+              "Ale P": {
+                "games": 5,
+                "wins": 1,
                 "draws": 4,
-                "losses": 8,
-                "points_for": 20,
-                "points_against": 26
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
               },
               "Alberto": {
                 "games": 2,
@@ -5145,14 +5811,6 @@
                 "points_for": 0,
                 "points_against": 0
               },
-              "Ale P": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 3,
-                "points_against": 0
-              },
               "Aloi": {
                 "games": 2,
                 "wins": 2,
@@ -5163,21 +5821,29 @@
               }
             },
             "Patrick": {
-              "Fra": {
-                "games": 14,
-                "wins": 5,
-                "draws": 5,
-                "losses": 4,
-                "points_for": 17,
-                "points_against": 14
-              },
               "Lele": {
+                "games": 22,
+                "wins": 10,
+                "draws": 5,
+                "losses": 7,
+                "points_for": 32,
+                "points_against": 23
+              },
+              "Fra": {
                 "games": 18,
-                "wins": 8,
-                "draws": 4,
-                "losses": 6,
-                "points_for": 26,
-                "points_against": 20
+                "wins": 7,
+                "draws": 6,
+                "losses": 5,
+                "points_for": 23,
+                "points_against": 17
+              },
+              "Ale P": {
+                "games": 5,
+                "wins": 3,
+                "draws": 2,
+                "losses": 0,
+                "points_for": 9,
+                "points_against": 0
               },
               "Alberto": {
                 "games": 1,
@@ -5202,14 +5868,6 @@
                 "losses": 2,
                 "points_for": 3,
                 "points_against": 6
-              },
-              "Ale P": {
-                "games": 2,
-                "wins": 1,
-                "draws": 1,
-                "losses": 0,
-                "points_for": 3,
-                "points_against": 0
               },
               "Aloi": {
                 "games": 2,
@@ -5263,10 +5921,11 @@
             "Fra-Patrick",
             "Ale P-Lele",
             "Alberto-Patrick",
+            "Ale P-Patrick",
             "Fra-Riky Tav",
             "Ale M-Lele",
-            "Fra-Lele",
             "Lele-Patrick",
+            "Fra-Lele",
             "Alberto-Ale M",
             "Ale M-Valter",
             "Aloi-Lele",
@@ -5324,6 +5983,16 @@
                 "points_against": 2
               }
             },
+            "Ale P-Patrick": {
+              "Fra-Lele": {
+                "games": 1,
+                "wins": 1,
+                "draws": 0,
+                "losses": 0,
+                "points_for": 3,
+                "points_against": 0
+              }
+            },
             "Aloi-Lele": {
               "Fra-Patrick": {
                 "games": 1,
@@ -5335,6 +6004,14 @@
               }
             },
             "Fra-Lele": {
+              "Ale P-Patrick": {
+                "games": 1,
+                "wins": 0,
+                "draws": 0,
+                "losses": 1,
+                "points_for": 0,
+                "points_against": 3
+              },
               "Alberto-Patrick": {
                 "games": 1,
                 "wins": 0,
@@ -5430,6 +6107,187 @@
         }
       },
       "matches": [
+        {
+          "id": 58,
+          "played_at": "2026-10-11T12:46:00",
+          "course": "San Remo",
+          "holes": 9,
+          "notes": "Netto",
+          "import_key": "match-mvp72g1e-43wvx7lv",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": true,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": false,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto globale",
+          "import_key": "match-mvp71r57-7dmfkhgq",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Ale P-Patrick",
+              "is_winner": true,
+              "players": [
+                "Ale P",
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra-Lele",
+              "is_winner": false,
+              "players": [
+                "Fra",
+                "Lele"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto globale",
+          "import_key": "match-mvp7106i-x2if4siu",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto pomeriggio",
+          "import_key": "match-mvp70ov7-4s5n5m9q",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": false,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": true,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "played_at": "2026-10-10T12:46:00",
+          "course": "Golf Opio-Valbonne",
+          "holes": 18,
+          "notes": "Netto mattina",
+          "import_key": "match-mvp703sj-3fkw41d8",
+          "tags": [],
+          "is_draw": false,
+          "sides": [
+            {
+              "team_name": "Lele",
+              "is_winner": false,
+              "players": [
+                "Lele"
+              ]
+            },
+            {
+              "team_name": "Patrick",
+              "is_winner": true,
+              "players": [
+                "Patrick"
+              ]
+            },
+            {
+              "team_name": "Fra",
+              "is_winner": false,
+              "players": [
+                "Fra"
+              ]
+            },
+            {
+              "team_name": "Ale P",
+              "is_winner": false,
+              "players": [
+                "Ale P"
+              ]
+            }
+          ]
+        },
         {
           "id": 53,
           "played_at": "2026-09-21T23:56:00",
@@ -6991,16 +7849,16 @@
         "key": "year:2026",
         "label": "2026",
         "group": "Stagioni",
-        "matches": 50,
+        "matches": 55,
         "player_champion": {
           "kind": "player",
-          "name": "Lele",
-          "points": 56,
-          "games": 40,
-          "wins": 17,
-          "draws": 5,
-          "losses": 18,
-          "points_rate": 1.4
+          "name": "Ale M",
+          "points": 18,
+          "games": 13,
+          "wins": 5,
+          "draws": 3,
+          "losses": 5,
+          "points_rate": 1.3846
         },
         "team_champion": {
           "kind": "team",
@@ -7014,13 +7872,13 @@
         },
         "player_points_rate_champion": {
           "kind": "player",
-          "name": "Lele",
-          "points": 56,
-          "games": 40,
-          "wins": 17,
-          "draws": 5,
-          "losses": 18,
-          "points_rate": 1.4
+          "name": "Ale M",
+          "points": 18,
+          "games": 13,
+          "wins": 5,
+          "draws": 3,
+          "losses": 5,
+          "points_rate": 1.3846
         },
         "team_points_rate_champion": {
           "kind": "team",
@@ -9864,9 +10722,9 @@
     }
   },
   "counts": {
-    "matches": 50,
+    "matches": 55,
     "players": 10,
-    "teams": 12
+    "teams": 13
   },
   "filters": {
     "players": [
@@ -9888,23 +10746,25 @@
       "Druento",
       "Gavi",
       "Girasoli",
+      "Golf Opio-Valbonne",
       "Golf Sestrieres",
       "Malaga",
       "Margherita",
       "Moncalieri",
       "Pragelato",
+      "San Remo",
       "golf Sestrieres"
     ]
   },
   "by_player": [
     {
       "player": "Lele",
-      "games": 40,
-      "wins": 17,
+      "games": 45,
+      "wins": 18,
       "draws": 5,
-      "losses": 18,
-      "points": 56,
-      "points_rate": 1.4,
+      "losses": 22,
+      "points": 59,
+      "points_rate": 1.3111,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -9913,12 +10773,12 @@
     },
     {
       "player": "Fra",
-      "games": 39,
-      "wins": 14,
+      "games": 44,
+      "wins": 15,
       "draws": 6,
-      "losses": 19,
-      "points": 48,
-      "points_rate": 1.2308,
+      "losses": 23,
+      "points": 51,
+      "points_rate": 1.1591,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -9927,12 +10787,12 @@
     },
     {
       "player": "Patrick",
-      "games": 31,
-      "wins": 11,
+      "games": 36,
+      "wins": 14,
       "draws": 5,
-      "losses": 15,
-      "points": 38,
-      "points_rate": 1.2258,
+      "losses": 17,
+      "points": 47,
+      "points_rate": 1.3056,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -9955,17 +10815,17 @@
     },
     {
       "player": "Ale P",
-      "games": 5,
-      "wins": 1,
+      "games": 9,
+      "wins": 2,
       "draws": 2,
-      "losses": 2,
-      "points": 5,
-      "points_rate": 1.0,
+      "losses": 5,
+      "points": 8,
+      "points_rate": 0.8889,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
       "tie_breaker_points": "-",
-      "tie_breaker_rate": "G 5 · Pt 5 · V 1"
+      "tie_breaker_rate": "-"
     },
     {
       "player": "Alberto",
@@ -9979,7 +10839,7 @@
       "tie_direct_wins": 0,
       "tie_breaker": "-",
       "tie_breaker_points": "-",
-      "tie_breaker_rate": "G 4 · Pt 4 · V 1"
+      "tie_breaker_rate": "-"
     },
     {
       "player": "Riky Tav",
@@ -10100,6 +10960,26 @@
       "tie_breaker_rate": "G 1 · Pt 3 · V 1"
     },
     {
+      "team_key": "Ale P|Patrick",
+      "team_label": "Ale P + Patrick",
+      "team_name": "Ale P-Patrick",
+      "components": [
+        "Ale P",
+        "Patrick"
+      ],
+      "games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "points": 3,
+      "points_rate": 3.0,
+      "tie_direct_points": 3,
+      "tie_direct_wins": 1,
+      "tie_breaker": "SD 3 · V 1 · Media 3",
+      "tie_breaker_points": "SD 3 · V 1 · Media 3",
+      "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+    },
+    {
       "team_key": "Fra|Riky Tav",
       "team_label": "Fra + Riky Tav",
       "team_name": "Fra-Riky Tav",
@@ -10140,26 +11020,6 @@
       "tie_breaker_rate": "G 1 · Pt 3 · V 1"
     },
     {
-      "team_key": "Fra|Lele",
-      "team_label": "Fra + Lele",
-      "team_name": "Fra-Lele",
-      "components": [
-        "Fra",
-        "Lele"
-      ],
-      "games": 2,
-      "wins": 1,
-      "draws": 0,
-      "losses": 1,
-      "points": 3,
-      "points_rate": 1.5,
-      "tie_direct_points": 0,
-      "tie_direct_wins": 0,
-      "tie_breaker": "SD 0 · V 1 · Media 1.5",
-      "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-      "tie_breaker_rate": "G 2 · Pt 3 · V 1"
-    },
-    {
       "team_key": "Lele|Patrick",
       "team_label": "Lele + Patrick",
       "team_name": "Lele-Patrick",
@@ -10177,7 +11037,27 @@
       "tie_direct_wins": 0,
       "tie_breaker": "SD 0 · V 1 · Media 1.5",
       "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-      "tie_breaker_rate": "G 2 · Pt 3 · V 1"
+      "tie_breaker_rate": "-"
+    },
+    {
+      "team_key": "Fra|Lele",
+      "team_label": "Fra + Lele",
+      "team_name": "Fra-Lele",
+      "components": [
+        "Fra",
+        "Lele"
+      ],
+      "games": 3,
+      "wins": 1,
+      "draws": 0,
+      "losses": 2,
+      "points": 3,
+      "points_rate": 1.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "SD 0 · V 1 · Media 1",
+      "tie_breaker_points": "SD 0 · V 1 · Media 1",
+      "tie_breaker_rate": "G 3 · Pt 3 · V 1"
     },
     {
       "team_key": "Alberto|Ale M",
@@ -10197,7 +11077,7 @@
       "tie_direct_wins": 0,
       "tie_breaker": "-",
       "tie_breaker_points": "-",
-      "tie_breaker_rate": "-"
+      "tie_breaker_rate": "G 1 · Pt 1 · V 0"
     },
     {
       "team_key": "Ale M|Valter",
@@ -10295,12 +11175,12 @@
         "Valter"
       ],
       "points_rate": [
-        "Lele",
         "Ale M",
-        "Fra",
+        "Lele",
         "Patrick",
-        "Ale P",
+        "Fra",
         "Alberto",
+        "Ale P",
         "Riky Tav",
         "Aloi",
         "Riccardo (Golf Torino)",
@@ -10312,10 +11192,11 @@
         "Fra-Patrick",
         "Ale P-Lele",
         "Alberto-Patrick",
+        "Ale P-Patrick",
         "Fra-Riky Tav",
         "Ale M-Lele",
-        "Fra-Lele",
         "Lele-Patrick",
+        "Fra-Lele",
         "Alberto-Ale M",
         "Ale M-Valter",
         "Aloi-Lele",
@@ -10325,11 +11206,12 @@
       "points_rate": [
         "Alberto-Patrick",
         "Ale M-Lele",
+        "Ale P-Patrick",
         "Fra-Riky Tav",
         "Ale P-Lele",
-        "Fra-Lele",
         "Lele-Patrick",
         "Fra-Patrick",
+        "Fra-Lele",
         "Alberto-Ale M",
         "Ale M-Valter",
         "Aloi-Lele",
@@ -10339,20 +11221,6 @@
     }
   },
   "by_player_points_rate": [
-    {
-      "player": "Lele",
-      "games": 40,
-      "wins": 17,
-      "draws": 5,
-      "losses": 18,
-      "points": 56,
-      "points_rate": 1.4,
-      "tie_direct_points": 0,
-      "tie_direct_wins": 0,
-      "tie_breaker": "-",
-      "tie_breaker_points": "-",
-      "tie_breaker_rate": "-"
-    },
     {
       "player": "Ale M",
       "games": 13,
@@ -10368,13 +11236,13 @@
       "tie_breaker_rate": "-"
     },
     {
-      "player": "Fra",
-      "games": 39,
-      "wins": 14,
-      "draws": 6,
-      "losses": 19,
-      "points": 48,
-      "points_rate": 1.2308,
+      "player": "Lele",
+      "games": 45,
+      "wins": 18,
+      "draws": 5,
+      "losses": 22,
+      "points": 59,
+      "points_rate": 1.3111,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -10383,12 +11251,12 @@
     },
     {
       "player": "Patrick",
-      "games": 31,
-      "wins": 11,
+      "games": 36,
+      "wins": 14,
       "draws": 5,
-      "losses": 15,
-      "points": 38,
-      "points_rate": 1.2258,
+      "losses": 17,
+      "points": 47,
+      "points_rate": 1.3056,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
@@ -10396,18 +11264,18 @@
       "tie_breaker_rate": "-"
     },
     {
-      "player": "Ale P",
-      "games": 5,
-      "wins": 1,
-      "draws": 2,
-      "losses": 2,
-      "points": 5,
-      "points_rate": 1.0,
+      "player": "Fra",
+      "games": 44,
+      "wins": 15,
+      "draws": 6,
+      "losses": 23,
+      "points": 51,
+      "points_rate": 1.1591,
       "tie_direct_points": 0,
       "tie_direct_wins": 0,
       "tie_breaker": "-",
       "tie_breaker_points": "-",
-      "tie_breaker_rate": "G 5 · Pt 5 · V 1"
+      "tie_breaker_rate": "-"
     },
     {
       "player": "Alberto",
@@ -10421,7 +11289,21 @@
       "tie_direct_wins": 0,
       "tie_breaker": "-",
       "tie_breaker_points": "-",
-      "tie_breaker_rate": "G 4 · Pt 4 · V 1"
+      "tie_breaker_rate": "-"
+    },
+    {
+      "player": "Ale P",
+      "games": 9,
+      "wins": 2,
+      "draws": 2,
+      "losses": 5,
+      "points": 8,
+      "points_rate": 0.8889,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "-",
+      "tie_breaker_points": "-",
+      "tie_breaker_rate": "-"
     },
     {
       "player": "Riky Tav",
@@ -10522,6 +11404,26 @@
       "tie_breaker_rate": "G 1 · Pt 3 · V 1"
     },
     {
+      "team_key": "Ale P|Patrick",
+      "team_label": "Ale P + Patrick",
+      "team_name": "Ale P-Patrick",
+      "components": [
+        "Ale P",
+        "Patrick"
+      ],
+      "games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "points": 3,
+      "points_rate": 3.0,
+      "tie_direct_points": 3,
+      "tie_direct_wins": 1,
+      "tie_breaker": "SD 3 · V 1 · Media 3",
+      "tie_breaker_points": "SD 3 · V 1 · Media 3",
+      "tie_breaker_rate": "G 1 · Pt 3 · V 1"
+    },
+    {
       "team_key": "Fra|Riky Tav",
       "team_label": "Fra + Riky Tav",
       "team_name": "Fra-Riky Tav",
@@ -10562,26 +11464,6 @@
       "tie_breaker_rate": "-"
     },
     {
-      "team_key": "Fra|Lele",
-      "team_label": "Fra + Lele",
-      "team_name": "Fra-Lele",
-      "components": [
-        "Fra",
-        "Lele"
-      ],
-      "games": 2,
-      "wins": 1,
-      "draws": 0,
-      "losses": 1,
-      "points": 3,
-      "points_rate": 1.5,
-      "tie_direct_points": 0,
-      "tie_direct_wins": 0,
-      "tie_breaker": "SD 0 · V 1 · Media 1.5",
-      "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-      "tie_breaker_rate": "G 2 · Pt 3 · V 1"
-    },
-    {
       "team_key": "Lele|Patrick",
       "team_label": "Lele + Patrick",
       "team_name": "Lele-Patrick",
@@ -10599,7 +11481,7 @@
       "tie_direct_wins": 0,
       "tie_breaker": "SD 0 · V 1 · Media 1.5",
       "tie_breaker_points": "SD 0 · V 1 · Media 1.5",
-      "tie_breaker_rate": "G 2 · Pt 3 · V 1"
+      "tie_breaker_rate": "-"
     },
     {
       "team_key": "Fra|Patrick",
@@ -10622,6 +11504,26 @@
       "tie_breaker_rate": "-"
     },
     {
+      "team_key": "Fra|Lele",
+      "team_label": "Fra + Lele",
+      "team_name": "Fra-Lele",
+      "components": [
+        "Fra",
+        "Lele"
+      ],
+      "games": 3,
+      "wins": 1,
+      "draws": 0,
+      "losses": 2,
+      "points": 3,
+      "points_rate": 1.0,
+      "tie_direct_points": 0,
+      "tie_direct_wins": 0,
+      "tie_breaker": "SD 0 · V 1 · Media 1",
+      "tie_breaker_points": "SD 0 · V 1 · Media 1",
+      "tie_breaker_rate": "G 3 · Pt 3 · V 1"
+    },
+    {
       "team_key": "Alberto|Ale M",
       "team_label": "Alberto + Ale M",
       "team_name": "Alberto-Ale M",
@@ -10639,7 +11541,7 @@
       "tie_direct_wins": 0,
       "tie_breaker": "-",
       "tie_breaker_points": "-",
-      "tie_breaker_rate": "-"
+      "tie_breaker_rate": "G 1 · Pt 1 · V 0"
     },
     {
       "team_key": "Ale M|Valter",
@@ -10724,6 +11626,22 @@
   ],
   "solo_vs_team": [
     {
+      "player": "Ale P",
+      "solo_games": 5,
+      "solo_wins": 0,
+      "solo_draws": 0,
+      "solo_losses": 5,
+      "solo_points": 0,
+      "team_games": 4,
+      "team_wins": 2,
+      "team_draws": 2,
+      "team_losses": 0,
+      "team_points": 8,
+      "solo_points_rate": 0.0,
+      "team_points_rate": 2.0,
+      "delta": 2.0
+    },
+    {
       "player": "Alberto",
       "solo_games": 2,
       "solo_wins": 0,
@@ -10738,22 +11656,6 @@
       "solo_points_rate": 0.0,
       "team_points_rate": 2.0,
       "delta": 2.0
-    },
-    {
-      "player": "Ale P",
-      "solo_games": 2,
-      "solo_wins": 0,
-      "solo_draws": 0,
-      "solo_losses": 2,
-      "solo_points": 0,
-      "team_games": 3,
-      "team_wins": 1,
-      "team_draws": 2,
-      "team_losses": 0,
-      "team_points": 5,
-      "solo_points_rate": 0.0,
-      "team_points_rate": 1.6667,
-      "delta": 1.6667
     },
     {
       "player": "Riky Tav",
@@ -10772,52 +11674,36 @@
       "delta": 1.5
     },
     {
+      "player": "Patrick",
+      "solo_games": 26,
+      "solo_wins": 10,
+      "solo_draws": 2,
+      "solo_losses": 14,
+      "solo_points": 32,
+      "team_games": 10,
+      "team_wins": 4,
+      "team_draws": 3,
+      "team_losses": 3,
+      "team_points": 15,
+      "solo_points_rate": 1.2308,
+      "team_points_rate": 1.5,
+      "delta": 0.2692
+    },
+    {
       "player": "Lele",
-      "solo_games": 31,
-      "solo_wins": 13,
+      "solo_games": 35,
+      "solo_wins": 14,
       "solo_draws": 3,
-      "solo_losses": 15,
-      "solo_points": 42,
-      "team_games": 9,
+      "solo_losses": 18,
+      "solo_points": 45,
+      "team_games": 10,
       "team_wins": 4,
       "team_draws": 2,
-      "team_losses": 3,
+      "team_losses": 4,
       "team_points": 14,
-      "solo_points_rate": 1.3548,
-      "team_points_rate": 1.5556,
-      "delta": 0.2008
-    },
-    {
-      "player": "Patrick",
-      "solo_games": 22,
-      "solo_wins": 8,
-      "solo_draws": 2,
-      "solo_losses": 12,
-      "solo_points": 26,
-      "team_games": 9,
-      "team_wins": 3,
-      "team_draws": 3,
-      "team_losses": 3,
-      "team_points": 12,
-      "solo_points_rate": 1.1818,
-      "team_points_rate": 1.3333,
-      "delta": 0.1515
-    },
-    {
-      "player": "Fra",
-      "solo_games": 30,
-      "solo_wins": 11,
-      "solo_draws": 3,
-      "solo_losses": 16,
-      "solo_points": 36,
-      "team_games": 9,
-      "team_wins": 3,
-      "team_draws": 3,
-      "team_losses": 3,
-      "team_points": 12,
-      "solo_points_rate": 1.2,
-      "team_points_rate": 1.3333,
-      "delta": 0.1333
+      "solo_points_rate": 1.2857,
+      "team_points_rate": 1.4,
+      "delta": 0.1143
     },
     {
       "player": "Ale M",
@@ -10834,6 +11720,22 @@
       "solo_points_rate": 1.4,
       "team_points_rate": 1.3333,
       "delta": -0.0667
+    },
+    {
+      "player": "Fra",
+      "solo_games": 34,
+      "solo_wins": 12,
+      "solo_draws": 3,
+      "solo_losses": 19,
+      "solo_points": 39,
+      "team_games": 10,
+      "team_wins": 3,
+      "team_draws": 3,
+      "team_losses": 4,
+      "team_points": 12,
+      "solo_points_rate": 1.1471,
+      "team_points_rate": 1.2,
+      "delta": 0.0529
     },
     {
       "player": "Aloi",
@@ -10961,17 +11863,25 @@
         },
         "Ale P": {
           "Lele": {
-            "games": 2,
+            "games": 5,
             "wins": 0,
-            "draws": 1,
+            "draws": 4,
             "losses": 1,
             "points_for": 0,
             "points_against": 3
           },
           "Patrick": {
-            "games": 2,
+            "games": 5,
             "wins": 0,
-            "draws": 1,
+            "draws": 2,
+            "losses": 3,
+            "points_for": 0,
+            "points_against": 9
+          },
+          "Fra": {
+            "games": 3,
+            "wins": 0,
+            "draws": 2,
             "losses": 1,
             "points_for": 0,
             "points_against": 3
@@ -10997,20 +11907,28 @@
         },
         "Fra": {
           "Lele": {
-            "games": 23,
-            "wins": 6,
-            "draws": 7,
-            "losses": 10,
-            "points_for": 20,
-            "points_against": 32
+            "games": 27,
+            "wins": 7,
+            "draws": 9,
+            "losses": 11,
+            "points_for": 23,
+            "points_against": 35
           },
           "Patrick": {
-            "games": 14,
-            "wins": 4,
-            "draws": 5,
-            "losses": 5,
-            "points_for": 14,
-            "points_against": 17
+            "games": 18,
+            "wins": 5,
+            "draws": 6,
+            "losses": 7,
+            "points_for": 17,
+            "points_against": 23
+          },
+          "Ale P": {
+            "games": 3,
+            "wins": 1,
+            "draws": 2,
+            "losses": 0,
+            "points_for": 3,
+            "points_against": 0
           },
           "Alberto": {
             "games": 2,
@@ -11038,21 +11956,29 @@
           }
         },
         "Lele": {
-          "Fra": {
-            "games": 23,
-            "wins": 10,
-            "draws": 7,
-            "losses": 6,
-            "points_for": 32,
-            "points_against": 20
-          },
           "Patrick": {
-            "games": 18,
-            "wins": 6,
+            "games": 22,
+            "wins": 7,
+            "draws": 5,
+            "losses": 10,
+            "points_for": 23,
+            "points_against": 32
+          },
+          "Fra": {
+            "games": 27,
+            "wins": 11,
+            "draws": 9,
+            "losses": 7,
+            "points_for": 35,
+            "points_against": 23
+          },
+          "Ale P": {
+            "games": 5,
+            "wins": 1,
             "draws": 4,
-            "losses": 8,
-            "points_for": 20,
-            "points_against": 26
+            "losses": 0,
+            "points_for": 3,
+            "points_against": 0
           },
           "Alberto": {
             "games": 2,
@@ -11078,14 +12004,6 @@
             "points_for": 0,
             "points_against": 0
           },
-          "Ale P": {
-            "games": 2,
-            "wins": 1,
-            "draws": 1,
-            "losses": 0,
-            "points_for": 3,
-            "points_against": 0
-          },
           "Aloi": {
             "games": 2,
             "wins": 2,
@@ -11096,21 +12014,29 @@
           }
         },
         "Patrick": {
-          "Fra": {
-            "games": 14,
-            "wins": 5,
-            "draws": 5,
-            "losses": 4,
-            "points_for": 17,
-            "points_against": 14
-          },
           "Lele": {
+            "games": 22,
+            "wins": 10,
+            "draws": 5,
+            "losses": 7,
+            "points_for": 32,
+            "points_against": 23
+          },
+          "Fra": {
             "games": 18,
-            "wins": 8,
-            "draws": 4,
-            "losses": 6,
-            "points_for": 26,
-            "points_against": 20
+            "wins": 7,
+            "draws": 6,
+            "losses": 5,
+            "points_for": 23,
+            "points_against": 17
+          },
+          "Ale P": {
+            "games": 5,
+            "wins": 3,
+            "draws": 2,
+            "losses": 0,
+            "points_for": 9,
+            "points_against": 0
           },
           "Alberto": {
             "games": 1,
@@ -11135,14 +12061,6 @@
             "losses": 2,
             "points_for": 3,
             "points_against": 6
-          },
-          "Ale P": {
-            "games": 2,
-            "wins": 1,
-            "draws": 1,
-            "losses": 0,
-            "points_for": 3,
-            "points_against": 0
           },
           "Aloi": {
             "games": 2,
@@ -11196,10 +12114,11 @@
         "Fra-Patrick",
         "Ale P-Lele",
         "Alberto-Patrick",
+        "Ale P-Patrick",
         "Fra-Riky Tav",
         "Ale M-Lele",
-        "Fra-Lele",
         "Lele-Patrick",
+        "Fra-Lele",
         "Alberto-Ale M",
         "Ale M-Valter",
         "Aloi-Lele",
@@ -11257,6 +12176,16 @@
             "points_against": 2
           }
         },
+        "Ale P-Patrick": {
+          "Fra-Lele": {
+            "games": 1,
+            "wins": 1,
+            "draws": 0,
+            "losses": 0,
+            "points_for": 3,
+            "points_against": 0
+          }
+        },
         "Aloi-Lele": {
           "Fra-Patrick": {
             "games": 1,
@@ -11268,6 +12197,14 @@
           }
         },
         "Fra-Lele": {
+          "Ale P-Patrick": {
+            "games": 1,
+            "wins": 0,
+            "draws": 0,
+            "losses": 1,
+            "points_for": 0,
+            "points_against": 3
+          },
           "Alberto-Patrick": {
             "games": 1,
             "wins": 0,
@@ -11363,6 +12300,187 @@
     }
   },
   "matches": [
+    {
+      "id": 58,
+      "played_at": "2026-10-11T12:46:00",
+      "course": "San Remo",
+      "holes": 9,
+      "notes": "Netto",
+      "import_key": "match-mvp72g1e-43wvx7lv",
+      "tags": [],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Lele",
+          "is_winner": true,
+          "players": [
+            "Lele"
+          ]
+        },
+        {
+          "team_name": "Patrick",
+          "is_winner": false,
+          "players": [
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Fra",
+          "is_winner": false,
+          "players": [
+            "Fra"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "played_at": "2026-10-10T12:46:00",
+      "course": "Golf Opio-Valbonne",
+      "holes": 18,
+      "notes": "Netto globale",
+      "import_key": "match-mvp71r57-7dmfkhgq",
+      "tags": [],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Ale P-Patrick",
+          "is_winner": true,
+          "players": [
+            "Ale P",
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Fra-Lele",
+          "is_winner": false,
+          "players": [
+            "Fra",
+            "Lele"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "played_at": "2026-10-10T12:46:00",
+      "course": "Golf Opio-Valbonne",
+      "holes": 18,
+      "notes": "Netto globale",
+      "import_key": "match-mvp7106i-x2if4siu",
+      "tags": [],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Lele",
+          "is_winner": false,
+          "players": [
+            "Lele"
+          ]
+        },
+        {
+          "team_name": "Patrick",
+          "is_winner": true,
+          "players": [
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Fra",
+          "is_winner": false,
+          "players": [
+            "Fra"
+          ]
+        },
+        {
+          "team_name": "Ale P",
+          "is_winner": false,
+          "players": [
+            "Ale P"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "played_at": "2026-10-10T12:46:00",
+      "course": "Golf Opio-Valbonne",
+      "holes": 18,
+      "notes": "Netto pomeriggio",
+      "import_key": "match-mvp70ov7-4s5n5m9q",
+      "tags": [],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Lele",
+          "is_winner": false,
+          "players": [
+            "Lele"
+          ]
+        },
+        {
+          "team_name": "Patrick",
+          "is_winner": false,
+          "players": [
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Fra",
+          "is_winner": true,
+          "players": [
+            "Fra"
+          ]
+        },
+        {
+          "team_name": "Ale P",
+          "is_winner": false,
+          "players": [
+            "Ale P"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "played_at": "2026-10-10T12:46:00",
+      "course": "Golf Opio-Valbonne",
+      "holes": 18,
+      "notes": "Netto mattina",
+      "import_key": "match-mvp703sj-3fkw41d8",
+      "tags": [],
+      "is_draw": false,
+      "sides": [
+        {
+          "team_name": "Lele",
+          "is_winner": false,
+          "players": [
+            "Lele"
+          ]
+        },
+        {
+          "team_name": "Patrick",
+          "is_winner": true,
+          "players": [
+            "Patrick"
+          ]
+        },
+        {
+          "team_name": "Fra",
+          "is_winner": false,
+          "players": [
+            "Fra"
+          ]
+        },
+        {
+          "team_name": "Ale P",
+          "is_winner": false,
+          "players": [
+            "Ale P"
+          ]
+        }
+      ]
+    },
     {
       "id": 53,
       "played_at": "2026-09-21T23:56:00",
@@ -12924,16 +14042,16 @@
     "key": "all",
     "label": "Tutte le partite",
     "group": "Generale",
-    "matches": 50,
+    "matches": 55,
     "player_champion": {
       "kind": "player",
-      "name": "Lele",
-      "points": 56,
-      "games": 40,
-      "wins": 17,
-      "draws": 5,
-      "losses": 18,
-      "points_rate": 1.4
+      "name": "Ale M",
+      "points": 18,
+      "games": 13,
+      "wins": 5,
+      "draws": 3,
+      "losses": 5,
+      "points_rate": 1.3846
     },
     "team_champion": {
       "kind": "team",
@@ -12947,13 +14065,13 @@
     },
     "player_points_rate_champion": {
       "kind": "player",
-      "name": "Lele",
-      "points": 56,
-      "games": 40,
-      "wins": 17,
-      "draws": 5,
-      "losses": 18,
-      "points_rate": 1.4
+      "name": "Ale M",
+      "points": 18,
+      "games": 13,
+      "wins": 5,
+      "draws": 3,
+      "losses": 5,
+      "points_rate": 1.3846
     },
     "team_points_rate_champion": {
       "kind": "team",
